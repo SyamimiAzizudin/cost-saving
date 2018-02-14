@@ -79,7 +79,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel
+                    UMW Cost Saving Initiative
                 </div>
 
                 <div class="links">

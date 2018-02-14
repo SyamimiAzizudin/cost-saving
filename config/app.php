@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Laravel'),
+    'name' => env('APP_NAME', 'UMW Cost Saving Initiative'),
 
     /*
     |--------------------------------------------------------------------------
@@ -65,7 +65,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => 'Asia/Kuala_Lumpur',
 
     /*
     |--------------------------------------------------------------------------
@@ -92,6 +92,10 @@ return [
     */
 
     'fallback_locale' => 'en',
+
+    //untuk set kat locale Malaysia
+
+    'faker_locale' => 'ms_MY',
 
     /*
     |--------------------------------------------------------------------------

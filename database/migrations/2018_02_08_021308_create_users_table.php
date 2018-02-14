@@ -15,11 +15,16 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
+            $table->integer('company_id')->index()->unsigned();
+            $table->string('username')->unique();
             $table->string('email')->unique();
             $table->string('password');
+            $table->enum('userRole', ['admin', 'subsidiary', 'board'])->default('subsidiary');
             $table->rememberToken();
             $table->timestamps();
+
+            // Foreign Key
+            $table->foreign('company_id')->references('id')->on('companies')->onDelete('cascade');
         });
     }
 

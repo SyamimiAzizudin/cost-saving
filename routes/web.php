@@ -15,6 +15,37 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
+Route::group(['middleware' => ['auth']], function() {
+	Route::get('/home', 'HomeController@index');
 
-Route::get('/home', 'HomeController@index')->name('home');
+	/**
+     * User Manegement
+     */
+	// Route::resource('/user', 'UsersController');
+
+
+	/**
+     * Company Manegement
+     */
+	// Route::resource('/company', 'CompaniesController');
+
+	/**
+     * Initiative Manegement
+     */
+	// Route::resource('/initiative', 'InitiativesController');
+
+	/**
+     * Saving Manegement
+     */
+	Route::resource('/saving', 'CostSavingsController');
+	// Route::get('/saving', 'CostSavingsController@index');
+	// Route::get('/saving/create', 'CostSavingsController@create');
+ 	// Route::post('/saving', 'CostSavingsController@store');
+ 	// Route::get('/saving/{saving}', 'CostSavingsController@show');
+ 	// Route::get('/saving/{saving}/edit', 'CostSavingsController@edit');
+ 	// Route::patch('/saving/{saving}', 'CostSavingsController@update');
+ 	// Route::delete('/saving/{saving}/delete', 'CostSavingsController@destroy');
+
+});
+
+Auth::routes();

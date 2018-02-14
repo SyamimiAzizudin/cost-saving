@@ -2,6 +2,8 @@
 
 namespace App;
 
+use App\Company;
+use App\Initiative;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -15,7 +17,11 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'company_id',
+        'username',
+        'email',
+        'password',
+        'userRole'
     ];
 
     /**
@@ -24,6 +30,25 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password',
+        'remember_token',
+        'created_at',
+        'updated_at'
     ];
+
+    /**
+     * Get companies
+     */
+    public function companies()
+    {
+        return $this->hasOne(Company::class, 'user_id');
+    }
+
+    /**
+     * Get initiative
+     */
+    public function initiatives()
+    {
+        return $this->hasMany(Initiative::class, 'user_id');
+    }
 }
