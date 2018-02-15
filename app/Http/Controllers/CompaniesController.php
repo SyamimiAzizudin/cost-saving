@@ -13,7 +13,7 @@ class CompaniesController extends Controller
      */
     public function index()
     {
-        //
+        return view('company.index');
     }
 
     /**

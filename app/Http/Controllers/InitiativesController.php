@@ -13,7 +13,7 @@ class InitiativesController extends Controller
      */
     public function index()
     {
-        //
+        return view('initiative.index');
     }
 
     /**

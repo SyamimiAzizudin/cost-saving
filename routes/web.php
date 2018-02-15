@@ -17,27 +17,31 @@ Route::get('/', function () {
 
 Route::group(['middleware' => ['auth']], function() {
 	Route::get('/home', 'HomeController@index');
+	Route::get('/dashboard', 'HomeController@dashboard');
+	Route::get('/group-dashboard', 'HomeController@group_dashboard');
+	Route::get('/company-dashboard', 'HomeController@company_dashboard');
+	Route::get('/print-overall', 'HomeController@print_overall');
 
 	/**
      * User Manegement
      */
-	// Route::resource('/user', 'UsersController');
+	Route::resource('/user', 'UsersController');
 
 
 	/**
      * Company Manegement
      */
-	// Route::resource('/company', 'CompaniesController');
+	Route::resource('/company', 'CompaniesController');
 
 	/**
      * Initiative Manegement
      */
-	// Route::resource('/initiative', 'InitiativesController');
+	Route::resource('/initiative', 'InitiativesController');
 
 	/**
      * Saving Manegement
      */
-	Route::resource('/saving', 'CostSavingsController');
+	Route::resource('/saving', 'SavingsController');
 	// Route::get('/saving', 'CostSavingsController@index');
 	// Route::get('/saving/create', 'CostSavingsController@create');
  	// Route::post('/saving', 'CostSavingsController@store');

@@ -25,4 +25,24 @@ class HomeController extends Controller
     {
         return view('home');
     }
+
+    public function dashboard()
+    {
+        return view('dashboard');
+    }
+
+    public function group_dashboard()
+    {
+        return view('group-dashboard');
+    }
+
+    public function company_dashboard()
+    {
+        return view('company-dashboard');
+    }
+
+    public function print_overall()
+    {
+        return view('print-overall');
+    }
 }

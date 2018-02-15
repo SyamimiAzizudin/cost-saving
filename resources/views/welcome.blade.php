@@ -6,7 +6,11 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <title>Laravel</title>
-
+        
+        <!-- Styles -->
+        <link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/modern-business.css') }}" rel="stylesheet">
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
 
@@ -26,9 +30,10 @@
             }
 
             .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
+                /*align-items: center;*/
+                /*display: flex;*/
+                /*justify-content: center;*/
+                padding-top: 200px;
             }
 
             .position-ref {
@@ -82,14 +87,46 @@
                     UMW Cost Saving Initiative
                 </div>
 
-                <div class="links">
-                    <a href="https://laravel.com/docs">Documentation</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
+                <div class="row ">
+                    <div class="col-md-8 col-md-offset-2 padding1">
+                        <div class="col-md-4">
+                            <a type="button" href="{{ url('/dashboard') }}" class="btn btn-lg btn-primary custom">Main Dashboard</a>
+                        </div>
+                        <div class="col-md-4">
+                            <a type="button" href="{{ url('/group-dashboard') }}" class="btn btn-lg btn-primary custom">Group Dashboard</a>
+                        </div>
+                        <div class="col-md-4">
+                            <a type="button" href="{{ url('/user') }}" class="btn btn-lg btn-primary custom">User Management Page</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="row ">
+                    <div class="col-md-8 col-md-offset-2 padding2">
+                        <div class="col-md-4">
+                            <a type="button" href="{{ url('/company/index') }}" class="btn btn-lg btn-primary custom">Company Management Page</a>
+                        </div>
+                        <div class="col-md-4">
+                            <a type="button" href="{{ url('/initiative') }}" class="btn btn-lg btn-primary custom">Initiative Management Page</a>
+                        </div>
+                        <div class="col-md-4">
+                            <a type="button" href="{{ url('/saving') }}" class="btn btn-lg btn-primary custom">Saving Management Page</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
+
+        <!-- Scripts -->
+        <script src="{{ asset('js/app.js') }}"></script>
+        <script src="{{ asset('js/jquery.js') }}"></script>
+        <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+
+        <!-- Script to Activate the Carousel -->
+        <script>
+        $('.carousel').carousel({
+            interval: 5000 //changes the speed
+        })
+        </script>
+
     </body>
 </html>

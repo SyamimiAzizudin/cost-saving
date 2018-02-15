@@ -11,7 +11,16 @@
     <title>{{ config('app.name', 'UMW Cost Saving Initiative') }}</title>
 
     <!-- Styles -->
+    <link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/modern-business.css') }}" rel="stylesheet">
+
+    <!-- Javascript -->
+    <script src="https://unpkg.com/vue/dist/vue.min.js"></script>
+    <script src="https://unpkg.com/highcharts/highcharts.js"></script>
+    <!-- vue-highcharts should be load after Highcharts -->
+    <script src="https://unpkg.com/vue-highcharts/dist/vue-highcharts.min.js"></script>
+    
 </head>
 <body>
     <div id="app">
@@ -30,6 +39,8 @@
                     <!-- Branding Image -->
                     <a class="navbar-brand" href="{{ url('/') }}">
                         {{ config('app.name', 'UMW Cost Saving Initiative') }}
+                        <!-- <img class="image-responsive" src="{{ asset('img/umw-logo.png') }}"  alt="UMW logo" style="width:23%;height:auto;"> -->
+
                     </a>
                 </div>
 
@@ -38,7 +49,7 @@
                     <ul class="nav navbar-nav">
                         &nbsp;
                         <li><a href="{{ url('/home') }}">Home</a></li>
-                        <li><a href="{{ url('/saving') }}">Cost Saving</a></li>
+                        <!-- <img class="image-responsive" src="{{ asset('img/umw-logo.png') }}"  alt="UMW logo" style="width:3%;height:auto;padding: 10px"> -->
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -48,6 +59,10 @@
                             <li><a href="{{ route('login') }}">Login</a></li>
                             <li><a href="{{ route('register') }}">Register</a></li>
                         @else
+                            <li><a href="{{ url('/initiative') }}">Initiative Management</a></li>
+                            <li><a href="{{ url('/saving') }}">Saving Management</a></li>
+                            <li><a href="{{ url('/company') }}">Company Management</a></li>
+                            <li><a href="{{ url('/user') }}">User Management</a></li>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
                                     {{ Auth::user()->username }} <span class="caret"></span>
@@ -102,10 +117,41 @@
                     @yield('content')
                 </div>
             </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="text-right padding2">
+                        <a href="{{ url('/print-overall') }}" class="btn btn-outline-success success">Print Overall Page</a>
+                    </div>
+                </div>
+            </div>
         </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="container">
+        <hr>
+        <footer>
+            <div class="row">
+                <div class="col-lg-12">
+                    <p>Copyright &copy; UMW Cost Saving Initiative 2018</p>
+                </div>
+            </div>
+        </footer>
     </div>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
+    <script src="{{ asset('js/jquery.js') }}"></script>
+    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+
+    <!-- Script to Activate the Carousel -->
+    <script>
+    $('.carousel').carousel({
+        interval: 5000 //changes the speed
+    })
+    </script>
+
+
+
 </body>
 </html>
