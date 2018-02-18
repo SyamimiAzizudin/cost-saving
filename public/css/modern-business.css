@@ -9,6 +9,7 @@
 html,
 body {
     height: 100%;
+    background-color: #fff !important;
 }
 
 body {
@@ -39,8 +40,14 @@ body {
 }
 .custom {
     width: 240px !important;
-    height: 60px !important;
+    height: auto !important;
     white-space: pre-wrap !important;
+}
+.custom1 {
+    width: 240px !important;
+    height: 95px !important;
+    white-space: pre-wrap !important;
+    line-height: 70px;
 }
 .btn-outline-success {
   border: 2px solid black;

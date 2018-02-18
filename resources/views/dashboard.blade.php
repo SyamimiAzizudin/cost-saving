@@ -72,17 +72,17 @@
                     <highcharts :options="options" ref="highcharts"></highcharts>
                 </div>
 
-               
+                <br>
 
                 <div class="col-md-8 col-md-offset-2">
                     <div class="col-md-4">
                         <a href="{{ url('/group-dashboard') }}" type="button" class="btn btn-lg btn-primary custom">Dashboard Manufacturing & Engineering</a>
                     </div>
                     <div class="col-md-4">
-                        <a href="{{ url('/group-dashboard') }}" type="button" class="btn btn-lg btn-primary custom">Dashboard Equipments</a>
+                        <a href="{{ url('/group-dashboard') }}" type="button" class="btn btn-lg btn-primary custom1">Dashboard Equipments</a>
                     </div>
                     <div class="col-md-4">
-                        <a href="{{ url('/group-dashboard') }}" type="button" class="btn btn-lg btn-primary custom">Dashboard Corporate</a>
+                        <a href="{{ url('/group-dashboard') }}" type="button" class="btn btn-lg btn-primary custom1">Dashboard Corporate</a>
                     </div>
                 </div>
 

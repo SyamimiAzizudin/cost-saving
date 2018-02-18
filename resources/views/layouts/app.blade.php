@@ -37,9 +37,9 @@
                     </button>
 
                     <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'UMW Cost Saving Initiative') }}
-                        <!-- <img class="image-responsive" src="{{ asset('img/umw-logo.png') }}"  alt="UMW logo" style="width:23%;height:auto;"> -->
+                    <a class="navbar-brand pull-left" href="{{ url('/') }}">
+                        {{-- {{ config('app.name', 'UMW Cost Saving Initiative') }} --}}
+                        <img class="image-responsive" src="{{ asset('img/umw-logo.png') }}"  alt="UMW logo" style="width:23%;height:auto;">
 
                     </a>
                 </div>
@@ -48,7 +48,7 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
                         &nbsp;
-                        <li><a href="{{ url('/home') }}">Home</a></li>
+                        {{-- <li><a href="{{ url('/home') }}">Home</a></li> --}}
                         <!-- <img class="image-responsive" src="{{ asset('img/umw-logo.png') }}"  alt="UMW logo" style="width:3%;height:auto;padding: 10px"> -->
                     </ul>
 
