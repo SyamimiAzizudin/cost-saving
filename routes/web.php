@@ -43,12 +43,6 @@ Route::group(['middleware' => ['auth']], function() {
      * Saving Manegement
      */
 	Route::resource('/saving', 'SavingsController');
-	// Route::get('/saving', 'CostSavingsController@index');
-	// Route::get('/saving/create', 'CostSavingsController@create');
- 	// Route::post('/saving', 'CostSavingsController@store');
- 	// Route::get('/saving/{saving}', 'CostSavingsController@show');
- 	// Route::get('/saving/{saving}/edit', 'CostSavingsController@edit');
- 	// Route::patch('/saving/{saving}', 'CostSavingsController@update');
  	// Route::delete('/saving/{saving}/delete', 'CostSavingsController@destroy');
 
 });

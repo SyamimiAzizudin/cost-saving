@@ -94,7 +94,7 @@
                     <div class="form-group">
                         <div class = "col-sm-offset-3 col-sm-9">
                             <!-- <button class="btn btn-default" type="submit">Create</button> -->
-                            <a href="{{ action('CompaniesController@index') }}" class="btn btn-danger"><span class="glyphicon glyphicon-remove-sign"></span> Cancel</a>
+                            <!-- <a href="{{ action('CompaniesController@index') }}" class="btn btn-danger"><span class="glyphicon glyphicon-remove-sign"></span> Cancel</a> -->
                             <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Create</button>
                         </div>
                     </div>

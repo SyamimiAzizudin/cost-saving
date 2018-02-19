@@ -39,7 +39,7 @@
     		<div class="form-group">
     			<div class = "col-sm-offset-3 col-sm-9">
     				<a href="{{ action('CompaniesController@index') }}" class="btn btn-danger"><span class="glyphicon glyphicon-remove-sign"></span> Cancel</a>
-    				<button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Edit</button>
+    				<button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Save</button>
     			</div>
     		</div>
 		{!! Form::close() !!}
