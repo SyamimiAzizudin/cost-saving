@@ -65,6 +65,7 @@
     </div>
 </div>
 
+<<<<<<< HEAD
 <!-- Dashboard Section -->
 <div class="row">
     <div class="col-lg-12">
@@ -75,6 +76,21 @@
             </div>
 
             <br>
+=======
+                <br>
+
+                <div class="col-md-8 col-md-offset-2">
+                    <div class="col-md-4">
+                        <a href="{{ url('/group-dashboard') }}" type="button" class="btn btn-lg btn-primary custom">Dashboard Manufacturing & Engineering</a>
+                    </div>
+                    <div class="col-md-4">
+                        <a href="{{ url('/group-dashboard') }}" type="button" class="btn btn-lg btn-primary custom1">Dashboard Equipments</a>
+                    </div>
+                    <div class="col-md-4">
+                        <a href="{{ url('/group-dashboard') }}" type="button" class="btn btn-lg btn-primary custom1">Dashboard Corporate</a>
+                    </div>
+                </div>
+>>>>>>> 35696f9db2b9b755ab3c14cfd26f5cf10b4258e2
 
             <div class="col-md-8 col-md-offset-2">
                 <div class="col-md-4">
