@@ -7,7 +7,7 @@
                 <ol class="breadcrumb">
                     <li><a href="{{ url('/home') }}">Home</a>
                     </li>
-                    <li><a href="{{ url('/dashboard') }}">Dashboard</a>
+                    <li><a href="{{ url('/dashboard') }}">Main Dashboard</a>
                     </li>
                     <li><a href="{{ url('/group-dashboard') }}">Group Dashboard</a>
                     </li>

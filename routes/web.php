@@ -26,12 +26,13 @@ Route::group(['middleware' => ['auth']], function() {
      * User Manegement
      */
 	Route::resource('/user', 'UsersController');
-
+    // Route::delete('/show.berita/delete/{berita}', 'BeritasController@destroy');
 
 	/**
      * Company Manegement
      */
 	Route::resource('/company', 'CompaniesController');
+    Route::delete('/company/{company}/delete', 'CompaniesController@destroy');
 
 	/**
      * Initiative Manegement

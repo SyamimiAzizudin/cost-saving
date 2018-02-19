@@ -2,7 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Company;
+use App\Initiative;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Input;
 
 class CompaniesController extends Controller
 {
@@ -13,7 +18,8 @@ class CompaniesController extends Controller
      */
     public function index()
     {
-        return view('company.index');
+        $companies = Company::with('user')->where('user_id', Auth::user()->id)->paginate(5);
+        return view('company.index', compact('companies'));
     }
 
     /**
@@ -34,7 +40,18 @@ class CompaniesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required',
+            'group' => 'required',
+        ]);
+
+        $company = new Company;
+        $company->name = $request->name;
+        $company->group = $request->group;
+        $company->user_id = Auth::user()->id;
+        $company->save();
+
+        return redirect()->action('CompaniesController@store')->withMessage('Company has been successfully added!');
     }
 
     /**
@@ -56,7 +73,8 @@ class CompaniesController extends Controller
      */
     public function edit($id)
     {
-        //
+        $company = Company::findOrFail($id);
+        return view('company.edit', compact('company'));
     }
 
     /**
@@ -68,7 +86,18 @@ class CompaniesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required',
+            'group' => 'required',
+        ]);
+
+        $company = Company::findOrFail($id);
+        $company->name = $request->name;
+        $company->group = $request->group;
+        $company->save();
+        
+        return redirect()->action('CompaniesController@index')->withMessage('Company has been successfully updated!');
+
     }
 
     /**
@@ -79,6 +108,8 @@ class CompaniesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $company = Company::findOrFail($id);
+        $company->delete();
+        return back()->withError('Company has been successfully deleted!');
     }
 }

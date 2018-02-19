@@ -6,12 +6,12 @@
         <div class="row">
             <div class="col-lg-12">
                 <!--name group-->
-                <h1 class="page-header">M&E Group Dashboard</h1>
+                <h1 class="page-header">Dashboard - Equipment Group</h1>
                 <ol class="breadcrumb">
                     <li><a href="{{ url('/home') }}">Home</a></li>
                     <li><a href="{{ url('/dashboard') }}">Main Dashboard</a>
                     </li>
-                    <li class="active">M&E Group Dashboard</li>
+                    <li class="active">Dashboard - Equipment Group</li>
                 </ol>
                 <div class="col-md-3" style="display: none">
                     <h4>Company :</h4>
@@ -32,39 +32,39 @@
                             <h5>Yearly Target </h5>
                         </div>
                         <div class="panel-body text-center">
-                            <h4>RM 18 m</h4>    
+                            <h3>RM 18 m</h3>    
                         </div>
                     </div>
                     <div class="col-md-3 panel panel-default">
                         <div class="panel-heading text-center">
-                            <h5>Target Savings (Cumm.) </h5>
+                            <h5>Target Savings (Cumm) </h5>
                         </div>
                         <div class="panel-body text-center">
-                            <h4>RM 8,525,785.00</h4>    
+                            <h3>RM 8,525,785.00</h3>    
                         </div>
                     </div>
                     <div class="col-md-3 panel panel-default">
                         <div class="panel-heading text-center">
-                            <h5>Actual Savings (Cumm.) </h5>
+                            <h5>Actual Savings (Cumm) </h5>
                         </div>
                         <div class="panel-body text-center">
-                            <h4>RM 1,525,785.00</h4>    
+                            <h3>RM 9,525,785.00</h3>    
                         </div>
                     </div>
                     <div class="col-md-2 panel panel-default">
                         <div class="panel-heading text-center">
-                            <h5>Yearly % (Cumm.) </h5>
+                            <h5>Yearly % (Cumm) </h5>
                         </div>
                         <div class="panel-body text-center">
-                            <h4>75% </h4>    
+                            <h3>75 </h3>    
                         </div>
                     </div>
                     <div class="col-md-2 panel panel-default">
                         <div class="panel-heading text-center">
-                            <h5>Monthly % (Cumm.) </h5>
+                            <h5>Monthly % (Cumm) </h5>
                         </div>
                         <div class="panel-body text-center">
-                            <h4>34% </h4>    
+                            <h3>34 </h3>    
                         </div>
                     </div>
                     <p class="text-right ">Latest Date Update : 12 September 2018</p>
@@ -76,8 +76,6 @@
                     <div id="app">
                         <highcharts :options="options" ref="highcharts"></highcharts>
                     </div>
-
-                    
     
                     </center>
                 </div>
@@ -87,9 +85,8 @@
         <!--Summary-->
         <div class="row">
             <div class="col-md-12 padding2">
-
                 <div class="col-md-12">
-                    <h3 class="page-header">Cost Saving Summary - Group</h3>
+                    <h3 class="page-header">Cost Saving Summary - Equipment Group</h3>
 
                     <div class="form-group col-md-6">
                         <label for="month" class="col-sm-3 control-label">Month</label>
@@ -114,44 +111,44 @@
                 <div class="col-md-offset-1 col-md-12 padding2">
                     <div class="form-group">
                         <label for="company" class="col-md-2 control-label">Company</label>
-                        <label for="company" class="col-md-2 control-label">Target (RM)</label>
-                        <label for="company" class="col-md-2 control-label">Actual (RM)</label>
-                        <label for="company" class="col-md-2 control-label"> <center>%</center> </label>
+                        <label for="company" class="col-md-2 text-center control-label">Target (RM)</label>
+                        <label for="company" class="col-md-2 text-center control-label">Actual (RM)</label>
+                        <label for="company" class="col-md-2 text-center control-label">%</label>
                     </div>
                     <div class="form-group padding2">
                         <label for="company" class="col-md-2 control-label">UMW Equipment Sdn Bhd</label>
-                        <input class="col-md-2 text-center good" type="integer" value ="12,084.00">
-                        <input class="col-md-2 text-center good" type="integer" value ="12,084.00" readonly>
-                        <input class="col-md-2 text-center" type="integer" value ="12,084.00" readonly>
-                        <a href="{{ url('/company-dashboard') }}" class="">View More</a>
+                        <input class="col-md-2 text-center number good" type="integer" value ="12,084.00">
+                        <input class="col-md-2 text-center number good" type="integer" value ="12,084.00" readonly>
+                        <input class="col-md-2 text-center number" type="integer" value ="78" readonly>
+                        <a href="{{ url('/company-dashboard') }}" class="marginRight">View More (Company)</a>
                     </div>
                     <div class="form-group padding2">
                         <label for="company" class="col-md-2 control-label">UMW (East Malaysia) Sdn Bhd</label>
-                        <input class="col-md-2 text-center good" type="integer" value ="12,084.00">
-                        <input class="col-md-2 text-center fail" type="integer" value ="12,084.00" readonly>
-                        <input class="col-md-2 text-center" type="integer" value ="12,084.00" readonly>
-                        <a href="{{ url('/company-dashboard') }}" class="">View More</a>
+                        <input class="col-md-2 text-center number good" type="integer" value ="12,084.00">
+                        <input class="col-md-2 text-center number fail" type="integer" value ="12,084.00" readonly>
+                        <input class="col-md-2 text-center number" type="integer" value ="88" readonly>
+                        <a href="{{ url('/company-dashboard') }}" class="marginRight">View More (Company)</a>
                     </div>
                     <div class="form-group padding2">
                         <label for="company" class="col-md-2 control-label">UMW Industries (1985) Sdn Bhd</label>
-                        <input class="col-md-2 text-center good" type="integer" value ="12,084.00">
-                        <input class="col-md-2 text-center fail" type="integer" value ="12,084.00" readonly>
-                        <input class="col-md-2 text-center" type="integer" value ="12,084.00" readonly>
-                        <a href="{{ url('/company-dashboard') }}" class="">View More</a>
+                        <input class="col-md-2 text-center number good" type="integer" value ="12,084.00">
+                        <input class="col-md-2 text-center number fail" type="integer" value ="12,084.00" readonly>
+                        <input class="col-md-2 text-center number" type="integer" value ="98" readonly>
+                        <a href="{{ url('/company-dashboard') }}" class="marginRight">View More (Company)</a>
                     </div>
                     <div class="form-group padding2">
                         <label for="company" class="col-md-2 control-label">UMW Industrial Power Services Sdn Bhd</label>
-                        <input class="col-md-2 text-center good" type="integer" value ="12,084.00">
-                        <input class="col-md-2 text-center fail" type="integer" value ="12,084.00" readonly>
-                        <input class="col-md-2 text-center" type="integer" value ="12,084.00" readonly>
-                        <a href="{{ url('/company-dashboard') }}" class="">View More</a>
+                        <input class="col-md-2 text-center number good" type="integer" value ="12,084.00">
+                        <input class="col-md-2 text-center number fail" type="integer" value ="12,084.00" readonly>
+                        <input class="col-md-2 text-center number" type="integer" value ="99" readonly>
+                        <a href="{{ url('/company-dashboard') }}" class="marginRight">View More (Company)</a>
                     </div>
                     <div class="form-group padding2">
                         <label for="company" class="col-md-2 control-label">UMW Equipment & Engineering PTE LTD</label>
-                        <input class="col-md-2 text-center good" type="integer" value ="12,084.00">
-                        <input class="col-md-2 text-center fail" type="integer" value ="12,084.00" readonly>
-                        <input class="col-md-2 text-center" type="integer" value ="12,084.00" readonly>
-                        <a href="{{ url('/company-dashboard') }}" class="">View More</a>
+                        <input class="col-md-2 text-center number good" type="integer" value ="12,084.00">
+                        <input class="col-md-2 text-center number fail" type="integer" value ="12,084.00" readonly>
+                        <input class="col-md-2 text-center number" type="integer" value ="98" readonly>
+                        <a href="{{ url('/company-dashboard') }}" class="marginRight">View More (Company)</a>
                     </div>
                 </div>
 
@@ -177,7 +174,7 @@
                 </div>
             </footer>
         </div>
-	
+    
     <script>
         Vue.use(VueHighcharts);
 
@@ -196,7 +193,7 @@
           },
           yAxis: {
             title: {
-              text: 'Cost (RM K)'
+              text: 'Saving (RM)'
             },
             plotLines: [{
               value: 0,
@@ -205,7 +202,7 @@
             }]
           },
           tooltip: {
-            valueSuffix: 'K'
+            valueSuffix: 'm'
           },
           legend: {
             layout: 'vertical',
@@ -214,14 +211,14 @@
             borderWidth: 0
           },
           series: [{
-            name: 'Target Cost Saving ',
-            data: [50, 110, 180, 250, 320, 380, 450, 520, 590, 660, 730, 800]
+            name: 'Target Savings (RM)',
+            data: [1, 3, 5, 8, 12, 13.5, 15, 16, 17, 17, 17.5, 18]
           }, {
-            name: 'Current Cost Saving',
-            data: [50, 80, 150, 130, 230, 340]
+            name: 'Actual Savings (RM)',
+            data: [2, 3.5, 5, 7, 8.3, 9.5]
           }, {
-            name: 'Yearly',
-            data: [800, 800, 800, 800, 800, 800, 800, 800, 800, 800, 800, 800]
+            name: 'Yearly Target (RM)',
+            data: [18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18]
           }]
         };
 

@@ -9,6 +9,7 @@
 html,
 body {
     height: 100%;
+    background-color: #fff !important;
 }
 
 body {
@@ -21,63 +22,6 @@ body {
 
 .img-hover:hover {
     opacity: 0.8;
-}
-
-/* Home Page Carousel */
-
-/*Custom CSS */
-
-.highcharts-credits {display: none;}
-
-.filter-month {text-align: left}
-
-.padding1{
-  padding-top: 100px !important;
-}
-.padding2{
-  padding-top: 40px !important;
-}
-.custom {
-    width: 240px !important;
-    height: 60px !important;
-    white-space: pre-wrap !important;
-}
-.btn-outline-success {
-  border: 2px solid black;
-  background-color: white;
-  color: black;
-  font-size: 14px;
-  cursor: pointer;
-  border-color: #2196F3 !important;
-  color: #2196F3 !important;
-}
-.success:hover {
-  background-color: #2196F3 !important;
-  color: white !important;
-}
-.table-header > tbody > tr:nth-of-type(1) {
-  background-color: #f9f9f9;
-}
-.good {
-  font-weight: bold;
-  color: #4CAF50;
- /*border-color: #4CAF50 !important;*/
-}
-.fail {
-  
-  font-weight: bold;
-  color: #f44336;
-  /*border-color: #f44336 !important;*/
-}
-.number {  
-  border-top: none;
-  border-right: none;
-  border-left: none;
-  font-size: 20px
-
-}
-.marginRight {
-  margin-left: 20px;
 }
 
 header.carousel {
@@ -145,4 +89,65 @@ footer {
     header.carousel .carousel {
         height: 70%;
     }
+}
+
+/*Custom CSS */
+
+.highcharts-credits {display: none;}
+
+.filter-month {text-align: left}
+
+.padding1{
+  padding-top: 100px !important;
+}
+.padding2{
+  padding-top: 40px !important;
+}
+.custom {
+    width: 240px !important;
+    height: auto !important;
+    white-space: pre-wrap !important;
+}
+.custom1 {
+    width: 240px !important;
+    height: 95px !important;
+    white-space: pre-wrap !important;
+    line-height: 70px;
+}
+.btn-outline-success {
+  border: 2px solid black;
+  background-color: white;
+  color: black;
+  font-size: 14px;
+  cursor: pointer;
+  border-color: #2196F3 !important;
+  color: #2196F3 !important;
+}
+.success:hover {
+  background-color: #2196F3 !important;
+  color: white !important;
+}
+.table-header > tbody > tr:nth-of-type(1) {
+  background-color: #f9f9f9;
+}
+.good {
+  font-weight: bold;
+  color: #4CAF50;
+ /*border-color: #4CAF50 !important;*/
+}
+.fail {
+  
+  font-weight: bold;
+  color: #f44336;
+  /*border-color: #f44336 !important;*/
+}
+.number {
+  border-top: none;
+  border-right: none;
+  border-left: none;
+  font-size: 20px
+
+}
+.marginRight {
+  margin-left: 20px;
 }

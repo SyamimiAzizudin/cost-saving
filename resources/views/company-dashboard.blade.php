@@ -5,58 +5,58 @@
         <!-- Dashboard All Section -->
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">UMW Equipment Sdn Bhd Dashboard </h1>
+                <h1 class="page-header">Dashboard - UMW Equipment Sdn Bhd</h1>
                 <ol class="breadcrumb">
                     <li><a href="{{ url('/home') }}">Home</a>
                     <li><a href="{{ url('/dashboard') }}">Main Dashboard</a>
                     <li><a href="{{ url('/group-dashboard') }}">Group Dashboard</a>
                     </li>
-                    <li class="active">UMW Equipment Sdn Bhd Dashboard</li>
+                    <li class="active">Dashboard - UMW Equipment Sdn Bhd</li>
                 </ol>
             </div>
-            <div class="col-md-12  form-group">
+            <div class="col-md-12 form-group">
 
                 <div class="col-md-2 panel panel-default">
                     <div class="panel-heading text-center">
-                        <h5>Yearly </h5>
+                        <h5>Yearly Target</h5>
                     </div>
                     <div class="panel-body text-center">
-                        <h5>34th</h5>    
+                        <h3>RM 7 m</h3>    
                     </div>
                 </div>
                 <div class="col-md-3 panel panel-default">
                     <div class="panel-heading text-center">
-                        <h5>Target Cost Reduction </h5>
+                        <h5>Target Savings (Cumm) </h5>
                     </div>
                     <div class="panel-body text-center">
-                        <h5>RM 8,525,785.00</h5>    
+                        <h3>RM 5,525,785.00</h3>    
                     </div>
                 </div>
                 <div class="col-md-3 panel panel-default">
                     <div class="panel-heading text-center">
-                        <h5>Actual Cost Reduction </h5>
+                        <h5>Actual Savings (Cumm) </h5>
                     </div>
                     <div class="panel-body text-center">
-                        <h5>RM 1,525,785.00</h5>    
+                        <h3>RM 5,925,785.00</h3>    
                     </div>
                 </div>
                 <div class="col-md-2 panel panel-default">
                     <div class="panel-heading text-center">
-                        <h5>Yearly Percentage </h5>
+                        <h5>Yearly % (Cumm) </h5>
                     </div>
                     <div class="panel-body text-center">
-                        <h5>75% </h5>    
+                        <h3>75 </h3>    
                     </div>
                 </div>
                 <div class="col-md-2 panel panel-default">
                     <div class="panel-heading text-center">
-                        <h5>Month Percentage </h5>
+                        <h5>Month % (Cumm) </h5>
                     </div>
                     <div class="panel-body text-center">
-                        <h5>34% </h5>    
+                        <h3>34 </h3>    
                     </div>
                 </div>
-
+                <p class="text-right">Latest Date Update : 12 September 2018</p>
             </div>
         </div>
         <!-- /.row -->
@@ -70,13 +70,6 @@
                     <highcharts :options="options" ref="highcharts"></highcharts>
                 </div>
 
-                <!-- Update Date-->
-                <div class="row">
-                    <div class="col-lg-12">
-                        <p class="text-right">Latest Date Update : 12 September 2018</p>
-                    </div>
-                </div>
-
             </center>
             </div>
         </div>
@@ -84,11 +77,9 @@
         <!--Summary-->
         <div class="row">
             <div class="col-md-12 padding2">
-                
-
                 <div class="col-md-12">
                     <!--Company Name-->
-                    <h3 class="page-header">Cost Saving Summary - UMW (East Malaysia) SDN BHD</h3>
+                    <h3 class="page-header">Cost Saving Summary - UMW Equipment Sdn Bhd</h3>
 
                     <div class="form-group col-md-6">
                         <label for="month" class="col-sm-3 control-label">Month</label>
@@ -112,38 +103,38 @@
 
                 <div class="col-md-offset-1 col-md-12 padding2">
                     <div class="form-group">
-                        <label for="company" class="col-md-2 text-right control-label"></label>
-                        <label for="company" class="col-md-2 control-label">Target (RM)</label>
-                        <label for="company" class="col-md-2 control-label">Actual (RM)</label>
-                        <label for="company" class="col-md-2 control-label"> <center>%</center> </label>
+                        <label for="company" class="col-md-2 control-label">Area</label>
+                        <label for="company" class="col-md-2 text-center control-label">Target (RM)</label>
+                        <label for="company" class="col-md-2 text-center control-label">Actual (RM)</label>
+                        <label for="company" class="col-md-2 text-center control-label">%</label>
                     </div>
                     <div class="form-group padding2">
-                        <label for="company" class="col-md-2 text-right control-label">Supplier (Komatsu Principal - Equipment)</label>
-                        <input class="col-md-2 text-center good" type="integer" name="firstname" value ="12,084.00">
-                        <input class="col-md-2 text-center good" type="integer" name="firstname" value ="12,084.00" readonly>
-                        <input class="col-md-2 text-center" type="integer" name="firstname" value ="34" readonly>
-                        <a href="{{ url('/print-overall') }}" class="col-md-2 marginRight">View More</a>
+                        <label for="company" class="col-md-2 control-label">Supplier (Komatsu Principal - Equipment)</label>
+                        <input class="col-md-2 text-center number good" type="integer" name="firstname" value ="12,084.00">
+                        <input class="col-md-2 text-center number good" type="integer" name="firstname" value ="12,084.00" readonly>
+                        <input class="col-md-2 text-center number" type="integer" name="firstname" value ="34" readonly>
+                        <a href="{{ url('/print-overall') }}" class="marginRight">View More</a>
                     </div>
                     <div class="form-group padding2">
-                        <label for="company" class="col-md-2 text-right control-label">Supplier (Bomag Principal - Equipment)</label>
-                        <input class="col-md-2 text-center good" type="integer" name="firstname" value ="12,084.00">
-                        <input class="col-md-2 text-center fail" type="integer" name="firstname" value ="12,084.00" readonly>
-                        <input class="col-md-2 text-center" type="integer" name="firstname" value ="34" readonly>
-                        <a href="{{ url('/print-overall') }}" class="col-md-2 marginRight">View More</a>
+                        <label for="company" class="col-md-2 control-label">Supplier (Bomag Principal - Equipment)</label>
+                        <input class="col-md-2 text-center number good" type="integer" name="firstname" value ="12,084.00">
+                        <input class="col-md-2 text-center number fail" type="integer" name="firstname" value ="12,084.00" readonly>
+                        <input class="col-md-2 text-center number" type="integer" name="firstname" value ="34" readonly>
+                        <a href="{{ url('/print-overall') }}" class="marginRight">View More</a>
                     </div>
                     <div class="form-group padding2">
-                        <label for="company" class="col-md-2 text-right control-label">Supplier (Komatsu Principal - Parts)</label>
-                        <input class="col-md-2 text-center good" type="integer" name="firstname" value ="12,084.00">
-                        <input class="col-md-2 text-center fail" type="integer" name="firstname" value ="12,084.00" readonly>
-                        <input class="col-md-2 text-center" type="integer" name="firstname" value ="34" readonly>
-                        <a href="{{ url('/print-overall') }}" class="col-md-2 marginRight">View More</a>
+                        <label for="company" class="col-md-2 control-label">Supplier (Komatsu Principal - Parts)</label>
+                        <input class="col-md-2 text-center number good" type="integer" name="firstname" value ="12,084.00">
+                        <input class="col-md-2 text-center number fail" type="integer" name="firstname" value ="12,084.00" readonly>
+                        <input class="col-md-2 text-center number" type="integer" name="firstname" value ="34" readonly>
+                        <a href="{{ url('/print-overall') }}" class="marginRight">View More</a>
                     </div>
                     <div class="form-group padding2">
-                        <label for="company" class="col-md-2 text-right control-label">Supplier (KUI Principal - parts)</label>
-                        <input class="col-md-2 text-center good" type="integer" name="firstname" value ="12,084.00">
-                        <input class="col-md-2 text-center fail" type="integer" name="firstname" value ="12,084.00" readonly>
-                        <input class="col-md-2 text-center" type="integer" name="firstname" value ="34" readonly>
-                        <a href="{{ url('/print-overall') }}" class="col-md-2 marginRight">View More</a>
+                        <label for="company" class="col-md-2 control-label">Supplier (KUI Principal - parts)</label>
+                        <input class="col-md-2 text-center number good" type="integer" name="firstname" value ="12,084.00">
+                        <input class="col-md-2 text-center number fail" type="integer" name="firstname" value ="12,084.00" readonly>
+                        <input class="col-md-2 text-center number" type="integer" name="firstname" value ="34" readonly>
+                        <a href="{{ url('/print-overall') }}" class="marginRight">View More</a>
                     </div>
                 </div>
         </div>
@@ -167,7 +158,7 @@
             </div>
         </footer>
     </div>
-	
+    
     <script>
         Vue.use(VueHighcharts);
 
@@ -186,7 +177,7 @@
           },
           yAxis: {
             title: {
-              text: 'Cost (RM K)'
+              text: 'Saving (RM)'
             },
             plotLines: [{
               value: 0,
@@ -195,7 +186,7 @@
             }]
           },
           tooltip: {
-            valueSuffix: 'K'
+            valueSuffix: 'm'
           },
           legend: {
             layout: 'vertical',
@@ -204,14 +195,14 @@
             borderWidth: 0
           },
           series: [{
-            name: 'Target Cost Saving ',
-            data: [50, 110, 180, 250, 320, 380, 450, 520, 590, 660, 730, 800]
+            name: 'Target Savings (RM)',
+            data: [0.5, 1, 2, 2.5, 2.8, 3, 3.7, 4, 5.5, 6, 6.8, 7]
           }, {
-            name: 'Current Cost Saving',
-            data: [50, 80, 150, 130, 230, 340, 440, 400, 530, 660, 700, 750]
+            name: 'Actual Savings (RM)',
+            data: [0.3, 1, 1.2, 1.6, 2, 2.5, 3.2, 4, 4.2, 4.8, 5.2, 5.9]
           }, {
-            name: 'Yearly',
-            data: [800, 800, 800, 800, 800, 800, 800, 800, 800, 800, 800, 800]
+            name: 'Yearly Target (RM)',
+            data: [7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7]
           }]
         };
 
