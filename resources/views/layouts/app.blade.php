@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'UMW Cost Saving Initiative') }}</title>
+    <title>UMW Savings{{ config('app.name', 'UMW Cost Saving Initiative') }}</title>
 
     <!-- Styles -->
     <link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet">
@@ -68,8 +68,17 @@
                                     {{ Auth::user()->username }} <span class="caret"></span>
                                 </a>
 
+                                <a href="{{ route('logout') }}"
+                                            onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                    Logout
+                                </a>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                            {{ csrf_field() }}
+                                </form>
+
                                 <ul class="dropdown-menu">
-                                    <li>
+                                    <li> <!-- 
                                         <a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -78,7 +87,7 @@
 
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                             {{ csrf_field() }}
-                                        </form>
+                                        </form> -->
                                     </li>
                                 </ul>
                             </li>
