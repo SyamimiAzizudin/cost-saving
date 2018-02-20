@@ -37,7 +37,7 @@
                     </button>
 
                     <!-- Branding Image -->
-                    <a class="navbar-brand pull-left" href="{{ url('/') }}">
+                    <a class="navbar-brand pull-left" href="{{ url('/home') }}">
                         {{-- {{ config('app.name', 'UMW Cost Saving Initiative') }} --}}
                         <img class="image-responsive" src="{{ asset('img/umw-logo.png') }}"  alt="UMW logo" style="width:23%;height:auto;">
 
