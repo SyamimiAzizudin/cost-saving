@@ -64,9 +64,7 @@
                             <li><a href="{{ url('/company') }}">Company Management</a></li>
                             <li><a href="{{ url('/user') }}">User Management</a></li>
                             <li>
-                                Hi, <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true"> 
-                                    {{ Auth::user()->username }}
-                                </a>, 
+                                Hi, {{ Auth::user()->username }},  
                                 <a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
