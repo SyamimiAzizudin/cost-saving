@@ -63,7 +63,21 @@
                             <li><a href="{{ url('/saving') }}">Saving Management</a></li>
                             <li><a href="{{ url('/company') }}">Company Management</a></li>
                             <li><a href="{{ url('/user') }}">User Management</a></li>
-                            <li class="dropdown">
+                            <li>
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
+                                    {{ Auth::user()->username }} <span class="caret"></span>
+                                </a>
+
+                                <a href="{{ route('logout') }}"
+                                            onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                    Logout
+                                </a>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                            {{ csrf_field() }}
+                                </form>
+                            </li>
+                            <!-- syamimi code <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
                                     {{ Auth::user()->username }} <span class="caret"></span>
                                 </a>
@@ -87,10 +101,10 @@
 
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                             {{ csrf_field() }}
-                                        </form> -->
+                                        </form> 
                                     </li>
                                 </ul>
-                            </li>
+                            </li> -->
                         @endguest
                     </ul>
                 </div>
