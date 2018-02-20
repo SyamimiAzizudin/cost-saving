@@ -64,7 +64,7 @@
                             <li><a href="{{ url('/company') }}">Company Management</a></li>
                             <li><a href="{{ url('/user') }}">User Management</a></li>
                             <li>
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">Edwin - 
                                     {{ Auth::user()->username }} <span class="caret"></span>
                                 </a>
 
