@@ -110,6 +110,7 @@ class UsersController extends Controller
      */
     public function destroy($id)
     {
+        // dd($id);
         $user = User::findOrFail($id);
         $user->delete();
         return back()->withError('User has been successfully updated');

@@ -21,6 +21,8 @@ Route::group(['middleware' => ['auth']], function() {
 	Route::get('/group-dashboard', 'HomeController@group_dashboard');
 	Route::get('/company-dashboard', 'HomeController@company_dashboard');
 	Route::get('/print-overall', 'HomeController@print_overall');
+	// Route::resource('/register', 'RegisterController');
+
 
 	/**
      * User Manegement

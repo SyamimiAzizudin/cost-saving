@@ -1,3 +1,4 @@
+@include('modal.destroy-modal')
 @extends('layouts.app')
 
 @section('content')
@@ -14,7 +15,7 @@
                         <div style="overflow-x:auto;">
                             <table class="table table-bordered">
                                 <tr>
-                                    <th>No</th>
+                                    <th class="text-center">No</th>
                                     <th width="15%">Area</th>
                                     <th width="25%">Analyze Factors Or Causes Contributing To Current Performances</th>
                                     <th width="30%">Proposed Action To Be Taken to Achieve Savings</th>
@@ -24,15 +25,15 @@
                                 <?php $i=1 ?>
                                 @forelse ($initiatives as $init)
                                 <tr>
-                                    <td >{{ $i }}</td>
+                                    <td class="text-center">{{ $i }}</td>
                                     <td >{{ $init->area }}</td>
                                     <td >{{ $init->analyze }}</td>
                                     <td >{{ $init->action }}</td>
                                     <td>
-                                        @if( $init->user_id == Auth::user()->id )
+                                        @if( $init->id )
                                         <a href="#" class="btn btn-warning btn-xs">Add</a>
                                         <a href="{{ action('InitiativesController@edit', $init->id) }}" class="btn btn-success btn-xs">Edit</a>
-                                        <a href="{{ action('InitiativesController@edit', $init->id) }}" class="btn btn-danger btn-xs">Delete</a>
+                                        <a href="{{ action('InitiativesController@destroy', $init->id) }}" class="btn btn-danger btn-xs" id="confirm-modal">Delete</a>
                                         @endif
                                     </td>
                                     <td>
@@ -55,33 +56,37 @@
                 <div class="page-header">
                     <h3>Create New Initiative</h3>
                 </div>
-
+                {!! Form::open(array('route' => 'initiative.store','method'=>'POST', 'files' => true)) !!}
+                
                 <div class="form-group">
                     <label for="area" class="col-sm-3 control-label">Area</label>
                     <div class="col-sm-9">
-                        <input name="area" type="text" class="form-control" id="area" placeholder="Area" value="Parts localization" required >
+                        {!! Form::text('area', null, array('placeholder' => 'Area','class' => 'form-control')) !!}
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label for="analyzefactor" class="col-sm-3 control-label">Analyze Factors Or Causes Contributing To Current Performances</label>
+                    <label for="analyze" class="col-sm-3 control-label">Analyze Factors Or Causes Contributing To Current Performances</label>
                     <div class="col-sm-9">
-                        <textarea name="analyzefactor" class="form-control" id="analyzefactor" rows="5" placeholder="Analyze Factors Or Causes Contributing To Current Performances" required >High cost of tyres imported together with machines from TICO</textarea>
+                        {!! Form::textarea('analyze', null, array('placeholder' => 'Analyze Factor','class' => 'form-control')) !!}
+
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label for="proposedaction" class="col-sm-3 control-label">Proposed Action To Be Taken to Achieve Savings</label>
                     <div class="col-sm-9">
-                        <textarea name="proposedaction" class="form-control" id="proposedaction" rows="5" placeholder="Proposed Action To Be Taken to Achieve Savings" required >Implement E-statement and E-rental invoicing to replace hardcopy statements adn invoices adn email to customer</textarea>
+                        {!! Form::textarea('action', null, array('placeholder' => 'Proposed Action','class' => 'form-control')) !!}
                     </div>
                 </div>
 
                 <div class="form-group">
                     <div class = "col-sm-offset-3 col-sm-9">
-                        <button class="btn btn-default" type="submit">Create</button>
-                        <button class="btn btn-default" type="reset">Clear</button>
+                        <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Create</button>
                     </div>
+                </div>
+                {!! Form::close() !!}
             </div>
         </div>
+        
 @endsection

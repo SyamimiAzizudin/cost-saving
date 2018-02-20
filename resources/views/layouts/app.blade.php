@@ -14,6 +14,8 @@
     <link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/modern-business.css') }}" rel="stylesheet">
+    <link href="{{ asset('font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('fonts/glyphicons-halflings-regular.woff') }}">
 
     <!-- Javascript -->
     <script src="https://unpkg.com/vue/dist/vue.min.js"></script>
@@ -38,7 +40,7 @@
 
                     <!-- Branding Image -->
                     <a class="navbar-brand pull-left" href="{{ url('/home') }}">
-                        {{-- {{ config('app.name', 'UMW Cost Saving Initiative') }} --}}
+                        <!-- {{ config('app.name', 'UMW Cost Saving Initiative') }} -->
                         <img class="image-responsive" src="{{ asset('img/umw-logo.png') }}"  alt="UMW logo" style="width:23%;height:auto;">
 
                     </a>
@@ -64,11 +66,18 @@
                             <li><a href="{{ url('/company') }}">Company Management</a></li>
                             <li><a href="{{ url('/user') }}">User Management</a></li>
                             <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
-                                    {{ Auth::user()->username }} <span class="caret"></span>
+                                <!-- <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
+                                    {{ Auth::user()->username }}, 
+                                    <span class="caret"></span>
+                                </a> -->
+                                <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                    Hi {{ Auth::user()->username }}, logout
                                 </a>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    {{ csrf_field() }}
+                                </form>
 
-                                <ul class="dropdown-menu">
+                                <!-- <ul class="dropdown-menu">
                                     <li>
                                         <a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
@@ -80,7 +89,7 @@
                                             {{ csrf_field() }}
                                         </form>
                                     </li>
-                                </ul>
+                                </ul> -->
                             </li>
                         @endguest
                     </ul>

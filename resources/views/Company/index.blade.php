@@ -79,8 +79,10 @@
                             <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Create</button>
                         </div>
                     </div>
-                </form>
+
+                {!! Form::close() !!}
             </div>
         </div>
-<script src="{{ asset('js/warning.js') }}"></script>
+        
+<!-- <script src="{{ asset('js/warning.js') }}"></script> -->
 @endsection

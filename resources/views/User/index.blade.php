@@ -84,53 +84,13 @@
                     </div>
                 </div>
 
-                <!-- <div class="form-group">
-                    <label for="role" class="col-sm-3 control-label">Role</label>
-                    <div class="col-sm-9">
-                        <div class="radio">
-                            <label>
-                                <input name="role" type="radio" id="userRole" value="admin" required > Admin
-                            </label>
-                        </div>
-                        <div class="radio">
-                            <label>
-                                <input name="role" type="radio" id="userRole" value="subsidary" required > Subsidary
-                            </label>
-                        </div>
-                        <div class="radio">
-                            <label>
-                                <input name="role" type="radio" id="userRole" value="bod" required > Board of Director
-                            </label>
-                        </div>
-                        {{ Form::select('role',
-                            ['admin' => 'Admin', 'subsidary' => 'Subsidary', 'board' => 'Board of Director'], null, ['class' => 'form-control']) }}                        
-                    </div>
-                </div> -->
-
-                <!-- <div class="form-group">
-                    <label for="group" class="col-sm-3 control-label">Group</label>
-                    <div class="col-sm-9">
-                        
-                    </div>
-                </div> -->
-                <!-- <div class="form-group">
-                    <label for="company" class="col-sm-3 control-label">Company</label>
-                    <div class="col-sm-9">
-                        <select name="company" class="form-control" id="usercompany" required>
-                            <option value="UMW Equipment Sdn Bhd" >UMW Equipment Sdn Bhd</option>
-                            <option value="UMW (East Malaysia) Sdn Bhd" >UMW (East Malaysia) Sdn Bhd</option>
-                            <option value="UMW Industries (1985) Sdn Bhd" >UMW Industries (1985) Sdn Bhd</option>
-                            <option value="UMW Industrial Power Services Sdn Bhd" >UMW Industrial Power Services Sdn Bhd</option>
-                            <option value="UMW Equipment & Engineering PTE LTD" >UMW Equipment & Engineering PTE LTD</option>
-                        </select>
-                    </div>
-                </div> -->
-
                 <div class="form-group">
                     <div class = "col-sm-offset-3 col-sm-9">
                         <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Create</button>
                     </div>
+                </div>
+                {!! Form::close() !!}
             </div>
         </div>
-<script src="{{ asset('js/warning.js') }}"></script>
+
 @endsection

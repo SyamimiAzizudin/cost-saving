@@ -2,7 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
+use App\Company;
+use App\Initiative;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Input;
 
 class InitiativesController extends Controller
 {
@@ -13,7 +19,8 @@ class InitiativesController extends Controller
      */
     public function index()
     {
-        return view('initiative.index');
+        $initiatives = Initiative::with('user')->paginate(5);
+        return view('initiative.index', compact('initiatives'));
     }
 
     /**
@@ -34,7 +41,20 @@ class InitiativesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'area' => 'required',
+            'analyze' => 'required',
+            'action' => 'required',
+        ]);
+
+        $initiative = new Initiative;
+        $initiative->area = $request->area;
+        $initiative->analyze = $request->analyze;
+        $initiative->action = $request->action;
+        $initiative->user_id = Auth::user()->id;
+        $initiative->save();
+
+        return redirect()->action('InitiativesController@store')->withMessage('Initiative has been successfully added!');
     }
 
     /**
@@ -56,7 +76,8 @@ class InitiativesController extends Controller
      */
     public function edit($id)
     {
-        //
+        $init = Initiative::findOrFail($id);
+        return view('Initiative.edit', compact('init'));
     }
 
     /**
@@ -68,7 +89,19 @@ class InitiativesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'area' => 'required',
+            'analyze' => 'required',
+            'action' => 'required',
+        ]);
+
+        $init = Initiative::findOrFail($id);
+        $init->area = $request->area;
+        $init->analyze = $request->analyze;
+        $init->action = $request->action;
+        $init->save();
+        
+        return redirect()->action('InitiativesController@index')->withMessage('Initiative has been successfully updated!');
     }
 
     /**
@@ -79,6 +112,8 @@ class InitiativesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $init = Initiative::findOrFail($id);
+        $init->delete();
+        return back()->withError('Initiative has been successfully updated!');
     }
 }
