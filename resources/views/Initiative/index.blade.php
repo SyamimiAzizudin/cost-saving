@@ -21,56 +21,27 @@
                                     <th width="15%"></th>
                                     <th width="10%"></th>
                                 </tr>
-                                <!-- no 1-->
+                                <?php $i=1 ?>
+                                @forelse ($initiatives as $init)
                                 <tr>
-                                    <td>1.0</td>
-                                    <td>1.1 Supplier</td>
-                                    <td>Contract Price Review</td>
-                                    <td>Principal and High Suppliers
-                                        <li>price negotation</li>
-                                        <li>Special program pricing / extended warranty deals</li>
-                                        <li>Explore alternative sources for preferred suppliers</li>
-                                        <li>explore alternative spirces for preferred suppliers</li>
-                                    </td>
+                                    <td >{{ $i }}</td>
+                                    <td >{{ $init->area }}</td>
+                                    <td >{{ $init->analyze }}</td>
+                                    <td >{{ $init->action }}</td>
                                     <td>
+                                        @if( $init->user_id == Auth::user()->id )
                                         <a href="#" class="btn btn-warning btn-xs">Add</a>
-                                        <a href="#" class="btn btn-primary btn-xs">Edit</a>
-                                        <a href="#" class="btn btn-danger btn-xs">Delete</a>
-                                    </td>
-                                    <td>
-                                        <!-- <a href="#" class="btn btn-success btn-xs">Approve</a> -->
-                                    </td>
-                                </tr>
-                                <!-- no 2-->
-                                <tr>
-                                    <td>2.0</td>
-                                    <td>2.1 Admin Support</td>
-                                    <td>Courier / post monthly printed statement of accounts and rental invoices to cusomers - thousand over copies</td>
-                                    <td>Implement E-statement and E-rental invoicing to replace hardcopy statements adn invoices adn email to customer</td>
-                                    <td>
-                                        <a href="#" class="btn btn-warning btn-xs">Add</a>
-                                        <a href="#" class="btn btn-primary btn-xs">Edit</a>
-                                        <a href="#" class="btn btn-danger btn-xs">Delete</a>
+                                        <a href="{{ action('InitiativesController@edit', $init->id) }}" class="btn btn-success btn-xs">Edit</a>
+                                        <a href="{{ action('InitiativesController@edit', $init->id) }}" class="btn btn-danger btn-xs">Delete</a>
+                                        @endif
                                     </td>
                                     <td>
                                         <a href="#" class="btn btn-success btn-xs">Approve</a>
                                     </td>
                                 </tr>
-                                <!-- no 3-->
-                                <tr>
-                                    <td>3.0</td>
-                                    <td>3.1 Parts localization</td>
-                                    <td>High cost of tyres imported together with machines from TICO</td>
-                                    <td>Purchase equipment with standard pnuematic tyres and install with cheaper Tokai tyres locally</td>
-                                    <td>
-                                        <a href="#" class="btn btn-warning btn-xs">Add</a>
-                                        <a href="#" class="btn btn-primary btn-xs">Edit</a>
-                                        <a href="#" class="btn btn-danger btn-xs">Delete</a>
-                                    </td>
-                                    <td>
-                                        <a href="#" class="btn btn-success btn-xs">Approve</a>
-                                    </td>
-                                </tr>
+                                <?php $i++; ?>
+                                @empty
+                                @endforelse
                             </table>
                         </div>
                     </div>

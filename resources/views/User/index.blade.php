@@ -1,3 +1,4 @@
+@include('modal.destroy-modal')
 @extends('layouts.app')
 
 @section('content')
@@ -18,88 +19,72 @@
 
                         <table class="table table-striped table-bordered">
                             <tr>
-                                <th>ID</th>
+                                <th class="text-center">No</th>
                                 <th>Username</th>
-                                <th>Role</th>
-                                <th>Group</th>
-                                <th>Company</th>
+                                <th>Email</th>
                                 <th></th>
                             </tr>
+                            <?php $i=1 ?>
+                            @forelse ($users as $user)
                             <tr>
-                                <td>1</td>
-                                <td>Sulaiman</td>
-                                <td>Admin</td>
-                                <td>Manufacturing & Engineering</td>
-                                <td>UMW Equipment Sdn Bhd</td>
+                                <td class="text-center">{{ $i }}</td>
+                                <td>{{ $user->username }}</td>
+                                <td>{{ $user->email }}</td>
                                 <td>
-                                    <a href="#" class="btn btn-success btn-xs">Edit</a>
-                                    <a href="#" class="btn btn-danger btn-xs">Delete</a>
+                                    @if($user->id)
+                                    <a href="{{ action('UsersController@edit', $user->id) }}" class="btn btn-success btn-xs">Edit</a>
+                                    <a href="{{ action('UsersController@destroy', $user->id) }}" class="btn btn-danger btn-xs" id="confirm-modal">Delete</a>
+                                    @endif
                                 </td>
                             </tr>
+                            <?php $i++; ?>
+                            @empty
                             <tr>
-                                <td>2</td>
-                                <td>Siti</td>
-                                <td>Subsidary</td>
-                                <td>Equipment</td>
-                                <td>UMW (East Malaysia) Sdn Bhd</td>
-                                <td>
-                                    <a href="#" class="btn btn-success btn-xs">Edit</a>
-                                    <a href="#" class="btn btn-danger btn-xs">Delete</a>
-                                </td>
+                                <td colspan="6">Looks like there is no user available.</td>
                             </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>Kian Lee</td>
-                                <td>Board of Director</td>
-                                <td>Manufacturing & Engineering</td>
-                                <td>UMW Industries (1985) Sdn Bhd</td>
-                                <td>
-                                    <a href="#" class="btn btn-success btn-xs">Edit</a>
-                                    <a href="#" class="btn btn-danger btn-xs">Delete</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>4</td>
-                                <td>Thanisha</td>
-                                <td>Subsidary</td>
-                                <td>Manufacturing & Engineering</td>
-                                <td>UMW Industrial Power Services Sdn Bhd</td>
-                                <td>
-                                    <a href="#" class="btn btn-success btn-xs">Edit</a>
-                                    <a href="#" class="btn btn-danger btn-xs">Delete</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td>Syafiq</td>
-                                <td>Subsidary</td>
-                                <td>Equipment</td>
-                                <td>UMW Equipment & Engineering PTE LTD</td>
-                                <td>
-                                    <a href="#" class="btn btn-success btn-xs">Edit</a>
-                                    <a href="#" class="btn btn-danger btn-xs">Delete</a>
-                                </td>
-                            </tr>
+                            @endforelse
                         </table>
                     </div>
             </div>
         </div>
 
         <br>
-<div class="row">
+        <div class="row">
             <div class="col-md-8 col-md-offset-2 form-horizontal">
                 <div class="page-header">
                     <h3>Create New User</h3>
                 </div>
+                {!! Form::open(array('route' => 'user.store','method'=>'POST', 'files' => true)) !!}
 
                 <div class="form-group">
                     <label for="username" class="col-sm-3 control-label">Username</label>
                     <div class="col-sm-9">
-                        <input name="username" type="text" class="form-control" id="username" placeholder="Username" required >
+                        {!! Form::text('username', null, array('placeholder' => 'Username','class' => 'form-control')) !!}
                     </div>
                 </div>
 
                 <div class="form-group">
+                    <label for="email" class="col-sm-3 control-label">Email</label>
+                    <div class="col-sm-9">
+                        {!! Form::text('email', null, array('placeholder' => 'Email','class' => 'form-control')) !!}
+                    </div>
+                </div>
+
+                <div class="form-group {{ $errors->has('password') ? ' has-error' : '' }}">
+                    <label for="password" class="col-sm-3 control-label">password</label>
+                    <div class="col-sm-9">
+                        <input name="password" type="password" class="form-control" id="password" placeholder="password" value="{{ old('password') }}" required >
+
+                        @if($errors->has('password'))
+                            <span class="help-block">
+                                <strong>{{ $errors->first('password') }}</strong>
+                            </span>
+                        @endif
+
+                    </div>
+                </div>
+
+                <!-- <div class="form-group">
                     <label for="role" class="col-sm-3 control-label">Role</label>
                     <div class="col-sm-9">
                         <div class="radio">
@@ -117,25 +102,18 @@
                                 <input name="role" type="radio" id="userRole" value="bod" required > Board of Director
                             </label>
                         </div>
+                        {{ Form::select('role',
+                            ['admin' => 'Admin', 'subsidary' => 'Subsidary', 'board' => 'Board of Director'], null, ['class' => 'form-control']) }}                        
                     </div>
-                </div>
+                </div> -->
 
-                <div class="form-group">
+                <!-- <div class="form-group">
                     <label for="group" class="col-sm-3 control-label">Group</label>
                     <div class="col-sm-9">
-                        <div class="radio">
-                            <label>
-                                <input name="group" type="radio" id="userGroup" value="mne" required > Manufacturing & Engineering
-                            </label>
-                        </div>
-                        <div class="radio">
-                            <label>
-                                <input name="group" type="radio" id="userGroup" value="equipment" required > Equipment
-                            </label>
-                        </div>
+                        
                     </div>
-                </div>
-                <div class="form-group">
+                </div> -->
+                <!-- <div class="form-group">
                     <label for="company" class="col-sm-3 control-label">Company</label>
                     <div class="col-sm-9">
                         <select name="company" class="form-control" id="usercompany" required>
@@ -146,14 +124,13 @@
                             <option value="UMW Equipment & Engineering PTE LTD" >UMW Equipment & Engineering PTE LTD</option>
                         </select>
                     </div>
-                </div>
+                </div> -->
 
                 <div class="form-group">
                     <div class = "col-sm-offset-3 col-sm-9">
-                        <button class="btn btn-default" type="submit">Create</button>
-                        <button class="btn btn-default" type="reset">Clear</button>
+                        <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Create</button>
                     </div>
             </div>
         </div>
-
+<script src="{{ asset('js/warning.js') }}"></script>
 @endsection

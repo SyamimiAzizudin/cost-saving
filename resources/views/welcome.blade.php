@@ -76,7 +76,7 @@
                     @auth
                         <a href="{{ url('/home') }}">Home</a>
                     @else
-                        <a href="{{ route('login') }}">Login</a>
+                        <!-- <a href="{{ route('login') }}">Login</a> -->
                         <a href="{{ route('register') }}">Register</a>
                     @endauth
                 </div>
@@ -116,7 +116,7 @@
                 <div class="row">
         <div class="col-md-4 col-md-offset-4">
             <div class="panel panel-default">
-                <div class="panel-heading">Login</div>
+                <div class="panel-heading custom-heading">Login</div>
 
                 <div class="panel-body">
                     <form class="form-horizontal" method="POST" action="{{ route('login') }}">

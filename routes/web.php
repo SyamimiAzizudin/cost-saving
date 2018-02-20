@@ -26,7 +26,7 @@ Route::group(['middleware' => ['auth']], function() {
      * User Manegement
      */
 	Route::resource('/user', 'UsersController');
-    // Route::delete('/show.berita/delete/{berita}', 'BeritasController@destroy');
+    Route::delete('/user/{user}/delete', 'UsersController@destroy');
 
 	/**
      * Company Manegement
@@ -38,12 +38,13 @@ Route::group(['middleware' => ['auth']], function() {
      * Initiative Manegement
      */
 	Route::resource('/initiative', 'InitiativesController');
+    Route::delete('/initiative/{initiative}/delete', 'InitiativesController@destroy');
 
 	/**
      * Saving Manegement
      */
 	Route::resource('/saving', 'SavingsController');
- 	// Route::delete('/saving/{saving}/delete', 'CostSavingsController@destroy');
+    Route::delete('/saving/{saving}/delete', 'SavingsController@destroy');
 
 });
 
