@@ -63,8 +63,7 @@
                             <li><a href="{{ url('/saving') }}">Saving Management</a></li>
                             <li><a href="{{ url('/company') }}">Company Management</a></li>
                             <li><a href="{{ url('/user') }}">User Management</a></li>
-                            <li>
-                                Hi, {{ Auth::user()->username }},  
+                            <li>  
                                 <a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
