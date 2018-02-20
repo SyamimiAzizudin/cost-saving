@@ -65,7 +65,6 @@
     </div>
 </div>
 
-<<<<<<< HEAD
 <!-- Dashboard Section -->
 <div class="row">
     <div class="col-lg-12">
