@@ -77,7 +77,7 @@ class InitiativesController extends Controller
     public function edit($id)
     {
         $init = Initiative::findOrFail($id);
-        return view('Initiative.edit', compact('init'));
+        return view('initiative.edit', compact('init'));
     }
 
     /**
