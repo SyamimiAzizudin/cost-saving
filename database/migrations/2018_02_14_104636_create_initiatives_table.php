@@ -15,11 +15,11 @@ class CreateInitiativesTable extends Migration
     {
         Schema::create('initiatives', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id')->index()->unsigned();
-            $table->integer('company_id')->index()->unsigned();
-            $table->string('area');
-            $table->string('analyze');
-            $table->string('action');
+            $table->integer('user_id')->index()->unsigned()->nullable();
+            $table->integer('company_id')->index()->unsigned()->nullable();
+            $table->string('area')->nullable();
+            $table->string('analyze')->nullable();
+            $table->string('action')->nullable();
             $table->timestamps();
 
             // Foreign Key

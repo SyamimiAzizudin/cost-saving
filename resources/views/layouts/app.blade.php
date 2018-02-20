@@ -71,7 +71,7 @@
                                     <span class="caret"></span>
                                 </a> -->
                                 <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                    Hi {{ Auth::user()->username }}, logout
+                                    Hi {{ Auth::user()->username }}, Logout
                                 </a>
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                     {{ csrf_field() }}

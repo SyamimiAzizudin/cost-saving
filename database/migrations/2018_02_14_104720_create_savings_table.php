@@ -15,10 +15,10 @@ class CreateSavingsTable extends Migration
     {
         Schema::create('savings', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('initiative_id')->index()->unsigned();
-            $table->integer('actual_saving');
-            $table->integer('target_saving');
-            $table->string('month');
+            $table->integer('initiative_id')->index()->unsigned()->nullable();
+            $table->integer('actual_saving')->nullable();
+            $table->integer('target_saving')->nullable();
+            $table->string('month')->nullable();
             $table->timestamps();
 
             // Foreign Key
