@@ -4,44 +4,42 @@
 @section('content')
 <div class="row">
             <div class="col-lg-12">
-                <h3 class="page-header">Initiative - UMW Equipment Sdn Bhd</h3>
+                <h3 class="page-header">Initiative - Company Name</h3>
                 <ol class="breadcrumb">
-                    <li><a href="index.html">Home</a>
-                    </li>
-                    <li class="active">Initiative </li>
+                    <li><a href="{{ url('/home') }}">Home </a></li>
+                    <li><a href="{{ url('/company-initiative') }}">Initiative - Company List</a></li>
+                    <li class="active">Initiative -  Company Name</li>
                 </ol>
                 
                     <div class="col-md-12 ">
                         <div style="overflow-x:auto;">
                             <table class="table table-bordered">
                                 <tr>
-                                    <th class="text-center">No</th>
+                                    <th class="text-center">Order Id</th>
                                     <th width="15%">Area</th>
                                     <th width="25%">Analyze Factors Or Causes Contributing To Current Performances</th>
                                     <th width="30%">Proposed Action To Be Taken to Achieve Savings</th>
                                     <th width="15%"></th>
-                                    <th width="10%"></th>
                                 </tr>
                                 <?php $i=1 ?>
-                                @forelse ($initiatives as $init)
+                                @forelse ($initiatives as $initiative)
                                 <tr>
-                                    <td class="text-center">{{ $i }}</td>
-                                    <td >{{ $init->area }}</td>
-                                    <td >{{ $init->analyze }}</td>
-                                    <td >{{ $init->action }}</td>
+                                    <td class="text-center">{{  $initiative->order_id }}</td>
+                                    <td >{{ $initiative->area }}</td>
+                                    <td >{{ $initiative->analyze }}</td>
+                                    <td >{{ $initiative->action }}</td>
                                     <td>
-                                        @if( $init->id )
-                                        <a href="#" class="btn btn-warning btn-xs">Add</a>
-                                        <a href="{{ action('InitiativesController@edit', $init->id) }}" class="btn btn-success btn-xs">Edit</a>
-                                        <a href="{{ action('InitiativesController@destroy', $init->id) }}" class="btn btn-danger btn-xs" id="confirm-modal">Delete</a>
+                                        @if( $initiative->id )
+                                        <a href="{{ action('InitiativesController@edit', $initiative->id) }}" class="btn btn-success btn-xs">Edit</a>
+                                        <a href="{{ action('InitiativesController@destroy', $initiative->id) }}" class="btn btn-danger btn-xs" id="confirm-modal">Delete</a>
                                         @endif
-                                    </td>
-                                    <td>
-                                        <a href="#" class="btn btn-success btn-xs">Approve</a>
                                     </td>
                                 </tr>
                                 <?php $i++; ?>
                                 @empty
+                                <tr>
+                                    <td colspan="6">Looks like there is no initiative in this company.</td>
+                                </tr>
                                 @endforelse
                             </table>
                         </div>
@@ -57,6 +55,17 @@
                     <h3>Create New Initiative</h3>
                 </div>
                 {!! Form::open(array('route' => 'initiative.store','method'=>'POST', 'files' => true)) !!}
+
+                <div class="form-group">
+                    <label for="area" class="col-sm-3 control-label">Company</label>
+                    <div class="col-sm-9">
+                        <select name="company_id" class="form-control">
+                            @foreach($companies as $id => $company_name)
+                                <option value="{{ $id }}">{{ $company_name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
                 
                 <div class="form-group">
                     <label for="area" class="col-sm-3 control-label">Area</label>
@@ -77,6 +86,13 @@
                     <label for="proposedaction" class="col-sm-3 control-label">Proposed Action To Be Taken to Achieve Savings</label>
                     <div class="col-sm-9">
                         {!! Form::textarea('action', null, array('placeholder' => 'Proposed Action','class' => 'form-control')) !!}
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="order_id" class="col-sm-3 control-label">Order Id</label>
+                    <div class="col-sm-9">
+                        {!! Form::number('order_id', null, array('placeholder' => 'Order Id','class' => 'form-control')) !!}
                     </div>
                 </div>
 

@@ -21,8 +21,6 @@ Route::group(['middleware' => ['auth']], function() {
 	Route::get('/group-dashboard', 'HomeController@group_dashboard');
 	Route::get('/company-dashboard', 'HomeController@company_dashboard');
 	Route::get('/print-overall', 'HomeController@print_overall');
-	// Route::resource('/register', 'RegisterController');
-
 
 	/**
      * User Manegement
@@ -39,15 +37,18 @@ Route::group(['middleware' => ['auth']], function() {
 	/**
      * Initiative Manegement
      */
-	Route::resource('/initiative', 'InitiativesController');
+    Route::resource('/initiative', 'InitiativesController');
     Route::delete('/initiative/{initiative}/delete', 'InitiativesController@destroy');
+    Route::get('/initiative-company', 'InitiativesController@companylist');
+    // Route::get('/initiative/{company}', 'InitiativesController@index');
+    // Route::get('initiative/{company}', ['as' => 'initiative.company', 'uses' => 'InitiativesController@index']);
 
 	/**
      * Saving Manegement
      */
 	Route::resource('/saving', 'SavingsController');
     Route::delete('/saving/{saving}/delete', 'SavingsController@destroy');
-	// Route::resource('/saving', 'SavingsController');
+    Route::get('/saving-company', 'SavingsController@companylist');
 
 });
 

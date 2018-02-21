@@ -19,8 +19,20 @@ class InitiativesController extends Controller
      */
     public function index()
     {
-        $initiatives = Initiative::with('user')->paginate(5);
-        return view('initiative.index', compact('initiatives'));
+        // $initiatives = Initiative::all();
+        $initiatives = Initiative::orderBy('order_id', 'asc')->get();
+        // $company_id = Company::find($id);
+        $companies = Company::pluck('name', 'id');
+        // $initiatives = Initiative::where('company_id', $company_id)->get();
+        // dd($initiatives);
+        return view('initiative.index', compact('initiatives', 'companies'));
+    }
+
+    public function companylist()
+    {
+        $initiatives = Initiative::all();
+        $companies = Company::all();
+        return view('initiative.company', compact('initiatives', 'companies'));
     }
 
     /**
@@ -45,12 +57,15 @@ class InitiativesController extends Controller
             'area' => 'required',
             'analyze' => 'required',
             'action' => 'required',
+            'order_id' => 'required',
         ]);
-
+        
         $initiative = new Initiative;
         $initiative->area = $request->area;
         $initiative->analyze = $request->analyze;
         $initiative->action = $request->action;
+        $initiative->order_id = $request->order_id;
+        $initiative->company_id = $request->company_id;
         $initiative->user_id = Auth::user()->id;
         $initiative->save();
 
@@ -76,8 +91,8 @@ class InitiativesController extends Controller
      */
     public function edit($id)
     {
-        $init = Initiative::findOrFail($id);
-        return view('initiative.edit', compact('init'));
+        $initiative = Initiative::findOrFail($id);
+        return view('initiative.edit', compact('initiative'));
     }
 
     /**
@@ -93,13 +108,15 @@ class InitiativesController extends Controller
             'area' => 'required',
             'analyze' => 'required',
             'action' => 'required',
+            'order_id' => 'required',
         ]);
 
-        $init = Initiative::findOrFail($id);
-        $init->area = $request->area;
-        $init->analyze = $request->analyze;
-        $init->action = $request->action;
-        $init->save();
+        $initiative = Initiative::findOrFail($id);
+        $initiative->area = $request->area;
+        $initiative->analyze = $request->analyze;
+        $initiative->action = $request->action;
+        $initiative->order_id = $request->order_id;
+        $initiative->save();
         
         return redirect()->action('InitiativesController@index')->withMessage('Initiative has been successfully updated!');
     }
@@ -112,8 +129,8 @@ class InitiativesController extends Controller
      */
     public function destroy($id)
     {
-        $init = Initiative::findOrFail($id);
-        $init->delete();
+        $initiative = Initiative::findOrFail($id);
+        $initiative->delete();
         return back()->withError('Initiative has been successfully updated!');
     }
 }

@@ -48,10 +48,10 @@
                     <a type="button" href="{{ url('/company') }}" class="btn btn-lg btn-primary custom">Company Management Page</a>
                 </div>
                 <div class="col-md-4">
-                    <a type="button" href="{{ url('/initiative') }}" class="btn btn-lg btn-primary custom">Initiative Management Page</a>
+                    <a type="button" href="{{ url('/company-initiative') }}" class="btn btn-lg btn-primary custom">Initiative Management Page</a>
                 </div>
                 <div class="col-md-4">
-                    <a type="button" href="{{ url('/saving') }}" class="btn btn-lg btn-primary custom">Saving Management Page</a>
+                    <a type="button" href="{{ url('/company-saving') }}" class="btn btn-lg btn-primary custom">Saving Management Page</a>
                 </div>
             </div>
         </div>

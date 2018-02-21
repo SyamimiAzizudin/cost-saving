@@ -13,9 +13,9 @@
                     <li class="active">Company Management</li>
                 </ol>
 
-                    <div class="col-md-10 col-md-offset-2">
+                    <div class="col-md-10 col-md-offset-2 text-center">
 
-                        <table class="table table-striped table-bordered"> 
+                        <table align="center" class="table table-striped table-bordered"> 
                             <tr>
                                 <th class="text-center">No</th>
                                 <th>Company Name</th>
@@ -29,7 +29,8 @@
                                 <td>{{ $company->name }}</td>
                                 <td>{{ $company->group }}</td>
                                 <td>
-                                    @if( $company->user_id == Auth::user()->id)
+                                    {{-- @if( $company->id == Auth::user()->id) --}}
+                                    @if( $company->id)
                                     <a href="{{ action('CompaniesController@edit', $company->id) }}" class="btn btn-success btn-xs">Edit</a>
                                     <a href="{{ action('CompaniesController@destroy', $company->id) }}" class="btn btn-danger btn-xs" id="confirm-modal">Delete</a>
                                     @endif
@@ -42,9 +43,6 @@
                             </tr>
                             @endforelse
                         </table>
-                        <div class="text-center">
-                            {{ $companies->links() }}
-                        </div>
                     </div>
             </div>
         </div>
