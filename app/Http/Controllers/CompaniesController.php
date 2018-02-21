@@ -18,7 +18,8 @@ class CompaniesController extends Controller
      */
     public function index()
     {
-        $companies = Company::with('user')->where('user_id', Auth::user()->id);
+        // $companies = Company::with('user')->where('user_id', Auth::user()->id);
+        $companies = Company::all();
         return view('company.index', compact('companies'));
     }
 

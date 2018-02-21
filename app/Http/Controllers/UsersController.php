@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use App\Company;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -18,7 +19,8 @@ class UsersController extends Controller
     public function index()
     {
         $users = User::all();
-        return view('user.index', compact('users'));
+        $companies = Company::pluck('name', 'id');
+        return view('user.index', compact('users', 'companies'));
     }
 
     /**

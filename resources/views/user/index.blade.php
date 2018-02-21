@@ -22,6 +22,7 @@
                                 <th class="text-center">No</th>
                                 <th>Username</th>
                                 <th>Email</th>
+                                {{-- <th>Company Name</th> --}}
                                 <th></th>
                             </tr>
                             <?php $i=1 ?>
@@ -30,6 +31,7 @@
                                 <td class="text-center">{{ $i }}</td>
                                 <td>{{ $user->username }}</td>
                                 <td>{{ $user->email }}</td>
+                                {{-- <td>{{ $user->email }}</td> --}}
                                 <td>
                                     @if($user->id)
                                     <a href="{{ action('UsersController@edit', $user->id) }}" class="btn btn-success btn-xs">Edit</a>
@@ -55,6 +57,17 @@
                     <h3>Create New User</h3>
                 </div>
                 {!! Form::open(array('route' => 'user.store','method'=>'POST', 'files' => true)) !!}
+
+                {{-- <div class="form-group">
+                    <label for="area" class="col-sm-3 control-label">Company</label>
+                    <div class="col-sm-9">
+                        <select name="company_id" class="form-control">
+                            @foreach($companies as $id => $v)
+                                <option value="{{ $id }}">{{ $v }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div> --}}
 
                 <div class="form-group">
                     <label for="username" class="col-sm-3 control-label">Username</label>

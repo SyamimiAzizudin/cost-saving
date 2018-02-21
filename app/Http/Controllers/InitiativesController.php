@@ -19,7 +19,7 @@ class InitiativesController extends Controller
      */
     public function index()
     {
-        $initiatives = Initiative::with('user');
+        $initiatives = Initiative::all();
         $companies = Company::pluck('name', 'id');
         #dd($companies);
         return view('initiative.index', compact('initiatives', 'companies'));
@@ -79,8 +79,8 @@ class InitiativesController extends Controller
      */
     public function edit($id)
     {
-        $init = Initiative::findOrFail($id);
-        return view('initiative.edit', compact('init'));
+        $initiative = Initiative::findOrFail($id)->pagination(100);
+        return view('initiative.edit', compact('initiative'));
     }
 
     /**
@@ -98,11 +98,11 @@ class InitiativesController extends Controller
             'action' => 'required',
         ]);
 
-        $init = Initiative::findOrFail($id);
-        $init->area = $request->area;
-        $init->analyze = $request->analyze;
-        $init->action = $request->action;
-        $init->save();
+        $initiative = Initiative::findOrFail($id);
+        $initiative->area = $request->area;
+        $initiative->analyze = $request->analyze;
+        $initiative->action = $request->action;
+        $initiative->save();
         
         return redirect()->action('InitiativesController@index')->withMessage('Initiative has been successfully updated!');
     }
@@ -115,8 +115,8 @@ class InitiativesController extends Controller
      */
     public function destroy($id)
     {
-        $init = Initiative::findOrFail($id);
-        $init->delete();
+        $initiative = Initiative::findOrFail($id);
+        $initiative->delete();
         return back()->withError('Initiative has been successfully updated!');
     }
 }

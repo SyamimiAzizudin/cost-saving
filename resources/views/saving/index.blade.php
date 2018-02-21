@@ -213,7 +213,7 @@
             </div>
         </div>
 
-        <br>
+        {{-- <br>
 
         <div class="row">
             <div class="col-md-8 col-md-offset-2 form-horizontal">
@@ -287,5 +287,5 @@
                         <button class="btn btn-default" type="reset">Clear</button>
                     </div>
             </div>
-        </div>
+        </div> --}}
 @endsection

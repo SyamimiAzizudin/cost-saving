@@ -6,7 +6,7 @@
             <div class="col-lg-12">
                 <h3 class="page-header">Initiative - UMW Equipment Sdn Bhd</h3>
                 <ol class="breadcrumb">
-                    <li><a href="index.html">Home</a>
+                    <li><a href="index.html">Home </a>
                     </li>
                     <li class="active">Initiative </li>
                 </ol>
@@ -20,28 +20,27 @@
                                     <th width="25%">Analyze Factors Or Causes Contributing To Current Performances</th>
                                     <th width="30%">Proposed Action To Be Taken to Achieve Savings</th>
                                     <th width="15%"></th>
-                                    <th width="10%"></th>
                                 </tr>
                                 <?php $i=1 ?>
-                                @forelse ($initiatives as $init)
+                                @forelse ($initiatives as $initiative)
                                 <tr>
                                     <td class="text-center">{{ $i }}</td>
-                                    <td >{{ $init->area }}</td>
-                                    <td >{{ $init->analyze }}</td>
-                                    <td >{{ $init->action }}</td>
+                                    <td >{{ $initiative->area }}</td>
+                                    <td >{{ $initiative->analyze }}</td>
+                                    <td >{{ $initiative->action }}</td>
                                     <td>
-                                        @if( $init->id )
-                                        <a href="#" class="btn btn-warning btn-xs">Add</a>
-                                        <a href="{{ action('InitiativesController@edit', $init->id) }}" class="btn btn-success btn-xs">Edit</a>
-                                        <a href="{{ action('InitiativesController@destroy', $init->id) }}" class="btn btn-danger btn-xs" id="confirm-modal">Delete</a>
+                                        @if( $initiative->id )
+                                        {{-- <a href="#" class="btn btn-warning btn-xs">Add</a> --}}
+                                        <a href="{{ action('InitiativesController@edit', $initiative->id) }}" class="btn btn-success btn-xs">Edit</a>
+                                        <a href="{{ action('InitiativesController@destroy', $initiative->id) }}" class="btn btn-danger btn-xs" id="confirm-modal">Delete</a>
                                         @endif
-                                    </td>
-                                    <td>
-                                        <a href="#" class="btn btn-success btn-xs">Approve</a>
                                     </td>
                                 </tr>
                                 <?php $i++; ?>
                                 @empty
+                                <tr>
+                                    <td colspan="6">Looks like there is no initiative available.</td>
+                                </tr>
                                 @endforelse
                             </table>
                         </div>
