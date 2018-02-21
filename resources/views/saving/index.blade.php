@@ -11,7 +11,7 @@
             <li><a href="{{ url('/company-saving') }}">Saving - Company List</a></li>
             <li class="active">Saving - Company Name</li>
         </ol>
-            
+        </div></div></div></div></div>
         <div class="table-container">
             <div id="table-scroll" class="table-scroll">
               <div class="" style="overflow:auto; width: 100%;">

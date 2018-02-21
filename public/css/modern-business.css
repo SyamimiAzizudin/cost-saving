@@ -159,7 +159,7 @@ footer {
   position:relative;
   max-width:100%;
   /*margin:auto;*/
-  /*overflow:hidden;*/
+  overflow:hidden;
   border:1px solid #000;
 }
 .table-scroll table {
@@ -204,7 +204,8 @@ footer {
 .table-container {
     position: relative;
     height: 100%;
-    width: 100%;
+    width: 95%;
     /*border: 2px solid red;*/
     display: inline-block;
+    margin: auto;
 }
