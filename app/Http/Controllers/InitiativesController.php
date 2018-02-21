@@ -20,8 +20,9 @@ class InitiativesController extends Controller
     public function index()
     {
         // $initiatives = Initiative::all();
+        // $company_id = Company::find($id);
         $companies = Company::pluck('name', 'id');
-        $initiatives = Initiative::where('company_id',$companies)->get();
+        $initiatives = Initiative::where('company_id', 'company_id')->get();
         // dd($initiatives);
         return view('initiative.index', compact('initiatives', 'companies'));
     }
@@ -87,7 +88,7 @@ class InitiativesController extends Controller
      */
     public function edit($id)
     {
-        $initiative = Initiative::findOrFail($id)->pagination(100);
+        $initiative = Initiative::findOrFail($id);
         return view('initiative.edit', compact('initiative'));
     }
 

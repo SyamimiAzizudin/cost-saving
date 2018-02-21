@@ -39,20 +39,20 @@
                 <label for="password" class="col-sm-3 control-label">Password</label>
                 <div class="col-sm-9">
                     {!! Form::text('password', null, array('placeholder' => 'Password','class' => 'form-control')) !!}
+                    {{-- <input id="password" type="password" class="form-control" name="password" required> --}}
                 </div>
             </div>
 
-    		<!-- <div class="form-group">
-        		<label for="group" class="col-sm-3 control-label">group</label>
-        		<div class="col-sm-9">
-        			{{ Form::select('group',
-        				['Manufacturing & Engineering' => 'Manufacturing & Engineering', 'Equipment' => 'Equipment', 'Corporation' => 'Corporation'], null, ['class' => 'form-control']) }}
-        		</div>
-    		</div> -->
+            {{-- <div class="form-group">
+                <label for="new-password-confirm" class="col-sm-3 control-label">Confirm New Password</label>
+                <div class="col-sm-9">
+                    <input id="new-password-confirm" type="password" class="form-control" name="new-password_confirmation" required>
+                </div>
+            </div> --}}
 
     		<div class="form-group">
     			<div class = "col-sm-offset-3 col-sm-9">
-    				<a href="{{ action('CompaniesController@index') }}" class="btn btn-danger"><span class="glyphicon glyphicon-remove-sign"></span> Cancel</a>
+    				<a href="{{ action('UsersController@index') }}" class="btn btn-danger"><span class="glyphicon glyphicon-remove-sign"></span> Cancel</a>
     				<button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Save</button>
     			</div>
     		</div>

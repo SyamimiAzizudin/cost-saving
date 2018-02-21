@@ -4,7 +4,7 @@
 @section('content')
 <div class="row">
             <div class="col-lg-12">
-                <h3 class="page-header">Initiative - UMW Equipment Sdn Bhd</h3>
+                <h3 class="page-header">Initiative - </h3>
                 <ol class="breadcrumb">
                     <li><a href="{{ url('/home') }}">Home </a></li>
                     <li><a href="{{ url('/company-initiative') }}">Company List</a></li>

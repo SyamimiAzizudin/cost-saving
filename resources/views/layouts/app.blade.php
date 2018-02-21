@@ -50,8 +50,6 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
                         &nbsp;
-                        {{-- <li><a href="{{ url('/home') }}">Home</a></li> --}}
-                        <!-- <img class="image-responsive" src="{{ asset('img/umw-logo.png') }}"  alt="UMW logo" style="width:3%;height:auto;padding: 10px"> -->
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -75,8 +73,6 @@
                                             {{ csrf_field() }}
                                 </form>
                             </li>
-
-
                         @endguest
                     </ul>
                 </div>
@@ -112,13 +108,13 @@
                     @yield('content')
                 </div>
             </div>
-            <div class="row">
+            {{-- <div class="row">
                 <div class="col-lg-12">
                     <div class="text-right padding2">
                         <!-- <a href="{{ url('/print-overall') }}" class="btn btn-outline-success success">Print Overall Page</a> -->
                     </div>
                 </div>
-            </div>
+            </div> --}}
         </div> <!-- container -->
     </div>
 

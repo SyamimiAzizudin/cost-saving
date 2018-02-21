@@ -2,15 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use Hash;
 use App\User;
 use App\Company;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Foundation\Auth\RegistersUsers;
 
 class UsersController extends Controller
 {
+    use RegistersUsers;
+
     /**
      * Display a listing of the resource.
      *
@@ -42,16 +47,15 @@ class UsersController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'username' => 'required',
-            'email' => 'required',
-            'password' => 'required',
+            'username' => 'required|string|max:255|unique:users',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:6|confirmed',
         ]);
 
         $users = new User;
         $users->username = $request->username;
         $users->email = $request->email;
-        $users->password = $request->password;
-        // $users->id = $request->id;
+        $users->password = bcrypt($request->password);
         $users->save();
 
         return redirect()->action('UsersController@store')->withMessage('User has been successfully added');
@@ -77,6 +81,7 @@ class UsersController extends Controller
     public function edit($id)
     {
         $user = User::findOrFail($id);
+        // $password = Hash::get('current_password');
         return view('user.edit', compact('user'));
     }
 
@@ -98,7 +103,7 @@ class UsersController extends Controller
         $user = User::findOrFail($id);
         $user->username = $request->username;
         $user->email = $request->email;
-        $user->password = $request->password;
+        $user->password = bcrypt($request->password);
         $user->save();
         
         return redirect()->action('UsersController@index')->withMessage('User has been successfully updated');
