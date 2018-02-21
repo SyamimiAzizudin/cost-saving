@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>UMW Savings{{ config('app.name', 'UMW Cost Saving Initiative') }}</title>
+    <title>{{ config('app.name', 'UMW Cost Saving Initiative') }}</title>
 
     <!-- Styles -->
     <link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet">
