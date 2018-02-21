@@ -94,7 +94,7 @@
 </div>
 <br>
 <div class="row">
-    <div class="pull-right">
+    <div class="text-center">
         <a href="#" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span> Edit</a>
         <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Save</button>
     </div>
