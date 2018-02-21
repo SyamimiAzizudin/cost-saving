@@ -49,6 +49,7 @@ Route::group(['middleware' => ['auth']], function() {
 	Route::resource('/saving', 'SavingsController');
     Route::delete('/saving/{saving}/delete', 'SavingsController@destroy');
     Route::get('/saving-company', 'SavingsController@companylist');
+    Route::get('/saving-company/{company_id}', 'SavingsController@getCompanySaving');
 
 });
 

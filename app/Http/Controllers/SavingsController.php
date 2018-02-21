@@ -101,4 +101,57 @@ class SavingsController extends Controller
     {
         //
     }
+
+    public function getCompanySaving($company_id)
+    {
+        $company = Company::findOrFail($company_id);
+
+        $initiatives = Initiative::where('company_id', $company_id)->get();
+
+        $savings = Company::with([
+            'initiatives' => function($query) use ($company_id){
+                $query->where('company_id',$company_id);
+            },
+            'initiatives.savings' => function($query){
+                $query->orderBy('month');
+            }
+        ])
+            ->where('id', $company_id)
+            ->first();
+
+        $data['company'] = $company;
+        $data['initiatives'] = $initiatives;
+
+        #dump($savings);
+        $company_savings= [];
+        foreach ($savings->initiatives as $k1 => $v1)
+        {
+            #dump($v1->id);
+
+            #dump($v1);
+            if(!empty($v1->savings)) {
+                for ($i = 1; $i <= 12; $i++)
+                {
+                    $company_savings[$v1->id][$i] = [
+                        'actual_saving' => null,
+                        'target_saving' => null
+                    ];
+                }
+                foreach ($v1->savings as $k2 => $v2) {
+
+
+                        $company_savings[$v1->id][$v2->month] = [
+                            'actual_saving' => $v2->actual_saving,
+                            'target_saving' => $v2->target_saving
+                        ];
+
+
+                }
+            }
+        }
+
+        #dd($company_savings);
+        $data['company_savings'] = $company_savings;
+        return view('saving.company_saving', $data);
+    }
 }

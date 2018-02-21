@@ -30,6 +30,6 @@ class Initiative extends Model
 
     public function savings()
     {
-        return $this->hasOne(Saving::class);
+        return $this->hasMany(Saving::class);
     }
 }
