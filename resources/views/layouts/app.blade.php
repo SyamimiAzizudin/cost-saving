@@ -59,8 +59,8 @@
                             <li><a href="{{ route('login') }}">Login</a></li>
                             <li><a href="{{ route('register') }}">Register</a></li>
                         @else
-                            <li><a href="{{ url('/company-initiative') }}">Initiative Management</a></li>
-                            <li><a href="{{ url('/company-saving') }}">Saving Management</a></li>
+                            <li><a href="{{ url('/initiative-company') }}">Initiative Management</a></li>
+                            <li><a href="{{ url('/saving-company') }}">Saving Management</a></li>
                             <li><a href="{{ url('/company') }}">Company Management</a></li>
                             <li><a href="{{ url('/user') }}">User Management</a></li>
                             <li>  

@@ -18,7 +18,7 @@
 		</div>
 
     	<div class="col-md-10 col-md-offset-2">
-        {!! Form::model($init, ['method' => 'PATCH','action' =>  ['InitiativesController@update', $init->id], 'files' => true]) !!}
+        {!! Form::model($initiative, ['method' => 'PATCH','action' =>  ['InitiativesController@update', $initiative->id], 'files' => true]) !!}
 
         	<div class="form-group">
         		<label for="area" class="col-sm-3 control-label">Area</label>
@@ -38,6 +38,13 @@
                 <label for="action" class="col-sm-3 control-label">Proposed Action</label>
                 <div class="col-sm-9">
                     {!! Form::textarea('action', null, array('placeholder' => 'Proposed Action','class' => 'form-control')) !!}
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="order_id" class="col-sm-3 control-label">Order Id</label>
+                <div class="col-sm-9">
+                    {!! Form::number('order_id', null, array('placeholder' => 'Order Id','class' => 'form-control')) !!}
                 </div>
             </div>
 

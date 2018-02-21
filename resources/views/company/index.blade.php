@@ -29,6 +29,7 @@
                                 <td>{{ $company->name }}</td>
                                 <td>{{ $company->group }}</td>
                                 <td>
+                                    {{-- @if( $company->id == Auth::user()->id) --}}
                                     @if( $company->id)
                                     <a href="{{ action('CompaniesController@edit', $company->id) }}" class="btn btn-success btn-xs">Edit</a>
                                     <a href="{{ action('CompaniesController@destroy', $company->id) }}" class="btn btn-danger btn-xs" id="confirm-modal">Delete</a>

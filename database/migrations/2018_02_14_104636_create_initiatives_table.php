@@ -17,6 +17,7 @@ class CreateInitiativesTable extends Migration
             $table->increments('id');
             $table->integer('user_id')->index()->unsigned()->nullable();
             $table->integer('company_id')->index()->unsigned()->nullable();
+            $table->integer('order_id')->unique()->nullable();
             $table->string('area')->nullable();
             $table->string('analyze')->nullable();
             $table->string('action')->nullable();

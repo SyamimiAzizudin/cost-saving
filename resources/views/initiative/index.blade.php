@@ -4,18 +4,18 @@
 @section('content')
 <div class="row">
             <div class="col-lg-12">
-                <h3 class="page-header">Initiative - </h3>
+                <h3 class="page-header">Initiative - Company Name</h3>
                 <ol class="breadcrumb">
                     <li><a href="{{ url('/home') }}">Home </a></li>
-                    <li><a href="{{ url('/company-initiative') }}">Company List</a></li>
-                    <li class="active">Initiative -  UMW Equipment Sdn Bhd</li>
+                    <li><a href="{{ url('/company-initiative') }}">Initiative - Company List</a></li>
+                    <li class="active">Initiative -  Company Name</li>
                 </ol>
                 
                     <div class="col-md-12 ">
                         <div style="overflow-x:auto;">
                             <table class="table table-bordered">
                                 <tr>
-                                    <th class="text-center">Order No</th>
+                                    <th class="text-center">Order Id</th>
                                     <th width="15%">Area</th>
                                     <th width="25%">Analyze Factors Or Causes Contributing To Current Performances</th>
                                     <th width="30%">Proposed Action To Be Taken to Achieve Savings</th>
@@ -24,7 +24,7 @@
                                 <?php $i=1 ?>
                                 @forelse ($initiatives as $initiative)
                                 <tr>
-                                    <td class="text-center">{{ $i }}</td>
+                                    <td class="text-center">{{  $initiative->order_id }}</td>
                                     <td >{{ $initiative->area }}</td>
                                     <td >{{ $initiative->analyze }}</td>
                                     <td >{{ $initiative->action }}</td>
@@ -90,9 +90,9 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="area-order" class="col-sm-3 control-label">Area Order No</label>
+                    <label for="order_id" class="col-sm-3 control-label">Order Id</label>
                     <div class="col-sm-9">
-                        {!! Form::number('area-order', null, array('placeholder' => 'Area Order','class' => 'form-control')) !!}
+                        {!! Form::number('order_id', null, array('placeholder' => 'Order Id','class' => 'form-control')) !!}
                     </div>
                 </div>
 

@@ -20,8 +20,8 @@
                     <tr>
                         <td class="text-center">{{ $i }}</td>
                         <td>
-                            {{-- <a href="{{ url('/initiative/') }}" class="marginRight">{{ $company->name }}</a> --}}
-                            <a href="{{ action('InitiativesController@index', $company->id) }}" class="marginRight">{{ $company->name }}</a>
+                            <a href="{{ url('/initiative/') }}" class="marginRight">{{ $company->name }}</a>
+                            {{-- <a href="{{ action('InitiativesController@index', $company->id) }}" class="marginRight">{{ $company->name }}</a> --}}
                         </td>
                     </tr>
                     <?php $i++; ?>

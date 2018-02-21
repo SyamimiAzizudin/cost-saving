@@ -39,14 +39,16 @@ Route::group(['middleware' => ['auth']], function() {
      */
     Route::resource('/initiative', 'InitiativesController');
     Route::delete('/initiative/{initiative}/delete', 'InitiativesController@destroy');
-    Route::get('/company-initiative', 'InitiativesController@companylist');
+    Route::get('/initiative-company', 'InitiativesController@companylist');
+    // Route::get('/initiative/{company}', 'InitiativesController@index');
+    // Route::get('initiative/{company}', ['as' => 'initiative.company', 'uses' => 'InitiativesController@index']);
 
 	/**
      * Saving Manegement
      */
 	Route::resource('/saving', 'SavingsController');
     Route::delete('/saving/{saving}/delete', 'SavingsController@destroy');
-    Route::get('/company-saving', 'SavingsController@companylist');
+    Route::get('/saving-company', 'SavingsController@companylist');
 
 });
 

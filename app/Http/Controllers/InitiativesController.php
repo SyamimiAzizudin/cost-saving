@@ -20,9 +20,10 @@ class InitiativesController extends Controller
     public function index()
     {
         // $initiatives = Initiative::all();
+        $initiatives = Initiative::orderBy('order_id', 'asc')->get();
         // $company_id = Company::find($id);
         $companies = Company::pluck('name', 'id');
-        $initiatives = Initiative::where('company_id', 'company_id')->get();
+        // $initiatives = Initiative::where('company_id', $company_id)->get();
         // dd($initiatives);
         return view('initiative.index', compact('initiatives', 'companies'));
     }
@@ -56,12 +57,14 @@ class InitiativesController extends Controller
             'area' => 'required',
             'analyze' => 'required',
             'action' => 'required',
+            'order_id' => 'required',
         ]);
         
         $initiative = new Initiative;
         $initiative->area = $request->area;
         $initiative->analyze = $request->analyze;
         $initiative->action = $request->action;
+        $initiative->order_id = $request->order_id;
         $initiative->company_id = $request->company_id;
         $initiative->user_id = Auth::user()->id;
         $initiative->save();
@@ -105,12 +108,14 @@ class InitiativesController extends Controller
             'area' => 'required',
             'analyze' => 'required',
             'action' => 'required',
+            'order_id' => 'required',
         ]);
 
         $initiative = Initiative::findOrFail($id);
         $initiative->area = $request->area;
         $initiative->analyze = $request->analyze;
         $initiative->action = $request->action;
+        $initiative->order_id = $request->order_id;
         $initiative->save();
         
         return redirect()->action('InitiativesController@index')->withMessage('Initiative has been successfully updated!');
