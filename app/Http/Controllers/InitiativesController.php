@@ -19,10 +19,18 @@ class InitiativesController extends Controller
      */
     public function index()
     {
-        $initiatives = Initiative::all();
+        // $initiatives = Initiative::all();
         $companies = Company::pluck('name', 'id');
-        #dd($companies);
+        $initiatives = Initiative::where('company_id',$companies)->get();
+        // dd($initiatives);
         return view('initiative.index', compact('initiatives', 'companies'));
+    }
+
+    public function companylist()
+    {
+        $initiatives = Initiative::all();
+        $companies = Company::all();
+        return view('initiative.company', compact('initiatives', 'companies'));
     }
 
     /**

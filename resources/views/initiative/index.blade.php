@@ -6,16 +6,16 @@
             <div class="col-lg-12">
                 <h3 class="page-header">Initiative - UMW Equipment Sdn Bhd</h3>
                 <ol class="breadcrumb">
-                    <li><a href="index.html">Home </a>
-                    </li>
-                    <li class="active">Initiative </li>
+                    <li><a href="{{ url('/home') }}">Home </a></li>
+                    <li><a href="{{ url('/company-initiative') }}">Company List</a></li>
+                    <li class="active">Initiative -  UMW Equipment Sdn Bhd</li>
                 </ol>
                 
                     <div class="col-md-12 ">
                         <div style="overflow-x:auto;">
                             <table class="table table-bordered">
                                 <tr>
-                                    <th class="text-center">No</th>
+                                    <th class="text-center">Order No</th>
                                     <th width="15%">Area</th>
                                     <th width="25%">Analyze Factors Or Causes Contributing To Current Performances</th>
                                     <th width="30%">Proposed Action To Be Taken to Achieve Savings</th>
@@ -30,7 +30,6 @@
                                     <td >{{ $initiative->action }}</td>
                                     <td>
                                         @if( $initiative->id )
-                                        {{-- <a href="#" class="btn btn-warning btn-xs">Add</a> --}}
                                         <a href="{{ action('InitiativesController@edit', $initiative->id) }}" class="btn btn-success btn-xs">Edit</a>
                                         <a href="{{ action('InitiativesController@destroy', $initiative->id) }}" class="btn btn-danger btn-xs" id="confirm-modal">Delete</a>
                                         @endif
@@ -39,7 +38,7 @@
                                 <?php $i++; ?>
                                 @empty
                                 <tr>
-                                    <td colspan="6">Looks like there is no initiative available.</td>
+                                    <td colspan="6">Looks like there is no initiative in this company.</td>
                                 </tr>
                                 @endforelse
                             </table>
@@ -61,8 +60,8 @@
                     <label for="area" class="col-sm-3 control-label">Company</label>
                     <div class="col-sm-9">
                         <select name="company_id" class="form-control">
-                            @foreach($companies as $id => $v)
-                                <option value="{{ $id }}">{{ $v }}</option>
+                            @foreach($companies as $id => $company_name)
+                                <option value="{{ $id }}">{{ $company_name }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -74,8 +73,6 @@
                         {!! Form::text('area', null, array('placeholder' => 'Area','class' => 'form-control')) !!}
                     </div>
                 </div>
-
-                
 
                 <div class="form-group">
                     <label for="analyze" class="col-sm-3 control-label">Analyze Factors Or Causes Contributing To Current Performances</label>
@@ -89,6 +86,13 @@
                     <label for="proposedaction" class="col-sm-3 control-label">Proposed Action To Be Taken to Achieve Savings</label>
                     <div class="col-sm-9">
                         {!! Form::textarea('action', null, array('placeholder' => 'Proposed Action','class' => 'form-control')) !!}
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="area-order" class="col-sm-3 control-label">Area Order No</label>
+                    <div class="col-sm-9">
+                        {!! Form::number('area-order', null, array('placeholder' => 'Area Order','class' => 'form-control')) !!}
                     </div>
                 </div>
 

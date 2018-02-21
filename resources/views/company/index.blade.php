@@ -13,9 +13,9 @@
                     <li class="active">Company Management</li>
                 </ol>
 
-                    <div class="col-md-10 col-md-offset-2">
+                    <div class="col-md-10 col-md-offset-2 text-center">
 
-                        <table class="table table-striped table-bordered"> 
+                        <table align="center" class="table table-striped table-bordered"> 
                             <tr>
                                 <th class="text-center">No</th>
                                 <th>Company Name</th>
