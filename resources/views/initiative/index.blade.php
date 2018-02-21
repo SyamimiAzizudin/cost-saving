@@ -57,6 +57,17 @@
                     <h3>Create New Initiative</h3>
                 </div>
                 {!! Form::open(array('route' => 'initiative.store','method'=>'POST', 'files' => true)) !!}
+
+                <div class="form-group">
+                    <label for="area" class="col-sm-3 control-label">Company</label>
+                    <div class="col-sm-9">
+                        <select name="company_id" class="form-control">
+                            @foreach($companies as $id => $v)
+                                <option value="{{ $id }}">{{ $v }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
                 
                 <div class="form-group">
                     <label for="area" class="col-sm-3 control-label">Area</label>
@@ -64,6 +75,8 @@
                         {!! Form::text('area', null, array('placeholder' => 'Area','class' => 'form-control')) !!}
                     </div>
                 </div>
+
+                
 
                 <div class="form-group">
                     <label for="analyze" class="col-sm-3 control-label">Analyze Factors Or Causes Contributing To Current Performances</label>

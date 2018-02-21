@@ -19,8 +19,10 @@ class InitiativesController extends Controller
      */
     public function index()
     {
-        $initiatives = Initiative::with('user')->paginate(5);
-        return view('initiative.index', compact('initiatives'));
+        $initiatives = Initiative::with('user');
+        $companies = Company::pluck('name', 'id');
+        #dd($companies);
+        return view('initiative.index', compact('initiatives', 'companies'));
     }
 
     /**
@@ -46,11 +48,12 @@ class InitiativesController extends Controller
             'analyze' => 'required',
             'action' => 'required',
         ]);
-
+        
         $initiative = new Initiative;
         $initiative->area = $request->area;
         $initiative->analyze = $request->analyze;
         $initiative->action = $request->action;
+        $initiative->company_id = $request->company_id;
         $initiative->user_id = Auth::user()->id;
         $initiative->save();
 
