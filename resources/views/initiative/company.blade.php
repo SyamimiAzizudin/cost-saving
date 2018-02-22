@@ -20,14 +20,14 @@
                     <tr>
                         <td class="text-center">{{ $i }}</td>
                         <td>
-                            <a href="{{ url('/initiative/') }}" class="marginRight">{{ $company->name }}</a>
-                            {{-- <a href="{{ action('InitiativesController@index', $company->id) }}" class="marginRight">{{ $company->name }}</a> --}}
+                            {{-- <a href="{{ url('/initiative/') }}" class="marginRight">{{ $company->name }}</a> --}}
+                            <a href="{{ url('/initiative-company/') }}/{{ $company->id }}" class="marginRight">{{ $company->name }}</a>
                         </td>
                     </tr>
                     <?php $i++; ?>
                     @empty
                     <tr>
-                        <td colspan="6">Looks like there is no initiative available.</td>
+                        <td colspan="6">Looks like there is no company available.</td>
                     </tr>
                     @endforelse
                 </table>

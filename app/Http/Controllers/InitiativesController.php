@@ -21,10 +21,7 @@ class InitiativesController extends Controller
     {
         // $initiatives = Initiative::all();
         $initiatives = Initiative::orderBy('order_id', 'asc')->get();
-        // $company_id = Company::find($id);
         $companies = Company::pluck('name', 'id');
-        // $initiatives = Initiative::where('company_id', $company_id)->get();
-        // dd($initiatives);
         return view('initiative.index', compact('initiatives', 'companies'));
     }
 
@@ -68,7 +65,7 @@ class InitiativesController extends Controller
         $initiative->company_id = $request->company_id;
         $initiative->user_id = Auth::user()->id;
         $initiative->save();
-
+        // dd($initiative);
         return redirect()->action('InitiativesController@store')->withMessage('Initiative has been successfully added!');
     }
 
@@ -132,5 +129,17 @@ class InitiativesController extends Controller
         $initiative = Initiative::findOrFail($id);
         $initiative->delete();
         return back()->withError('Initiative has been successfully updated!');
+    }
+
+    public function getCompanyInitiative($company_id)
+    {
+        $company = Company::findOrFail($company_id);
+
+        $initiatives = Initiative::orderBy('order_id', 'asc')->where('company_id', $company_id)->get();
+
+        $companies = Company::pluck('name', 'id');
+
+        return view('initiative.index', compact('company', 'initiatives', 'companies'));
+
     }
 }

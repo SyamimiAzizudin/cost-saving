@@ -40,8 +40,7 @@ Route::group(['middleware' => ['auth']], function() {
     Route::resource('/initiative', 'InitiativesController');
     Route::delete('/initiative/{initiative}/delete', 'InitiativesController@destroy');
     Route::get('/initiative-company', 'InitiativesController@companylist');
-    // Route::get('/initiative/{company}', 'InitiativesController@index');
-    // Route::get('initiative/{company}', ['as' => 'initiative.company', 'uses' => 'InitiativesController@index']);
+    Route::get('/initiative-company/{company_id}', 'InitiativesController@getCompanyInitiative');
 
 	/**
      * Saving Manegement

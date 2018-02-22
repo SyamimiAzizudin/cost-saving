@@ -4,11 +4,11 @@
 @section('content')
 <div class="row">
             <div class="col-lg-12">
-                <h3 class="page-header">Initiative - Company Name</h3>
+                <h3 class="page-header">Initiative - {{ $company->name }}</h3>
                 <ol class="breadcrumb">
                     <li><a href="{{ url('/home') }}">Home </a></li>
-                    <li><a href="{{ url('/company-initiative') }}">Initiative - Company List</a></li>
-                    <li class="active">Initiative -  Company Name</li>
+                    <li><a href="{{ url('/initiative-company') }}">Initiative - Company List</a></li>
+                    <li class="active">Initiative - {{ $company->name }}</li>
                 </ol>
                 
                     <div class="col-md-12 ">
@@ -59,11 +59,13 @@
                 <div class="form-group">
                     <label for="area" class="col-sm-3 control-label">Company</label>
                     <div class="col-sm-9">
-                        <select name="company_id" class="form-control">
+                        {{-- <select name="company_id" class="form-control">
                             @foreach($companies as $id => $company_name)
                                 <option value="{{ $id }}">{{ $company_name }}</option>
                             @endforeach
-                        </select>
+                        </select> --}}
+                        {{-- <h6>{{ $company->name }}</h6> --}}
+                        <input type="text" name ="company_name" value="{{$company->name}}" class="form-control" disabled>
                     </div>
                 </div>
                 
