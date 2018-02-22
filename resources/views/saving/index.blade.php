@@ -8,7 +8,7 @@
         <h3 class="page-header">Saving - Company Name </h3>
         <ol class="breadcrumb">
             <li><a href="{{ url('/home') }}">Home</a>
-            <li><a href="{{ url('/company-saving') }}">Saving - Company List</a></li>
+            <li><a href="{{ url('/saving-company') }}">Saving - Company List</a></li>
             <li class="active">Saving - Company Name</li>
         </ol>
         </div></div></div></div></div>
