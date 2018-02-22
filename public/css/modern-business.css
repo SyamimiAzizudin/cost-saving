@@ -211,6 +211,6 @@ footer {
 }
 @media (min-width: 1770px) {
   .table-container {
-    width: 80%;
+    width: 80% !important;
   }
 }
