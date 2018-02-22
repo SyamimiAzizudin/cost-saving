@@ -37,10 +37,12 @@ Route::group(['middleware' => ['auth']], function() {
 	/**
      * Initiative Manegement
      */
-    Route::resource('/initiative', 'InitiativesController');
-    Route::delete('/initiative/{initiative}/delete', 'InitiativesController@destroy');
     Route::get('/initiative-company', 'InitiativesController@companylist');
     Route::get('/initiative-company/{company_id}', 'InitiativesController@getCompanyInitiative');
+    Route::post('/initiative-company/{company_id}', 'InitiativesController@store');
+    Route::get('/initiative/{company_id}/edit', 'InitiativesController@edit');    
+    Route::patch('/initiative/{initiative}', 'InitiativesController@update');
+    Route::delete('/initiative/{initiative}/delete', 'InitiativesController@destroy');
 
 	/**
      * Saving Manegement

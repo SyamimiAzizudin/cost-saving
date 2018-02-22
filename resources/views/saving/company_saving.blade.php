@@ -47,7 +47,11 @@
                                 @if($company_savings[$v->id][$i]['target_saving'] != null)
                                   <td>{{ $company_savings[$v->id][$i]['target_saving'] }}</td>
                                 @else
-                                    <td></td>
+                                    <td>
+                                     <span class="editable">
+                                       -
+                                     </span> 
+                                   </td>
                                 @endif
                             @endfor
                         </tr>
@@ -57,7 +61,9 @@
                                 @if($company_savings[$v->id][$i]['actual_saving'] != null)
                                     <td>{{ $company_savings[$v->id][$i]['actual_saving'] }}</td>
                                 @else
-                                    <td></td>
+                                    <td>
+                                       - 
+                                    </td>
                                 @endif
                             @endfor
                         </tr>
@@ -69,7 +75,7 @@
                                         {{ number_format(($company_savings[$v->id][$i]['actual_saving'] / $company_savings[$v->id][$i]['target_saving'])*100, 0)}}
                                     </td>
                                 @else
-                                    <td></td>
+                                    <td> - </td>
                                 @endif
                             @endfor
                         </tr>
@@ -92,7 +98,16 @@
 <script>
     // requires jquery library
     jQuery(document).ready(function() {
-       jQuery(".main-table").clone(true).appendTo('#table-scroll').addClass('clone');   
+       jQuery(".main-table").clone(true).appendTo('#table-scroll').addClass('clone'); 
+
+       // $(".editable").click(function(){
+       //  //console.log(this)
+       //  console.log('123')
+       //    var dom = "<input type='text' />";
+       //    console.log($(this))
+       //    $(this).html(dom);
+       // });
+
      });
 </script>
 @endsection

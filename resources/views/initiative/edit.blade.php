@@ -3,10 +3,10 @@
 @section('content')
 <div class="row">
 	<div class="col-lg-12">
-		<h3 class="page-header">Initiative - UMW Equipment Sdn Bhd</h3>
+		<h3 class="page-header">Initiative - {{ $company->name }}</h3>
 		<ol class="breadcrumb">
-            <li><a href="index.html">Home</a></li>
-            <li class="active">Initiative </li>
+            <li><a href="{{ url('/home') }}">Home</a></li>
+            <li class="active">Edit Initiative - {{ $company->name }} </li>
         </ol>
     </div>
 </div>
@@ -50,7 +50,7 @@
 
     		<div class="form-group">
     			<div class = "col-sm-offset-3 col-sm-9">
-    				<a href="{{ action('InitiativesController@index') }}" class="btn btn-danger"><span class="glyphicon glyphicon-remove-sign"></span> Cancel</a>
+    				<a href="{{ url('initiative-company/{company_id}') }}" class="btn btn-danger"><span class="glyphicon glyphicon-remove-sign"></span> Cancel</a>
     				<button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Save</button>
     			</div>
     		</div>

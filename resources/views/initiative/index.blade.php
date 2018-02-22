@@ -54,18 +54,19 @@
                 <div class="page-header">
                     <h3>Create New Initiative</h3>
                 </div>
-                {!! Form::open(array('route' => 'initiative.store','method'=>'POST', 'files' => true)) !!}
+                {!! Form::open(array('method'=>'POST', 'files' => true)) !!}
 
                 <div class="form-group">
                     <label for="area" class="col-sm-3 control-label">Company</label>
                     <div class="col-sm-9">
+                        {{$company->name}}
                         {{-- <select name="company_id" class="form-control">
                             @foreach($companies as $id => $company_name)
                                 <option value="{{ $id }}">{{ $company_name }}</option>
                             @endforeach
                         </select> --}}
                         {{-- <h6>{{ $company->name }}</h6> --}}
-                        <input type="text" name ="company_name" value="{{$company->name}}" class="form-control" disabled>
+                        <input type="hidden" name="company_id" value="{{$company->id}}" class="form-control" >
                     </div>
                 </div>
                 

@@ -20,9 +20,9 @@ class InitiativesController extends Controller
     public function index()
     {
         // $initiatives = Initiative::all();
-        $initiatives = Initiative::orderBy('order_id', 'asc')->get();
-        $companies = Company::pluck('name', 'id');
-        return view('initiative.index', compact('initiatives', 'companies'));
+        // $initiatives = Initiative::orderBy('order_id', 'asc')->get();
+        // $companies = Company::pluck('name', 'id');
+        // return view('initiative.index', compact('initiatives', 'companies'));
     }
 
     public function companylist()
@@ -57,6 +57,13 @@ class InitiativesController extends Controller
             'order_id' => 'required',
         ]);
         
+        $check_order_id = Initiative::where('company_id', $request->company_id)->where('order_id', $request->order_id)->first();
+
+        if($check_order_id != null)
+        {
+            return redirect()->action('InitiativesController@getCompanyInitiative',['company_id' => $request->company_id])->withMessage('Order id already exists');
+        }
+
         $initiative = new Initiative;
         $initiative->area = $request->area;
         $initiative->analyze = $request->analyze;
@@ -65,8 +72,8 @@ class InitiativesController extends Controller
         $initiative->company_id = $request->company_id;
         $initiative->user_id = Auth::user()->id;
         $initiative->save();
-        // dd($initiative);
-        return redirect()->action('InitiativesController@store')->withMessage('Initiative has been successfully added!');
+        dd($request);
+        return redirect()->action('InitiativesController@getCompanyInitiative',['company_id' => $request->company_id])->withMessage('Initiative has been successfully added!');
     }
 
     /**
@@ -89,7 +96,8 @@ class InitiativesController extends Controller
     public function edit($id)
     {
         $initiative = Initiative::findOrFail($id);
-        return view('initiative.edit', compact('initiative'));
+        $company = Company::findOrFail($id);
+        return view('initiative.edit', compact('initiative', 'company'));
     }
 
     /**
@@ -109,13 +117,15 @@ class InitiativesController extends Controller
         ]);
 
         $initiative = Initiative::findOrFail($id);
+        $company = Company::findOrFail($id);
+
         $initiative->area = $request->area;
         $initiative->analyze = $request->analyze;
         $initiative->action = $request->action;
         $initiative->order_id = $request->order_id;
         $initiative->save();
         
-        return redirect()->action('InitiativesController@index')->withMessage('Initiative has been successfully updated!');
+        return redirect()->action('InitiativesController@getCompanyInitiative')->withMessage('Initiative has been successfully updated!');
     }
 
     /**
