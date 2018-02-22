@@ -63,18 +63,15 @@
                       </tr>
                       <tr>
                           <th class="fixed-side">Percentage %</th>
-                          <td>34</td>
-                          <td>34</td>
-                          <td>34</td>
-                          <td>34</td>
-                          <td>34</td>
-                          <td>34</td>
-                          <td>34</td>
-                          <td>34</td>
-                          <td>34</td>
-                          <td>34</td>
-                          <td>34</td>
-                          <td>34</td>
+                          @for($i = 1; $i <= 12; $i++)
+                              @if($company_savings[$v->id][$i]['actual_saving'] != null && $company_savings[$v->id][$i]['target_saving'] != null)
+                                  <td>
+                                      {{ $company_savings[$v->id][$i]['actual_saving'] / $company_savings[$v->id][$i]['target_saving']}}
+                                  </td>
+                              @else
+                                  <td></td>
+                              @endif
+                          @endfor
                       </tr>
                   @endforeach
 
