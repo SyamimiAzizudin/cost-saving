@@ -26,7 +26,7 @@
         			<?php $i++; ?>
         			@empty
         			<tr>
-        				<td colspan="6">Looks like there is no initiative available.</td>
+        				<td colspan="6">Looks like there is no company available.</td>
         			</tr>
         			@endforelse
         		</table>

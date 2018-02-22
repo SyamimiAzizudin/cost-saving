@@ -209,3 +209,8 @@ footer {
     display: inline-block;
     margin: auto;
 }
+@media (min-width: 1770px) {
+  .table-container {
+    width: 80%;
+  }
+}
