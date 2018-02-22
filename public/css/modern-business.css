@@ -158,9 +158,8 @@ footer {
 .table-scroll {
   position:relative;
   max-width:100%;
-  /*margin:auto;*/
-  overflow:hidden;
-  border:1px solid #000;
+  margin:auto;
+  border:1px solid #ccc;
 }
 .table-scroll table {
   /*width:100%;*/
@@ -170,10 +169,11 @@ footer {
 }
 .table-scroll th, .table-scroll td {
   padding:5px 10px;
-  border:1px solid #000;
+  border:1px solid #ccc;
   background:#fff;
   white-space:inherit;
   vertical-align: center;
+  font-weight: 400 !important;
 }
 .clone {
   position:absolute;
@@ -188,18 +188,18 @@ footer {
   border-color:transparent;
 }*/
 .clone .fixed-side {
-  border:1px solid #000;
+  border:1px solid #ccc;
   visibility:visible;
   background:#eee !important;
   text-align: top;
   vertical-align: top;
-  /*width: 2em !important;*/
 }
-/*.clone thead, .clone tfoot{background:transparent;}*/
+.clone thead, .clone tfoot{background:transparent;}
 
 .col {
   background:#eee !important;
   text-align: center;
+  font-weight: bold;
 }
 .table-container {
     position: relative;
@@ -207,10 +207,9 @@ footer {
     width: 95%;
     /*border: 2px solid red;*/
     display: inline-block;
-    margin: auto;
 }
 @media (min-width: 1770px) {
   .table-container {
-    width: 80% !important;
+    width: 80% !important; 
   }
 }
