@@ -96,9 +96,9 @@ class InitiativesController extends Controller
     public function edit($id)
     {
         $company = Company::all();
-        $initiative = Initiative::with('company')->findOrFail($id);
+        $initiatives = Initiative::with('company')->findOrFail($id);
         // dd($company);
-        return view('initiative.edit', compact('initiative', 'company'));
+        return view('initiative.edit', compact('initiatives', 'company'));
     }
 
     /**
