@@ -108,7 +108,7 @@
                     </div>
                 </div>
 
-                <div class="col-md-offset-1 col-md-12 padding2">
+                {{-- <div class="col-md-offset-1 col-md-12 padding2">
                     <div class="form-group">
                         <label for="company" class="col-md-2 control-label">Company</label>
                         <label for="company" class="col-md-2 text-center control-label">Target (RM)</label>
@@ -149,6 +149,31 @@
                         <input class="col-md-2 text-center number fail" type="integer" value ="12,084.00" readonly>
                         <input class="col-md-2 text-center number" type="integer" value ="98" readonly>
                         <a href="{{ url('/company-dashboard') }}" class="marginRight">View More (Company)</a>
+                    </div>
+                </div> --}}
+                <div class="col-md-12 padding2">
+                    <div class="form-group">
+                        <table class="table table-bordered" style="border-collapse: collapse;">
+                            <tr>
+                                <td><label for="" class="col-md-12 text-center control-label">Company</label></td>
+                                <td><label for="" class="col-md-12 text-center control-label">Target (RM)</label></td>
+                                <td><label for="" class="col-md-12 text-center control-label">Actual (RM)</label></td>
+                                <td><label for="" class="col-md-12 text-center control-label">%</label></td>
+                                <td></td>
+                            </tr>
+                            <?php $i=1 ?>
+                            @forelse ($companies as $company)
+                            <tr>
+                                <td><label for="company" class="col-md-12 control-label">{{ $company->name }}</label></td>
+                                <td><label for="Target" class="col-md-12 text-center control-label">12,456</label></td>
+                                <td><label for="Target" class="col-md-12 text-center control-label">12,456</label></td>
+                                <td><label for="Target" class="col-md-12 text-center control-label">45</label></td>
+                                <td><a href="{{ url('/company-dashboard') }}" class="marginRight">View More (Company)</a></td>
+                            </tr>
+                            <?php $i++; ?>
+                            @empty
+                            @endforelse
+                        </table>
                     </div>
                 </div>
 

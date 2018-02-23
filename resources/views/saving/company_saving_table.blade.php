@@ -36,15 +36,6 @@
 
                                 </td>
                             @else
-                                <td>
-                                     <span class="editable">
-                                       -
-                                         <br>
-                                         <button type="button" class="btn btn-warning btn-sm openModal" data-toggle="modal" data-value="" data-id="0" data-month="{{ $i }}" data-section="target_saving" data-initiative_id="{{ $v->id }}">
-    Edit
-</button>
-                                     </span>
-                                </td>
                             @endif
                         @endfor
                     </tr>
@@ -55,10 +46,13 @@
                                 <td>{{ $company_savings[$v->id][$i]['actual_saving'] }}</td>
                             @else
                                 <td>
+                                    <span class="editable">
                                     -
                                     <br>
+                                    <button type="button" class="btn btn-warning btn-sm openModal" data-toggle="modal" data-value="" data-id="0" data-month="{{ $i }}" data-section="actual_saving" data-initiative_id="{{ $v->id }}">Edit
 
-
+                                    </button>
+                                    </span>
                                 </td>
                             @endif
                         @endfor

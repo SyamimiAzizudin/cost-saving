@@ -10,7 +10,6 @@ class Company extends Model
 {
     
     protected $fillable = [
-        'user_id',
         'name',
         'group',
     ];
@@ -20,7 +19,7 @@ class Company extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function initiatives()
+    public function initiative()
     {
         return $this->hasMany(Initiative::class);
     }

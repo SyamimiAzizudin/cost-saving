@@ -129,7 +129,6 @@ class SavingsController extends Controller
         foreach ($savings->initiatives as $k1 => $v1)
         {
             #dump($v1->id);
-
             #dump($v1);
             if(!empty($v1->savings)) {
                 for ($i = 1; $i <= 12; $i++)
@@ -141,12 +140,10 @@ class SavingsController extends Controller
                 }
                 foreach ($v1->savings as $k2 => $v2) {
 
-
-                        $company_savings[$v1->id][$v2->month] = [
-                            'actual_saving' => $v2->actual_saving,
-                            'target_saving' => $v2->target_saving
-                        ];
-
+                    $company_savings[$v1->id][$v2->month] = [
+                        'actual_saving' => $v2->actual_saving,
+                        'target_saving' => $v2->target_saving
+                    ];
 
                 }
             }
@@ -186,7 +183,6 @@ class SavingsController extends Controller
         foreach ($savings->initiatives as $k1 => $v1)
         {
             #dump($v1->id);
-
             #dump($v1);
             if(!empty($v1->savings)) {
                 for ($i = 1; $i <= 12; $i++)
@@ -198,12 +194,10 @@ class SavingsController extends Controller
                 }
                 foreach ($v1->savings as $k2 => $v2) {
 
-
                     $company_savings[$v1->id][$v2->month] = [
                         'actual_saving' => $v2->actual_saving,
                         'target_saving' => $v2->target_saving
                     ];
-
 
                 }
             }

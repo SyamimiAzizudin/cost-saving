@@ -18,7 +18,17 @@
 		</div>
 
     	<div class="col-md-10 col-md-offset-2">
-        {!! Form::model($initiative, ['method' => 'PATCH','action' =>  ['InitiativesController@update', $initiative->id], 'files' => true]) !!}
+        {{-- {!! Form::model($initiative, ['method' => 'PATCH','action' =>  ['InitiativesController@update', $initiative->id], 'files' => true]) !!} --}}
+                {!! Form::open(array('method'=>'patch', 'files' => true)) !!}
+
+
+            <div class="form-group">
+                    <label for="area" class="col-sm-3 control-label">Company</label>
+                    <div class="col-sm-9">
+                        {{$company->name}}
+                        <input type="hidden" name="company_id" value="{{$company->id}}" class="form-control" >
+                    </div>
+                </div>
 
         	<div class="form-group">
         		<label for="area" class="col-sm-3 control-label">Area</label>

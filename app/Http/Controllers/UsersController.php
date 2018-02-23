@@ -56,9 +56,10 @@ class UsersController extends Controller
         $users->username = $request->username;
         $users->email = $request->email;
         $users->password = bcrypt($request->password);
+        $users->company_id = $request->company_id;
         $users->save();
 
-        return redirect()->action('UsersController@store')->withMessage('User has been successfully added');
+        return redirect()->action('UsersController@index')->withMessage('User has been successfully added!');
     }
 
     /**
@@ -80,9 +81,10 @@ class UsersController extends Controller
      */
     public function edit($id)
     {
-        $user = User::findOrFail($id);
+        $user = User::all();
+        $companies = Company::with('user')->findOrFail($id);
         // $password = Hash::get('current_password');
-        return view('user.edit', compact('user'));
+        return view('user.edit', compact('companies', 'user'));
     }
 
     /**
@@ -101,12 +103,21 @@ class UsersController extends Controller
         ]);
 
         $user = User::findOrFail($id);
+
         $user->username = $request->username;
         $user->email = $request->email;
         $user->password = bcrypt($request->password);
+        $user->company_id = $request->company_id;
         $user->save();
+
+        foreach ($request->company_umw as $id) {
+            $company = Company::findOrFail($id);
+            if (! in_array($company->id, $user->companies()->pluck('id')->toArray())) {
+                $user->companies()->save($company);
+            }
+        }
         
-        return redirect()->action('UsersController@index')->withMessage('User has been successfully updated');
+        return redirect()->action('UsersController@index')->withMessage('User has been successfully updated!');
     }
 
     /**
@@ -120,6 +131,6 @@ class UsersController extends Controller
         // dd($id);
         $user = User::findOrFail($id);
         $user->delete();
-        return back()->withError('User has been successfully updated');
+        return back()->withError('User has been successfully updated!');
     }
 }
