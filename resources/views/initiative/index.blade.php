@@ -95,7 +95,7 @@
                 <div class="form-group">
                     <label for="order_id" class="col-sm-3 control-label">Order Id</label>
                     <div class="col-sm-9">
-                        {!! Form::number('order_id', null, array('placeholder' => 'Order Id','class' => 'form-control')) !!}
+                        {!! Form::number('order_id', null, array('placeholder' => 'Order Id','class' => 'form-control', 'step'=>'any')) !!}
                     </div>
                 </div>
 

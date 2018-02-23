@@ -72,7 +72,7 @@ class InitiativesController extends Controller
         $initiative->company_id = $request->company_id;
         $initiative->user_id = Auth::user()->id;
         $initiative->save();
-        dd($request);
+        // dd($request);
         return redirect()->action('InitiativesController@getCompanyInitiative',['company_id' => $request->company_id])->withMessage('Initiative has been successfully added!');
     }
 
