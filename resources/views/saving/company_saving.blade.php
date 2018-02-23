@@ -12,79 +12,7 @@
         </ol>
         </div></div></div></div></div>
         <div class="text-center">
-            <div class="table-container">
-                <div id="table-scroll" class="table-scroll">
-                    <div class="" style="overflow:auto; width: 100%;">
-                    <table class="main-table">
-                    <thead>
-                        <tr>
-                          <th class="fixed-side"><b>Area</b></th>
-                          <th class="fixed-side"><b>Analyze Factors Or Causes Contributing To Current Performance</b></th>
-                          <th class="fixed-side"><b>Proposed Action To Be Taken To Achieve Saving</b></th>
-                          <th class="fixed-side"><b>Cost Reduction</b></th>
-                          <th class="col"><b>JAN</b></th>
-                          <th class="col"><b>FEB</b></th>
-                          <th class="col"><b>MAR</b></th>
-                          <th class="col"><b>APR</b></th>
-                          <th class="col"><b>MAY</b></th>
-                          <th class="col"><b>JUN</b></th>
-                          <th class="col"><b>JUL</b></th>
-                          <th class="col"><b>AUG</b></th>
-                          <th class="col"><b>SEP</b></th>
-                          <th class="col"><b>OCT</b></th>
-                          <th class="col"><b>NOV</b></th>
-                          <th class="col"><b>DEC</b></th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                    @foreach($initiatives as $v)
-                        <tr>
-                            <th class="fixed-side" rowspan="3">{{ $v->area }}</th>
-                            <th class="fixed-side" rowspan="3">{{ $v->analyze }}</th>
-                            <th class="fixed-side" rowspan="3">{{ $v->action }}</th>
-                            <th class="fixed-side"><b>Target Saving (RM)</b></th>
-                            @for($i = 1; $i <= 12; $i++)
-                                @if($company_savings[$v->id][$i]['target_saving'] != null)
-                                  <td>{{ $company_savings[$v->id][$i]['target_saving'] }}</td>
-                                @else
-                                    <td>
-                                     <span class="editable">
-                                       -
-                                     </span> 
-                                   </td>
-                                @endif
-                            @endfor
-                        </tr>
-                        <tr>
-                            <th class="fixed-side"><b>Actual Saving (RM)</b></th>
-                            @for($i = 1; $i <= 12; $i++)
-                                @if($company_savings[$v->id][$i]['actual_saving'] != null)
-                                    <td>{{ $company_savings[$v->id][$i]['actual_saving'] }}</td>
-                                @else
-                                    <td>
-                                       - 
-                                    </td>
-                                @endif
-                            @endfor
-                        </tr>
-                        <tr>
-                            <th class="fixed-side"><b>Percentage %</b></th>
-                            @for($i = 1; $i <= 12; $i++)
-                                @if($company_savings[$v->id][$i]['actual_saving'] != null && $company_savings[$v->id][$i]['target_saving'] != null)
-                                    <td>
-                                        {{ number_format(($company_savings[$v->id][$i]['actual_saving'] / $company_savings[$v->id][$i]['target_saving'])*100, 0)}}
-                                    </td>
-                                @else
-                                    <td> - </td>
-                                @endif
-                            @endfor
-                        </tr>
-                    @endforeach
-                    </tbody>
-                    </table>
-                    </div>
-                </div>
-            </div>
+            <div id="SavingTable"></div>
         </div>
     </div>
 </div>
@@ -95,6 +23,38 @@
         <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Save</button>
     </div>
 </div>
+
+<!-- Button trigger modal -->
+
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Edit Value</h4>
+            </div>
+            <form action="" id="savingForm">
+            <div class="modal-body">
+
+                    <input type="text" id="value" name="value" value="">
+                    <input type="hidden" value="" id="month" name="month">
+                    <input type="hidden" value="" id="section" name="section">
+                    <input type="hidden" value="" id="id" name="id">
+                    <input type="hidden" value="" id="initiative_id" name="initiative_id">
+                {{ csrf_field() }}
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary" id="saveSaving">Save changes</button>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 <script>
     // requires jquery library
     jQuery(document).ready(function() {
@@ -108,6 +68,64 @@
        //    $(this).html(dom);
        // });
 
+        getTable();
+
+
      });
+
+
+
+
+
+    $('#savingForm').on('submit', function(e){
+        e.preventDefault();
+        var formURL = $(this).attr("action");
+
+        $.ajax({
+            url: formURL, //this is the submit URL
+            type: 'POST', //or POST
+            data: $('#savingForm').serialize(),
+            success: function(data){
+                //alert('successfully submitted')
+                $("#myModal").modal('hide');
+
+                getTable();
+            }
+        });
+
+
+    });
+
+
+    function getTable(){
+        console.log('get table');
+        $.ajax({
+            url: '/saving-company-table/{{$company_id}}', //this is the submit URL
+            type: 'get', //or POST
+            success: function(data){
+                $("#SavingTable").html(data);
+                $('.openModal').on('click', openModal);
+            }
+        });
+    }
+
+    
+
+    var openModal = function(){
+        var my_id_value = $(this).data('id');
+        var month = $(this).data('month');
+        var section = $(this).data('section');
+        var initiative_id = $(this).data('initiative_id');
+
+        console.log(my_id_value)
+        $(".modal-body #id").val(my_id_value);
+        $(".modal-body #month").val(month);
+        $(".modal-body #section").val(section);
+        $(".modal-body #initiative_id").val(initiative_id);
+        $('#myModal').modal('toggle');
+    }
+
+
+
 </script>
 @endsection
