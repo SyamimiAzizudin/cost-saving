@@ -153,6 +153,10 @@
             $('#destroy-modal').modal({ show: true });
         });
     </script>
+    <script src="{{ asset('vendor/unisharp/laravel-ckeditor/ckeditor.js') }}"></script>
+    <script>
+        CKEDITOR.replace( 'action' );
+    </script>
     @yield('scripts')
 </body>
 </html>

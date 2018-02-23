@@ -33,9 +33,9 @@
                             @if($company_savings[$v->id][$i]['target_saving'] != null)
                                 <td>
                                     {{ $company_savings[$v->id][$i]['target_saving'] }}
-
                                 </td>
                             @else
+                                <td> - </td>
                             @endif
                         @endfor
                     </tr>

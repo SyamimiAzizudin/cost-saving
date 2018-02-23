@@ -235,6 +235,8 @@ return [
         'Entrust'   => Zizaco\Entrust\EntrustFacade::class,
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
+        'Unisharp' => Unisharp\Ckeditor\ServiceProvider::class,
+
     ],
 
 ];
