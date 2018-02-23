@@ -2,7 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
+use App\Company;
+use App\Initiative;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Input;
 
 class HomeController extends Controller
 {
@@ -28,21 +34,33 @@ class HomeController extends Controller
 
     public function dashboard()
     {
-        return view('dashboard');
+        $companies = Company::all();
+        return view('dashboard', compact('companies'));
     }
 
     public function group_dashboard()
     {
-        return view('group-dashboard');
+        $companies = Company::all();
+        return view('group-dashboard', compact('companies'));
     }
 
-    public function company_dashboard()
+    public function company_dashboard($id)
     {
-        return view('company-dashboard');
+        $init = Initiative::all();
+        // $companies = Company::all();
+        $company = Company::findOrFail($id);
+
+        return view('company-dashboard', compact('init','company'));
     }
 
     public function print_overall()
     {
         return view('print-overall');
+    }
+
+    public function init($id)
+    {
+        $company = Company::findOrFail($id);
+        return view('saving/saving-company', compact('company'));
     }
 }

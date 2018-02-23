@@ -77,15 +77,14 @@
             <br>
 
             <div class="col-md-8 col-md-offset-2">
+                <?php $i=0 ?>
+                @forelse ($companies as $company)
                 <div class="col-md-4">
-                    <a href="{{ url('/group-dashboard') }}" type="button" class="btn btn-lg btn-primary custom">Dashboard Manufacturing & Engineering</a>
+                    <a href="{{ url('/group-dashboard') }} / {{$company->group}}" type="button" class="btn btn-lg btn-primary custom1">Dashboard {{$company->group}}</a>
                 </div>
-                <div class="col-md-4">
-                    <a href="{{ url('/group-dashboard') }}" type="button" class="btn btn-lg btn-primary custom1">Dashboard Equipments</a>
-                </div>
-                <div class="col-md-4">
-                    <a href="{{ url('/group-dashboard') }}" type="button" class="btn btn-lg btn-primary custom1">Dashboard Corporate</a>
-                </div>
+                <?php $i++; ?>
+                @empty
+                @endforelse
             </div>
 
         </center>
@@ -95,7 +94,7 @@
 <!--Summary-->
 <div class="row">
     <div class="col-md-12 padding2">
-        <div class="col-md-8 col-md-offset-2">
+        <div class="col-md-12">
             <h3 class="page-header">Cost Saving Summary - Group</h3>
 
             <div class="form-group">
@@ -118,33 +117,33 @@
             </div>
         </div>
 
-        <div class="col-md-offset-2 col-md-10 padding2">
+        <div class="col-md-12 padding2">
             <div class="form-group">
-                <label for="company" class="col-md-2 control-label">Group</label>
+                <label for="company" class="col-md-3 control-label">Group</label>
                 <label for="company" class="col-md-2 text-center control-label">Target (RM)</label>
                 <label for="company" class="col-md-2 text-center control-label">Actual (RM)</label>
-                <label for="company" class="col-md-2 text-center control-label">%</label>
+                <label for="company" class="col-md-1 text-center control-label">%</label>
             </div>
-            <div class="form-group padding2">
+            <!-- <div class="form-group padding2">
                 <label for="company" class="col-md-2 control-label">M&E</label>
                 <input class="col-md-2 text-center number good" type="integer" value ="12,084.00">
                 <input class="col-md-2 text-center number good" type="integer" value ="12,084.00" readonly>
                 <input class="col-md-2 text-center number" type="integer" value ="100" readonly>
                 <a href="{{ url('/group-dashboard') }}" class="marginRight">View More (Group)</a>
-            </div>
+            </div> -->
             <div class="form-group padding2">
-                <label for="company" class="col-md-2 control-label">Equipment</label>
-                <input class="col-md-2 text-center number good" type="integer" value ="12,084.00">
-                <input class="col-md-2 text-center number fail" type="integer" value ="12,084.00" readonly>
-                <input class="col-md-2 text-center number" type="integer" value ="100" readonly>
-                <a href="{{ url('/group-dashboard') }}" class="marginRight">View More (Group)</a>
-            </div>
-            <div class="form-group padding2">
-                <label for="company" class="col-md-2 control-label">Corporation</label>
-                <input class="col-md-2  text-center good number" type="integer" value ="12,084.00">
-                <input class="col-md-2 text-center fail number" type="integer" value ="12,084.00" readonly>
-                <input class="col-md-2 text-center number" type="integer" value ="100" readonly>
-                <a href="{{ url('/group-dashboard') }}" class="marginRight">View More (Group)</a>
+                <?php $i=0 ?>
+                @forelse ($companies as $company)
+                <div class="form-group padding2">
+                    <label for="company" class="col-md-3 control-label">{{$company->group}}</label>
+                    <label for="saving_target" class="col-md-2 number text-center control-label">13,456</label>
+                    <label for="actual_saving" class="col-md-2 number text-center control-label">13,456</label>
+                    <label for="Target" class="col-md-1 text-center control-label">45</label>
+                    <label class="col-md-2 text-left"><a href="{{ url('/group-dashboard') }} / {{$company->group}}">View More (Company)</a></label>
+                </div>
+                <?php $i++; ?>
+                @empty
+                @endforelse
             </div>
         </div>
     </div>

@@ -32,26 +32,26 @@
         <div class="row ">
             <div class="col-md-8 col-md-offset-2 padding1">
                 <div class="col-md-4">
-                    <a type="button" href="{{ url('/dashboard') }}" class="btn btn-lg btn-primary custom">Main Dashboard</a>
+                    <a type="button" href="{{ url('/dashboard') }}" class="btn btn-lg btn-primary custom1">Main Dashboard</a>
                 </div>
                 <div class="col-md-4">
-                    <a type="button" href="{{ url('/group-dashboard') }}" class="btn btn-lg btn-primary custom">Group Dashboard</a>
+                    <a type="button" href="{{ url('/group-dashboard') }}" class="btn btn-lg btn-primary custom1">Group Dashboard</a>
                 </div>
                 <div class="col-md-4">
-                    <a type="button" href="{{ url('/user') }}" class="btn btn-lg btn-primary custom">User Management Page</a>
+                    <a type="button" href="{{ url('/user') }}" class="btn btn-lg btn-primary custom1">User Management</a>
                 </div>
             </div>
         </div>
         <div class="row ">
             <div class="col-md-8 col-md-offset-2 padding2">
                 <div class="col-md-4">
-                    <a type="button" href="{{ url('/company') }}" class="btn btn-lg btn-primary custom">Company Management Page</a>
+                    <a type="button" href="{{ url('/company') }}" class="btn btn-lg btn-primary custom1">Company Management</a>
                 </div>
                 <div class="col-md-4">
-                    <a type="button" href="{{ url('/initiative-company') }}" class="btn btn-lg btn-primary custom">Initiative Management Page</a>
+                    <a type="button" href="{{ url('/initiative-company') }}" class="btn btn-lg btn-primary custom1">Initiative Management</a>
                 </div>
                 <div class="col-md-4">
-                    <a type="button" href="{{ url('/saving-company') }}" class="btn btn-lg btn-primary custom">Saving Management Page</a>
+                    <a type="button" href="{{ url('/saving-company') }}" class="btn btn-lg btn-primary custom1">Saving Management</a>
                 </div>
             </div>
         </div>

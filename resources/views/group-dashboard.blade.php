@@ -108,48 +108,26 @@
                     </div>
                 </div>
 
-                <div class="col-md-offset-1 col-md-12 padding2">
+                <div class="col-md-12 padding2">
                     <div class="form-group">
-                        <label for="company" class="col-md-2 control-label">Company</label>
-                        <label for="company" class="col-md-2 text-center control-label">Target (RM)</label>
-                        <label for="company" class="col-md-2 text-center control-label">Actual (RM)</label>
-                        <label for="company" class="col-md-2 text-center control-label">%</label>
+                        <label for="" class="col-md-3 control-label">Company</label>
+                        <label for="" class="col-md-2 text-center control-label">Target (RM)</label>
+                        <label for="" class="col-md-2 text-center control-label">Actual (RM)</label>
+                        <label for="" class="col-md-1 text-center control-label">%</label>
                     </div>
+                    <?php $i=1 ?>
+                    @forelse ($companies as $company)
                     <div class="form-group padding2">
-                        <label for="company" class="col-md-2 control-label">UMW Equipment Sdn Bhd</label>
-                        <input class="col-md-2 text-center number good" type="integer" value ="12,084.00">
-                        <input class="col-md-2 text-center number good" type="integer" value ="12,084.00" readonly>
-                        <input class="col-md-2 text-center number" type="integer" value ="78" readonly>
-                        <a href="{{ url('/company-dashboard') }}" class="marginRight">View More (Company)</a>
+                        <label for="company" class="col-md-3 control-label">{{ $company->name }}</label>
+                        <label for="saving_target" class="col-md-2 number text-center control-label">13,456</label>
+                        <label for="actual_saving" class="col-md-2 number text-center control-label">13,456</label>
+                        <label for="Target" class="col-md-1 text-center control-label">45</label>
+                        <label class="col-md-2 text-left"><a href="{{ url('/company-dashboard') }}/{{ $company->id }}">View More (Company)</a></label>
+                    <?php $i++; ?>
                     </div>
-                    <div class="form-group padding2">
-                        <label for="company" class="col-md-2 control-label">UMW (East Malaysia) Sdn Bhd</label>
-                        <input class="col-md-2 text-center number good" type="integer" value ="12,084.00">
-                        <input class="col-md-2 text-center number fail" type="integer" value ="12,084.00" readonly>
-                        <input class="col-md-2 text-center number" type="integer" value ="88" readonly>
-                        <a href="{{ url('/company-dashboard') }}" class="marginRight">View More (Company)</a>
-                    </div>
-                    <div class="form-group padding2">
-                        <label for="company" class="col-md-2 control-label">UMW Industries (1985) Sdn Bhd</label>
-                        <input class="col-md-2 text-center number good" type="integer" value ="12,084.00">
-                        <input class="col-md-2 text-center number fail" type="integer" value ="12,084.00" readonly>
-                        <input class="col-md-2 text-center number" type="integer" value ="98" readonly>
-                        <a href="{{ url('/company-dashboard') }}" class="marginRight">View More (Company)</a>
-                    </div>
-                    <div class="form-group padding2">
-                        <label for="company" class="col-md-2 control-label">UMW Industrial Power Services Sdn Bhd</label>
-                        <input class="col-md-2 text-center number good" type="integer" value ="12,084.00">
-                        <input class="col-md-2 text-center number fail" type="integer" value ="12,084.00" readonly>
-                        <input class="col-md-2 text-center number" type="integer" value ="99" readonly>
-                        <a href="{{ url('/company-dashboard') }}" class="marginRight">View More (Company)</a>
-                    </div>
-                    <div class="form-group padding2">
-                        <label for="company" class="col-md-2 control-label">UMW Equipment & Engineering PTE LTD</label>
-                        <input class="col-md-2 text-center number good" type="integer" value ="12,084.00">
-                        <input class="col-md-2 text-center number fail" type="integer" value ="12,084.00" readonly>
-                        <input class="col-md-2 text-center number" type="integer" value ="98" readonly>
-                        <a href="{{ url('/company-dashboard') }}" class="marginRight">View More (Company)</a>
-                    </div>
+                    @empty
+                    @endforelse
+                
                 </div>
 
             </div>

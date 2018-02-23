@@ -3,7 +3,7 @@
 @section('content')
 <div class="row">
     <div class="col-lg-12">
-        <h1 class="page-header">Dashboard - UMW Equipment Sdn Bhd</h1>
+        <h1 class="page-header">Dashboard - {{ $company->name }}</h1>
         <ol class="breadcrumb">
             <li><a href="{{ url('/home') }}">Home</a></li>
             <li><a href="{{ url('/dashboard') }}">Main Dashboard</a></li>
@@ -75,7 +75,7 @@
     <div class="col-md-12 padding2">
         <div class="col-md-12">
             <!--Company Name-->
-            <h3 class="page-header">Cost Saving Summary - UMW Equipment Sdn Bhd</h3>
+            <h3 class="page-header">Cost Saving Summary - {{ $company->name }}</h3>
 
             <div class="form-group col-md-6">
                 <label for="month" class="col-sm-3 control-label">Month</label>
@@ -97,7 +97,7 @@
             </div>
         </div>
 
-        <div class="col-md-offset-1 col-md-12 padding2">
+        <!-- <div class="col-md-offset-1 col-md-12 padding2">
             <div class="form-group">
                 <label for="company" class="col-md-2 control-label">Area</label>
                 <label for="company" class="col-md-2 text-center control-label">Target (RM)</label>
@@ -132,7 +132,32 @@
                 <input class="col-md-2 text-center number" type="integer" name="firstname" value ="34" readonly>
                 <a href="{{ url('/print-overall') }}" class="marginRight">View More</a>
             </div>
-        </div>
+        </div> -->
+
+                <div class="col-md-12 padding2">
+                    <div class="form-group">
+                        <label for="" class="col-md-3 control-label">Area</label>
+                        <label for="" class="col-md-2 text-center control-label">Target (RM)</label>
+                        <label for="" class="col-md-2 text-center control-label">Actual (RM)</label>
+                        <label for="" class="col-md-1 text-center control-label">%</label>
+                    </div>
+                    <?php $i=1 ?>
+                    @forelse ($init as $w)
+                    @if($w->company_id == $company->id)
+                    <div class="form-group padding2">
+                        <label for="company" class="col-md-3 control-label">{{ $w->area }}</label>
+                        <label for="saving_target" class="col-md-2 number text-center control-label">13,456</label>
+                        <label for="actual_saving" class="col-md-2 number text-center control-label">13,456</label>
+                        <label for="Target" class="col-md-1 text-center control-label">45</label>
+                        <label class="col-md-2 text-left"><a href="{{ url('/saving-company') }}/{{ $w->company_id }}">View More (Company)</a></label>
+                    <?php $i++; ?>
+                    </div>
+                    @endif
+                    @empty
+                    @endforelse
+                
+                </div>
+
     </div>
 
     <div class="row">

@@ -114,7 +114,9 @@ footer {
     width: 240px !important;
     height: 95px !important;
     white-space: pre-wrap !important;
-    line-height: 70px;
+    justify-content: center;
+    display: flex;
+    align-items: center;
 }
 .btn-outline-success {
   border: 2px solid black;
