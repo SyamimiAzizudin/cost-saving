@@ -107,7 +107,7 @@ class SavingsController extends Controller
     {
         $company = Company::findOrFail($company_id);
 
-        $initiatives = Initiative::where('company_id', $company_id)->get();
+        $initiatives = Initiative::orderBy('order_id', 'asc')->where('company_id', $company_id)->get();
 
         $savings = Company::with([
             'initiatives' => function($query) use ($company_id){
@@ -172,7 +172,7 @@ class SavingsController extends Controller
     }
     public function getInititativeSavingTable($company_id)
     {
-        $initiatives = Initiative::where('company_id', $company_id)->get();
+        $initiatives = Initiative::orderBy('order_id', 'asc')->where('company_id', $company_id)->get();
         $savings = Company::with([
             'initiatives' => function($query) use ($company_id){
                 $query->where('company_id',$company_id);
