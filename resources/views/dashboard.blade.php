@@ -133,13 +133,13 @@
             </div> -->
             <div class="form-group padding2">
                 <?php $i=0 ?>
-                @forelse ($companies as $company)
+                @forelse ($saving_summary_results as $k => $v)
                 <div class="form-group padding2">
-                    <label for="company" class="col-md-3 control-label">{{$company->group}}</label>
-                    <label for="saving_target" class="col-md-2 number text-center control-label">13,456</label>
-                    <label for="actual_saving" class="col-md-2 number text-center control-label">13,456</label>
+                    <label for="company" class="col-md-3 control-label">{{  $v->group }}</label>
+                    <label for="saving_target" class="col-md-2 number text-center control-label">{{  $v->target }}</label>
+                    <label for="actual_saving" class="col-md-2 number text-center control-label">{{  $v->actual }}</label>
                     <label for="Target" class="col-md-1 text-center control-label">45</label>
-                    <label class="col-md-2 text-left"><a href="{{ url('/group-dashboard') }} / {{$company->group}}">View More (Company)</a></label>
+                    <label class="col-md-2 text-left"><a href="{{ url('/group-dashboard') }}/{{$company->group}}">View More (Company)</a></label>
                 </div>
                 <?php $i++; ?>
                 @empty
@@ -205,13 +205,13 @@
           },
           series: [{
             name: 'Target Savings (RM)',
-            data: [2, 5, 7, 9, 12, 15, 18, 22, 24, 26, 30, 34]
+            data: <?php echo json_encode($graphs['targets']) ?>
           }, {
             name: 'Actual Savings (RM)',
-            data: [1.8, 4.5, 8.5, 13, 16, 18]
+            data: <?php echo json_encode($graphs['actual']) ?>
           }, {
             name: 'Yearly Target (RM)',
-            data: [34, 34, 34, 34, 34, 34, 34, 34, 34, 34, 34, 34]
+            data: <?php echo json_encode($graphs['yearly_target']) ?>
           }]
         };
 

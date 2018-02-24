@@ -48,8 +48,57 @@ class HomeController extends Controller
 
         #dd($current_year);
         $companies = Company::select('group')->distinct()->get();
-        #dd($companies);
-        return view('dashboard', compact('companies', 'yearly_target', 'cummulative_target', 'cummulative_actual'));
+
+        //todo filter by year
+        $saving_summary_sql = 'select  `companies`.`group`, sum(`savings`.`actual_saving`) as actual, sum(`savings`.`target_saving` ) as target
+        from `savings` 
+        inner join `initiatives` on `savings`.`initiative_id` = `initiatives`.`id` 
+        inner join `companies` on `companies`.`id` = `initiatives`.`company_id` 
+        where savings.`month` = 4
+        group by `companies`.`group`';
+
+        $saving_summary_results = DB::select($saving_summary_sql);
+        #dump($saving_summary_results);
+
+        $target_sql = 'select `month`,sum(target_saving) as target_saving
+        from savings
+        group by `month`,`year`';
+        $targets = DB::select($target_sql);
+
+        $actual_sql = 'select `month`,sum(actual_saving) as actual_saving
+        from savings
+        group by `month`,`year`';
+        $actual = DB::select($actual_sql);
+
+        $yearly_target_sql = 'select `month`, (select sum(target_saving) from savings) as yearly_target
+        from savings
+        group by `month`,`year`';
+        $yearly_target_results = DB::select($yearly_target_sql);
+
+        $graphs = [];
+        $graphs['targets'] = [];
+        $initial_value_target = 0;
+        foreach($targets as $k => $v)
+        {
+            $result = $initial_value_target +=$v->target_saving;
+            array_push($graphs['targets'], $result);
+        }
+
+        $graphs['actual'] = [];
+        $actual_value_target = 0;
+        foreach($actual as $k => $v)
+        {
+            $result = $actual_value_target +=$v->actual_saving;
+            array_push($graphs['actual'], $result);
+        }
+
+        $graphs['yearly_target'] = [];
+        foreach($yearly_target_results as $k => $v)
+        {
+            array_push($graphs['yearly_target'], (int)$v->yearly_target);
+        }
+        #dd($graphs);
+        return view('dashboard', compact('companies', 'yearly_target', 'cummulative_target', 'cummulative_actual', 'saving_summary_results','graphs'));
     }
 
     public function group_dashboard($group)
