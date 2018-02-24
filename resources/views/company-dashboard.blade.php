@@ -8,7 +8,7 @@
             <li><a href="{{ url('/home') }}">Home</a></li>
             <li><a href="{{ url('/dashboard') }}">Main Dashboard</a></li>
             <li><a href="{{ url('/group-dashboard') }}">Group Dashboard</a></li>
-            <li class="active">Dashboard - UMW Equipment Sdn Bhd</li>
+            <li class="active">Dashboard - {{ $company->name }}</li>
         </ol>
     </div>
 
