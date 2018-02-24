@@ -95,18 +95,21 @@
             type: 'get', //or POST
             success: function(data){
                 $("#SavingTable").html(data);
+                $(".modal-body #value").val('');
                 $('.openModal').on('click', openModal);
             }
         });
     }
 
     var openModal = function(){
+
+
         var my_id_value = $(this).data('id');
         var month = $(this).data('month');
         var section = $(this).data('section');
         var initiative_id = $(this).data('initiative_id');
 
-        console.log(my_id_value)
+        //console.log(my_id_value)
         $(".modal-body #id").val(my_id_value);
         $(".modal-body #month").val(month);
         $(".modal-body #section").val(section);

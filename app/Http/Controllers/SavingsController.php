@@ -156,13 +156,18 @@ class SavingsController extends Controller
 
     public function saveInitiativeSaving($company_id,Request $request)
     {
-        if($request->id == 0)
+
+        $i = Saving::where('initiative_id', $request->initiative_id)->where('month',$request->month)->first();
+
+        if($i == null)
         {
             $i = new Saving;
-            $i->initiative_id = $request->initiative_id;
-            $i->{$request->section} = $request->value;
-            $i->month = $request->month;
+
         }
+
+        $i->initiative_id = $request->initiative_id;
+        $i->{$request->section} = $request->value;
+        $i->month = $request->month;
         $i->save();
     }
     public function getInititativeSavingTable($company_id)

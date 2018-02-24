@@ -40,7 +40,7 @@
                                     <span class="editable">
                                     -
                                     <br>
-                                    <button type="button" class="btn btn-warning btn-sm openModal" data-toggle="modal" data-value="" data-id="0" data-month="{{ $i }}" data-section="target_saving" data-initiative_id="{{ $v->id }}">Edit
+                                    <button type="button" class="btn btn-warning btn-sm openModal" data-toggle="modal" data-value="" data-id="0" data-month="{{ $i }}" data-section="target_saving" data-initiative_id="{{ $v->id }}" data-saving_id="">Edit
                                     </button>
                                     </span>
                                 </td>
