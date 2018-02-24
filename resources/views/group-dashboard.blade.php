@@ -124,10 +124,10 @@
                                 <td><label for="company" class="col-md-12 control-label">{{ $company->name }}</label></td>
                                 <td>
                                     <label for="Target" class="col-md-12 text-center control-label">
-                                        {{ $company->target_saving }}
+                                        {{ $cummulative_target }}
                                     </label>
                                 </td>
-                                <td><label for="Target" class="col-md-12 text-center control-label">{{ $company->actual_saving }}</label></td>
+                                <td><label for="Target" class="col-md-12 text-center control-label">{{ $cummulative_actual }}</label></td>
                                 <td><label for="Target" class="col-md-12 text-center control-label">45</label></td>
                                 <td><a href="{{ url('/company-dashboard') }}/{{ $company->id }}" class="marginRight">View More (Company)</a></td>
                             </tr>
