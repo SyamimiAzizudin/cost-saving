@@ -34,6 +34,8 @@ class HomeController extends Controller
 
     public function dashboard()
     {
+        // $companies = Company::pluck('group','id')->first();
+        // $companies = Company::where('company_id', $request->company_id)->where('group', $request->group)->first();
         $companies = Company::all();
         return view('dashboard', compact('companies'));
     }

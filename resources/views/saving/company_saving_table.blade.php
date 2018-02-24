@@ -52,7 +52,7 @@
                         @for($i = 1; $i <= 12; $i++)
                             @if($company_savings[$v->id][$i]['actual_saving'] != null)
                                 <td>
-                                    {{ $company_savings[$v->id][$i]['actual_saving'] }}
+                                    {{ number_format(($company_savings[$v->id][$i]['actual_saving']), 2, ',', '.') }}
                                 </td>
                             @else
                                 <td>

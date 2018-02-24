@@ -125,7 +125,7 @@
                                 <td><label for="Target" class="col-md-12 text-center control-label">12,456</label></td>
                                 <td><label for="Target" class="col-md-12 text-center control-label">12,456</label></td>
                                 <td><label for="Target" class="col-md-12 text-center control-label">45</label></td>
-                                <td><a href="{{ url('/company-dashboard') }}/{{ $company->company_id }}" class="marginRight">View More (Company)</a></td>
+                                <td><a href="{{ url('/company-dashboard') }}/{{ $company->id }}" class="marginRight">View More (Company)</a></td>
                             </tr>
                             <?php $i++; ?>
                             @empty
