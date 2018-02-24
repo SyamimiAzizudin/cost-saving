@@ -6,12 +6,12 @@
         <div class="row">
             <div class="col-lg-12">
                 <!--name group-->
-                <h1 class="page-header">Dashboard - Equipment Group</h1>
+                <h1 class="page-header">Dashboard - {{ $group }} Group</h1>
                 <ol class="breadcrumb">
                     <li><a href="{{ url('/home') }}">Home</a></li>
                     <li><a href="{{ url('/dashboard') }}">Main Dashboard</a>
                     </li>
-                    <li class="active">Dashboard - Equipment Group</li>
+                    <li class="active">Dashboard - {{ $group }} Group</li>
                 </ol>
                 <div class="col-md-3" style="display: none">
                     <h4>Company :</h4>
@@ -32,7 +32,7 @@
                             <h5>Yearly Target </h5>
                         </div>
                         <div class="panel-body text-center">
-                            <h3>RM 18 m</h3>    
+                            <h3>RM {{ $yearly_target }}</h3>
                         </div>
                     </div>
                     <div class="col-md-3 panel panel-default">
@@ -40,7 +40,7 @@
                             <h5>Target Savings (Cumm) </h5>
                         </div>
                         <div class="panel-body text-center">
-                            <h3>RM 8,525,785.00</h3>    
+                            <h3>RM {{ $cummulative_target }}</h3>
                         </div>
                     </div>
                     <div class="col-md-3 panel panel-default">
@@ -48,7 +48,7 @@
                             <h5>Actual Savings (Cumm) </h5>
                         </div>
                         <div class="panel-body text-center">
-                            <h3>RM 9,525,785.00</h3>    
+                            <h3>RM {{ $cummulative_actual }}</h3>
                         </div>
                     </div>
                     <div class="col-md-2 panel panel-default">
@@ -56,7 +56,7 @@
                             <h5>Yearly % (Cumm) </h5>
                         </div>
                         <div class="panel-body text-center">
-                            <h3>75 </h3>    
+                            <h3>{{ number_format(( ($cummulative_actual/$yearly_target) * 100),0) }} % </h3>
                         </div>
                     </div>
                     <div class="col-md-2 panel panel-default">
@@ -64,7 +64,7 @@
                             <h5>Monthly % (Cumm) </h5>
                         </div>
                         <div class="panel-body text-center">
-                            <h3>34 </h3>    
+                            <h3>{{ number_format(($cummulative_actual/$cummulative_target) * 100,0) }} % </h3>
                         </div>
                     </div>
                     <p class="text-right ">Latest Date Update : 12 September 2018</p>
@@ -86,7 +86,7 @@
         <div class="row">
             <div class="col-md-12 padding2">
                 <div class="col-md-12">
-                    <h3 class="page-header">Cost Saving Summary - Equipment Group</h3>
+                    <h3 class="page-header">Cost Saving Summary - {{ $group }} Group</h3>
 
                     <div class="form-group col-md-6">
                         <label for="month" class="col-sm-3 control-label">Month</label>
@@ -122,8 +122,12 @@
                             @forelse ($companies as $company)
                             <tr>
                                 <td><label for="company" class="col-md-12 control-label">{{ $company->name }}</label></td>
-                                <td><label for="Target" class="col-md-12 text-center control-label">12,456</label></td>
-                                <td><label for="Target" class="col-md-12 text-center control-label">12,456</label></td>
+                                <td>
+                                    <label for="Target" class="col-md-12 text-center control-label">
+                                        {{ $company->target_saving }}
+                                    </label>
+                                </td>
+                                <td><label for="Target" class="col-md-12 text-center control-label">{{ $company->actual_saving }}</label></td>
                                 <td><label for="Target" class="col-md-12 text-center control-label">45</label></td>
                                 <td><a href="{{ url('/company-dashboard') }}/{{ $company->id }}" class="marginRight">View More (Company)</a></td>
                             </tr>
