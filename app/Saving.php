@@ -10,7 +10,7 @@ class Saving extends Model
     protected $fillable = [
         'initiative_id',
         'actual_saving',
-        'taget_saving',
+        'target_saving',
         'month'
     ];
 

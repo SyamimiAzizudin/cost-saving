@@ -52,10 +52,77 @@ class HomeController extends Controller
         return view('dashboard', compact('companies', 'yearly_target', 'cummulative_target', 'cummulative_actual'));
     }
 
-    public function group_dashboard()
+    public function group_dashboard($group)
     {
-        $companies = Company::all();
-        return view('group-dashboard', compact('companies'));
+        $current_year = Carbon::now()->year;
+        $current_month = Carbon::now()->month;
+
+       /* $initiatives_id = Initiative::with([
+            'initiatives.companies' => function($query)use($group){
+                $query->where('group',$group);
+            }
+        ])->toSql();
+
+        dd($initiatives_id);*/
+        //todo only query for that year
+        $yearly_target = Saving::with([
+            'initiatives.companies' => function($query)use($group){
+                $query->where('group',$group);
+            }
+        ])
+        ->sum('target_saving');
+        $cummulative_target = Saving::where('month', '<=',$current_month)
+            ->with([
+                'initiatives.companies' => function($query)use($group){
+                    $query->where('group',$group);
+                }
+            ])
+            ->sum('target_saving');
+
+        $cummulative_actual = Saving::where('month', '<=',$current_month)
+            ->with([
+                'initiatives.companies' => function($query)use($group){
+                    $query->where('group',$group);
+                }
+            ])
+            ->sum('actual_saving');
+
+        $companies = Company::with([
+            'initiatives.savings' => function($query){
+                $query->where('month', Carbon::now()->month);
+                $query->orderBy('month');
+            }
+        ])
+        ->where('group', $group)
+        ->get();
+
+        foreach ($companies as $k => $v)
+        {
+            $result = DB::table('savings')
+                ->join('initiatives', 'savings.initiative_id', '=', 'initiatives.id')
+                ->join('companies', 'companies.id', '=', 'initiatives.company_id')
+                ->select( 'savings.actual_saving', 'savings.target_saving')
+                ->where('companies.id', $v->id)
+                ->where('savings.month', 4)
+                ->first();
+            #dump($result);
+            $companies[$k]->target_saving = null;
+            $companies[$k]->actual_saving = null;
+            if(isset($result->target_saving)) {
+                $companies[$k]->target_saving = $result->target_saving;
+
+            }
+
+            if(isset($result->actual_saving)) {
+                $companies[$k]->actual_saving = $result->actual_saving;
+
+            }
+
+        }
+
+        #dd($companies);
+
+        return view('group-dashboard', compact('companies','group','yearly_target', 'cummulative_target', 'cummulative_actual'));
     }
 
     public function company_dashboard($id)
