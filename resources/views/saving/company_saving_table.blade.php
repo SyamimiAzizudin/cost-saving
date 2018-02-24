@@ -32,7 +32,10 @@
                         @for($i = 1; $i <= 12; $i++)
                             @if($company_savings[$v->id][$i]['target_saving'] != null)
                                 <td>
-                                    {{ number_format(($company_savings[$v->id][$i]['target_saving']), 2, ',', '.') }}
+                                    {{ number_format(($company_savings[$v->id][$i]['target_saving']), 2, '.', ',') }}
+                                    <br>
+                                    <button type="button" class="btn btn-warning btn-sm openModal" data-toggle="modal" data-value="{{ $company_savings[$v->id][$i]['target_saving'] }}" data-id="0" data-month="{{ $i }}" data-section="target_saving" data-initiative_id="{{ $v->id }}" data-saving_id="">Edit
+                                    </button>
                                 </td>
                             @else
 
@@ -52,15 +55,17 @@
                         @for($i = 1; $i <= 12; $i++)
                             @if($company_savings[$v->id][$i]['actual_saving'] != null)
                                 <td>
-                                    {{ number_format(($company_savings[$v->id][$i]['actual_saving']), 2, ',', '.') }}
+                                    {{ number_format(($company_savings[$v->id][$i]['actual_saving']), 2, '.', ',') }}
+                                    <br>
+                                    <button type="button" class="btn btn-info btn-sm openModal" data-toggle="modal" data-value="{{ $company_savings[$v->id][$i]['actual_saving'] }}" data-id="0" data-month="{{ $i }}" data-section="actual_saving" data-initiative_id="{{ $v->id }}">Edit
+                                    </button>
                                 </td>
                             @else
                                 <td>
                                     <span class="editable">
                                     -
                                     <br>
-
-                                    <button type="button" class="btn btn-warning btn-sm openModal" data-toggle="modal" data-value="" data-id="0" data-month="{{ $i }}" data-section="actual_saving" data-initiative_id="{{ $v->id }}">Edit
+                                    <button type="button" class="btn btn-info btn-sm openModal" data-toggle="modal" data-value="" data-id="0" data-month="{{ $i }}" data-section="actual_saving" data-initiative_id="{{ $v->id }}">Edit
                                     </button>
                                     </span>
                                 </td>

@@ -105,11 +105,13 @@
 
 
         var my_id_value = $(this).data('id');
+        var value = $(this).data('value');
         var month = $(this).data('month');
         var section = $(this).data('section');
         var initiative_id = $(this).data('initiative_id');
 
         //console.log(my_id_value)
+        $(".modal-body #value").val(value);
         $(".modal-body #id").val(my_id_value);
         $(".modal-body #month").val(month);
         $(".modal-body #section").val(section);
