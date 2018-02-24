@@ -19,7 +19,7 @@ class Company extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function initiative()
+    public function initiatives()
     {
         return $this->hasMany(Initiative::class);
     }
