@@ -14,10 +14,10 @@ class Saving extends Model
         'month'
     ];
 
-    public function getPriceAttribute($actual_saving)
-    {
-        return $this->attributes['actual_saving'] = sprintf('U$ %s', number_format($actual_saving, 2));
-    }
+    // public function getPriceAttribute($actual_saving)
+    // {
+    //     return $this->attributes['actual_saving'] = sprintf('U$ %s', number_format($actual_saving, 2));
+    // }
    
     public function initiatives()
     {

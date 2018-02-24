@@ -57,7 +57,7 @@
 
     		<div class="form-group">
     			<div class = "col-sm-offset-3 col-sm-9">
-    				{{-- <a href="{{ url('initiative-company/{company_id}') }}" class="btn btn-danger"><span class="glyphicon glyphicon-remove-sign"></span> Cancel</a> --}}
+    				{{-- <a href="{{ action('InitiativesController@getCompanyInitiative') }}" class="btn btn-danger"><span class="glyphicon glyphicon-remove-sign"></span> Cancel</a> --}}
     				<button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Save</button>
     			</div>
     		</div>
