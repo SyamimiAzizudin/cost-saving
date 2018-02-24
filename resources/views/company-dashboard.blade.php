@@ -134,121 +134,124 @@
             </div>
         </div> -->
 
-                <div class="col-md-12 padding2">
-                    <div class="form-group">
-                        <label for="" class="col-md-3 control-label">Area</label>
-                        <label for="" class="col-md-2 text-center control-label">Target (RM)</label>
-                        <label for="" class="col-md-2 text-center control-label">Actual (RM)</label>
-                        <label for="" class="col-md-1 text-center control-label">%</label>
-                    </div>
+        <div class="col-md-12 padding2">
+            <div class="form-group">
+                <table class="table table-bordered" style="border-collapse: collapse;">
+                    <tr>
+                        <td><label for="" class="col-md-12 text-center control-label">Area</label></td>
+                        <td><label for="" class="col-md-12 text-center control-label">Target (RM)</label></td>
+                        <td><label for="" class="col-md-12 text-center control-label">Actual (RM)</label></td>
+                        <td><label for="" class="col-md-12 text-center control-label">%</label></td>
+                        {{-- <td></td> --}}
+                    </tr>
                     <?php $i=1 ?>
                     @forelse ($init as $w)
                     @if($w->company_id == $company->id)
-                    <div class="form-group padding2 row">
-                        <label for="company" class="col-md-3 control-label">{!! $w->area !!}</label>
-                            <label for="target_saving" class="col-md-2 number text-center control-label"></label>
+                    <tr>
+                        <td><a href="{{ url('/saving-company') }}/{{ $w->company_id }}"><label for="company" class="col-md-12 control-label">{!! $w->area !!}</label></a></td>
+                        <td>
+                            <label for="target_saving" class="col-md-12 number text-right control-label"></label>
+                        </td>
                         @if($w->target_saving > $w->actual_saving)
-                            <label for="actual_saving" class="col-md-2 number text-center control-label fail">{{ $w->actual_saving }}</label>
+                        <td><label for="actual_saving" class="col-md-12 number text-right control-label fail">{{ $w->actual_saving }}</label></td>
                         @else
-                            <label for="actual_saving" class="col-md-2 number text-center control-label good">{{ $w->actual_saving }}</label>
+                        <td><label for="actual_saving" class="col-md-12 number text-right control-label good">{{ $w->actual_saving }}</label></td>
                         @endif
-                        <label for="actual_saving" class="col-md-1 text-center control-label">45</label>
-                        <label class="col-md-2 text-left"><a href="{{ url('/saving-company') }}/{{ $w->company_id }}">View More (Company)</a></label>
-                    
-                    </div>
+                        <td><label for="actual_saving" class="col-md-12 number text-center control-label">45</label></td>
+                        {{-- <td><label class="col-md-12 text-center"><a href="{{ url('/saving-company') }}/{{ $w->company_id }}">View More (Company)</a></label></td> --}}
+                    </tr>
                     <?php $i++; ?>
                     @endif
                     @empty
                     @endforelse
-                
-                </div>
-
-    </div>
-
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="text-right padding2">
-                <button class="btn btn-outline-success success">Print Overall Page</button>
+                </table>
             </div>
         </div>
-    </div>
 
-    <!-- Footer -->
-    <div class="container">
-        <hr>
-        <footer>
-            <div class="row">
-                <div class="col-lg-12">
-                    <p>Copyright &copy; UMW Cost Saving Initiative 2018</p>
-                </div>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="text-right padding2">
+            <button class="btn btn-outline-success success">Print Overall Page</button>
+        </div>
+    </div>
+</div>
+
+<!-- Footer -->
+<div class="container">
+    <hr>
+    <footer>
+        <div class="row">
+            <div class="col-lg-12">
+                <p>Copyright &copy; UMW Cost Saving Initiative 2018</p>
             </div>
-        </footer>
-    </div>
+        </div>
+    </footer>
+</div>
     
-    <script>
-        Vue.use(VueHighcharts);
+<script>
+    Vue.use(VueHighcharts);
 
-        var options = {
-          title: {
-            text: '',
-            x: -20 //center
-          },
-          xAxis: {
-            title: {
-                text: 'Month'
-            },
-            categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-              'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
-            ]
-          },
-          yAxis: {
-            title: {
-              text: 'Saving (RM)'
-            },
-            plotLines: [{
-              value: 0,
-              width: 1,
-              color: '#808080'
-            }]
-          },
-          tooltip: {
-            valueSuffix: 'm'
-          },
-          legend: {
-            layout: 'vertical',
-            align: 'right',
-            verticalAlign: 'middle',
-            borderWidth: 0
-          },
-          series: [{
-            name: 'Target Savings (RM)',
-            data: [0.5, 1, 2, 2.5, 2.8, 3, 3.7, 4, 5.5, 6, 6.8, 7]
-          }, {
-            name: 'Actual Savings (RM)',
-            data: [0.3, 1, 1.2, 1.6, 2, 2.5, 3.2, 4, 4.2, 4.8, 5.2, 5.9]
-          }, {
-            name: 'Yearly Target (RM)',
-            data: [7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7]
-          }]
-        };
+    var options = {
+      title: {
+        text: '',
+        x: -20 //center
+      },
+      xAxis: {
+        title: {
+            text: 'Month'
+        },
+        categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+          'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
+        ]
+      },
+      yAxis: {
+        title: {
+          text: 'Saving (RM)'
+        },
+        plotLines: [{
+          value: 0,
+          width: 1,
+          color: '#808080'
+        }]
+      },
+      tooltip: {
+        valueSuffix: 'm'
+      },
+      legend: {
+        layout: 'vertical',
+        align: 'right',
+        verticalAlign: 'middle',
+        borderWidth: 0
+      },
+      series: [{
+        name: 'Target Savings (RM)',
+        data: [0.5, 1, 2, 2.5, 2.8, 3, 3.7, 4, 5.5, 6, 6.8, 7]
+      }, {
+        name: 'Actual Savings (RM)',
+        data: [0.3, 1, 1.2, 1.6, 2, 2.5, 3.2, 4, 4.2, 4.8, 5.2, 5.9]
+      }, {
+        name: 'Yearly Target (RM)',
+        data: [7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7]
+      }]
+    };
 
-        var vm = new Vue({
-          el: '#app',
-          data: {
-            options: options
-          },
-          methods: {
-            updateCredits: function() {
-                var chart = this.$refs.highcharts.chart;
-              chart.credits.update({
-                style: {
-                  color: '#' + (Math.random() * 0xffffff | 0).toString(16)
-                }
-              });
+    var vm = new Vue({
+      el: '#app',
+      data: {
+        options: options
+      },
+      methods: {
+        updateCredits: function() {
+            var chart = this.$refs.highcharts.chart;
+          chart.credits.update({
+            style: {
+              color: '#' + (Math.random() * 0xffffff | 0).toString(16)
             }
-          }
-        });
+          });
+        }
+      }
+    });
 
-    </script>
+</script>
 
 @endsection
