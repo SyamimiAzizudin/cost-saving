@@ -144,9 +144,9 @@
                     <?php $i=1 ?>
                     @forelse ($init as $w)
                     @if($w->company_id == $company->id)
-                    <div class="form-group padding2">
+                    <div class="form-group padding2 row">
                         <label for="company" class="col-md-3 control-label">{!! $w->area !!}</label>
-                            <label for="target_saving" class="col-md-2 number text-center control-label">{{ $w->target_saving }}</label>
+                            <label for="target_saving" class="col-md-2 number text-center control-label"></label>
                         @if($w->target_saving > $w->actual_saving)
                             <label for="actual_saving" class="col-md-2 number text-center control-label fail">{{ $w->actual_saving }}</label>
                         @else
@@ -154,8 +154,9 @@
                         @endif
                         <label for="actual_saving" class="col-md-1 text-center control-label">45</label>
                         <label class="col-md-2 text-left"><a href="{{ url('/saving-company') }}/{{ $w->company_id }}">View More (Company)</a></label>
-                    <?php $i++; ?>
+                    
                     </div>
+                    <?php $i++; ?>
                     @endif
                     @empty
                     @endforelse

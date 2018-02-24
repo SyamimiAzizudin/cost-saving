@@ -104,20 +104,3 @@
         </div>
     </div>
 </div>
-
-<script>
-    jQuery(document).ready(function() {
-       jQuery(".main-table").clone(true).appendTo('#table-scroll').addClass('clone'); 
-
-       // $(".editable").click(function(){
-       //  //console.log(this)
-       //  console.log('123')
-       //    var dom = "<input type='text' />";
-       //    console.log($(this))
-       //    $(this).html(dom);
-       // });
-
-        getTable();
-
-     });
-</script>
