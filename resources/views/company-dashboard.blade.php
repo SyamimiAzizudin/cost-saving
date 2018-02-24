@@ -145,7 +145,7 @@
                     @forelse ($init as $w)
                     @if($w->company_id == $company->id)
                     <div class="form-group padding2">
-                        <label for="company" class="col-md-3 control-label">{{ $w->area }}</label>
+                        <label for="company" class="col-md-3 control-label">{!! $w->area !!}</label>
                             <label for="target_saving" class="col-md-2 number text-center control-label">{{ $w->target_saving }}</label>
                         @if($w->target_saving > $w->actual_saving)
                             <label for="actual_saving" class="col-md-2 number text-center control-label fail">{{ $w->actual_saving }}</label>
