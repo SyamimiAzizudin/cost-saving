@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Company;
 use App\Initiative;
+use App\Saving;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -36,8 +38,18 @@ class HomeController extends Controller
     {
         // $companies = Company::pluck('group','id')->first();
         // $companies = Company::where('company_id', $request->company_id)->where('group', $request->group)->first();
-        $companies = Company::all();
-        return view('dashboard', compact('companies'));
+        #$companies = Company::all();
+        $current_year = Carbon::now()->year;
+        $current_month = Carbon::now()->month;
+        //todo only query for that year
+        $yearly_target = Saving::sum('target_saving');
+        $cummulative_target = Saving::where('month', '<=',$current_month)->sum('target_saving');
+        $cummulative_actual = Saving::where('month', '<=',$current_month)->sum('actual_saving');
+
+        #dd($current_year);
+        $companies = Company::select('group')->distinct()->get();
+        #dd($companies);
+        return view('dashboard', compact('companies', 'yearly_target', 'cummulative_target', 'cummulative_actual'));
     }
 
     public function group_dashboard()
