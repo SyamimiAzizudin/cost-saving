@@ -18,7 +18,7 @@
                  <h5>Yearly Target</h5>
             </div>
             <div class="panel-body text-center">
-                <h3>RM 34 m</h3>
+                <h3>RM {{ $yearly_target }}</h3>
             </div>
         </div>
 
@@ -27,7 +27,7 @@
                 <h5>Target Savings (Cumm) </h5>
             </div>
             <div class="panel-body text-center">
-                <h3>RM 15 m</h3>    
+                <h3>RM {{ $cummulative_target }}</h3>
             </div>
         </div>
             
@@ -36,7 +36,7 @@
                 <h5>Actual Savings (Cumm) </h5>
             </div>
             <div class="panel-body text-center">
-                <h3>RM 18 m</h3>    
+                <h3>RM {{ $cummulative_actual }}</h3>
             </div>
         </div>
                 
@@ -45,7 +45,7 @@
                 <h5>Yearly % (Cumm) </h5>
             </div>
             <div class="panel-body text-center">
-                <h3>52 </h3>    
+                <h3>{{ number_format(( ($cummulative_actual/$yearly_target) * 100),0) }} %</h3>
             </div>
         </div>
                 
@@ -54,7 +54,7 @@
                 <h5>Monthly % (Cumm)</h5>
             </div>
             <div class="panel-body text-center">
-                <h3>120 </h3>    
+                <h3>{{ number_format(($cummulative_actual/$cummulative_target) * 100,0) }} %</h3>
             </div>
         </div>
     </div>
@@ -80,7 +80,7 @@
                 <?php $i=0 ?>
                 @forelse ($companies as $company)
                 <div class="col-md-4">
-                    <a href="{{ url('/group-dashboard') }} / {{$company->group}}" type="button" class="btn btn-lg btn-primary custom1">Dashboard {{$company->group}}</a>
+                    <a href="{{ url('/group-dashboard') }}/{{$company->group}}" type="button" class="btn btn-lg btn-primary custom1">Dashboard {{$company->group}}</a>
                 </div>
                 <?php $i++; ?>
                 @empty
