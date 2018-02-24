@@ -84,9 +84,40 @@
                             @endif
                         @endfor
                     </tr>
+
                 @endforeach
+                <tr>
+                    <td class="fixed-side" colspan="3"></td>
+                        <th class="fixed-side" colspan="1" ><b>Total Target Saving</b></th>
+                        @for($i = 1; $i <= 12; $i++)
+                            @if($company_savings[$v->id][$i]['actual_saving'] != null && $company_savings[$v->id][$i]['target_saving'] != null)
+                                <td>
+                                    {{ number_format(($company_savings[$v->id][$i]['actual_saving'] / $company_savings[$v->id][$i]['target_saving'])*100, 0)}}
+                                </td>
+                            @else
+                                <td> - </td>
+                            @endif
+                        @endfor
+                </tr>
                 </tbody>
             </table>
         </div>
     </div>
 </div>
+
+<script>
+    jQuery(document).ready(function() {
+       jQuery(".main-table").clone(true).appendTo('#table-scroll').addClass('clone'); 
+
+       // $(".editable").click(function(){
+       //  //console.log(this)
+       //  console.log('123')
+       //    var dom = "<input type='text' />";
+       //    console.log($(this))
+       //    $(this).html(dom);
+       // });
+
+        getTable();
+
+     });
+</script>
