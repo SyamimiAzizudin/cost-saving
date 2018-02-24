@@ -95,10 +95,10 @@ class InitiativesController extends Controller
      */
     public function edit($id)
     {
-        $company = Company::all();
-        $initiatives = Initiative::with('company')->findOrFail($id);
+        // $company = Company::all()
+        $initiative = Initiative::findOrFail($id);
         // dd($company);
-        return view('initiative.edit', compact('initiatives', 'company'));
+        return view('initiative.edit', compact('initiative'));
     }
 
     /**
@@ -123,16 +123,11 @@ class InitiativesController extends Controller
         $initiative->analyze = $request->analyze;
         $initiative->action = $request->action;
         $initiative->order_id = $request->order_id;
+        $initiative->company_id = $request->company_id;
         $initiative->save();
 
-        foreach ($request->umw_company as $id) {
-            $company = Company::findOrFail($id);
-            if (! in_array($company->id, $initiative->companies()->pluck('id')->toArray())) {
-                $initiative->companies()->save($company);
-            }
-        }
-        
-        return redirect()->action('InitiativesController@getCompanyInitiative')->withMessage('Initiative has been successfully updated!');
+        return redirect()->action('InitiativesController@getCompanyInitiative',['company_id' => $request->company_id])->withMessage('Initiative has been successfully added!');
+
     }
 
     /**

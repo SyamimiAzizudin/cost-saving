@@ -41,7 +41,7 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('/initiative-company/{company_id}', 'InitiativesController@getCompanyInitiative');
     Route::post('/initiative-company/{company_id}', 'InitiativesController@store');
     Route::get('/initiative/{company_id}/edit', 'InitiativesController@edit');    
-    Route::patch('/initiative/{initiative}', 'InitiativesController@update');
+    Route::patch('/initiative-company/{company_id}', 'InitiativesController@update');
     Route::delete('/initiative/{initiative}/delete', 'InitiativesController@destroy');
 
 	/**

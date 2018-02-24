@@ -25,8 +25,8 @@
                         @forelse ($initiatives as $initiative)
                         <tr>
                             <td class="text-center">{{  $initiative->order_id }}</td>
-                            <td >{{ $initiative->area }}</td>
-                            <td >{{ $initiative->analyze }}</td>
+                            <td >{!! $initiative->area !!}</td>
+                            <td >{!! $initiative->analyze !!}</td>
                             <td >{!! $initiative->action !!}</td>
                             <td>
                                 @if( $initiative->id )
@@ -72,7 +72,7 @@
         <div class="form-group">
             <label for="area" class="col-sm-3 control-label">Area</label>
             <div class="col-sm-9">
-                {!! Form::text('area', null, array('placeholder' => 'Area','class' => 'form-control')) !!}
+                {!! Form::textarea('area', null, array('placeholder' => 'Area','class' => 'form-control')) !!}
             </div>
         </div>
 
