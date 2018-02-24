@@ -25,9 +25,9 @@
                 <tbody>
                 @foreach($initiatives as $v)
                     <tr>
-                        <th class="fixed-side" rowspan="3">{{ $v->area }}</th>
-                        <th class="fixed-side" rowspan="3">{{ $v->analyze }}</th>
-                        <th class="fixed-side" rowspan="3">{{ $v->action }}</th>
+                        <th class="fixed-side" rowspan="3">{!! $v->area !!}</th>
+                        <th class="fixed-side" rowspan="3">{!! $v->analyze !!}</th>
+                        <th class="fixed-side" rowspan="3">{!! $v->action !!}</th>
                         <th class="fixed-side"><b>Target Saving (RM)</b></th>
                         @for($i = 1; $i <= 12; $i++)
                             @if($company_savings[$v->id][$i]['target_saving'] != null)
