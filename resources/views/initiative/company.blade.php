@@ -20,7 +20,6 @@
                     <tr>
                         <td class="text-center">{{ $i }}</td>
                         <td>
-                            {{-- <a href="{{ url('/initiative/') }}" class="marginRight">{{ $company->name }}</a> --}}
                             <a href="{{ url('/initiative-company/') }}/{{ $company->id }}" class="marginRight">{{ $company->name }}</a>
                         </td>
                     </tr>

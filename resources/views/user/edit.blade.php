@@ -21,6 +21,17 @@
     	<div class="col-md-8 col-md-offset-2">
         {!! Form::model($user, ['method' => 'PATCH','action' =>  ['UsersController@update', $user->id], 'files' => true]) !!}
 
+            <div class="form-group">
+            <label for="company_name" class="col-sm-3 control-label">Company</label>
+                <div class="col-sm-9">
+                    <select name="company_id" class="form-control">
+                        @foreach($companies as $id => $company_name)
+                            <option value="{{ $id }}">{{ $company_name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+            </div>
+
         	<div class="form-group">
         		<label for="username" class="col-sm-3 control-label">Username</label>
         		<div class="col-sm-9">
@@ -39,16 +50,8 @@
                 <label for="password" class="col-sm-3 control-label">Password</label>
                 <div class="col-sm-9">
                     {!! Form::text('password', null, array('placeholder' => 'Password','class' => 'form-control')) !!}
-                    {{-- <input id="password" type="password" class="form-control" name="password" required> --}}
                 </div>
             </div>
-
-            {{-- <div class="form-group">
-                <label for="new-password-confirm" class="col-sm-3 control-label">Confirm New Password</label>
-                <div class="col-sm-9">
-                    <input id="new-password-confirm" type="password" class="form-control" name="new-password_confirmation" required>
-                </div>
-            </div> --}}
 
     		<div class="form-group">
     			<div class = "col-sm-offset-3 col-sm-9">

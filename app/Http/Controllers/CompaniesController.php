@@ -48,7 +48,7 @@ class CompaniesController extends Controller
         $company = new Company;
         $company->name = $request->name;
         $company->group = $request->group;
-        $company->user_id = Auth::user()->id;
+        // $company->user_id = Auth::user()->id;
         $company->save();
 
         return redirect()->action('CompaniesController@store')->withMessage('Company has been successfully added!');

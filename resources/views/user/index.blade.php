@@ -28,6 +28,7 @@
                     @forelse ($users as $user)
                     <tr>
                         <td class="text-center">{{ $i }}</td>
+                        {{-- <td>{{ $company->$name }}</td> --}}
                         <td>{{ $user->username }}</td>
                         <td>{{ $user->email }}</td>
                         {{-- <td>{{ $user->email }}</td> --}}
@@ -58,6 +59,17 @@
     
         <form class="form-horizontal" method="POST" action="{{ route('user.store') }}">
             {{ csrf_field() }}
+
+            <div class="form-group">
+            <label for="company_id" class="col-md-4 control-label">Company</label>
+                <div class="col-md-6">
+                    <select name="company_id" class="form-control">
+                        @foreach($companies as $id => $company_name)
+                            <option value="{{ $id }}">{{ $company_name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+            </div>
 
             <div class="form-group{{ $errors->has('username') ? ' has-error' : '' }}">
                 <label for="username" class="col-md-4 control-label">Username</label>

@@ -169,6 +169,7 @@ return [
         Illuminate\View\ViewServiceProvider::class,
         Zizaco\Entrust\EntrustServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
+        Unisharp\Ckeditor\ServiceProvider::class,
 
         /*
          * Package Service Providers...

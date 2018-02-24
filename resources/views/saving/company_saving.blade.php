@@ -37,14 +37,12 @@
             </div>
             <form action="" id="savingForm">
             <div class="modal-body">
-
-                    <input type="text" id="value" name="value" value="">
-                    <input type="hidden" value="" id="month" name="month">
-                    <input type="hidden" value="" id="section" name="section">
-                    <input type="hidden" value="" id="id" name="id">
-                    <input type="hidden" value="" id="initiative_id" name="initiative_id">
+                <input type="text" id="value" name="value" value="">
+                <input type="hidden" value="" id="month" name="month">
+                <input type="hidden" value="" id="section" name="section">
+                <input type="hidden" value="" id="id" name="id">
+                <input type="hidden" value="" id="initiative_id" name="initiative_id">
                 {{ csrf_field() }}
-
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -70,12 +68,7 @@
 
         getTable();
 
-
      });
-
-
-
-
 
     $('#savingForm').on('submit', function(e){
         e.preventDefault();
@@ -93,9 +86,7 @@
             }
         });
 
-
     });
-
 
     function getTable(){
         console.log('get table');
@@ -108,8 +99,6 @@
             }
         });
     }
-
-    
 
     var openModal = function(){
         var my_id_value = $(this).data('id');
@@ -124,8 +113,6 @@
         $(".modal-body #initiative_id").val(initiative_id);
         $('#myModal').modal('toggle');
     }
-
-
 
 </script>
 @endsection

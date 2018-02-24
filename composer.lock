@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "8adeaee5a23ced23b437dc23843d9d33",
+    "content-hash": "ceccb83b4f37409d0e379aaaaf30b151",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -325,12 +325,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/fzaninotto/Faker.git",
-                "reference": "c8db65327b73c8e0fa1c9e4d8d179d14a185b13a"
+                "reference": "5dce1159142a1ba0fcab4672cb295bf7d8f98824"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fzaninotto/Faker/zipball/c8db65327b73c8e0fa1c9e4d8d179d14a185b13a",
-                "reference": "c8db65327b73c8e0fa1c9e4d8d179d14a185b13a",
+                "url": "https://api.github.com/repos/fzaninotto/Faker/zipball/5dce1159142a1ba0fcab4672cb295bf7d8f98824",
+                "reference": "5dce1159142a1ba0fcab4672cb295bf7d8f98824",
                 "shasum": ""
             },
             "require": {
@@ -367,7 +367,7 @@
                 "faker",
                 "fixtures"
             ],
-            "time": "2018-02-05T15:03:34+00:00"
+            "time": "2018-02-14T13:50:47+00:00"
         },
         {
             "name": "jakub-onderka/php-console-color",
@@ -458,16 +458,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v5.5.34",
+            "version": "v5.5.35",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "1de7c0aec13eadbdddc2d1ba4019b064b2c6b966"
+                "reference": "b0e15382ecf51a082ef8b2ae0d26f62972f6c3ce"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/1de7c0aec13eadbdddc2d1ba4019b064b2c6b966",
-                "reference": "1de7c0aec13eadbdddc2d1ba4019b064b2c6b966",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/b0e15382ecf51a082ef8b2ae0d26f62972f6c3ce",
+                "reference": "b0e15382ecf51a082ef8b2ae0d26f62972f6c3ce",
                 "shasum": ""
             },
             "require": {
@@ -524,7 +524,7 @@
                 "illuminate/translation": "self.version",
                 "illuminate/validation": "self.version",
                 "illuminate/view": "self.version",
-                "tightenco/collect": "self.version"
+                "tightenco/collect": "<5.5.33"
             },
             "require-dev": {
                 "aws/aws-sdk-php": "~3.0",
@@ -588,7 +588,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2018-02-06T15:36:55+00:00"
+            "time": "2018-02-22T19:56:29+00:00"
         },
         {
             "name": "laravel/tinker",
@@ -2290,6 +2290,60 @@
             "time": "2017-11-27T11:13:29+00:00"
         },
         {
+            "name": "unisharp/laravel-ckeditor",
+            "version": "4.7.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/UniSharp/laravel-ckeditor.git",
+                "reference": "5c75f3f9128ec8567955913074795deee5869c5c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/UniSharp/laravel-ckeditor/zipball/5c75f3f9128ec8567955913074795deee5869c5c",
+                "reference": "5c75f3f9128ec8567955913074795deee5869c5c",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "~5.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Unisharp\\Ckeditor\\": "./"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0+",
+                "LGPL-2.1+",
+                "MPL-1.1+"
+            ],
+            "authors": [
+                {
+                    "name": "CKSource",
+                    "homepage": "http://cksource.com"
+                },
+                {
+                    "name": "UniSharp Ltd. (Composer Package Maintainer)",
+                    "homepage": "http://www.unisharp.com"
+                }
+            ],
+            "description": "JavaScript WYSIWYG web text editor (for laravel).",
+            "homepage": "http://ckeditor.com",
+            "keywords": [
+                "CKEditor",
+                "editor",
+                "fckeditor",
+                "html",
+                "javascript",
+                "laravel",
+                "richtext",
+                "text",
+                "wysiwyg"
+            ],
+            "time": "2017-11-01T04:33:40+00:00"
+        },
+        {
             "name": "vlucas/phpdotenv",
             "version": "v2.4.0",
             "source": {
@@ -2938,16 +2992,16 @@
         },
         {
             "name": "phpspec/prophecy",
-            "version": "1.7.4",
+            "version": "1.7.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpspec/prophecy.git",
-                "reference": "9f901e29c93dae4aa77c0bb161df4276f9c9a1be"
+                "reference": "dfd6be44111a7c41c2e884a336cc4f461b3b2401"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpspec/prophecy/zipball/9f901e29c93dae4aa77c0bb161df4276f9c9a1be",
-                "reference": "9f901e29c93dae4aa77c0bb161df4276f9c9a1be",
+                "url": "https://api.github.com/repos/phpspec/prophecy/zipball/dfd6be44111a7c41c2e884a336cc4f461b3b2401",
+                "reference": "dfd6be44111a7c41c2e884a336cc4f461b3b2401",
                 "shasum": ""
             },
             "require": {
@@ -2997,7 +3051,7 @@
                 "spy",
                 "stub"
             ],
-            "time": "2018-02-11T18:49:29+00:00"
+            "time": "2018-02-19T10:16:54+00:00"
         },
         {
             "name": "phpunit/php-code-coverage",
@@ -3952,16 +4006,16 @@
         },
         {
             "name": "symfony/thanks",
-            "version": "v1.0.5",
+            "version": "v1.0.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/thanks.git",
-                "reference": "c757ee0c9dcfcc0e9e30fbbbdcadeb9dcc9aaaf4"
+                "reference": "9474ce305253c2f0bc20322ff8e9973cf25c9a94"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/thanks/zipball/c757ee0c9dcfcc0e9e30fbbbdcadeb9dcc9aaaf4",
-                "reference": "c757ee0c9dcfcc0e9e30fbbbdcadeb9dcc9aaaf4",
+                "url": "https://api.github.com/repos/symfony/thanks/zipball/9474ce305253c2f0bc20322ff8e9973cf25c9a94",
+                "reference": "9474ce305253c2f0bc20322ff8e9973cf25c9a94",
                 "shasum": ""
             },
             "require": {
@@ -3991,7 +4045,7 @@
                 }
             ],
             "description": "Give thanks (in the form of a GitHub ⭐) to your fellow PHP package maintainers (not limited to Symfony components)!",
-            "time": "2018-01-26T10:44:34+00:00"
+            "time": "2018-02-02T13:47:40+00:00"
         },
         {
             "name": "theseer/tokenizer",

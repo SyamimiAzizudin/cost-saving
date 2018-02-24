@@ -65,7 +65,6 @@
                                 <option value="{{ $id }}">{{ $company_name }}</option>
                             @endforeach
                         </select> --}}
-                        {{-- <h6>{{ $company->name }}</h6> --}}
                         <input type="hidden" name="company_id" value="{{$company->id}}" class="form-control" >
                     </div>
                 </div>
@@ -81,7 +80,7 @@
                     <label for="analyze" class="col-sm-3 control-label">Analyze Factors Or Causes Contributing To Current Performances</label>
                     <div class="col-sm-9">
                         {!! Form::textarea('analyze', null, array('placeholder' => 'Analyze Factor','class' => 'form-control')) !!}
-
+                        {{-- <textarea class="form-control" id="analyze"></textarea> --}}
                     </div>
                 </div>
 
@@ -107,5 +106,11 @@
                 {!! Form::close() !!}
             </div>
         </div>
-        
+    
 @endsection
+{{-- @section ('js') --}}
+<script src="{{ asset('vendor/unisharp/laravel-ckeditor/ckeditor.js') }}"></script>
+<script>
+    CKEDITOR.replace( 'analyze' );
+</script>
+{{-- @append --}}

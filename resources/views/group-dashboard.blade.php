@@ -110,24 +110,28 @@
 
                 <div class="col-md-12 padding2">
                     <div class="form-group">
-                        <label for="" class="col-md-3 control-label">Company</label>
-                        <label for="" class="col-md-2 text-center control-label">Target (RM)</label>
-                        <label for="" class="col-md-2 text-center control-label">Actual (RM)</label>
-                        <label for="" class="col-md-1 text-center control-label">%</label>
+                        <table class="table table-bordered" style="border-collapse: collapse;">
+                            <tr>
+                                <td><label for="" class="col-md-12 text-center control-label">Company</label></td>
+                                <td><label for="" class="col-md-12 text-center control-label">Target (RM)</label></td>
+                                <td><label for="" class="col-md-12 text-center control-label">Actual (RM)</label></td>
+                                <td><label for="" class="col-md-12 text-center control-label">%</label></td>
+                                <td></td>
+                            </tr>
+                            <?php $i=1 ?>
+                            @forelse ($companies as $company)
+                            <tr>
+                                <td><label for="company" class="col-md-12 control-label">{{ $company->name }}</label></td>
+                                <td><label for="Target" class="col-md-12 text-center control-label">12,456</label></td>
+                                <td><label for="Target" class="col-md-12 text-center control-label">12,456</label></td>
+                                <td><label for="Target" class="col-md-12 text-center control-label">45</label></td>
+                                <td><a href="{{ url('/company-dashboard') }}/{{ $company->company_id }}" class="marginRight">View More (Company)</a></td>
+                            </tr>
+                            <?php $i++; ?>
+                            @empty
+                            @endforelse
+                        </table>
                     </div>
-                    <?php $i=1 ?>
-                    @forelse ($companies as $company)
-                    <div class="form-group padding2">
-                        <label for="company" class="col-md-3 control-label">{{ $company->name }}</label>
-                        <label for="saving_target" class="col-md-2 number text-center control-label">13,456</label>
-                        <label for="actual_saving" class="col-md-2 number text-center control-label">13,456</label>
-                        <label for="Target" class="col-md-1 text-center control-label">45</label>
-                        <label class="col-md-2 text-left"><a href="{{ url('/company-dashboard') }}/{{ $company->id }}">View More (Company)</a></label>
-                    <?php $i++; ?>
-                    </div>
-                    @empty
-                    @endforelse
-                
                 </div>
 
             </div>

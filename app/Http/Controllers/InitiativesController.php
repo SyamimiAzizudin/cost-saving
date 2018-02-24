@@ -95,8 +95,9 @@ class InitiativesController extends Controller
      */
     public function edit($id)
     {
-        $initiative = Initiative::findOrFail($id);
-        $company = Company::findOrFail($id);
+        $company = Company::all();
+        $initiative = Initiative::with('company')->findOrFail($id);
+        // dd($company);
         return view('initiative.edit', compact('initiative', 'company'));
     }
 
@@ -117,13 +118,19 @@ class InitiativesController extends Controller
         ]);
 
         $initiative = Initiative::findOrFail($id);
-        $company = Company::findOrFail($id);
 
         $initiative->area = $request->area;
         $initiative->analyze = $request->analyze;
         $initiative->action = $request->action;
         $initiative->order_id = $request->order_id;
         $initiative->save();
+
+        foreach ($request->umw_company as $id) {
+            $company = Company::findOrFail($id);
+            if (! in_array($company->id, $initiative->companies()->pluck('id')->toArray())) {
+                $initiative->companies()->save($company);
+            }
+        }
         
         return redirect()->action('InitiativesController@getCompanyInitiative')->withMessage('Initiative has been successfully updated!');
     }

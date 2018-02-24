@@ -36,6 +36,7 @@
 
                                 </td>
                             @else
+<<<<<<< HEAD
                                 <td>
                                      <span class="editable">
                                        -
@@ -43,6 +44,8 @@
                                          
                                      </span>
                                 </td>
+=======
+>>>>>>> refs/remotes/origin/master
                             @endif
                         @endfor
                     </tr>
@@ -53,12 +56,20 @@
                                 <td>{{ $company_savings[$v->id][$i]['actual_saving'] }}</td>
                             @else
                                 <td>
+                                    <span class="editable">
                                     -
                                     <br>
+<<<<<<< HEAD
                                     <button type="button" class="btn btn-warning btn-sm openModal" data-toggle="modal" data-value="" data-id="0" data-month="{{ $i }}" data-section="actual_saving" data-initiative_id="{{ $v->id }}">
     Edit
 </button>
 
+=======
+                                    <button type="button" class="btn btn-warning btn-sm openModal" data-toggle="modal" data-value="" data-id="0" data-month="{{ $i }}" data-section="actual_saving" data-initiative_id="{{ $v->id }}">Edit
+
+                                    </button>
+                                    </span>
+>>>>>>> refs/remotes/origin/master
                                 </td>
                             @endif
                         @endfor
