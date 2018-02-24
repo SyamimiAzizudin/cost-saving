@@ -7,10 +7,8 @@
     <div class="col-lg-12">
         <h3 class="page-header">User Management </h3>
         <ol class="breadcrumb">
-            <li><a href="{{ url('/home') }}">Home</a>
-            </li>
-            <li><a href="{{ url('/dashboard') }}">Dashboard</a>
-            </li>
+            <li><a href="{{ url('/home') }}">Home</a></li>
+            {{-- <li><a href="{{ url('/dashboard') }}">Dashboard</a></li> --}}
             <li class="active">User Management</li>
         </ol>
         
@@ -21,17 +19,16 @@
                         <th class="text-center">No</th>
                         <th>Username</th>
                         <th>Email</th>
-                        {{-- <th>Company Name</th> --}}
+                        <th>Company Name</th>
                         <th></th>
                     </tr>
                     <?php $i=1 ?>
                     @forelse ($users as $user)
                     <tr>
                         <td class="text-center">{{ $i }}</td>
-                        {{-- <td>{{ $company->$name }}</td> --}}
                         <td>{{ $user->username }}</td>
                         <td>{{ $user->email }}</td>
-                        {{-- <td>{{ $user->email }}</td> --}}
+                        <td>{{ $user->company_id }}</td>
                         <td>
                             @if($user->id)
                             <a href="{{ action('UsersController@edit', $user->id) }}" class="btn btn-success btn-xs">Edit</a>
@@ -64,6 +61,7 @@
             <label for="company_id" class="col-md-4 control-label">Company</label>
                 <div class="col-md-6">
                     <select name="company_id" class="form-control">
+                        <option value="">Select Company</option>
                         @foreach($companies as $id => $company_name)
                             <option value="{{ $id }}">{{ $company_name }}</option>
                         @endforeach

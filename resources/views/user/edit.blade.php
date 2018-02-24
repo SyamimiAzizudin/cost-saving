@@ -21,14 +21,18 @@
     	<div class="col-md-8 col-md-offset-2">
         {!! Form::model($user, ['method' => 'PATCH','action' =>  ['UsersController@update', $user->id], 'files' => true]) !!}
 
-            <div class="form-group">
+            <div class="form-group {{ $errors->has('company_id') ? ' has-error' : '' }} ">
             <label for="company_name" class="col-sm-3 control-label">Company</label>
                 <div class="col-sm-9">
                     <select name="company_id" class="form-control">
+                        <option value="">Select Company</option>
                         @foreach($companies as $id => $company_name)
                             <option value="{{ $id }}">{{ $company_name }}</option>
                         @endforeach
                     </select>
+                    @if($errors->has('company_id'))
+                        <span class="help-block">{{ $errors->first('company_id') }}</span>
+                    @endif
                 </div>
             </div>
 
@@ -50,6 +54,8 @@
                 <label for="password" class="col-sm-3 control-label">Password</label>
                 <div class="col-sm-9">
                     {!! Form::text('password', null, array('placeholder' => 'Password','class' => 'form-control')) !!}
+                    {{-- <input type="password" class="form-control" name="password" required> --}}
+
                 </div>
             </div>
 

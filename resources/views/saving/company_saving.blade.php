@@ -37,6 +37,7 @@
             </div>
             <form action="" id="savingForm">
             <div class="modal-body">
+                <label for="" class="col-sm-4 control-label">Actual Saving (RM)</label>
                 <input type="text" id="value" name="value" value="">
                 <input type="hidden" value="" id="month" name="month">
                 <input type="hidden" value="" id="section" name="section">

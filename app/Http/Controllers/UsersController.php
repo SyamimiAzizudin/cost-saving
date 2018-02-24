@@ -25,7 +25,8 @@ class UsersController extends Controller
     {
         $users = User::all();
         $companies = Company::pluck('name', 'id');
-        return view('user.index', compact('users', 'companies'));
+        $company = User::with('company')->whereRaw('companies.id = users.company_id');
+        return view('user.index', compact('users', 'companies', 'user'));
     }
 
     /**
@@ -81,8 +82,8 @@ class UsersController extends Controller
      */
     public function edit($id)
     {
-        $user = User::all();
-        $companies = Company::with('user')->findOrFail($id);
+        $companies = Company::pluck('name', 'id');
+        $user = User::findOrFail($id);
         // $password = Hash::get('current_password');
         return view('user.edit', compact('companies', 'user'));
     }
@@ -109,13 +110,6 @@ class UsersController extends Controller
         $user->password = bcrypt($request->password);
         $user->company_id = $request->company_id;
         $user->save();
-
-        foreach ($request->company_umw as $id) {
-            $company = Company::findOrFail($id);
-            if (! in_array($company->id, $user->companies()->pluck('id')->toArray())) {
-                $user->companies()->save($company);
-            }
-        }
         
         return redirect()->action('UsersController@index')->withMessage('User has been successfully updated!');
     }
