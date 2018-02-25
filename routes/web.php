@@ -19,8 +19,8 @@ Route::group(['middleware' => ['auth']], function() {
 	Route::get('/home', 'HomeController@index');
 	Route::get('/dashboard', 'HomeController@dashboard');
     Route::get('/dashboard_cost_saving_summary/{month}', 'HomeController@dashboard_cost_saving_summary');
-
 	Route::get('/group-dashboard/{group}', 'HomeController@group_dashboard');
+    Route::get('/group_dashboard_cost_saving_summary/{group}/{month}', 'HomeController@group_dashboard_cost_saving_summary');
 	Route::get('/company-dashboard/{company}', 'HomeController@company_dashboard');
     Route::get('/saving/saving-company/{company}', 'HomeController@init');
 	Route::get('/print-overall', 'HomeController@print_overall');

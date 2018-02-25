@@ -123,6 +123,33 @@ class HomeController extends Controller
             }
         ])
         ->sum('target_saving');
+
+        $cummulative_target = Saving::where('month', '<=',$current_month)
+            ->with([
+                'initiatives.companies' => function($query)use($group){
+                    $query->where('group',$group);
+                }
+            ])
+            ->sum('target_saving');
+
+        $cummulative_actual = Saving::where('month', '<=',$current_month)
+            ->with([
+                'initiatives.companies' => function($query)use($group){
+                    $query->where('group',$group);
+                }
+            ])
+            ->sum('actual_saving');
+
+
+
+        #dd($companies);
+
+        return view('group-dashboard', compact('group','yearly_target', 'cummulative_target', 'cummulative_actual'));
+    }
+
+    public function group_dashboard_cost_saving_summary($group, $month)
+    {
+        $current_month = Carbon::now()->month;
         $cummulative_target = Saving::where('month', '<=',$current_month)
             ->with([
                 'initiatives.companies' => function($query)use($group){
@@ -155,9 +182,9 @@ class HomeController extends Controller
                 ->join('companies', 'companies.id', '=', 'initiatives.company_id')
                 ->select( 'savings.actual_saving', 'savings.target_saving')
                 ->where('companies.id', $v->id)
-                ->where('savings.month', 4)
+                ->where('savings.month', $month)
                 ->first();
-            #dump($result);
+
             $companies[$k]->target_saving = null;
             $companies[$k]->actual_saving = null;
             if(isset($result->target_saving)) {
@@ -172,9 +199,8 @@ class HomeController extends Controller
 
         }
 
-        #dd($companies);
-
-        return view('group-dashboard', compact('companies','group','yearly_target', 'cummulative_target', 'cummulative_actual'));
+        $data['companies'] = $companies;
+        return view('group_dashboard_cost_saving_summary', compact('companies','group', 'cummulative_target', 'cummulative_actual'));
     }
 
     public function company_dashboard($id)
