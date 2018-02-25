@@ -97,8 +97,8 @@
         <div class="col-md-12">
             <h3 class="page-header">Cost Saving Summary - Group</h3>
 
-            <div class="form-group">
-                <label for="month" class="col-sm-2 control-label">Month</label>
+            <div class="form-group col-md-6">
+                <label for="month" class="col-sm-3 control-label">Month</label>
                 <div class="col-sm-6">
                     <select name="month" class="form-control" id="usercompany">
                         <option value="1">January</option>

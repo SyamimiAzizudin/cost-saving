@@ -10,7 +10,7 @@
         <tr>
             <td><a href="{{ url('/group-dashboard') }}/{{$v->group}}"><label for="company" class="col-md-12 control-label">{{  $v->group }}</label></a></td>
             <td><label for="saving_target" class="col-md-12 number text-right control-label">{{  number_format( ($v->target), 2, '.', ',') }}</label></td>
-            <td><label for="actual_saving" class="col-md-12 number text-right control-label">{{  number_format( ($v->actual), 2, '.', ',' ) }}</label></td>
+            <td><label for="actual_saving" class="col-md-12 number text-right control-labe fail">{{  number_format( ($v->actual), 2, '.', ',' ) }}</label></td>
             <td><label for="Target" class="col-md-12 number text-center control-label">45</label></td>
             {{-- <td><label class="col-md-2 text-left"><a href="{{ url('/group-dashboard') }}/{{$company->group}}">View More (Company)</a></label></td> --}}
         </tr>

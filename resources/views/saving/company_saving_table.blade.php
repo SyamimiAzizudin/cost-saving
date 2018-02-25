@@ -90,13 +90,13 @@
                     <td class="fixed-side" colspan="3"></td>
                         <th class="fixed-side" colspan="1" ><b>Total Target Saving</b></th>
                         @for($i = 1; $i <= 12; $i++)
-                            @if($company_savings[$v->id][$i]['actual_saving'] != null && $company_savings[$v->id][$i]['target_saving'] != null)
+                            {{-- @if($company_savings[$v->id][$i]['actual_saving'] != null && $company_savings[$v->id][$i]['target_saving'] != null)
                                 <td>
                                     {{ number_format(($company_savings[$v->id][$i]['actual_saving'] / $company_savings[$v->id][$i]['target_saving'])*100, 0)}}
                                 </td>
-                            @else
+                            @else --}}
                                 <td> - </td>
-                            @endif
+                            {{-- @endif --}}
                         @endfor
                 </tr>
                 </tbody>
