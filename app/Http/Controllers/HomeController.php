@@ -44,19 +44,7 @@ class HomeController extends Controller
         $cummulative_target = Saving::where('month', '<=',$current_month)->sum('target_saving');
         $cummulative_actual = Saving::where('month', '<=',$current_month)->sum('actual_saving');
 
-        #dd($current_year);
         $companies = Company::select('group')->distinct()->get();
-
-        //todo filter by year
-        $saving_summary_sql = 'select  `companies`.`group`, sum(`savings`.`actual_saving`) as actual, sum(`savings`.`target_saving` ) as target
-        from `savings` 
-        inner join `initiatives` on `savings`.`initiative_id` = `initiatives`.`id` 
-        inner join `companies` on `companies`.`id` = `initiatives`.`company_id` 
-        where savings.`month` = 4
-        group by `companies`.`group`';
-
-        $saving_summary_results = DB::select($saving_summary_sql);
-        #dump($saving_summary_results);
 
         $target_sql = 'select `month`,sum(target_saving) as target_saving
         from savings
@@ -95,8 +83,25 @@ class HomeController extends Controller
         {
             array_push($graphs['yearly_target'], (int)$v->yearly_target);
         }
-        #dd($graphs);
+
         return view('dashboard', compact('companies', 'yearly_target', 'cummulative_target', 'cummulative_actual', 'saving_summary_results','graphs'));
+    }
+
+    public function dashboard_cost_saving_summary($month)
+    {
+
+        //todo filter by year
+        $saving_summary_sql = 'select  `companies`.`group`, sum(`savings`.`actual_saving`) as actual, sum(`savings`.`target_saving` ) as target
+        from `savings` 
+        inner join `initiatives` on `savings`.`initiative_id` = `initiatives`.`id` 
+        inner join `companies` on `companies`.`id` = `initiatives`.`company_id` 
+        where savings.`month` = '.$month.'
+        group by `companies`.`group`';
+
+        $saving_summary_results = DB::select($saving_summary_sql);
+
+        $data['saving_summary_results'] = $saving_summary_results;
+        return view('dashboard_cost_saving_summary', $data);
     }
 
     public function group_dashboard($group)

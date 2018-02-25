@@ -100,18 +100,19 @@
             <div class="form-group">
                 <label for="month" class="col-sm-2 control-label">Month</label>
                 <div class="col-sm-6">
-                    <select name="month" class="form-control" id="usercompany" required>
-                        <option value="January" >January</option>
-                        <option value="February" >February</option>
-                        <option value="March" >March</option>
-                        <option value="May" >May</option>
-                        <option value="June" >June</option>
-                        <option value="July" >July</option>
-                        <option value="August" >August</option>
-                        <option value="September" >September</option>
-                        <option value="October" >October</option>
-                        <option value="November" >November</option>
-                        <option value="December" >December</option>
+                    <select name="month" class="form-control" id="usercompany">
+                        <option value="1">January</option>
+                        <option value="2">February</option>
+                        <option value="3">March</option>
+                        <option value="4">April</option>
+                        <option value="5">May</option>
+                        <option value="6">June</option>
+                        <option value="7">July</option>
+                        <option value="8">August</option>
+                        <option value="9">September</option>
+                        <option value="10">October</option>
+                        <option value="11">November</option>
+                        <option value="12">December</option>
                     </select>
                 </div>
             </div>
@@ -119,33 +120,7 @@
 
         <div class="col-md-12 padding2">
             <div class="form-group">
-                <table class="table table-bordered" style="border-collapse: collapse;">
-                    <tr>
-                        <td><label for="company" class="col-md-12 text-center control-label">Group</label></td>
-                        <td><label for="company" class="col-md-12 text-center control-label">Target (RM)</label></td>
-                        <td><label for="company" class="col-md-12 text-center control-label">Actual (RM)</label></td>
-                        <td><label for="company" class="col-md-12 text-center control-label">%</label></td>
-                    </tr>
-                    <!-- <div class="form-group padding2">
-                        <label for="company" class="col-md-2 control-label">M&E</label>
-                        <input class="col-md-2 text-center number good" type="integer" value ="12,084.00">
-                        <input class="col-md-2 text-center number good" type="integer" value ="12,084.00" readonly>
-                        <input class="col-md-2 text-center number" type="integer" value ="100" readonly>
-                        <a href="{{ url('/group-dashboard') }}" class="marginRight">View More (Group)</a>
-                    </div> -->
-                    <?php $i=0 ?>
-                    @forelse ($saving_summary_results as $k => $v)
-                    <tr>
-                        <td><a href="{{ url('/group-dashboard') }}/{{$company->group}}"><label for="company" class="col-md-12 control-label">{{  $v->group }}</label></a></td>
-                        <td><label for="saving_target" class="col-md-12 number text-right control-label">{{  number_format( ($v->target), 2, '.', ',') }}</label></td>
-                        <td><label for="actual_saving" class="col-md-12 number text-right control-label">{{  number_format( ($v->actual), 2, '.', ',' ) }}</label></td>
-                        <td><label for="Target" class="col-md-12 number text-center control-label">45</label></td>
-                        {{-- <td><label class="col-md-2 text-left"><a href="{{ url('/group-dashboard') }}/{{$company->group}}">View More (Company)</a></label></td> --}}
-                    </tr>
-                    <?php $i++; ?>
-                    @empty
-                    @endforelse
-                </table>
+                <div id="saving_summary"></div>
             </div>
         </div>
     </div>
@@ -169,7 +144,27 @@
         </div>
     </footer>
 </div>
+<script>
+    //initial load
+    getTable(1);
+    $(function() {
+        $("#usercompany").on('change', function(){
+            var selected_value = $(this).find(":selected").val();
+            getTable(selected_value);
+        });
+    });
 
+    function getTable(month)
+    {
+        $.ajax({
+            url: 'dashboard_cost_saving_summary/'+month, //this is the submit URL
+            type: 'GET', //or POST
+            success: function(data){
+                $("#saving_summary").html(data);
+            }
+        });
+    }
+</script>
 <script>
     Vue.use(VueHighcharts);
 
