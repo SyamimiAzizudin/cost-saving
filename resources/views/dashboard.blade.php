@@ -18,7 +18,7 @@
                  <h5>Yearly Target</h5>
             </div>
             <div class="panel-body text-center">
-                <h3>RM {{ $yearly_target }}</h3>
+                <h3>RM {{ number_format( ($yearly_target), 2, '.', ',' ) }}</h3>
             </div>
         </div>
 
@@ -27,7 +27,7 @@
                 <h5>Target Savings (Cumm) </h5>
             </div>
             <div class="panel-body text-center">
-                <h3>RM {{ $cummulative_target }}</h3>
+                <h3>RM {{ number_format( ($cummulative_target), 2, '.', ',' ) }}</h3>
             </div>
         </div>
             
@@ -36,7 +36,7 @@
                 <h5>Actual Savings (Cumm) </h5>
             </div>
             <div class="panel-body text-center">
-                <h3>RM {{ $cummulative_actual }}</h3>
+                <h3>RM {{ number_format( ($cummulative_actual), 2, '.', ',' ) }}</h3>
             </div>
         </div>
                 
@@ -192,7 +192,7 @@
         }]
       },
       tooltip: {
-        valueSuffix: 'm'
+        valueSuffix: ''
       },
       legend: {
         layout: 'vertical',

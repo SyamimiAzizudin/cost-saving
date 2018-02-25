@@ -140,8 +140,6 @@ class HomeController extends Controller
             ])
             ->sum('actual_saving');
 
-
-
         #dd($companies);
 
         return view('group-dashboard', compact('group','yearly_target', 'cummulative_target', 'cummulative_actual'));
