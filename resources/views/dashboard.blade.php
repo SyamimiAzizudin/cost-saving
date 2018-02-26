@@ -18,7 +18,7 @@
                  <h5>Yearly Target</h5>
             </div>
             <div class="panel-body text-center">
-                <h3>RM {{ number_format( ($yearly_target), 2, '.', ',' ) }}</h3>
+                <h3>RM {{ number_format( ($yearly_target/1000000), 2, '.', ',' ) }} m</h3>
             </div>
         </div>
 

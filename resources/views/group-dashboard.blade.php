@@ -24,62 +24,63 @@
 
             </div>
         </div>
-
-        <div class="col-md-12 form-group">
-            <div class="col-md-2 panel panel-default">
-                <div class="panel-heading text-center">
-                    <h5>Yearly Target </h5>
-                </div>
-                <div class="panel-body text-center">
-                    <h3>RM {{ number_format( ($yearly_target), 2, '.', ',' ) }}</h3>
-                </div>
-            </div>
-            <div class="col-md-3 panel panel-default">
-                <div class="panel-heading text-center">
-                    <h5>Target Savings (Cumm) </h5>
-                </div>
-                <div class="panel-body text-center">
-                    <h3>RM {{ number_format( ($cummulative_target), 2, '.', ',' ) }}</h3>
-                </div>
-            </div>
-            <div class="col-md-3 panel panel-default">
-                <div class="panel-heading text-center">
-                    <h5>Actual Savings (Cumm) </h5>
-                </div>
-                <div class="panel-body text-center">
-                    <h3>RM {{ number_format( ($cummulative_actual), 2, '.', ',' ) }}</h3>
-                </div>
-            </div>
-            <div class="col-md-2 panel panel-default">
-                <div class="panel-heading text-center">
-                    <h5>Yearly % (Cumm) </h5>
-                </div>
-                <div class="panel-body text-center">
-                    <h3>{{ number_format(( ($cummulative_actual/$yearly_target) * 100),0) }} % </h3>
-                </div>
-            </div>
-            <div class="col-md-2 panel panel-default">
-                <div class="panel-heading text-center">
-                    <h5>Monthly % (Cumm) </h5>
-                </div>
-                <div class="panel-body text-center">
-                    <h3>{{ number_format(($cummulative_actual/$cummulative_target) * 100,0) }} % </h3>
-                </div>
-            </div>
-            <p class="text-right ">Latest Date Update : 12 September 2018</p>
-        </div>
-
-        <div class="col-md-12">
-            <center>
-
-            <div id="app">
-                <highcharts :options="options" ref="highcharts"></highcharts>
-            </div>
-
-            </center>
-        </div>
     </div>
-</div>
+
+    <div class="col-md-12 form-group">
+        <div class="col-md-2 panel panel-default">
+            <div class="panel-heading text-center">
+                <h5>Yearly Target </h5>
+            </div>
+            <div class="panel-body text-center">
+                <h3>RM {{ number_format( ($yearly_target/1000000), 2, '.', ',' ) }} m</h3>
+            </div>
+        </div>
+        <div class="col-md-3 panel panel-default">
+            <div class="panel-heading text-center">
+                <h5>Target Savings (Cumm) </h5>
+            </div>
+            <div class="panel-body text-center">
+                <h3>RM {{ number_format( ($cummulative_target), 2, '.', ',' ) }}</h3>
+            </div>
+        </div>
+        <div class="col-md-3 panel panel-default">
+            <div class="panel-heading text-center">
+                <h5>Actual Savings (Cumm) </h5>
+            </div>
+            <div class="panel-body text-center">
+                <h3>RM {{ number_format( ($cummulative_actual), 2, '.', ',' ) }}</h3>
+            </div>
+        </div>
+        <div class="col-md-2 panel panel-default">
+            <div class="panel-heading text-center">
+                <h5>Yearly % (Cumm) </h5>
+            </div>
+            <div class="panel-body text-center">
+                <h3>{{ number_format(( ($cummulative_actual/$yearly_target) * 100),0) }} % </h3>
+            </div>
+        </div>
+        <div class="col-md-2 panel panel-default">
+            <div class="panel-heading text-center">
+                <h5>Monthly % (Cumm) </h5>
+            </div>
+            <div class="panel-body text-center">
+                <h3>{{ number_format(($cummulative_actual/$cummulative_target) * 100,0) }} % </h3>
+            </div>
+        </div>
+        <p class="text-right ">Latest Date Update : 12 September 2018</p>
+    </div>
+
+    <div class="col-md-12">
+        <center>
+
+        <div id="app">
+            <highcharts :options="options" ref="highcharts"></highcharts>
+        </div>
+
+        </center>
+    </div>
+    </div>
+{{-- </div> --}}
 
 <!--Summary-->
 <div class="row">
