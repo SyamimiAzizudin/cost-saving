@@ -192,7 +192,7 @@ class HomeController extends Controller
             array_push($graphs['yearly_target'], (int)$v->yearly_target);
         }
 
-        return view('group-dashboard', compact('timestamp', 'group','yearly_target', 'cummulative_target', 'cummulative_actual', 'companies', 'graphs'));
+        return view('group-dashboard', compact('timestamp', 'group','yearly_target', 'cummulative_target', 'cummulative_actual', 'graphs'));
     }
 
     public function group_dashboard_cost_saving_summary($group, $month)
@@ -253,16 +253,146 @@ class HomeController extends Controller
 
     public function company_dashboard($id)
     {
-        $init = Initiative::all();
-        // $companies = Company::all();
+        // $init = Initiative::all();
         $company = Company::findOrFail($id);
 
-        return view('company-dashboard', compact('init','company'));
+        // return view('company-dashboard', compact('init','company'));
+
+        $current_year = Carbon::now()->year;
+        $current_month = Carbon::now()->month;
+        $timestamp = Carbon::now();
+
+        //todo only query for that year
+        $yearly_target = Saving::with([
+            'initiatives.companies' => function($query)use($id){
+                $query->where('group',$id);
+            }
+        ])
+        ->sum('target_saving');
+
+        $cummulative_target = Saving::where('month', '<=',$current_month)
+            ->with([
+                'initiatives.companies' => function($query)use($id){
+                    $query->where('group',$id);
+                }
+            ])
+            ->sum('target_saving');
+
+        $cummulative_actual = Saving::where('month', '<=',$current_month)
+            ->with([
+                'initiatives.companies' => function($query)use($id){
+                    $query->where('group',$id);
+                }
+            ])
+            ->sum('actual_saving');
+
+        #dd($companies);
+
+        //todo graph query for company dashboard    
+        $targets = DB::select('select `month`,
+            sum(`savings`.`target_saving`) as target_saving
+        from `savings`
+        inner join `initiatives` on `savings`.`initiative_id` = `initiatives`.`id` 
+        inner join `companies` on `companies`.`id` = `initiatives`.`company_id`
+        where `companies`.`id` = :id
+        group by `month`', ['id' => $id]);
+
+        $actual = DB::select('select `month`,
+            sum(`savings`.`actual_saving`) as actual_saving
+        from `savings`
+        inner join `initiatives` on `savings`.`initiative_id` = `initiatives`.`id` 
+        inner join `companies` on `companies`.`id` = `initiatives`.`company_id`
+        where `companies`.`id` = :id
+        group by `month`', ['id'=> $id]);
+
+        $yearly_target_results = DB::select('select `month`, 
+            (select sum(target_saving) from savings
+            inner join initiatives on savings.initiative_id = initiatives.id
+            inner join companies on companies.id = initiatives.company_id
+            where companies.id = :id) as yearly_target
+        from `savings`  
+        group by `month`', ['id'=> $id]);
+
+        $graphs = [];
+        $graphs['targets'] = [];
+        $initial_value_target = 0;
+        foreach($targets as $k => $v)
+        {
+            $result = $initial_value_target +=$v->target_saving;
+            array_push($graphs['targets'], $result);
+        }
+
+        $graphs['actual'] = [];
+        $actual_value_target = 0;
+        foreach($actual as $k => $v)
+        {
+            $result = $actual_value_target +=$v->actual_saving;
+            array_push($graphs['actual'], $result);
+        }
+
+        $graphs['yearly_target'] = [];
+        foreach($yearly_target_results as $k => $v)
+        {
+            array_push($graphs['yearly_target'], (int)$v->yearly_target);
+        }
+
+        return view('company-dashboard', compact('timestamp', 'id', 'company' ,'yearly_target', 'cummulative_target', 'cummulative_actual', 'graphs'));
     }
 
-    public function print_overall()
+    public function company_dashboard_cost_saving_summary($id, $month)
     {
-        return view('print-overall');
+        $current_month = Carbon::now()->month;
+        $cummulative_target = Saving::where('month', '<=',$current_month)
+            ->with([
+                'initiatives.companies' => function($query)use($id){
+                    $query->where('id',$id);
+                }
+            ])
+            ->sum('target_saving');
+
+        $cummulative_actual = Saving::where('month', '<=',$current_month)
+            ->with([
+                'initiatives.companies' => function($query)use($id){
+                    $query->where('id',$id);
+                }
+            ])
+            ->sum('actual_saving');
+
+        $initiatives = Company::with([
+            'initiatives.savings' => function($query){
+                $query->where('month', Carbon::now()->month);
+                $query->orderBy('month');
+            }
+        ])
+        ->where('id', $id)
+        ->get();
+
+        foreach ($initiatives as $k => $v)
+        {
+            $result = DB::table('savings')
+                ->join('initiatives', 'savings.initiative_id', '=', 'initiatives.id')
+                ->join('companies', 'companies.id', '=', 'initiatives.company_id')
+                ->select( 'savings.actual_saving', 'savings.target_saving')
+                ->where('companies.id', $v->id)
+                ->where('savings.month', $month)
+                ->first();
+
+            $initiatives[$k]->target_saving = null;
+            $initiatives[$k]->actual_saving = null;
+            if(isset($result->target_saving)) {
+                $initiatives[$k]->target_saving = $result->target_saving;
+
+            }
+
+            if(isset($result->actual_saving)) {
+                $initiatives[$k]->actual_saving = $result->actual_saving;
+
+            }
+
+        }
+
+        $data['initiatives'] = $initiatives;
+        return view('company_dashboard_cost_saving_summary', compact('initiatives', 'id', 'cummulative_target', 'cummulative_actual'));
     }
 
     public function init($id)
