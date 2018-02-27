@@ -148,7 +148,7 @@
                     @forelse ($init as $w)
                     @if($w->company_id == $company->id)
                     <tr>
-                        <td><a href="{{ url('/saving-company') }}/{{ $w->company_id }}"><label for="company" class="col-md-12 control-label">{!! $w->area !!}</label></a></td>
+                        <td><b><a href="{{ url('/saving-company') }}/{{ $w->company_id }}">{!! $w->area !!}</a></b></td>
                         <td>
                             <label for="target_saving" class="col-md-12 number text-right control-label"></label>
                         </td>
@@ -158,7 +158,6 @@
                         <td><label for="actual_saving" class="col-md-12 number text-right control-label good">{{ $w->actual_saving }}</label></td>
                         @endif
                         <td><label for="actual_saving" class="col-md-12 number text-center control-label">45</label></td>
-                        {{-- <td><label class="col-md-12 text-center"><a href="{{ url('/saving-company') }}/{{ $w->company_id }}">View More (Company)</a></label></td> --}}
                     </tr>
                     <?php $i++; ?>
                     @endif
