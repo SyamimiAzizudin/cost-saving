@@ -61,7 +61,7 @@
         
     <!-- Update Date-->
     <div class="col-lg-12">
-        <p class="text-right">Latest Date Update : 12 June 2018</p>
+        <p class="text-right">Latest Date Update : {{ $timestamp->format('g:i A, d F Y') }}</p>
     </div>
 </div>
 
@@ -202,13 +202,13 @@
       },
       series: [{
         name: 'Target Savings (RM)',
-        data: <?php echo json_encode($graphs['targets']) ?>
+        data: <?php echo json_encode($graphs['targets']); ?>
       }, {
         name: 'Actual Savings (RM)',
-        data: <?php echo json_encode($graphs['actual']) ?>
+        data: <?php echo json_encode($graphs['actual']); ?>
       }, {
         name: 'Yearly Target (RM)',
-        data: <?php echo json_encode($graphs['yearly_target']) ?>
+        data: <?php echo json_encode($graphs['yearly_target']); ?>
       }]
     };
 

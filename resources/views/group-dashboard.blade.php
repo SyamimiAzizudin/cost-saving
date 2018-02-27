@@ -67,7 +67,7 @@
                 <h3>{{ number_format(($cummulative_actual/$cummulative_target) * 100,0) }} % </h3>
             </div>
         </div>
-        <p class="text-right ">Latest Date Update : 12 September 2018</p>
+        <p class="text-right ">Latest Date Update : {{ $timestamp->format('g:i A, d F Y') }}</p>
     </div>
 
     <div class="col-md-12">
@@ -193,14 +193,15 @@
         borderWidth: 0
       },
       series: [{
+        <?php ?>
         name: 'Target Savings (RM)',
-        data: <?php echo json_encode($graphs['targets']) ?>
+        data: <?php echo json_encode($graphs['targets']); ?>
       }, {
         name: 'Actual Savings (RM)',
-        data: <?php echo json_encode($graphs['actual']) ?>
+        data: <?php echo json_encode($graphs['actual']); ?>
       }, {
         name: 'Yearly Target (RM)',
-        data: <?php echo json_encode($graphs['yearly_target']) ?>
+        data: <?php echo json_encode($graphs['yearly_target']); ?>
       }]
     };
 

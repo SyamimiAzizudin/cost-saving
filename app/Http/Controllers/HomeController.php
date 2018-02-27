@@ -39,6 +39,7 @@ class HomeController extends Controller
 
         $current_year = Carbon::now()->year;
         $current_month = Carbon::now()->month;
+        $timestamp = Carbon::now();
         //todo only query for that year
         $yearly_target = Saving::sum('target_saving');
         $cummulative_target = Saving::where('month', '<=',$current_month)->sum('target_saving');
@@ -84,7 +85,7 @@ class HomeController extends Controller
             array_push($graphs['yearly_target'], (int)$v->yearly_target);
         }
 
-        return view('dashboard', compact('companies', 'yearly_target', 'cummulative_target', 'cummulative_actual', 'saving_summary_results', 'graphs'));
+        return view('dashboard', compact('timestamp', 'companies', 'yearly_target', 'cummulative_target', 'cummulative_actual', 'saving_summary_results', 'graphs'));
     }
 
     public function dashboard_cost_saving_summary($month)
@@ -108,6 +109,7 @@ class HomeController extends Controller
     {
         $current_year = Carbon::now()->year;
         $current_month = Carbon::now()->month;
+        $timestamp = Carbon::now();
 
        /* $initiatives_id = Initiative::with([
             'initiatives.companies' => function($query)use($group){
@@ -143,31 +145,29 @@ class HomeController extends Controller
         #dd($companies);
 
         //todo graph query for group dashboard    
-        $companies = Company::select('group')->distinct()->get();
-
-        $target_sql = 'select `month`,
+        $targets = DB::select('select `month`,
             sum(`savings`.`target_saving`) as target_saving
         from `savings`
         inner join `initiatives` on `savings`.`initiative_id` = `initiatives`.`id` 
         inner join `companies` on `companies`.`id` = `initiatives`.`company_id`
-        group by `month`, `year`';
-        $targets = DB::select($target_sql);
+        where `companies`.`group` = :group
+        group by `month`', ['group' => $group]);
 
-        $actual_sql = 'select `month`,
+        $actual = DB::select('select `month`,
             sum(`savings`.`actual_saving`) as actual_saving
         from `savings`
         inner join `initiatives` on `savings`.`initiative_id` = `initiatives`.`id` 
         inner join `companies` on `companies`.`id` = `initiatives`.`company_id`
-        group by `month`, `year`';
-        $actual = DB::select($actual_sql);
+        where `companies`.`group` = :group
+        group by `month`', ['group'=> $group]);
 
-        $yearly_target_sql = 'select `month`, 
-            (select sum(target_saving) from savings) as yearly_target
-        from savings
-        inner join `initiatives` on `savings`.`initiative_id` = `initiatives`.`id` 
-        inner join `companies` on `companies`.`id` = `initiatives`.`company_id`
-        group by `month`,`year`';
-        $yearly_target_results = DB::select($yearly_target_sql);
+        $yearly_target_results = DB::select('select `month`, 
+            (select sum(target_saving) from savings
+            inner join initiatives on savings.initiative_id = initiatives.id
+            inner join companies on companies.id = initiatives.company_id
+            where companies.group = :group) as yearly_target
+        from `savings`  
+        group by `month`', ['group'=> $group]);
 
         $graphs = [];
         $graphs['targets'] = [];
@@ -192,7 +192,7 @@ class HomeController extends Controller
             array_push($graphs['yearly_target'], (int)$v->yearly_target);
         }
 
-        return view('group-dashboard', compact('group','yearly_target', 'cummulative_target', 'cummulative_actual', 'companies', 'graphs'));
+        return view('group-dashboard', compact('timestamp', 'group','yearly_target', 'cummulative_target', 'cummulative_actual', 'companies', 'graphs'));
     }
 
     public function group_dashboard_cost_saving_summary($group, $month)
