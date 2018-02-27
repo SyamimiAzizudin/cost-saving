@@ -4,10 +4,10 @@
             <table class="main-table">
                 <thead>
                 <tr>
-                    <th class="fixed-side"><p style="width: 100px;"><b>Area</b></p></th>
-                    <th class="fixed-side"><p style="width: 200px;"><b>Analyze Factors Or Causes Contributing To Current Performance</b></p></th>
-                    <th class="fixed-side"><p style="width: 200px;"><b>Proposed Action To Be Taken To Achieve Saving</b></p></th>
-                    <th class="fixed-side"><p style="width: 100px;"><b>Cost Reduction</b></p></th>
+                    <th class="fixed-side"><p class="col"><b>AREA</b></p></th>
+                    <th class="fixed-side"><p class="col" style="width: 200px;"><b>ANALYZE FACTORS OR CAUSES CONTRIBUTING TO CURRENT PERFORMANCE</b></p></th>
+                    <th class="fixed-side"><p class="col" style="width: 200px;"><b>PROPOSED ACTION TO BE TAKEN TO ACHIEVE SAVINGS</b></p></th>
+                    <th class="fixed-side"><p class="col" style="width: 150px;"><b>TARGET COST REDUCTION (ESTIMATE)</b></p></th>
                     <th class="col"><b>JAN</b></th>
                     <th class="col"><b>FEB</b></th>
                     <th class="col"><b>MAR</b></th>
@@ -32,11 +32,14 @@
                         @for($i = 1; $i <= 12; $i++)
                         <?php $cum_target_iv += $company_savings[$v->id][$i]['target_saving']; ?>
                         @endfor            
-                        <th class="fixed-side"><b> RM  {{ number_format($cum_target_iv, 2, '.', ',')}}</b></th>
+                        <th class="fixed-side">
+                            <span style="float: left;"><b>RM</b></span>
+                            <span style="float: right;"><b>{{ number_format($cum_target_iv, 2, '.', ',')}}</b></span>
+                        </th>
                         @for($i = 1; $i <= 12; $i++)
                             @if($company_savings[$v->id][$i]['target_saving'] != null)
                                 <td>
-                                    {{ number_format(($company_savings[$v->id][$i]['target_saving']), 2, '.', ',') }}
+                                    <p class="text-right">{{ number_format(($company_savings[$v->id][$i]['target_saving']), 2, '.', ',') }}</p>
                                     {{-- <br>
                                     <button type="button" class="btn btn-warning btn-sm openModal" data-toggle="modal" data-value="{{ $company_savings[$v->id][$i]['target_saving'] }}" data-id="0" data-month="{{ $i }}" data-section="target_saving" data-initiative_id="{{ $v->id }}" data-saving_id="">Edit
                                     </button> --}}
@@ -55,12 +58,11 @@
                         @endfor
                     </tr>
                     <tr>
-                        <th class="fixed-side"><b>Actual Saving (RM)</b></th>
+                        <th class="fixed-side"><b>ACTUAL SAVING FOR THE MONTH</b></th>
                         @for($i = 1; $i <= 12; $i++)
                             @if($company_savings[$v->id][$i]['actual_saving'] != null)
                                 <td>
-                                    {{ number_format(($company_savings[$v->id][$i]['actual_saving']), 2, '.', ',') }}
-                                    <br>
+                                    <p class="text-right">{{number_format(($company_savings[$v->id][$i]['actual_saving']), 2, '.', ',')}}</p>
                                     <button type="button" class="btn btn-info btn-sm openModal" data-toggle="modal" data-value="{{ $company_savings[$v->id][$i]['actual_saving'] }}" data-id="0" data-month="{{ $i }}" data-section="actual_saving" data-initiative_id="{{ $v->id }}">Edit
                                     </button>
                                 </td>
@@ -77,11 +79,11 @@
                         @endfor
                     </tr>
                     <tr>
-                        <th class="fixed-side"><b>Total Target Saving RM</b></th>
+                        <th class="fixed-side"><b>Total Target Saving</b></th>
                         @for($i = 1; $i <= 12; $i++)
                             @if($company_savings[$v->id][$i]['target_saving'] != null)
                                 <td>
-                                    {{ number_format(($company_savings[$v->id][$i]['target_saving']), 2, '.', ',') }}
+                                    <p class="text-right">{{ number_format(($company_savings[$v->id][$i]['target_saving']), 2, '.', ',') }}</p>
                                     {{-- <br>
                                     <button type="button" class="btn btn-warning btn-sm openModal" data-toggle="modal" data-value="{{ $company_savings[$v->id][$i]['target_saving'] }}" data-id="0" data-month="{{ $i }}" data-section="target_saving" data-initiative_id="{{ $v->id }}" data-saving_id="">Edit
                                     </button> --}}
@@ -100,11 +102,13 @@
                         @endfor
                     </tr>
                     <tr>
-                        <th class="fixed-side"><b>Target Cumulative Saving (RM)</b></th>
+                        <th class="fixed-side"><b>Target Cumulative Saving</b></th>
+                        <?php $TCM = 0; ?>
                         @for($i = 1; $i <= 12; $i++)
-                            @if($company_savings[$v->id][$i]['actual_saving'] != null && $company_savings[$v->id][$i]['target_saving'] != null)
+                        <?php $TCM += $company_savings[$v->id][$i]['target_saving']; ?>
+                            @if($TCM != null)
                                 <td>
-                                    {{ number_format(($company_savings[$v->id][$i]['actual_saving'] / $company_savings[$v->id][$i]['target_saving'])*100, 0)}}
+                                    <p class="text-right">{{ number_format($TCM, 2 ,'.' ,',')}}</p>
                                 </td>
                             @else
                                 <td> - </td>
@@ -112,11 +116,11 @@
                         @endfor
                     </tr>
                     <tr>
-                        <th class="fixed-side"><b>Actual Saving of the Month</b></th>
+                        <th class="fixed-side"><b>Actual Saving for the Month</b></th>
                         @for($i = 1; $i <= 12; $i++)
-                            @if($company_savings[$v->id][$i]['actual_saving'] != null && $company_savings[$v->id][$i]['target_saving'] != null)
+                            @if($company_savings[$v->id][$i]['actual_saving'] != null)
                                 <td>
-                                    {{ number_format(($company_savings[$v->id][$i]['actual_saving'] / $company_savings[$v->id][$i]['target_saving'])*100, 0)}}
+                                    <p class="text-right">{{ number_format(($company_savings[$v->id][$i]['actual_saving']), 2, '.', ',')}}</p>
                                 </td>
                             @else
                                 <td> - </td>
@@ -125,10 +129,12 @@
                     </tr>
                     <tr>
                         <th class="fixed-side"><b>Actual Cumulative Saving</b></th>
+                        <?php $ACM = 0; ?>
                         @for($i = 1; $i <= 12; $i++)
-                            @if($company_savings[$v->id][$i]['actual_saving'] != null && $company_savings[$v->id][$i]['target_saving'] != null)
+                        <?php $ACM += $company_savings[$v->id][$i]['actual_saving']; ?>
+                            @if($ACM != null)
                                 <td>
-                                    {{ number_format(($company_savings[$v->id][$i]['actual_saving'] / $company_savings[$v->id][$i]['target_saving'])*100, 0)}}
+                                    <p class="text-right">{{ number_format($ACM, 2 ,'.' ,',')}}</p>
                                 </td>
                             @else
                                 <td> - </td>
@@ -136,11 +142,11 @@
                         @endfor
                     </tr>
                     <tr>
-                        <th class="fixed-side"><b>Percentage %</b></th>
+                        <th class="fixed-side"><b>Achievement %</b></th>
                         @for($i = 1; $i <= 12; $i++)
                             @if($company_savings[$v->id][$i]['actual_saving'] != null && $company_savings[$v->id][$i]['target_saving'] != null)
                                 <td>
-                                    {{ number_format(($company_savings[$v->id][$i]['actual_saving'] / $company_savings[$v->id][$i]['target_saving'])*100, 0)}}
+                                    <p class="text-right">{{ number_format(($company_savings[$v->id][$i]['actual_saving'] / $company_savings[$v->id][$i]['target_saving'])*100, 0)}}</p>
                                 </td>
                             @else
                                 <td> - </td>
@@ -148,19 +154,71 @@
                         @endfor
                     </tr>
                 @endforeach
-                <tr>
-                    <td class="fixed-side" colspan="3"></td>
-                        <th class="fixed-side" colspan="1" ><b>Total Target Saving (RM)</b></th>
-                        @for($i = 1; $i <= 12; $i++)
-                            {{-- @if($company_savings[$v->id][$i]['actual_saving'] != null && $company_savings[$v->id][$i]['target_saving'] != null)
-                                <td>
-                                    
-                                </td>
-                            @else
-                                <td> - </td>
-                            {{-- @endif --}}
-                        @endfor
-                </tr>
+                    <tr>
+                        <td class="fixed-side" colspan="3"></td>
+                            <th class="fixed-side" colspan="1" ><b>Overall Total Target Saving</b></th>
+                            @for($i = 1; $i <= 12; $i++)
+                                @if($company_savings[$v->id][$i]['actual_saving'] != null && $company_savings[$v->id][$i]['target_saving'] != null)
+                                    <td>
+                                        
+                                    </td>
+                                @else
+                                    <td> - </td>
+                                @endif
+                            @endfor
+                    </tr>
+                    <tr>
+                        <td class="fixed-side" colspan="3"></td>
+                            <th class="fixed-side" colspan="1" ><b>Overall Total Actual Saving</b></th>
+                            @for($i = 1; $i <= 12; $i++)
+                                @if($company_savings[$v->id][$i]['actual_saving'] != null && $company_savings[$v->id][$i]['target_saving'] != null)
+                                    <td>
+                                        
+                                    </td>
+                                @else
+                                    <td> - </td>
+                                @endif
+                            @endfor
+                    </tr>
+                    <tr>
+                        <td class="fixed-side" colspan="3"></td>
+                            <th class="fixed-side" colspan="1" ><b>Overall Actual Saving for the Month</b></th>
+                            @for($i = 1; $i <= 12; $i++)
+                                @if($company_savings[$v->id][$i]['actual_saving'] != null && $company_savings[$v->id][$i]['target_saving'] != null)
+                                    <td>
+                                        
+                                    </td>
+                                @else
+                                    <td> - </td>
+                                @endif
+                            @endfor
+                    </tr>
+                    <tr>
+                        <td class="fixed-side" colspan="3"></td>
+                            <th class="fixed-side" colspan="1" ><b>Overall Cumulative Savings</b></th>
+                            @for($i = 1; $i <= 12; $i++)
+                                @if($company_savings[$v->id][$i]['actual_saving'] != null && $company_savings[$v->id][$i]['target_saving'] != null)
+                                    <td>
+                                        
+                                    </td>
+                                @else
+                                    <td> - </td>
+                                @endif
+                            @endfor
+                    </tr>
+                    <tr>
+                        <td class="fixed-side" colspan="3"></td>
+                            <th class="fixed-side" colspan="1" ><b>Overall Achievement Percentage</b></th>
+                            @for($i = 1; $i <= 12; $i++)
+                                @if($company_savings[$v->id][$i]['actual_saving'] != null && $company_savings[$v->id][$i]['target_saving'] != null)
+                                    <td>
+                                        
+                                    </td>
+                                @else
+                                    <td> - </td>
+                                @endif
+                            @endfor
+                    </tr>
                 </tbody>
             </table>
         </div>
