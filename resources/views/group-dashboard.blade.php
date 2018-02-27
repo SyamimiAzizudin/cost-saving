@@ -12,18 +12,6 @@
             </li>
             <li class="active">Dashboard - {{ $group }} Group</li>
         </ol>
-        <div class="col-md-3" style="display: none">
-            <h4>Company :</h4>
-            <br>
-            <div class="list-group">
-                <a href="{{ url('/company-dashboard') }}" class="list-group-item active">UMW Equipment Sdn Bhd</a>
-                <a href="{{ url('/company-dashboard') }}" class="list-group-item">UMW (East Malaysia) Sdn Bhd</a>
-                <a href="{{ url('/company-dashboard') }}" class="list-group-item">UMW Industries (1985) Sdn Bhd</a>
-                <a href="{{ url('/company-dashboard') }}" class="list-group-item">UMW Industrial Power Services Sdn Bhd</a>
-                <a href="{{ url('/company-dashboard') }}" class="list-group-item">UMW Equipment & Engineering PTE LTD</a>
-
-            </div>
-        </div>
     </div>
 
     <div class="col-md-12 form-group">
@@ -40,7 +28,7 @@
                 <h5>Target Savings (Cumm) </h5>
             </div>
             <div class="panel-body text-center">
-                <h3>RM {{ number_format( ($cummulative_target), 2, '.', ',' ) }}</h3>
+                <h3>RM {{ number_format( ($cummulative_target), 2, '.', ',' ) }} </h3>
             </div>
         </div>
         <div class="col-md-3 panel panel-default">
@@ -48,7 +36,7 @@
                 <h5>Actual Savings (Cumm) </h5>
             </div>
             <div class="panel-body text-center">
-                <h3>RM {{ number_format( ($cummulative_actual), 2, '.', ',' ) }}</h3>
+                <h3>RM {{ number_format( ($cummulative_actual), 2, '.', ',' ) }} </h3>
             </div>
         </div>
         <div class="col-md-2 panel panel-default">
@@ -67,9 +55,11 @@
                 <h3>{{ number_format(($cummulative_actual/$cummulative_target) * 100,0) }} % </h3>
             </div>
         </div>
-        <p class="text-right ">Latest Date Update : {{ $timestamp->format('g:i A, d F Y') }}</p>
+        <p class="text-right ">Latest Date Update : {{ $timestamp->format('g:i A, d F Y') }} </p>
     </div>
+</div>
 
+<div class="row">
     <div class="col-md-12">
         <center>
 
@@ -79,7 +69,7 @@
 
         </center>
     </div>
-    </div>
+</div>
 {{-- </div> --}}
 
 <!--Summary-->
@@ -136,27 +126,29 @@
         </div>
     </footer>
 </div>
-    <script>
-        //initial load
-        getTable(1);
-        $(function() {
-            $("#usercompany").on('change', function(){
-                var selected_value = $(this).find(":selected").val();
-                getTable(selected_value);
-            });
-        });
 
-        function getTable(month)
-        {
-            $.ajax({
-                url: '/group_dashboard_cost_saving_summary/{{ $group }}/'+month, //this is the submit URL
-                type: 'GET', //or POST
-                success: function(data){
-                    $("#saving_summary").html(data);
-                }
-            });
-        }
-    </script>
+<script>
+    //initial load
+    getTable(1);
+    $(function() {
+        $("#usercompany").on('change', function(){
+            var selected_value = $(this).find(":selected").val();
+            getTable(selected_value);
+        });
+    });
+
+    function getTable(month)
+    {
+        $.ajax({
+            url: '/group_dashboard_cost_saving_summary/{{ $group }}/'+month, //this is the submit URL
+            type: 'GET', //or POST
+            success: function(data){
+                $("#saving_summary").html(data);
+            }
+        });
+    }
+</script>
+
 <script>
     Vue.use(VueHighcharts);
 
