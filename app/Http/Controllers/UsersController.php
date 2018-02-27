@@ -25,8 +25,9 @@ class UsersController extends Controller
     {
         $users = User::all();
         $companies = Company::pluck('name', 'id');
-        $company = User::with('company')->whereRaw('companies.id = users.company_id');
-        return view('user.index', compact('users', 'companies', 'user'));
+        // $company = User::with('company')->whereRaw('companies.id = users.company_id');
+        // $company = Company::select('group')->first();
+        return view('user.index', compact('users', 'companies', 'company'));
     }
 
     /**
