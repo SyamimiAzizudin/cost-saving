@@ -184,7 +184,7 @@
         }]
       },
       tooltip: {
-        valueSuffix: 'm'
+        valueSuffix: ''
       },
       legend: {
         layout: 'vertical',
@@ -194,13 +194,13 @@
       },
       series: [{
         name: 'Target Savings (RM)',
-        data: [1, 3, 5, 8, 12, 13.5, 15, 16, 17, 17, 17.5, 18]
+        data: <?php echo json_encode($graphs['targets']) ?>
       }, {
         name: 'Actual Savings (RM)',
-        data: [2, 3.5, 5, 7, 8.3, 9.5]
+        data: <?php echo json_encode($graphs['actual']) ?>
       }, {
         name: 'Yearly Target (RM)',
-        data: [18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18]
+        data: <?php echo json_encode($graphs['yearly_target']) ?>
       }]
     };
 
