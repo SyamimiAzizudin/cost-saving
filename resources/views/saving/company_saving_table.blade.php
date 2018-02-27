@@ -32,7 +32,7 @@
                         @for($i = 1; $i <= 12; $i++)
                         <?php $cum_target_iv += $company_savings[$v->id][$i]['target_saving']; ?>
                         @endfor            
-                        <th class="fixed-side"><b> RM  {{ $cum_target_iv }}</b></th>
+                        <th class="fixed-side"><b> RM  {{ number_format($cum_target_iv, 2, '.', ',')}}</b></th>
                         @for($i = 1; $i <= 12; $i++)
                             @if($company_savings[$v->id][$i]['target_saving'] != null)
                                 <td>
