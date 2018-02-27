@@ -144,10 +144,11 @@ class SavingsController extends Controller
                         'actual_saving' => $v2->actual_saving,
                         'target_saving' => $v2->target_saving
                     ];
-
                 }
             }
         }
+        
+
 
         #dd($company_savings);
         $data['company_savings'] = $company_savings;
