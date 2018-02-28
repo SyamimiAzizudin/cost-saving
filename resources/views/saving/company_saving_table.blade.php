@@ -23,8 +23,8 @@
                 </tr>
                 </thead>
                 <tbody>
-                <?php $cum_target_iv = 0; ?>
                 @foreach($initiatives as $v)
+                <?php $cum_target_iv = 0; ?>
                     <tr>
                         <th class="fixed-side" rowspan="7">{!! $v->area !!}</th>
                         <th class="fixed-side" rowspan="7">{!! $v->analyze !!}</th>
@@ -142,14 +142,16 @@
                         @endfor
                     </tr>
                     <tr>
-                        <th class="fixed-side"><b>Achievement %</b></th>
+                        <th class="fixed-side"><b>Achievement Percentage</b></th>
+                        <?php $achieve = 0; ?>
                         @for($i = 1; $i <= 12; $i++)
-                            @if($company_savings[$v->id][$i]['actual_saving'] != null && $company_savings[$v->id][$i]['target_saving'] != null)
+                        <?php $achieve += $company_savings[$v->id][$i]['actual_saving']; ?>
+                            @if($achieve != null)
                                 <td>
-                                    <p class="text-center">{{ number_format(($company_savings[$v->id][$i]['actual_saving'] / $company_savings[$v->id][$i]['target_saving'])*100, 0)}}</p>
+                                    <p class="text-center">{{ number_format(($achieve / $cum_target_iv)*100, 0) }}%</p>
                                 </td>
                             @else
-                                <td> - </td>
+                                <td> 0 </td>
                             @endif
                         @endfor
                     </tr>
@@ -225,29 +227,20 @@
                     <tr>
                         <td class="fixed-side" colspan="3"></td>
                             <th class="fixed-side" colspan="1" ><b>Overall Achievement Percentage</b></th>
-                            <!-- <?php $AP=0; $OAP=0;?>
-                            @foreach($initiatives as $v)
-                                <?php $AP += $cum_target_iv ?>
-                            @endforeach
-                            <?php $OAP = ($OCS / $AP) ?>
-                            @for($i = 1; $i <= 12; $i++)
-                                @if($OAP != null)
-                                    <td>
-                                        <p class="text-center">{{ number_format(($OAP)*100, 0)}}</p>
-                                    </td>
-                                @else
-                                    <td> - </td>
-                                @endif
-                            @endfor -->
                             <?php $OC = 0; $OAP=0; ?>
                             @for($i = 1; $i <= 12; $i++)
+                            <?php $init_cumm = 0; ?>
                             @foreach($initiatives as $v)
                                 <?php $OC += $company_savings[$v->id][$i]['actual_saving']; ?>
-                                <?php $OAP = ($OC / $cum_target_iv) ?>
+
+                                @for($t = 1; $t <= 12; $t++)
+                                    <?php $init_cumm += $company_savings[$v->id][$t]['target_saving']; ?>
+                                @endfor
+
                             @endforeach
-                                @if($OAP != null)
+                                @if($OC != null)
                                     <td>
-                                        <p class="text-center"><!-- {{ number_format($AP, 2 ,'.' ,',')}} -->{{ number_format(($OAP)*100, 0)}}</p>
+                                        <p class="text-center">{{ number_format(($OC / $init_cumm)*100, 0) }}%</p>
                                     </td>
                                 @else
                                     <td> - </td>
