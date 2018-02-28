@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+
 <div class="row">
     <div class="col-lg-12">
         <h1 class="page-header">Dashboard - {{ $company->name }}</h1>
@@ -79,19 +80,19 @@
             <div class="form-group col-md-6">
                 <label for="month" class="col-sm-3 control-label">Month</label>
                 <div class="col-sm-6">
-                    <select name="month" class="form-control" id="usercompany" required>
-                        <option value="1" >January</option>
-                        <option value="2" >February</option>
-                        <option value="3" >March</option>
-                        <option value="4" >April</option>
-                        <option value="5" >May</option>
-                        <option value="6" >June</option>
-                        <option value="7" >July</option>
-                        <option value="8" >August</option>
-                        <option value="9" >September</option>
-                        <option value="10" >October</option>
-                        <option value="11" >November</option>
-                        <option value="12" >December</option>
+                    <select name="month" class="form-control" id="initiative_company">
+                        <option value="1">January</option>
+                        <option value="2">February</option>
+                        <option value="3">March</option>
+                        <option value="4">April</option>
+                        <option value="5">May</option>
+                        <option value="6">June</option>
+                        <option value="7">July</option>
+                        <option value="8">August</option>
+                        <option value="9">September</option>
+                        <option value="10">October</option>
+                        <option value="11">November</option>
+                        <option value="12">December</option>
                     </select>
                 </div>
             </div>
@@ -129,7 +130,7 @@
     //initial load
     getTable(1);
     $(function() {
-        $("#usercompany").on('change', function(){
+        $("#initiative_company").on('change', function(){
             var selected_value = $(this).find(":selected").val();
             getTable(selected_value);
         });
@@ -165,7 +166,7 @@
       },
       yAxis: {
         title: {
-          text: 'Saving (RM)'
+          text: 'Savings (RM)'
         },
         plotLines: [{
           value: 0,

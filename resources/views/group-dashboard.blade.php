@@ -167,7 +167,7 @@
       },
       yAxis: {
         title: {
-          text: 'Saving (RM)'
+          text: 'Savings (RM)'
         },
         plotLines: [{
           value: 0,

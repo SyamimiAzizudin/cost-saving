@@ -10,7 +10,11 @@
         <tr>
             <td><b><a class="col-md-12 control-label" href="{{ url('/group-dashboard') }}/{{$v->group}}">{{  $v->group }}</a></b></td>
             <td><label for="saving_target" class="col-md-12 number text-right control-label">{{  number_format( ($v->target), 2, '.', ',') }}</label></td>
+            @if($v->actual >= $v->target )
+            <td><label for="actual_saving" class="col-md-12 number text-right control-labe good">{{  number_format( ($v->actual), 2, '.', ',' ) }}</label></td>
+            @else
             <td><label for="actual_saving" class="col-md-12 number text-right control-labe fail">{{  number_format( ($v->actual), 2, '.', ',' ) }}</label></td>
+            @endif
             <td><label for="Target" class="col-md-12 number text-center control-label">{{ number_format(($v->actual/$v->target) * 100,0) }}</label></td>
         </tr>
         <?php $i++; ?>
