@@ -10,7 +10,7 @@
     @forelse ($initiatives as $w)
     @if($w->company_id == $company->id)
         <tr>
-            <td><b><a class="col-md-12 control-label" href="{{ url('/saving-company') }}/{{ $w->company_id }}">{{ $w->area }}</a></b></td>
+            <td><b>{{ $w->area }}</b></td>
             <td>
                 <label for="Target" class="col-md-12 text-right number control-label">
                     {{ number_format( ($w->target_saving), 2, '.', ',') }}
@@ -25,3 +25,12 @@
     @empty
     @endforelse
 </table>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="text-center padding2">
+            <a class="btn btn-outline-info info" href="{{ url('/saving-company') }}/{{ $id }}">Open Cost Saving</a>
+        </div>
+    </div>
+</div>
+

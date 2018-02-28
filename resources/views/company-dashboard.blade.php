@@ -174,7 +174,7 @@
         }]
       },
       tooltip: {
-        valueSuffix: 'm'
+        valueSuffix: ''
       },
       legend: {
         layout: 'vertical',

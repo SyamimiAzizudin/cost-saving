@@ -142,8 +142,6 @@ class HomeController extends Controller
             ])
             ->sum('actual_saving');
 
-        #dd($companies);
-
         //todo graph query for group dashboard    
         $targets = DB::select('select `month`,
             sum(`savings`.`target_saving`) as target_saving
@@ -253,10 +251,7 @@ class HomeController extends Controller
 
     public function company_dashboard($id)
     {
-        // $init = Initiative::all();
         $company = Company::findOrFail($id);
-
-        // return view('company-dashboard', compact('init','company'));
 
         $current_year = Carbon::now()->year;
         $current_month = Carbon::now()->month;
@@ -285,8 +280,6 @@ class HomeController extends Controller
                 }
             ])
             ->sum('actual_saving');
-
-        #dd($companies);
 
         //todo graph query for company dashboard    
         $targets = DB::select('select `month`,
@@ -358,8 +351,8 @@ class HomeController extends Controller
             ])
             ->sum('actual_saving');
 
-        $initiatives = Company::with([
-            'initiatives.savings' => function($query){
+        $initiatives = Initiative::with([
+            'savings' => function($query){
                 $query->where('month', Carbon::now()->month);
                 $query->orderBy('month');
             }
