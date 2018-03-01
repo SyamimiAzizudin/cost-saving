@@ -15,8 +15,11 @@
                     {{ number_format( ($company->target_saving), 2, '.', ',') }}
                 </label>
             </td>
+            @if($company->actual_saving<$company->target_saving)
                 <td><label for="Target" class="col-md-12 text-right number control-label fail">{{ number_format( ($company->actual_saving), 2, '.', ',') }}</label></td>
-            
+            @else
+                <td><label for="Target" class="col-md-12 text-right number control-label good">{{ number_format( ($company->actual_saving), 2, '.', ',') }}</label></td>
+            @endif
             <td><label for="Target" class="col-md-12 text-center number control-label">{{ number_format(($company->actual_saving/$company->target_saving) * 100,0) }}</label></td>
         </tr>
         <?php $i++; ?>
