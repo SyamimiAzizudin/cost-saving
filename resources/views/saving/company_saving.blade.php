@@ -22,9 +22,9 @@
         <a href="#" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span> Edit</a>
         <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Save</button>
     </div>
-</div> --}}
+</div>
 
-<!-- Button trigger modal -->
+<!-- Button trigger modal --> --}}
 
 
 <!-- Modal -->
@@ -57,15 +57,7 @@
 <script>
     // requires jquery library
     jQuery(document).ready(function() {
-       jQuery(".main-table").clone(true).appendTo('#table-scroll').addClass('clone'); 
-
-       // $(".editable").click(function(){
-       //  //console.log(this)
-       //  console.log('123')
-       //    var dom = "<input type='text' />";
-       //    console.log($(this))
-       //    $(this).html(dom);
-       // });
+       jQuery(".main-table").clone(true).appendTo('#table-scroll').addClass('clone');
 
         getTable();
 

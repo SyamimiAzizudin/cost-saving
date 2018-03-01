@@ -10,9 +10,10 @@
             <li><a href="{{ url('/home') }}">Home</a></li>
             <li class="active">Main Dashboard</li>
         </ol>
-    </div>
+    </div></div></div></div></div>
 
-    <div class="col-md-12  form-group">
+<div class="text-center">
+    <div class="table-container">
         <div class="col-md-2 panel panel-default">
             <div class="panel-heading text-center">
                  <h5>Yearly Target</h5>
@@ -58,80 +59,85 @@
             </div>
         </div>
     </div>
-        
-    <!-- Update Date-->
-    <div class="col-lg-12">
-        <p class="text-right">Latest Date Update : {{ $timestamp->format('g:i A, d F Y') }}</p>
-    </div>
 </div>
 
-<!-- Dashboard Section -->
-<div class="row">
-    <div class="col-lg-12">
-        <center>
-            
-            <div id="app">
-                <highcharts :options="options" ref="highcharts"></highcharts>
-            </div>
-
-            <br>
-
-            <div class="col-md-8 col-md-offset-2">
-                <?php $i=0 ?>
-                @forelse ($companies as $company)
-                <div class="col-md-4">
-                    <a href="{{ url('/group-dashboard') }}/{{$company->group}}" type="button" class="btn btn-lg btn-primary custom1">Dashboard {{$company->group}}</a>
-                </div>
-                <?php $i++; ?>
-                @empty
-                @endforelse
-            </div>
-
-        </center>
-    </div>
-</div>
-        
-<!--Summary-->
-<div class="row">
-    <div class="col-md-12 padding2">
+<div class="container">
+    <div class="row">
         <div class="col-md-12">
-            <h3 class="page-header">Cost Saving Summary - Group</h3>
+            <!-- Update Date-->
+            <div class="col-lg-12">
+                <p class="text-right">Last Update Savings: {{ Carbon\Carbon::parse($last_update)->format('g:i A, d F Y') }}</p>
+            </div>
 
-            <div class="form-group col-md-6">
-                <label for="month" class="col-sm-3 control-label">Month</label>
-                <div class="col-sm-6">
-                    <select name="month" class="form-control" id="usercompany">
-                        <option value="1">January</option>
-                        <option value="2">February</option>
-                        <option value="3">March</option>
-                        <option value="4">April</option>
-                        <option value="5">May</option>
-                        <option value="6">June</option>
-                        <option value="7">July</option>
-                        <option value="8">August</option>
-                        <option value="9">September</option>
-                        <option value="10">October</option>
-                        <option value="11">November</option>
-                        <option value="12">December</option>
-                    </select>
+    <!-- Dashboard Section -->
+    <div class="row">
+        <div class="col-lg-12">
+            <center>
+                
+                <div id="app">
+                    <highcharts :options="options" ref="highcharts"></highcharts>
+                </div>
+
+                <br>
+
+                <div class="col-md-8 col-md-offset-2">
+                    <?php $i=0 ?>
+                    @forelse ($companies as $company)
+                    <div class="col-md-4">
+                        <a href="{{ url('/group-dashboard') }}/{{$company->group}}" type="button" class="btn btn-lg btn-primary custom1">Dashboard {{$company->group}}</a>
+                    </div>
+                    <?php $i++; ?>
+                    @empty
+                    @endforelse
+                </div>
+
+            </center>
+        </div>
+    </div>
+        
+    <!--Summary-->
+    <div class="row">
+        <div class="col-md-12 padding2">
+            <div class="col-md-12">
+                <h3 class="page-header">Cost Saving Summary - Group</h3>
+
+                <div class="form-group col-md-6">
+                    <label for="month" class="col-sm-3 control-label">Month</label>
+                    <div class="col-sm-6">
+                        <select name="month" class="form-control" id="usercompany">
+                            <option value="1">January</option>
+                            <option value="2">February</option>
+                            <option value="3">March</option>
+                            <option value="4">April</option>
+                            <option value="5">May</option>
+                            <option value="6">June</option>
+                            <option value="7">July</option>
+                            <option value="8">August</option>
+                            <option value="9">September</option>
+                            <option value="10">October</option>
+                            <option value="11">November</option>
+                            <option value="12">December</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-12 padding2">
+                <div class="form-group">
+                    <div id="saving_summary"></div>
                 </div>
             </div>
         </div>
+        
 
-        <div class="col-md-12 padding2">
-            <div class="form-group">
-                <div id="saving_summary"></div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="text-right padding2">
+                <a href="{{ url('/print-overall') }}" class="btn btn-outline-success success">Print Overall Page</a>
             </div>
         </div>
     </div>
 
-<div class="row">
-    <div class="col-lg-12">
-        <div class="text-right padding2">
-            <a href="{{ url('/print-overall') }}" class="btn btn-outline-success success">Print Overall Page</a>
-        </div>
-    </div>
-</div>
 
 <!-- Footer -->
 <div class="container">
@@ -144,6 +150,7 @@
         </div>
     </footer>
 </div>
+
 <script>
     //initial load
     getTable(1);

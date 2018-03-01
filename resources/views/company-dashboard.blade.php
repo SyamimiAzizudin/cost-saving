@@ -11,10 +11,9 @@
             <li><a href="{{ url('/group-dashboard') }}">Group Dashboard</a></li>
             <li class="active">Dashboard - {{ $company->name }}</li>
         </ol>
-    </div>
-
-    <div class="col-md-12 form-group">
-
+    </div></div></div></div></div>
+<div class="text-center">
+    <div class="table-container">
         <div class="col-md-2 panel panel-default">
             <div class="panel-heading text-center">
                 <h5>Yearly Target</h5>
@@ -55,64 +54,71 @@
                 <h3> {{ number_format(($cummulative_actual/$cummulative_target) * 100,0) }} % </h3>
             </div>
         </div>
-        <p class="text-right">Latest Date Update : {{ $timestamp->format('g:i A, d F Y') }} </p>
-    </div>
-</div><!-- /.row -->
-
-<div class="row">
-    <div class="col-lg-12">
-        <center>
-
-        <div id="app">
-            <highcharts :options="options" ref="highcharts"></highcharts>
-        </div>
-
-        </center>
     </div>
 </div>
 
-<!--Summary-->
-<div class="row">
-    <div class="col-md-12 padding2">
+<div class="container">
+    <div class="row">
         <div class="col-md-12">
-            <h3 class="page-header">Cost Saving Summary - {{ $company->name }}</h3>
+            <!-- Update Date-->
+            <div class="col-lg-12">
+                <p class="text-right">Last Update Savings: {{ Carbon\Carbon::parse($last_update)->format('g:i A, d F Y') }}</p>
+            </div>
+            
+    <!-- Chart Section -->
+    <div class="row">
+        <div class="col-lg-12">
+            <center>
 
-            <div class="form-group col-md-6">
-                <label for="month" class="col-sm-3 control-label">Month</label>
-                <div class="col-sm-6">
-                    <select name="month" class="form-control" id="initiative_company">
-                        <option value="1">January</option>
-                        <option value="2">February</option>
-                        <option value="3">March</option>
-                        <option value="4">April</option>
-                        <option value="5">May</option>
-                        <option value="6">June</option>
-                        <option value="7">July</option>
-                        <option value="8">August</option>
-                        <option value="9">September</option>
-                        <option value="10">October</option>
-                        <option value="11">November</option>
-                        <option value="12">December</option>
-                    </select>
+            <div id="app">
+                <highcharts :options="options" ref="highcharts"></highcharts>
+            </div>
+
+            </center>
+        </div>
+    </div>
+
+    <!--Summary-->
+    <div class="row">
+        <div class="col-md-12 padding2">
+            <div class="col-md-12">
+                <h3 class="page-header">Cost Saving Summary - {{ $company->name }}</h3>
+
+                <div class="form-group col-md-6">
+                    <label for="month" class="col-sm-3 control-label">Month</label>
+                    <div class="col-sm-6">
+                        <select name="month" class="form-control" id="initiative_company">
+                            <option value="1">January</option>
+                            <option value="2">February</option>
+                            <option value="3">March</option>
+                            <option value="4">April</option>
+                            <option value="5">May</option>
+                            <option value="6">June</option>
+                            <option value="7">July</option>
+                            <option value="8">August</option>
+                            <option value="9">September</option>
+                            <option value="10">October</option>
+                            <option value="11">November</option>
+                            <option value="12">December</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-12 padding2">
+                <div class="form-group">
+                    <div id="saving_summary"></div>
                 </div>
             </div>
         </div>
 
-        <div class="col-md-12 padding2">
-            <div class="form-group">
-                <div id="saving_summary"></div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="text-right padding2">
+                <button class="btn btn-outline-success success">Print Overall Page</button>
             </div>
         </div>
     </div>
-<!-- </div> -->
-
-<div class="row">
-    <div class="col-lg-12">
-        <div class="text-right padding2">
-            <button class="btn btn-outline-success success">Print Overall Page</button>
-        </div>
-    </div>
-</div>
 
 <!-- Footer -->
 <div class="container">

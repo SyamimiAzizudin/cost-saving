@@ -19,11 +19,7 @@ class SavingsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function prototype()
-    {
-        return view('saving.proto');
-    }
-
+    
     public function companylist()
     {
         $savings = Saving::all();

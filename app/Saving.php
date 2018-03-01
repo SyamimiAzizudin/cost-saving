@@ -14,13 +14,11 @@ class Saving extends Model
         'month'
     ];
 
-    // public function getPriceAttribute($actual_saving)
-    // {
-    //     return $this->attributes['actual_saving'] = sprintf('U$ %s', number_format($actual_saving, 2));
-    // }
+    protected $dates = ['created_at', 'updated_at'];
    
     public function initiatives()
     {
         return $this->belongsTo(Initiative::class);
     }
+
 }
