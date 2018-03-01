@@ -61,7 +61,7 @@
         
     <!-- Update Date-->
     <div class="col-lg-12">
-        <p class="text-right">Last Update Savings: {{ $timestamp->updated_at->format('g:i A, d F Y') }}</p>
+        <p class="text-right">Last Update Savings: {{ $timestamp->format('g:i A, d F Y') }}</p>
     </div>
 </div>
 
