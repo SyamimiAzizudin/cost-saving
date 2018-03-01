@@ -12,7 +12,7 @@
         </ol>
     </div>
 
-    <div class="col-md-12  form-group">
+    <div class="col-md-12 form-group">
         <div class="col-md-2 panel panel-default">
             <div class="panel-heading text-center">
                  <h5>Yearly Target</h5>
@@ -61,7 +61,7 @@
         
     <!-- Update Date-->
     <div class="col-lg-12">
-        <p class="text-right">Last Update Savings: {{ $timestamp->format('g:i A, d F Y') }}</p>
+        <p class="text-right">Last Update Savings: {{ Carbon\Carbon::parse($last_update)->format('g:i A, d F Y') }}</p>
     </div>
 </div>
 

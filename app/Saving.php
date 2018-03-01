@@ -21,14 +21,4 @@ class Saving extends Model
         return $this->belongsTo(Initiative::class);
     }
 
-    public function getCreated_timestampAttribute()
-    {
-        return $this->created_at->timestamp();
-    }
-
-    public function getUpdated_timestampAttribute()
-    {
-        return $this->updated_at->timestamp();
-    }
-
 }

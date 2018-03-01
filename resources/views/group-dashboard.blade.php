@@ -55,7 +55,7 @@
                 <h3>{{ number_format(($cummulative_actual/$cummulative_target) * 100,0) }} % </h3>
             </div>
         </div>
-        <p class="text-right ">Last Update Savings : {{ $timestamp->format('g:i A, d F Y') }} </p>
+        <p class="text-right ">Last Update Savings : {{ Carbon\Carbon::parse($last_update)->format('g:i A, d F Y') }} </p>
     </div>
 </div>
 
