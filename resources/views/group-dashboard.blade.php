@@ -13,14 +13,13 @@
             <li class="active">Dashboard - {{ $group }} Group</li>
         </ol>
     </div>
-
     <div class="col-md-12 form-group">
         <div class="col-md-2 panel panel-default">
             <div class="panel-heading text-center">
                 <h5>Yearly Target </h5>
             </div>
             <div class="panel-body text-center">
-                <h3>RM {{ number_format( ($yearly_target/1000000), 2, '.', ',' ) }} m</h3>
+                <h3>RM {{ number_format( ($yearly_target/1000000), 1, '.', ',' ) }} m</h3>
             </div>
         </div>
         <div class="col-md-3 panel panel-default">
@@ -167,7 +166,7 @@
       },
       yAxis: {
         title: {
-          text: 'Saving (RM)'
+          text: 'Savings (RM)'
         },
         plotLines: [{
           value: 0,
