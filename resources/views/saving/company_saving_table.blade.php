@@ -40,9 +40,9 @@
                             @if($company_savings[$v->id][$i]['target_saving'] != null)
                                 <td>
                                     <p class="text-right">{{ number_format(($company_savings[$v->id][$i]['target_saving']), 2, '.', ',') }}</p>
-                                    <br>
+                                    {{-- <br>
                                     <button type="button" class="btn btn-warning btn-sm openModal" data-toggle="modal" data-value="{{ $company_savings[$v->id][$i]['target_saving'] }}" data-id="0" data-month="{{ $i }}" data-section="target_saving" data-initiative_id="{{ $v->id }}" data-saving_id="">Edit
-                                    </button>
+                                    </button> --}}
                                 </td>
                             @else
 

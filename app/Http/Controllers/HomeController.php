@@ -39,7 +39,7 @@ class HomeController extends Controller
 
         $current_year = Carbon::now()->year;
         $current_month = Carbon::now()->month;
-        $timestamp = Carbon::now();
+        $timestamp = Saving::all();
 
         //todo 5 big numbers query for that year
         $yearly_target = Saving::sum('target_saving');
