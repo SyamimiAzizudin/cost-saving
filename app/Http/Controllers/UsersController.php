@@ -107,14 +107,14 @@ class UsersController extends Controller
         $this->validate($request, [
             'username' => 'required',
             'email' => 'required',
-            'password' => 'required',
+            // 'password' => 'required',
         ]);
 
         $user = User::findOrFail($id);
 
         $user->username = $request->username;
         $user->email = $request->email;
-        $user->password = bcrypt($request->password);
+        // $user->password = bcrypt($request->password);
         $user->company_id = $request->company_id;
         $user->save();
         

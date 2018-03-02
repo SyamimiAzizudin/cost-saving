@@ -45,14 +45,13 @@
                 </div>
             </div>
 
-            <div class="form-group">
+            {{-- <div class="form-group">
                 <label for="password" class="col-sm-3 control-label">Password</label>
                 <div class="col-sm-9">
                     {!! Form::text('password', null, array('placeholder' => 'Password','class' => 'form-control')) !!}
-                    {{-- <input type="password" class="form-control" name="password" required> --}}
-
+                    <input type="password" class="form-control" name="password" required>
                 </div>
-            </div>
+            </div> --}}
 
     		<div class="form-group">
     			<div class = "col-sm-offset-3 col-sm-9">
