@@ -8,8 +8,6 @@
                 <ol class="breadcrumb">
                     <li><a href="{{ url('/home') }}">Home</a>
                     </li>
-                    <li><a href="{{ url('/group-dashboard') }}">Dashboard</a>
-                    </li>
                     <li class="active">Company Management</li>
                 </ol>
 

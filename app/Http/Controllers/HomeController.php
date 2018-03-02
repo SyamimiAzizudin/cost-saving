@@ -269,7 +269,7 @@ class HomeController extends Controller
                 ->where('companies.id', $v->id)
                 ->where('savings.month', $month)
                 ->first();
-            //     dd($result);
+                // dd($result);
 
             // $res = DB::select('select sum(`savings`.`actual_saving`) as actual, sum(`savings`.`target_saving` ) as target
             // from `savings` 

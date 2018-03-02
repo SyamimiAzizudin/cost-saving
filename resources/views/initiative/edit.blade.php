@@ -3,27 +3,23 @@
 @section('content')
 <div class="row">
 	<div class="col-lg-12">
-		<h3 class="page-header">Edit Initiative</h3>
-		<ol class="breadcrumb">
-            <li><a href="{{ url('/home') }}">Home</a></li>
-            <li class="active">Edit Initiative</li>
-        </ol>
+		<h3 class="page-header">Initiative Management</h3>
     </div>
 </div>
 
 <div class="row">
-	<div class="col-md-12 form-horizontal">
+	<div class="col-md-8 col-md-offset-2 form-horizontal">
 		<div class="page-header">
 			<h3>Edit Initiative</h3>
 		</div>
 
-    	<div class="col-md-10 col-md-offset-2">
+    	<div class="col-md-12">
         {!! Form::model($initiative, ['method' => 'PATCH','action' =>  ['InitiativesController@update', $initiative->id], 'files' => true]) !!}
             
             <div class="form-group">
-                <label for="area" class="col-sm-3 control-label">Company</label>
+                <!-- <label for="area" class="col-sm-3 control-label">Company</label> -->
                 <div class="col-sm-9">
-                    <input type="text" name="company_id" value="{{$initiative->company_id}}" class="form-control" >
+                    <input type="hidden" name="company_id" value="{{$initiative->company_id}}" class="form-control" >
                 </div>
             </div>
 
