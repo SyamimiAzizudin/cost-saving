@@ -29,7 +29,7 @@
 <div class="row">
     <div class="col-lg-12">
         <div class="text-center padding2">
-            <a class="btn btn-outline-info info" href="{{ url('/saving-company') }}/{{ $id }}">Open Cost Saving</a>
+            <a class="btn btn-outline-info info" href="{{ url('/saving-company') }}/{{ $id }}">View All Savings</a>
         </div>
     </div>
 </div>
