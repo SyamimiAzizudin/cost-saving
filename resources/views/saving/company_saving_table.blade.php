@@ -61,11 +61,19 @@
                         <th class="fixed-side"><b>ACTUAL SAVING FOR THE MONTH</b></th>
                         @for($i = 1; $i <= 12; $i++)
                             @if($company_savings[$v->id][$i]['actual_saving'] != null)
+                                {{-- @if ($company_savings[$v->id][$i]['actual_saving'] >= $company_savings[$v->id][$i]['target_saving']) --}}
                                 <td>
                                     <p class="text-right">{{number_format(($company_savings[$v->id][$i]['actual_saving']), 2, '.', ',')}}</p>
                                     <button type="button" class="btn btn-info btn-sm openModal" data-toggle="modal" data-value="{{ $company_savings[$v->id][$i]['actual_saving'] }}" data-id="0" data-month="{{ $i }}" data-section="actual_saving" data-initiative_id="{{ $v->id }}">Edit
                                     </button>
                                 </td>
+                                {{-- @else
+                                <td
+                                   <p class="text-right fail">{{number_format(($company_savings[$v->id][$i]['actual_saving']), 2, '.', ',')}}</p>
+                                    <button type="button" class="btn btn-info btn-sm openModal" data-toggle="modal" data-value="{{ $company_savings[$v->id][$i]['actual_saving'] }}" data-id="0" data-month="{{ $i }}" data-section="actual_saving" data-initiative_id="{{ $v->id }}">Edit
+                                    </button>
+                                </td>
+                                @endif --}}
                             @else
                                 <td>
                                     <span class="editable">
@@ -83,7 +91,7 @@
                         @for($i = 1; $i <= 12; $i++)
                             @if($company_savings[$v->id][$i]['target_saving'] != null)
                                 <td>
-                                    <p class="text-right">{{ number_format(($company_savings[$v->id][$i]['target_saving']), 2, '.', ',') }}</p>
+                                    <b><p class="text-right">{{ number_format(($company_savings[$v->id][$i]['target_saving']), 2, '.', ',') }}</p></b>
                                     {{-- <br>
                                     <button type="button" class="btn btn-warning btn-sm openModal" data-toggle="modal" data-value="{{ $company_savings[$v->id][$i]['target_saving'] }}" data-id="0" data-month="{{ $i }}" data-section="target_saving" data-initiative_id="{{ $v->id }}" data-saving_id="">Edit
                                     </button> --}}
@@ -108,7 +116,7 @@
                         <?php $TCM += $company_savings[$v->id][$i]['target_saving']; ?>
                             @if($TCM != null)
                                 <td>
-                                    <p class="text-right">{{ number_format($TCM, 2 ,'.' ,',')}}</p>
+                                    <b><p class="text-right">{{ number_format($TCM, 2 ,'.' ,',')}}</p></b>
                                 </td>
                             @else
                                 <td> - </td>
@@ -119,9 +127,15 @@
                         <th class="fixed-side"><b>Actual Saving for the Month</b></th>
                         @for($i = 1; $i <= 12; $i++)
                             @if($company_savings[$v->id][$i]['actual_saving'] != null)
-                                <td>
-                                    <p class="text-right">{{ number_format(($company_savings[$v->id][$i]['actual_saving']), 2, '.', ',')}}</p>
-                                </td>
+                                @if ($company_savings[$v->id][$i]['actual_saving'] >= $company_savings[$v->id][$i]['target_saving'])
+                                    <td>
+                                        <p class="text-right good">{{ number_format(($company_savings[$v->id][$i]['actual_saving']), 2, '.', ',')}}</p>
+                                    </td>
+                                @else
+                                    <td>
+                                        <p class="text-right fail">{{ number_format(($company_savings[$v->id][$i]['actual_saving']), 2, '.', ',')}}</p>
+                                    </td>
+                                @endif
                             @else
                                 <td> - </td>
                             @endif
@@ -133,9 +147,15 @@
                         @for($i = 1; $i <= 12; $i++)
                         <?php $ACM += $company_savings[$v->id][$i]['actual_saving']; ?>
                             @if($ACM != null)
+                                @if ($ACM >= $TCM)
                                 <td>
-                                    <p class="text-right">{{ number_format($ACM, 2 ,'.' ,',')}}</p>
+                                    <b><p class="text-right good">{{ number_format($ACM, 2 ,'.' ,',')}}</p></b>
                                 </td>
+                                @else
+                                <td>
+                                    <b><p class="text-right fail">{{ number_format($ACM, 2 ,'.' ,',')}}</p></b>
+                                </td>
+                                @endif
                             @else
                                 <td> - </td>
                             @endif
@@ -148,7 +168,7 @@
                         <?php $achieve += $company_savings[$v->id][$i]['actual_saving']; ?>
                             @if($achieve != null)
                                 <td>
-                                    <p class="text-center">{{ number_format(($achieve / $cum_target_iv)*100, 0) }}%</p>
+                                    <b><p class="text-center">{{ number_format(($achieve / $cum_target_iv)*100, 0) }}%</p></b>
                                 </td>
                             @else
                                 <td> 0 </td>
@@ -166,7 +186,7 @@
                             @endforeach
                                 @if($OTTS != null)
                                     <td>
-                                        <p class="text-right">{{ number_format($OTTS, 2 ,'.' ,',')}}</p>
+                                        <b><p class="text-right">{{ number_format($OTTS, 2 ,'.' ,',')}}</p></b>
                                     </td>
                                 @else
                                     <td> - </td>
@@ -183,7 +203,7 @@
                             @endforeach
                                 @if($OTCS != null)
                                     <td>
-                                        <p class="text-right">{{ number_format($OTCS, 2 ,'.' ,',')}}</p>
+                                        <b><p class="text-right">{{ number_format($OTCS, 2 ,'.' ,',')}}</p></b>
                                     </td>
                                 @else
                                     <td> - </td>
@@ -198,10 +218,16 @@
                             @foreach($initiatives as $v)
                             <?php $OTAS += $company_savings[$v->id][$i]['actual_saving']; ?>
                             @endforeach
-                                @if($OTAS != null)
+                                @if($OTAS != null )
+                                    @if ($OTAS >= $OTTS)
                                     <td>
-                                        <p class="text-right">{{ number_format($OTAS, 2 ,'.' ,',')}}</p>
+                                        <b><p class="text-right good">{{ number_format($OTAS, 2 ,'.' ,',')}}</p></b>
                                     </td>
+                                    @else
+                                    <td>
+                                        <b><p class="text-right fail">{{ number_format($OTAS, 2 ,'.' ,',')}}</p></b>
+                                    </td>
+                                    @endif
                                 @else
                                     <td> - </td>
                                 @endif
@@ -216,9 +242,15 @@
                             <?php $OCS += $company_savings[$v->id][$i]['actual_saving']; ?>
                             @endforeach
                                 @if($OCS != null)
+                                    @if ($OCS >= $OTCS)
                                     <td>
-                                        <p class="text-right">{{ number_format($OCS, 2 ,'.' ,',')}}</p>
+                                        <b><p class="text-right good">{{ number_format($OCS, 2 ,'.' ,',')}}</p></b>
                                     </td>
+                                    @else
+                                    <td>
+                                        <b><p class="text-right fail">{{ number_format($OCS, 2 ,'.' ,',')}}</p></b>
+                                    </td>
+                                    @endif
                                 @else
                                     <td> - </td>
                                 @endif
@@ -240,7 +272,7 @@
                             @endforeach
                                 @if($OC != null)
                                     <td>
-                                        <p class="text-center">{{ number_format(($OC / $init_cumm)*100, 0) }}%</p>
+                                        <b><p class="text-center">{{ number_format(($OC / $init_cumm)*100, 0) }}%</p></b>
                                     </td>
                                 @else
                                     <td> - </td>
