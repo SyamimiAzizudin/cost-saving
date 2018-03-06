@@ -29,7 +29,11 @@
                         <td>{{ $user->username }}</td>
                         <td>{{ $user->email }}</td>
                         <!-- <td>{{ $user->company_id }}</td> -->
-                        <td>{{ $user->company_id }}</td>
+                        <td>
+                            @if($user->company_id != null)
+                                {{ $user->companies->name }}
+                            @endif
+                        </td>
                         <td>
                             @if($user->id)
                             <a href="{{ action('UsersController@edit', $user->id) }}" class="btn btn-success btn-xs">Edit</a>

@@ -23,7 +23,8 @@ class UsersController extends Controller
      */
     public function index()
     {
-        $users = User::all();
+        $users = User::with(['companies'])->get();
+
         $companies = Company::pluck('name','id');
         // $company = User::with('company')->whereRaw('companies.id = users.company_id');
         // $company = Company::select('group')->first();
@@ -33,7 +34,7 @@ class UsersController extends Controller
         //     inner join `companies` on `companies`.`id` = `users`.`id`
         //     where `companies`.`id` = '.$companies.'');
 
-        return view('user.index', compact('users', 'companies', 'company'));
+        return view('user.index', compact('users', 'companies'));
     }
 
     /**

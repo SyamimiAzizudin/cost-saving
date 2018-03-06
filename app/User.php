@@ -42,7 +42,7 @@ class User extends Authenticatable
      */
     public function companies()
     {
-        return $this->hasOne(Company::class, 'user_id');
+        return $this->belongsTo(Company::class, 'company_id');
     }
 
     /**
