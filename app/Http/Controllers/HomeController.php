@@ -420,13 +420,13 @@ class HomeController extends Controller
             ])
             ->sum('actual_saving');
 
-        $initiatives = Company::with([
-            'initiatives.savings' => function($query){
+        $initiatives = Initiative::with([
+            'savings' => function($query){
                 $query->where('month', Carbon::now()->month);
                 $query->orderBy('month');
             }
         ])
-        ->where('id', $id)
+        ->where('company_id', $id)
         ->get();
 
         foreach ($initiatives as $k => $v)
@@ -435,7 +435,7 @@ class HomeController extends Controller
                 ->join('initiatives', 'savings.initiative_id', '=', 'initiatives.id')
                 ->join('companies', 'companies.id', '=', 'initiatives.company_id')
                 ->select('savings.actual_saving', 'savings.target_saving')
-                ->where('companies.id', $v->id)
+                ->where('initiatives.id', $v->id)
                 ->where('savings.month', $month)
                 ->first();
 
@@ -452,8 +452,8 @@ class HomeController extends Controller
             }
 
         }
-
-        $data['initiatives'] = $initiatives;
+        
+        //$data['initiatives'] = $initiatives;
         return view('company_dashboard_cost_saving_summary', compact('initiatives', 'id', 'cummulative_target', 'cummulative_actual', 'init'));
     }
 
