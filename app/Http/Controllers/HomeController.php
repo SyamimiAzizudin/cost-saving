@@ -235,7 +235,7 @@ class HomeController extends Controller
         $url = htmlspecialchars_decode($group);
         // dd($url);
         $current_month = Carbon::now()->month;
-        $cummulative_target = Saving::where('month', '<=',$current_month)
+/*        $cummulative_target = Saving::where('month', '<=',$current_month)
             ->with([
                 'initiatives.companies' => function($query)use($group){
                     $query->where('group',$group);
@@ -249,7 +249,7 @@ class HomeController extends Controller
                     $query->where('group',$group);
                 }
             ])
-            ->sum('actual_saving');
+            ->sum('actual_saving');*/
 
         $companies = Company::with([
             'initiatives.savings' => function($query){
@@ -262,13 +262,19 @@ class HomeController extends Controller
 
         foreach ($companies as $k => $v)
         {
-            $result = DB::table('savings')
+            $result_target_saving = DB::table('savings')
                 ->join('initiatives', 'initiatives.id', '=', 'savings.initiative_id')
                 ->join('companies', 'companies.id', '=', 'initiatives.company_id')
-                ->select('savings.actual_saving', 'savings.target_saving')
                 ->where('companies.id', $v->id)
                 ->where('savings.month', $month)
-                ->first();
+                ->sum('savings.target_saving');
+
+            $result_actual_saving = DB::table('savings')
+                ->join('initiatives', 'initiatives.id', '=', 'savings.initiative_id')
+                ->join('companies', 'companies.id', '=', 'initiatives.company_id')
+                ->where('companies.id', $v->id)
+                ->where('savings.month', $month)
+                ->sum('savings.actual_saving');
                 // dd($result);
 
             // $res = DB::select('select sum(`savings`.`actual_saving`) as actual, sum(`savings`.`target_saving` ) as target
@@ -282,18 +288,19 @@ class HomeController extends Controller
 
             $companies[$k]->target_saving = null;
             $companies[$k]->actual_saving = null;
-            if(isset($result->target_saving)) {
-                $companies[$k]->target_saving = $result->target_saving;
+            if(isset($result_target_saving)) {
+                $companies[$k]->target_saving = $result_target_saving;
 
             }
 
-            if(isset($result->actual_saving)) {
-                $companies[$k]->actual_saving = $result->actual_saving;
+            if(isset($result_actual_saving)) {
+                $companies[$k]->actual_saving = $result_actual_saving;
 
             }
 
         }
         $data['companies'] = $companies;
+
         return view('group_dashboard_cost_saving_summary', compact('companies','group', 'cummulative_target', 'cummulative_actual'));
     }
     
