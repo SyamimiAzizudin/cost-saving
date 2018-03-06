@@ -19,10 +19,15 @@
             <div class="form-group {{ $errors->has('company_id') ? ' has-error' : '' }} ">
             <label for="company_name" class="col-sm-3 control-label">Company</label>
                 <div class="col-sm-9">
+
                     <select name="company_id" class="form-control">
-                        <option value="">Select Company</option>
+                        <option value="">Select Company </option>
                         @foreach($companies as $id => $company_name)
-                            <option value="{{ $id }}">{{ $company_name }}</option>
+							@if($user->company_id != null && $user->company_id == $id)
+								<option value="{{ $id }}" selected>{{ $company_name }}</option>
+							@else
+                            	<option value="{{ $id }}">{{ $company_name }}</option>
+							@endif
                         @endforeach
                     </select>
                     @if($errors->has('company_id'))
