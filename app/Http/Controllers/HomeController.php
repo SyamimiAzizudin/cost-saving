@@ -413,7 +413,7 @@ class HomeController extends Controller
             ])
             ->sum('actual_saving');
 
-        $initiatives = Initiative::with([
+        $initiatives = Company::with([
             'initiatives.savings' => function($query){
                 $query->where('month', Carbon::now()->month);
                 $query->orderBy('month');
@@ -428,7 +428,7 @@ class HomeController extends Controller
                 ->join('initiatives', 'savings.initiative_id', '=', 'initiatives.id')
                 ->join('companies', 'companies.id', '=', 'initiatives.company_id')
                 ->select('savings.actual_saving', 'savings.target_saving')
-                ->where('initiatives.id', $v->id)
+                ->where('companies.id', $v->id)
                 ->where('savings.month', $month)
                 ->first();
 
