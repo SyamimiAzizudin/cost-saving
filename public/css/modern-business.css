@@ -274,8 +274,8 @@ footer {
 }
 @media (min-width: 768px) and (max-width: 1300px){
     .table-container {
-        width: 750px;
-        overflow-x: hidden;
+        width: 740px;
+        overflow-x: hidden !important;
         font-size: 12px
     }
     .col {
@@ -288,7 +288,7 @@ footer {
 @media (min-width: 412px) and (max-width: 700px){
     .table-container {
         width: 400px;
-        overflow-x: hidden;
+        overflow-x: hidden !important;
         font-size: 8px;
     }
     .col {

@@ -184,10 +184,11 @@
         valueSuffix: ''
       },
       legend: {
-        layout: 'vertical',
-        align: 'right',
-        verticalAlign: 'middle',
-        borderWidth: 0
+        // layout: 'vertical',
+        // align: 'right',
+        // verticalAlign: 'middle',
+        // borderWidth: 0
+        position: "bottom"
       },
       series: [{
         name: 'Target Savings (RM)',
