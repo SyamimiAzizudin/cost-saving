@@ -25,6 +25,9 @@
                 <tbody>
                 @foreach($initiatives as $v)
                 <?php $cum_target_iv = 0; ?>
+                <?php $TCM = 0; ?>
+                <?php $ACM = 0; ?>
+                <?php $achieve = 0; ?>
                     <tr>
                         <th class="fixed-side" rowspan="7">{!! $v->area !!}</th>
                         <th class="fixed-side" rowspan="7">{!! $v->analyze !!}</th>
@@ -111,7 +114,7 @@
                     </tr>
                     <tr>
                         <th class="fixed-side"><b>Target Cumulative Saving</b></th>
-                        <?php $TCM = 0; ?>
+                        <!-- <?php $TCM = 0; ?> -->
                         @for($i = 1; $i <= 12; $i++)
                         <?php $TCM += $company_savings[$v->id][$i]['target_saving']; ?>
                             @if($TCM != null)
@@ -143,9 +146,11 @@
                     </tr>
                     <tr>
                         <th class="fixed-side"><b>Actual Cumulative Saving</b></th>
-                        <?php $ACM = 0; ?>
+                        <!-- <?php $ACM = 0; ?> -->
+                        <!-- <?php $TCM = 0; ?> -->
                         @for($i = 1; $i <= 12; $i++)
                         <?php $ACM += $company_savings[$v->id][$i]['actual_saving']; ?>
+                        <?php $TCM += $company_savings[$v->id][$i]['target_saving']; ?>
                             @if($ACM != null)
                                 @if ($ACM >= $TCM)
                                 <td>
@@ -163,7 +168,7 @@
                     </tr>
                     <tr>
                         <th class="fixed-side"><b>Achievement Percentage</b></th>
-                        <?php $achieve = 0; ?>
+                        <!-- <?php $achieve = 0; ?> -->
                         @for($i = 1; $i <= 12; $i++)
                         <?php $achieve += $company_savings[$v->id][$i]['actual_saving']; ?>
                             @if($achieve != null)
@@ -237,9 +242,11 @@
                         <td class="fixed-side" colspan="3"></td>
                             <th class="fixed-side" colspan="1" ><b>Overall Cumulative Savings</b></th>
                             <?php $OCS = 0; ?>
+                            <?php $OTCS = 0; ?>
                             @for($i = 1; $i <= 12; $i++)
                             @foreach($initiatives as $v)
                             <?php $OCS += $company_savings[$v->id][$i]['actual_saving']; ?>
+                            <?php $OTCS += $company_savings[$v->id][$i]['target_saving']; ?>
                             @endforeach
                                 @if($OCS != null)
                                     @if ($OCS >= $OTCS)
