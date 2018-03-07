@@ -5,9 +5,9 @@
                 <thead>
                 <tr>
                     <th class="fixed-side"><p class="col"><b>AREA</b></p></th>
-                    <th class="fixed-side"><p class="col" style="width: 200px;"><b>ANALYZE FACTORS OR CAUSES CONTRIBUTING TO CURRENT PERFORMANCE</b></p></th>
-                    <th class="fixed-side"><p class="col" style="width: 200px;"><b>PROPOSED ACTION TO BE TAKEN TO ACHIEVE SAVINGS</b></p></th>
-                    <th class="fixed-side"><p class="col" style="width: 150px;"><b>TARGET COST REDUCTION (ESTIMATE)</b></p></th>
+                    <th class="fixed-side"><p class="col2"><b>ANALYZE FACTORS OR CAUSES CONTRIBUTING TO CURRENT PERFORMANCE</b></p></th>
+                    <th class="fixed-side"><p class="col"><b>PROPOSED ACTION TO BE TAKEN TO ACHIEVE SAVINGS</b></p></th>
+                    <th class="fixed-side"><p class="col"><b>TARGET COST REDUCTION (ESTIMATE)</b></p></th>
                     <th class="col"><b>JAN</b></th>
                     <th class="col"><b>FEB</b></th>
                     <th class="col"><b>MAR</b></th>

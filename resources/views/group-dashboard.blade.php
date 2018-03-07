@@ -188,10 +188,11 @@
         valueSuffix: ''
       },
       legend: {
-        layout: 'vertical',
-        align: 'right',
-        verticalAlign: 'middle',
-        borderWidth: 0
+        position: 'bottom'
+        // layout: 'vertical',
+        // align: 'right',
+        // verticalAlign: 'middle',
+        // borderWidth: 0
       },
       series: [{
         <?php ?>
