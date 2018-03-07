@@ -21,7 +21,7 @@
                 <td><label for="Target" class="col-md-12 text-right number control-label good">{{ number_format( ($company->actual_saving), 2, '.', ',') }}</label></td>
             @endif
             <td>
-                @if($company->target_saving != null)
+                @if($company->target_saving != null && $company->actual_saving != null)
                 <label class="col-md-12 text-center number control-label">
                     {{ number_format(($company->actual_saving/$company->target_saving) * 100,2) }}
                 </label>
