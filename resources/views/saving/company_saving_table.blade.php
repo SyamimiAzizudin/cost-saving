@@ -64,19 +64,17 @@
                         <th class="fixed-side"><b>ACTUAL SAVING FOR THE MONTH</b></th>
                         @for($i = 1; $i <= 12; $i++)
                             @if($company_savings[$v->id][$i]['actual_saving'] != null)
-                                {{-- @if ($company_savings[$v->id][$i]['actual_saving'] >= $company_savings[$v->id][$i]['target_saving']) --}}
+                                @if ($company_savings[$v->id][$i]['actual_saving'] >= $company_savings[$v->id][$i]['target_saving'])
                                 <td>
-                                    <p class="text-right">{{number_format(($company_savings[$v->id][$i]['actual_saving']), 2, '.', ',')}}</p>
-                                    <button type="button" class="btn btn-info btn-sm openModal" data-toggle="modal" data-value="{{ $company_savings[$v->id][$i]['actual_saving'] }}" data-id="0" data-month="{{ $i }}" data-section="actual_saving" data-initiative_id="{{ $v->id }}">Edit
-                                    </button>
+                                    <p class="text-right good">{{number_format(($company_savings[$v->id][$i]['actual_saving']), 2, '.', ',')}}</p>
+                                    <button type="button" class="btn btn-info btn-sm openModal" data-toggle="modal" data-value="{{ $company_savings[$v->id][$i]['actual_saving'] }}" data-id="0" data-month="{{ $i }}" data-section="actual_saving" data-initiative_id="{{ $v->id }}">Edit</button>
                                 </td>
-                                {{-- @else
-                                <td
+                                @else
+                                <td>
                                    <p class="text-right fail">{{number_format(($company_savings[$v->id][$i]['actual_saving']), 2, '.', ',')}}</p>
-                                    <button type="button" class="btn btn-info btn-sm openModal" data-toggle="modal" data-value="{{ $company_savings[$v->id][$i]['actual_saving'] }}" data-id="0" data-month="{{ $i }}" data-section="actual_saving" data-initiative_id="{{ $v->id }}">Edit
-                                    </button>
+                                    <button type="button" class="btn btn-info btn-sm openModal" data-toggle="modal" data-value="{{ $company_savings[$v->id][$i]['actual_saving'] }}" data-id="0" data-month="{{ $i }}" data-section="actual_saving" data-initiative_id="{{ $v->id }}">Edit</button>
                                 </td>
-                                @endif --}}
+                                @endif
                             @else
                                 <td>
                                     <span class="editable">
