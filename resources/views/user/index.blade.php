@@ -28,7 +28,6 @@
                         <td class="text-center">{{ $i }}</td>
                         <td>{{ $user->username }}</td>
                         <td>{{ $user->email }}</td>
-                        <!-- <td>{{ $user->company_id }}</td> -->
                         <td>
                             @if($user->company_id != null)
                                 {{ $user->companies->name }}

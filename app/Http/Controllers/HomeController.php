@@ -124,16 +124,6 @@ class HomeController extends Controller
             ->get();
         $last_update = $ls->first()->updated_at;
 
-        // dd($current_month);
-
-       /* $initiatives_id = Initiative::with([
-            'initiatives.companies' => function($query)use($group){
-                $query->where('group',$group);
-            }
-        ])->toSql();
-
-        dd($initiatives_id);*/
-
         //todo 5 big numbers query for that year
         $yearly_target = DB::table('savings')
             ->leftJoin('initiatives', 'savings.initiative_id', '=', 'initiatives.id')
@@ -141,14 +131,6 @@ class HomeController extends Controller
             ->select('savings.target_saving')
             ->where('group', $group)
             ->sum('target_saving');
-
-        // $cummulative_target = Saving::where('month', '<=',$current_month)
-        //     ->with([
-        //         'initiatives.companies' => function($query)use($group){
-        //             $query->where('group',$group);
-        //         }
-        //     ])
-        //     ->sum('target_saving');
 
         $cummulative_target = DB::table('savings')
             ->leftJoin('initiatives', 'savings.initiative_id', '=', 'initiatives.id')
@@ -159,14 +141,6 @@ class HomeController extends Controller
                 ['month', '<=' , $current_month],
                 ])
             ->sum('target_saving');
-
-        // $cummulative_actual = Saving::where('month', '<=',$current_month)
-        //     ->with([
-        //         'initiatives.companies' => function($query)use($group){
-        //             $query->where('group',$group);
-        //         }
-        //     ])
-        //     ->sum('actual_saving');
 
         $cummulative_actual = DB::table('savings')
             ->leftJoin('initiatives', 'savings.initiative_id', '=', 'initiatives.id')
@@ -276,15 +250,6 @@ class HomeController extends Controller
                 ->where('savings.month', $month)
                 ->sum('savings.actual_saving');
                 // dd($result);
-
-            // $res = DB::select('select sum(`savings`.`actual_saving`) as actual, sum(`savings`.`target_saving` ) as target
-            // from `savings` 
-            // join `initiatives` on `savings`.`initiative_id` = `initiatives`.`id` 
-            // join `companies` on `companies`.`id` = `initiatives`.`company_id` 
-            // where `savings`.`month` = '.$month.' and `companies`.`id` = '.$v->id.'');
-
-            // $result = $res;
-            // dd($result);
 
             $companies[$k]->target_saving = null;
             $companies[$k]->actual_saving = null;
@@ -454,7 +419,7 @@ class HomeController extends Controller
         }
         
         //$data['initiatives'] = $initiatives;
-        return view('company_dashboard_cost_saving_summary', compact('initiatives', 'id', 'cummulative_target', 'cummulative_actual', 'init'));
+        return view('company_dashboard_cost_saving_summary', compact('initiatives', 'id', 'cummulative_target', 'cummulative_actual'));
     }
 
 }
