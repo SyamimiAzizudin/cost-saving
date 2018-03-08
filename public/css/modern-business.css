@@ -275,8 +275,10 @@ footer {
 @media (min-width: 768px) and (max-width: 1300px){
     .table-container {
         width: 740px;
-        
         font-size: 12px;
+    }
+    .table {
+        width: 740px;
     }
     .col {
         width: 80px !important;
@@ -290,6 +292,9 @@ footer {
         width: 400px;
         overflow-x: hidden !important;
         font-size: 8px;
+    }
+    .table {
+        width: 400px;
     }
     .col {
         width: 40px !important;
