@@ -9,7 +9,7 @@
     <?php $i=1 ?>
     @forelse ($companies as $company)
         <tr>
-            <td><b><a class="col-md-12 control-label" href="{{ url('/company-dashboard') }}/{{ $company->id }}">{{ $company->name }}</a></b></td>
+            <td><b><a class="control-label" href="{{ url('/company-dashboard') }}/{{ $company->id }}">{{ $company->name }}</a></b></td>
             <td>
                 <label for="Target" class="col-md-12 text-right number control-label">
                     {{ number_format( ($company->target_saving), 2, '.', ',') }}

@@ -1,4 +1,4 @@
-<table class="table-container table-bordered" style="border-collapse: collapse; overflow-x: hidden;">
+<table class="table table-bordered" style="border-collapse: collapse; overflow-x: hidden;">
     <tr>
         <td><label for="company" class="col-md-12 text-center control-label">Group</label></td>
         <td><label for="company" class="col-md-12 text-center control-label">Target (RM)</label></td>
@@ -8,7 +8,7 @@
     <?php $i=0 ?>
     @forelse ($saving_summary_results as $k => $v)
         <tr>
-            <td><b><a class="col-md-12 control-label" href="{{ url('/group-dashboard') }}/{{$v->group}}">{{$v->group}}</a></b></td>
+            <td><b><a class="control-label" href="{{ url('/group-dashboard') }}/{{$v->group}}">{{$v->group}}</a></b></td>
             <td class="text-right"><label for="saving_target" class="col-md-12 number text-right control-label">{{  number_format( ($v->target), 2, '.', ',') }}</label></td>
             @if($v->actual >= $v->target )
             <td class="text-right"><label for="actual_saving" class="col-md-12 number text-right control-labe good">{{  number_format( ($v->actual), 2, '.', ',' ) }}</label></td>
