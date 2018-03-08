@@ -20,7 +20,7 @@
         			<tr>
         				<td class="text-center">{{ $i }}</td>
         				<td>
-        					<a href="{{ url('/saving-company/') }}/{{ $company->id }}" class="marginRight">{{ $company->name }}</a>
+        					<a href="{{ url('/saving-company/') }}/{{ $company->id }}" class="">{{ $company->name }}</a>
         				</td>
         			</tr>
         			<?php $i++; ?>

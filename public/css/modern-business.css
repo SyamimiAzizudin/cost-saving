@@ -296,6 +296,12 @@ footer {
     .table {
         font-size: 8px;
     }
+    .panel-body {
+        padding: 0px;
+    }
+    .page-header {
+        font-size: 15px !important;
+    }
     .col {
         width: 40px !important;
     }
