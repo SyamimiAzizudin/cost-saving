@@ -1,4 +1,4 @@
-<table class="table table-bordered" style="border-collapse: collapse; overflow-x: hidden;">
+<table class="table table-bordered" style="border-collapse: collapse;">
     <tr>
         <td><label for="company" class="col-md-12 text-center control-label">Group</label></td>
         <td><label for="company" class="col-md-12 text-center control-label">Target (RM)</label></td>

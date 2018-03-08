@@ -122,11 +122,11 @@
                 </div>
             </div>
 
-            <!-- <div class="col-md-12 padding2"> -->
+            <div class="col-md-12 padding2">
                 <div class="form-group">
                     <div id="saving_summary"></div>
                 </div>
-            <!-- </div> -->
+            </div>
         </div>
         
 
