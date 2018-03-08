@@ -118,7 +118,7 @@ footer {
         font-size: 15px !important
     }
     .col-md-4 {
-        padding: 20px;
+        padding: 5px;
     }
     .page-header {
         font-size: 20px !important
@@ -287,11 +287,45 @@ footer {
         width: 100px;
     }
 }
-@media (min-width: 412px) and (max-width: 700px){
+/*portrait phone*/
+@media (min-width: 320px) and (max-width: 480px){
     .table-container {
+        overflow-x: hidden !important;
         width: 400px;
+        font-size: 8px;
+    }
+    .table {
+        font-size: 8px;
+    }
+    .col-xs-offset-3{
+        margin: 0px;
+    }
+    .panel-body {
+        padding: 0px;
+    }
+    .page-header {
+        font-size: 15px !important;
+    }
+    .col {
+        width: 40px !important;
+    }
+    .col2 {
+        width: 60px;
+    }
+    .btn-primary {
+        font-size: 12px !important;
+    }
+}
+/*landscape phone*/
+@media (min-width: 481px) and (max-width: 767px){
+    .table-container {
+        width: 650px;
         overflow-x: hidden !important;
         font-size: 8px;
+    }
+    .col-xs-12 {
+        width: 33% !important;
+        text-align: center;
     }
     .table {
         font-size: 8px;
@@ -308,7 +342,91 @@ footer {
     .col2 {
         width: 60px;
     }
+    .btn-primary {
+        font-size: 12px !important;
+    }
+    h3,
+    label,
+    h5 {
+        font-size: 12px !important;
+    }
 }
+/*tablet portrait*/
+@media (min-width: 768px) and (max-width: 1024px) {
+    .table-container {
+        overflow-x: hidden !important;
+    }
+
+    .col-xs-12 {
+        width: 33% !important;
+        text-align: center;
+    }
+    .table {
+        font-size: 8px;
+    }
+    .panel-body {
+        padding: 0px;
+    }
+    .page-header {
+        font-size: 15px !important;
+    }
+    .col {
+        width: 40px !important;
+    }
+    .col2 {
+        width: 60px;
+    }
+    .btn-primary {
+        font-size: 15px !important;
+    }
+    h3 {
+        font-size: 17px !important;
+    }
+    h5,
+    label {
+        font-size: 14px !important;
+    }
+}
+/*tablet landscape*/
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape){
+    .table-container {
+        overflow-x: hidden !important;
+        width: 980px;
+    }
+    .col-xs-12 {
+        width: 33% !important;
+        text-align: center;
+    }
+    .table {
+        font-size: 8px;
+    }
+    .panel-body {
+        padding: 0px;
+    }
+    .page-header {
+        font-size: 15px !important;
+    }
+    .col {
+        width: 40px !important;
+    }
+    .col2 {
+        width: 60px;
+    }
+    .btn-primary {
+        font-size: 15px !important;
+    }
+    h3 {
+        font-size: 17px !important;
+    }
+    h5,
+    label {
+        font-size: 14px !important;
+    }
+    .custom1 {
+        width: 180px;
+    }
+}
+/**/
 @media (min-width: 1770px) {
     .table-container {
         width: 80%; 

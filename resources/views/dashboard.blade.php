@@ -14,7 +14,7 @@
 
 <div class="text-center">
     <div class="table-container">
-        <div class="col-md-2 panel panel-default">
+        <div class="col-md-2 col-xs-12 panel panel-default">
             <div class="panel-heading text-center">
                  <h5>Yearly Target</h5>
             </div>
@@ -23,7 +23,7 @@
             </div>
         </div>
 
-        <div class="col-md-3 panel panel-default">
+        <div class="col-md-3 col-xs-12 panel panel-default">
             <div class="panel-heading text-center">
                 <h5>Target Savings (Cumm) </h5>
             </div>
@@ -32,7 +32,7 @@
             </div>
         </div>
             
-        <div class="col-md-3 panel panel-default">
+        <div class="col-md-3 col-xs-12 panel panel-default">
             <div class="panel-heading text-center">
                 <h5>Actual Savings (Cumm) </h5>
             </div>
@@ -40,8 +40,8 @@
                 <h3>RM {{ number_format( ($cummulative_actual), 2, '.', ',' ) }}</h3>
             </div>
         </div>
-                
-        <div class="col-md-2 panel panel-default">
+        <div class="col-xs-offset-3">       
+        <div class="col-md-2 col-xs-12 panel panel-default">
             <div class="panel-heading text-center">
                 <h5>Yearly % (Cumm) </h5>
             </div>
@@ -50,7 +50,7 @@
             </div>
         </div>
                 
-        <div class="col-md-2 panel panel-default">
+        <div class="col-md-2 col-xs-12 panel panel-default">
             <div class="panel-heading text-center">
                 <h5>Monthly % (Cumm)</h5>
             </div>
@@ -58,6 +58,7 @@
                 <h3>{{ number_format(($cummulative_actual/$cummulative_target) * 100,0) }} %</h3>
             </div>
         </div>
+    </div>
     </div>
 </div>
 
@@ -83,7 +84,7 @@
                 <div class="col-md-8 col-md-offset-2">
                     <?php $i=0 ?>
                     @forelse ($companies as $company)
-                    <div class="col-md-4">
+                    <div class="col-md-4 col-xs-12 col-sm-4">
                         <a href="{{ url('/group-dashboard') }}/{{$company->group}}" type="button" class="btn btn-lg btn-primary custom1">Dashboard {{$company->group}}</a>
                     </div>
                     <?php $i++; ?>
@@ -190,7 +191,8 @@
       },
       yAxis: {
         title: {
-          text: 'Saving (RM)'
+          text: 'Saving (RM)',
+          position: "top"
         },
         plotLines: [{
           value: 0,

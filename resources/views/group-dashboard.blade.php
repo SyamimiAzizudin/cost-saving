@@ -18,7 +18,7 @@
 
 <div class="text-center">
     <div class="table-container">
-        <div class="col-md-2 panel panel-default">
+        <div class="col-md-2 col-xs-12 panel panel-default">
             <div class="panel-heading text-center">
                 <h5>Yearly Target </h5>
             </div>
@@ -26,7 +26,7 @@
                 <h3>RM {{ number_format( ($yearly_target/1000000), 1, '.', ',' ) }} m</h3>
             </div>
         </div>
-        <div class="col-md-3 panel panel-default">
+        <div class="col-md-3 col-xs-12 panel panel-default">
             <div class="panel-heading text-center">
                 <h5>Target Savings (Cumm) </h5>
             </div>
@@ -34,7 +34,7 @@
                 <h3>RM {{ number_format( ($cummulative_target), 2, '.', ',' ) }} </h3>
             </div>
         </div>
-        <div class="col-md-3 panel panel-default">
+        <div class="col-md-3 col-xs-12 panel panel-default">
             <div class="panel-heading text-center">
                 <h5>Actual Savings (Cumm) </h5>
             </div>
@@ -42,7 +42,8 @@
                 <h3>RM {{ number_format( ($cummulative_actual), 2, '.', ',' ) }} </h3>
             </div>
         </div>
-        <div class="col-md-2 panel panel-default">
+        <div class="col-xs-offset-3"> 
+        <div class="col-md-2 col-xs-12 panel panel-default">
             <div class="panel-heading text-center">
                 <h5>Yearly % (Cumm) </h5>
             </div>
@@ -50,13 +51,14 @@
                 <h3>{{ number_format(( ($cummulative_actual/$yearly_target) * 100),0) }} % </h3>
             </div>
         </div>
-        <div class="col-md-2 panel panel-default">
+        <div class="col-md-2 col-xs-12 panel panel-default">
             <div class="panel-heading text-center">
                 <h5>Monthly % (Cumm) </h5>
             </div>
             <div class="panel-body text-center">
                 <h3>{{ number_format(($cummulative_actual/$cummulative_target) * 100,0) }} % </h3>
             </div>
+        </div>
         </div>
     </div>
 </div>
