@@ -149,7 +149,7 @@ footer {
         font-size: 30px !important
     }
     .custom1 {
-        width: 200px !important;
+        width: 180px !important;
         height: 75px !important;
     }
     .padding2{
@@ -295,7 +295,7 @@ footer {
         font-size: 8px;
     }
     .table {
-        font-size: 8px;
+        font-size: 9px;
     }
     .col-xs-offset-3{
         margin: 0px;
@@ -307,13 +307,13 @@ footer {
         font-size: 15px !important;
     }
     .col {
-        width: 40px !important;
+        width: 30px !important;
     }
     .col2 {
-        width: 60px;
+        width: 50px;
     }
     .btn-primary {
-        font-size: 12px !important;
+        font-size: 17px !important;
     }
 }
 /*landscape phone*/
@@ -328,7 +328,7 @@ footer {
         text-align: center;
     }
     .table {
-        font-size: 8px;
+        font-size: 12px;
     }
     .panel-body {
         padding: 0px;
@@ -343,13 +343,16 @@ footer {
         width: 60px;
     }
     .btn-primary {
-        font-size: 12px !important;
+        font-size: 15px !important;
     }
-    h3,
-    label,
     h5 {
         font-size: 12px !important;
     }
+    h3,
+    label {
+        font-size: 15px !important;
+    }
+
 }
 /*tablet portrait*/
 @media (min-width: 768px) and (max-width: 1024px) {
