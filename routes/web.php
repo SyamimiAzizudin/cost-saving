@@ -27,20 +27,23 @@ Route::group(['middleware' => ['auth']], function() {
 	Route::get('/print-overall', 'HomeController@print_overall');
     // Route::get('/saving.company/{company_id}', 'HomeController@init');
 
-	/**
-     * User Manegement
-     */
-	Route::resource('/user', 'UsersController');
-    Route::delete('/user/{user}/delete', 'UsersController@destroy');
+
+    Route::group(['middleware' => ['admin']], function() {
+        /**
+         * User Management
+         */
+        Route::resource('/user', 'UsersController');
+        Route::delete('/user/{user}/delete', 'UsersController@destroy');
+    });
 
 	/**
-     * Company Manegement
+     * Company Management
      */
 	Route::resource('/company', 'CompaniesController');
     Route::delete('/company/{company}/delete', 'CompaniesController@destroy');
 
 	/**
-     * Initiative Manegement
+     * Initiative Management
      */
     Route::get('/initiative-company', 'InitiativesController@companylist');
     Route::get('/initiative-company/{company_id}', 'InitiativesController@getCompanyInitiative');
@@ -50,7 +53,7 @@ Route::group(['middleware' => ['auth']], function() {
     Route::delete('/initiative/{initiative}/delete', 'InitiativesController@destroy');
 
 	/**
-     * Saving Manegement
+     * Saving Management
      */
 	Route::resource('/saving', 'SavingsController');
     Route::delete('/saving/{saving}/delete', 'SavingsController@destroy');
