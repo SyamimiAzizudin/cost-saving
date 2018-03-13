@@ -28,6 +28,7 @@
                 <?php $TCM = 0; ?>
                 <?php $ACM = 0; ?>
                 <?php $achieve = 0; ?>
+                <?php $last_month = \Carbon\Carbon::now()->subMonth(1)->month; ?>
                     <tr>
                         <th class="fixed-side" rowspan="7">{!! $v->area !!}</th>
                         <th class="fixed-side" rowspan="7">{!! $v->analyze !!}</th>
@@ -67,28 +68,27 @@
                                 @if ($company_savings[$v->id][$i]['actual_saving'] >= $company_savings[$v->id][$i]['target_saving'])
                                 <td>
                                     <p class="text-right good">{{number_format(($company_savings[$v->id][$i]['actual_saving']), 2, '.', ',')}}</p>
-                                    <button type="button" class="btn btn-info btn-sm openModal" data-toggle="modal" data-value="{{ $company_savings[$v->id][$i]['actual_saving'] }}" data-id="0" data-month="{{ $i }}" data-section="actual_saving" data-initiative_id="{{ $v->id }}">Edit</button>
+                                    @if($i <= $last_month && $company_savings[$v->id][$i]['display'] == 1)
+                                        <button type="button" class="btn btn-info btn-sm openModal" data-toggle="modal" data-value="{{ $company_savings[$v->id][$i]['actual_saving'] }}" data-id="0" data-month="{{ $i }}" data-section="actual_saving" data-initiative_id="{{ $v->id }}">Edit</button>
+                                    @endif
                                 </td>
                                 @else
                                 <td>
                                    <p class="text-right fail">{{number_format(($company_savings[$v->id][$i]['actual_saving']), 2, '.', ',')}}</p>
-                                    <button type="button" class="btn btn-info btn-sm openModal" data-toggle="modal" data-value="{{ $company_savings[$v->id][$i]['actual_saving'] }}" data-id="0" data-month="{{ $i }}" data-section="actual_saving" data-initiative_id="{{ $v->id }}">Edit</button>
+                                    @if($i <= $last_month && $company_savings[$v->id][$i]['display'] == 1)
+                                        <button type="button" class="btn btn-info btn-sm openModal" data-toggle="modal" data-value="{{ $company_savings[$v->id][$i]['actual_saving'] }}" data-id="0" data-month="{{ $i }}" data-section="actual_saving" data-initiative_id="{{ $v->id }}">Edit</button>
+                                    @endif
                                 </td>
                                 @endif
                             @else
                                 <td>
-                                    <?php
-                                    $last_month = \Carbon\Carbon::now()->subMonth(1)->month;
-
-                                    ?>
-
                                     @if($i <= $last_month && $company_savings[$v->id][$i]['display'] == 1)
-                                    <span class="editable">
-                                    -
-                                    <br>
-                                    <button type="button" class="btn btn-info btn-sm openModal" data-toggle="modal" data-value="" data-id="0" data-month="{{ $i }}" data-section="actual_saving" data-initiative_id="{{ $v->id }}">Edit
-                                    </button>
-                                    </span>
+                                        <span class="editable">
+                                        -
+                                        <br>
+                                        <button type="button" class="btn btn-info btn-sm openModal" data-toggle="modal" data-value="" data-id="0" data-month="{{ $i }}" data-section="actual_saving" data-initiative_id="{{ $v->id }}">Edit
+                                        </button>
+                                        </span>
                                     @endif
                                 </td>
                             @endif
@@ -107,12 +107,14 @@
                             @else
 
                                 <td>
-                                    <span class="editable">
-                                    -
-                                    <br>
-                                    <button type="button" class="btn btn-warning btn-sm openModal" data-toggle="modal" data-value="" data-id="0" data-month="{{ $i }}" data-section="target_saving" data-initiative_id="{{ $v->id }}" data-saving_id="">Edit
-                                    </button>
-                                    </span>
+                                    @if($i <= $last_month && $company_savings[$v->id][$i]['display'] == 1)
+                                        <span class="editable">
+                                        -
+                                        <br>
+                                        <button type="button" class="btn btn-warning btn-sm openModal" data-toggle="modal" data-value="" data-id="0" data-month="{{ $i }}" data-section="target_saving" data-initiative_id="{{ $v->id }}" data-saving_id="">Edit
+                                        </button>
+                                        </span>
+                                    @endif
                                 </td>
                             @endif
                         @endfor
