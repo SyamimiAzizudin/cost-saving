@@ -77,12 +77,19 @@
                                 @endif
                             @else
                                 <td>
+                                    <?php
+                                    $last_month = \Carbon\Carbon::now()->subMonth(1)->month;
+
+                                    ?>
+
+                                    @if($i <= $last_month && $company_savings[$v->id][$i]['display'] == 1)
                                     <span class="editable">
                                     -
                                     <br>
                                     <button type="button" class="btn btn-info btn-sm openModal" data-toggle="modal" data-value="" data-id="0" data-month="{{ $i }}" data-section="actual_saving" data-initiative_id="{{ $v->id }}">Edit
                                     </button>
                                     </span>
+                                    @endif
                                 </td>
                             @endif
                         @endfor

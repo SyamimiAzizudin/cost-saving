@@ -6,6 +6,7 @@ use App\User;
 use App\Company;
 use App\Initiative;
 use App\Saving;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -191,22 +192,68 @@ class SavingsController extends Controller
                 {
                     $company_savings[$v1->id][$i] = [
                         'actual_saving' => null,
-                        'target_saving' => null
+                        'target_saving' => null,
+                        'display' => null
                     ];
                 }
                 foreach ($v1->savings as $k2 => $v2) {
 
                     $company_savings[$v1->id][$v2->month] = [
                         'actual_saving' => $v2->actual_saving,
-                        'target_saving' => $v2->target_saving
+                        'target_saving' => $v2->target_saving,
+                        'display' => $v2->display
                     ];
 
                 }
             }
         }
 
+        #dd($company_savings);
+
         $data['company_savings'] = $company_savings;
         $data['initiatives'] = $initiatives;
         return view('saving.company_saving_table', $data);
+    }
+
+    public function postLockInitiative($company_id)
+    {
+        // look for all initiative under this company where the month is older than current month
+
+        // set the show flag to 0
+
+        //$company_id = 3;
+        $savings_ids = [];
+        $current_month = Carbon::now()->month;
+
+        $initiatives = Initiative
+            ::whereHas(
+            'companies' , function ($query) use ($company_id){
+                $query->where('id', $company_id);
+            }
+        )
+        ->with(['savings' => function($query)use($current_month){
+            $query->where('month','<=', $current_month);
+        }])
+        ->get();
+
+        foreach ($initiatives as $k => $v)
+        {
+           #dump($v->savings);
+
+            foreach($v->savings as $ksaving => $vsaving)
+            {
+                if($vsaving->display == 1)
+                {
+                    array_push($savings_ids, $vsaving->id);
+                }
+            }
+        }
+
+        #dump($savings_ids);
+
+        Saving::whereIn('id', $savings_ids)
+            ->update(['display' => 0]);
+
+        #dd($initiatives);
     }
 }

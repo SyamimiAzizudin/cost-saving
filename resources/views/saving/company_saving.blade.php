@@ -20,7 +20,7 @@
 <div class="row">
     <div class="text-center">
         {{-- <a href="#" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span> Edit</a> --}}
-        <button type="submit" class="btn btn-primary btn-lg"> Submit</button>
+        <button type="submit" class="btn btn-primary btn-lg" id="lock_initiative"> Submit</button>
     </div>
 </div>
 
@@ -111,6 +111,22 @@
         $(".modal-body #initiative_id").val(initiative_id);
         $('#myModal').modal('toggle');
     }
+
+
+    $("#lock_initiative").click(function(){
+        $.ajax({
+            url: '/lock_initiative/{{$company_id}}', //this is the submit URL
+            type: 'post', //or POST
+            data: {
+                "_token": "{{ csrf_token() }}",
+            },
+            success: function(data){
+                alert("Succesfully lock !");
+                location.reload();
+            }
+        });
+
+    });
 
 </script>
 @endsection

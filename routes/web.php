@@ -62,7 +62,7 @@ Route::group(['middleware' => ['auth']], function() {
     Route::post('/saving-company/{company_id}', 'SavingsController@saveInitiativeSaving');
     Route::get('/saving-company-table/{company_id}', 'SavingsController@getInititativeSavingTable');
 
-
+    Route::post('/lock_initiative/{company_id}', 'SavingsController@postLockInitiative');
 });
 
 Auth::routes();
