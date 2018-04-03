@@ -18,6 +18,7 @@ class CompaniesController extends Controller
      */
     public function index()
     {
+        // $companies = Company::withTrashed()->get();
         $companies = Company::all();
         return view('company.index', compact('companies'));
     }

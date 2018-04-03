@@ -24,7 +24,7 @@ class SavingsController extends Controller
     public function companylist()
     {
         $savings = Saving::all();
-        $companies = Company::all();
+        $companies = Company::withTrashed()->get();
         // $companies = Company::pluck('name', 'id');
         return view('saving.company', compact('savings', 'companies'));
     }
@@ -145,8 +145,6 @@ class SavingsController extends Controller
             }
         }
         
-
-
         #dd($company_savings);
         $data['company_savings'] = $company_savings;
         return view('saving.company_saving', $data);
