@@ -20,6 +20,7 @@
                         <th>Username</th>
                         <th>Email</th>
                         <th>Company Name</th>
+                        <th>Role</th>
                         <th></th>
                     </tr>
                     <?php $i=1 ?>
@@ -33,6 +34,7 @@
                                 {{ $user->companies->name }}
                             @endif
                         </td>
+                        <td>{{ $user->role }}</td>
                         <td>
                             @if($user->id)
                             <a href="{{ action('UsersController@edit', $user->id) }}" class="btn btn-success btn-xs">Edit</a>
@@ -70,6 +72,13 @@
                             <option value="{{ $id }}">{{ $company_name }}</option>
                         @endforeach
                     </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+            <label for="role" class="col-md-4 control-label">Role</label>
+                <div class="col-md-6">
+                    {{ Form::select('role', ['admin' => 'Admin', 'board' => 'Board', 'subsidiary' => 'Subsidiary'], null, ['class' => 'form-control'], ['placeholder' => 'Select Role']) }}
                 </div>
             </div>
 

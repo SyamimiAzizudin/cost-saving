@@ -36,6 +36,13 @@
                 </div>
             </div>
 
+            <div class="form-group">
+                <label for="role" class="col-sm-3 control-label">Role</label>
+                <div class="col-sm-9">
+                    {{ Form::select('role', ['admin' => 'Admin', 'board' => 'Board', 'subsidiary' => 'Subsidiary'], null, ['class' => 'form-control'], ['placeholder' => 'Select Role']) }}
+                </div>
+            </div>
+
         	<div class="form-group">
         		<label for="username" class="col-sm-3 control-label">Username</label>
         		<div class="col-sm-9">

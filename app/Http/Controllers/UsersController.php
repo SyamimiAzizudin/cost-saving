@@ -59,6 +59,7 @@ class UsersController extends Controller
         $users->email = $request->email;
         $users->password = bcrypt($request->password);
         $users->company_id = $request->company_id;
+        $users->role = $request->role;
         $users->save();
 
         return redirect()->action('UsersController@index')->withMessage('User has been successfully added!');
@@ -110,6 +111,7 @@ class UsersController extends Controller
         $user->email = $request->email;
         // $user->password = bcrypt($request->password);
         $user->company_id = $request->company_id;
+        $user->role = $request->role;
         $user->save();
         
         return redirect()->action('UsersController@index')->withMessage('User has been successfully updated!');
