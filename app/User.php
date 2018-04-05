@@ -6,12 +6,12 @@ use App\Company;
 use App\Initiative;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Zizaco\Entrust\Traits\EntrustUserTrait;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class User extends Authenticatable
 {
     use Notifiable;
-    use EntrustUserTrait;
+    use SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
@@ -37,6 +37,8 @@ class User extends Authenticatable
         'created_at',
         'updated_at'
     ];
+
+    protected $dates = ['deleted_at'];
 
     /**
      * Get companies
