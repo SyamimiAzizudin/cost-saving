@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Auth;
 
-class CheckAdmin
+class CheckSubsidiary
 {
     /**
      * Handle an incoming request.
@@ -17,12 +17,10 @@ class CheckAdmin
     public function handle($request, Closure $next)
     {
 
-
-        if( Auth::check() && Auth::user() == 'subsidiary' )
-        {
+        if( Auth::check() && Auth::user()->role == 'subsidiary' ) {
             return $next($request);
         }
 
-        return redirect('/');
+        return back()->withMessage('You dont have permission !');
     }
 }

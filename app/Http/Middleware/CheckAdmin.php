@@ -2,8 +2,8 @@
 
 namespace App\Http\Middleware;
 
-use Closure;
 use Auth;
+use Closure;
 
 class CheckAdmin
 {
@@ -17,12 +17,10 @@ class CheckAdmin
     public function handle($request, Closure $next)
     {
 
-
-        if( Auth::check() && Auth::user() == 'admin' )
-        {
+        if( Auth::check() && Auth::user()->role == 'admin' ) {
             return $next($request);
         }
-
-        return redirect('/')->withMessage('Only admin can access this page !');;
+        
+        return back()->withMessage('You dont have permission !');
     }
 }
