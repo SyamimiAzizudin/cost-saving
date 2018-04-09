@@ -1,6 +1,6 @@
 <div class="table-container">
     <div id="table-scroll" class="table-scroll">
-        <div class="" style="overflow:auto; width: 100%;">
+        <div class="saving-scroll">
             <table class="main-table">
                 <thead>
                 <tr>
@@ -37,8 +37,8 @@
                         <?php $cum_target_iv += $company_savings[$v->id][$i]['target_saving']; ?>
                         @endfor            
                         <th class="fixed-side">
-                            <span style="float: left;"><b>RM</b></span>
-                            <span style="float: right;"><b>{{ number_format($cum_target_iv, 2, '.', ',')}}</b></span>
+                            <span class="pull-left"><b>RM</b></span>
+                            <span class="pull-right"><b>{{ number_format($cum_target_iv, 2, '.', ',')}}</b></span>
                         </th>
                         @for($i = 1; $i <= 12; $i++)
                             @if($company_savings[$v->id][$i]['target_saving'] != null)

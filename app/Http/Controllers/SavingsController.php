@@ -31,7 +31,7 @@ class SavingsController extends Controller
 
     public function index()
     {
-        return view('saving.index');
+        // 
     }
 
     /**

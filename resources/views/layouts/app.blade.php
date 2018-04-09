@@ -42,7 +42,7 @@
                     <!-- Branding Image -->
                     <a class="navbar-brand pull-left" href="{{ url('/home') }}">
                         <!-- {{ config('app.name', 'UMW Cost Saving Initiative') }} -->
-                        <img class="image-responsive" src="{{ asset('img/umw-logo.png') }}"  alt="UMW logo" style="width:23%;height:auto;">
+                        <img class="image-responsive umw-logo" src="{{ asset('img/umw-logo.png') }}"  alt="UMW logo">
 
                     </a>
                 </div>
@@ -70,7 +70,7 @@
                                     document.getElementById('logout-form').submit();">
                                     Hi {{ Auth::user()->username }}, Logout
                                 </a>
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST">
                                             {{ csrf_field() }}
                                 </form>
                             </li>
@@ -109,13 +109,7 @@
                     @yield('content')
                 </div>
             </div>
-            {{-- <div class="row">
-                <div class="col-lg-12">
-                    <div class="text-right padding2">
-                        <!-- <a href="{{ url('/print-overall') }}" class="btn btn-outline-success success">Print Overall Page</a> -->
-                    </div>
-                </div>
-            </div> --}}
+            
         </div> <!-- container -->
     </div>
 

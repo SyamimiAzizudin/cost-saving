@@ -116,7 +116,7 @@
                 <div class="form-group col-md-6">
                     <label for="month" class="col-sm-3 control-label">Month</label>
                     <div class="col-sm-6">
-                        <select name="month" class="form-control" id="usercompany">
+                        <select name="month" class="form-control" id="filtermonth">
                             <option value="1">January</option>
                             <option value="2">February</option>
                             <option value="3">March</option>
@@ -175,7 +175,7 @@
     //initial load
     getTable(1);
     $(function() {
-        $("#usercompany").on('change', function(){
+        $("#filtermonth").on('change', function(){
             var selected_value = $(this).find(":selected").val();
             getTable(selected_value);
         });

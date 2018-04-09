@@ -17,7 +17,6 @@
         {!! Form::model($initiative, ['method' => 'PATCH','action' =>  ['InitiativesController@update', $initiative->id], 'files' => true]) !!}
             
             <div class="form-group">
-                <!-- <label for="area" class="col-sm-3 control-label">Company</label> -->
                 <div class="col-sm-9">
                     <input type="hidden" name="company_id" value="{{$initiative->company_id}}" class="form-control" >
                 </div>
@@ -53,7 +52,6 @@
 
     		<div class="form-group">
     			<div class = "col-sm-offset-3 col-sm-9">
-    				{{-- <a href="{{ action('InitiativesController@getCompanyInitiative') }}" class="btn btn-danger"><span class="glyphicon glyphicon-remove-sign"></span> Cancel</a> --}}
     				<button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Save</button>
     			</div>
     		</div>

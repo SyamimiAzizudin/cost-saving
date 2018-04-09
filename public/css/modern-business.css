@@ -447,3 +447,11 @@ footer {
     background-color: #2196F3 !important;
     color: white !important;
 }
+
+/* Syamimi Added 9 april */
+#logout-form {display: none;}
+.umw-logo {width:23%;height:auto;}
+.list-companies {overflow-x:auto;}
+.list-initiatives {overflow-x:auto;}
+.saving-scroll {overflow:auto; width: 100%;}
+.table-summary {border-collapse: collapse;}
