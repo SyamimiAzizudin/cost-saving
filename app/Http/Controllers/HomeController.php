@@ -45,25 +45,39 @@ class HomeController extends Controller
         $last_update = $ls->first()->updated_at;
 
         //todo 5 big numbers query for that year
-        $yearly_target = Saving::sum('target_saving');
-        $cummulative_target = Saving::where('month', '<=',$current_month)->sum('target_saving');
-        $cummulative_actual = Saving::where('month', '<=',$current_month)->sum('actual_saving');
+        $yearly_target = DB::table('savings')
+            ->where([
+                ['year', '<=', $current_year]
+                ])
+            ->sum('target_saving');
+        $cummulative_target = DB::table('savings')
+            ->where([
+                ['year', '<=', $current_year],
+                ['month', '<=', $current_month],
+                ])
+            ->sum('target_saving');
+        $cummulative_actual = DB::table('savings')
+            ->where([
+                ['year', '<=', $current_year],
+                ['month', '<=', $current_month],
+                ])
+            ->sum('actual_saving');
 
         $companies = Company::select('group')->distinct()->get();
 
         //todo graph query for main dashboard    
-        $targets = DB::select('select `month`,sum(target_saving) as target_saving
+        $targets = DB::select('select `year`, `month`, sum(target_saving) as target_saving
         from savings
-        group by `month`');
+        group by `year`,`month`');
 
-        $actual = DB::select('select `month`,sum(actual_saving) as actual_saving
+        $actual = DB::select('select `year`, `month`, sum(actual_saving) as actual_saving
         from savings
-        where `month` between 1 and :month
-        group by `month`', ['month' => $current_month]);
+        where (`year` between 2018 and :year) and (`month` between 1 and :month)
+        group by `year`, `month`', ['month' => $current_month, 'year' => $current_year]);
 
-        $yearly_target_results = DB::select('select `month`, (select sum(target_saving) from savings) as yearly_target
+        $yearly_target_results = DB::select('select `year`, `month`, (select sum(target_saving) from savings) as yearly_target
         from savings
-        group by `month`');
+        group by `year`, `month`');
 
         $graphs = [];
         $graphs['targets'] = [];
