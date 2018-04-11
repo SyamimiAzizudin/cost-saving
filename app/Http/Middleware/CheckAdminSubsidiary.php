@@ -1,13 +1,10 @@
 <?php
 
 namespace App\Http\Middleware;
-use Illuminate\Support\Facades\DB;
-use App\Company;
 
 use Closure;
-use Auth;
 
-class CheckBoard
+class CheckAdminSubsidiary
 {
     /**
      * Handle an incoming request.
@@ -18,7 +15,7 @@ class CheckBoard
      */
     public function handle($request, Closure $next)
     {
-       if ($request->user()->role == 'admin' || $request->user()->role == 'subsidiary' || $request->user()->role == 'board') {
+       if ($request->user()->role == 'admin' || $request->user()->role == 'subsidiary') {
             return $next($request);
         }
 

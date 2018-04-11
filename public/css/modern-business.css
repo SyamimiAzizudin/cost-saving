@@ -149,7 +149,7 @@ footer {
         font-size: 30px !important
     }
     .custom1 {
-        width: 180px !important;
+        /*width: 180px !important;*/
         height: 75px !important;
     }
     .padding2{
@@ -291,7 +291,7 @@ footer {
 @media (min-width: 320px) and (max-width: 480px){
     .table-container {
         overflow-x: hidden !important;
-        width: 400px;
+        width: 98%;
         font-size: 8px;
     }
     .table {
@@ -315,11 +315,15 @@ footer {
     .btn-primary {
         font-size: 17px !important;
     }
+    .col-xs-12 {
+        padding-left: unset !important;
+    }
 }
 /*landscape phone*/
 @media (min-width: 481px) and (max-width: 767px){
     .table-container {
-        width: 650px;
+        width: 98%;
+        /*width: 650px;*/
         overflow-x: hidden !important;
         font-size: 8px;
     }
@@ -352,12 +356,16 @@ footer {
     label {
         font-size: 15px !important;
     }
+    .custom1 {
+        width: 160px;
+    }
 
 }
 /*tablet portrait*/
 @media (min-width: 768px) and (max-width: 1024px) {
     .table-container {
         overflow-x: hidden !important;
+        width: 95%;
     }
 
     .col-xs-12 {
@@ -394,7 +402,7 @@ footer {
 @media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape){
     .table-container {
         overflow-x: hidden !important;
-        width: 980px;
+        width: 95%;
     }
     .col-xs-12 {
         width: 33% !important;
@@ -446,4 +454,7 @@ footer {
 .info:hover {
     background-color: #2196F3 !important;
     color: white !important;
+}
+.pad-left {
+    padding-left: 18%;
 }

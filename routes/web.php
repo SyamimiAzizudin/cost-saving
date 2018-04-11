@@ -15,59 +15,62 @@ Route::get('/', function () {
     return view('/home');
 });
 
-Route::group(['middleware' => ['auth']], function() {
-	Route::get('/home', 'HomeController@index');
-	Route::get('/dashboard', 'HomeController@dashboard');
-    Route::get('/dashboard_cost_saving_summary/{month}', 'HomeController@dashboard_cost_saving_summary');
-	Route::get('/group-dashboard/{group}', 'HomeController@group_dashboard');
-    Route::get('/group_dashboard_cost_saving_summary/{group}/{month}', 'HomeController@group_dashboard_cost_saving_summary');
-	Route::get('/company-dashboard/{id}', 'HomeController@company_dashboard');
-    Route::get('/company_dashboard_cost_saving_summary/{id}/{month}', 'HomeController@company_dashboard_cost_saving_summary');
-    Route::get('/saving/saving-company/{company}', 'HomeController@init');
-	Route::get('/print-overall', 'HomeController@print_overall');
-    // Route::get('/saving.company/{company_id}', 'HomeController@init');
+Auth::routes();
 
-    Route::group(['middleware' => ['admin']], function() {
+Route::group(['middleware' => 'admin'], function() {
 
-        /**
-         * User Management
-         */
-        Route::resource('/user', 'UsersController');
-        Route::delete('/user/{user}/delete', 'UsersController@destroy');
+    /**
+     * User Management
+     */
+    Route::resource('/user', 'UsersController');
+    Route::delete('/user/{user}/delete', 'UsersController@destroy');
 
-        /**
-         * Company Management
-         */
-        Route::resource('/company', 'CompaniesController');
-        Route::delete('/company/{company}/delete', 'CompaniesController@destroy');
+    /**
+     * Company Management
+     */
+    Route::resource('/company', 'CompaniesController');
+    Route::delete('/company/{company}/delete', 'CompaniesController@destroy');
 
-        /**
-         * Initiative Management
-         */
-        Route::get('/initiative-company', 'InitiativesController@companylist');
-        Route::get('/initiative-company/{company_id}', 'InitiativesController@getCompanyInitiative');
-        Route::post('/initiative-company/{company_id}', 'InitiativesController@store');
-        Route::get('/initiative/{company_id}/edit', 'InitiativesController@edit');    
-        Route::patch('/initiative-company/{company_id}', 'InitiativesController@update');
-        Route::delete('/initiative/{initiative}/delete', 'InitiativesController@destroy');
-    });
-
-
-     Route::group(['middleware' => ['subsidiary']], function() {
-
-        /**
-         * Saving Management
-         */
-        Route::resource('/saving', 'SavingsController');
-        Route::delete('/saving/{saving}/delete', 'SavingsController@destroy');
-        Route::get('/saving-company', 'SavingsController@companylist');
-        Route::get('/saving-company/{company_id}', 'SavingsController@getCompanySaving');
-        Route::post('/saving-company/{company_id}', 'SavingsController@saveInitiativeSaving');
-        Route::get('/saving-company-table/{company_id}', 'SavingsController@getInititativeSavingTable');
-
-        Route::post('/lock_initiative/{company_id}', 'SavingsController@postLockInitiative');
-    });
+    /**
+     * Initiative Management
+     */
+    Route::get('/initiative-company', 'InitiativesController@companylist');
+    Route::get('/initiative-company/{company_id}', 'InitiativesController@getCompanyInitiative');
+    Route::post('/initiative-company/{company_id}', 'InitiativesController@store');
+    Route::get('/initiative/{company_id}/edit', 'InitiativesController@edit');    
+    Route::patch('/initiative-company/{company_id}', 'InitiativesController@update');
+    Route::delete('/initiative/{initiative}/delete', 'InitiativesController@destroy');
 
 });
 
-Auth::routes();
+Route::group(['middleware' => 'subsidiary'], function() {
+
+});
+
+Route::group(['middleware' => 'adminsubsidiary'], function() {
+
+    /**
+     * Saving Management
+     */
+    Route::resource('/saving', 'SavingsController');
+    Route::delete('/saving/{saving}/delete', 'SavingsController@destroy');
+    Route::get('/saving-company', 'SavingsController@companylist');
+    Route::get('/saving-company/{company_id}', 'SavingsController@getCompanySaving');
+    Route::post('/saving-company/{company_id}', 'SavingsController@saveInitiativeSaving');
+    Route::get('/saving-company-table/{company_id}', 'SavingsController@getInititativeSavingTable');
+
+    Route::post('/lock_initiative/{company_id}', 'SavingsController@postLockInitiative');
+});
+
+Route::group(['middleware' => 'board'], function() {
+
+    // dashboard
+    Route::get('/home', 'HomeController@index');
+    Route::get('/dashboard', 'HomeController@dashboard');
+    Route::get('/dashboard_cost_saving_summary/{month}', 'HomeController@dashboard_cost_saving_summary');
+    Route::get('/group-dashboard/{group}', 'HomeController@group_dashboard');
+    Route::get('/group_dashboard_cost_saving_summary/{group}/{month}', 'HomeController@group_dashboard_cost_saving_summary');
+    Route::get('/company-dashboard/{id}', 'HomeController@company_dashboard');
+    Route::get('/company_dashboard_cost_saving_summary/{id}/{month}', 'HomeController@company_dashboard_cost_saving_summary');
+});
+

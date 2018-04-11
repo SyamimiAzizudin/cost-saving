@@ -63,7 +63,16 @@ class HomeController extends Controller
                 ])
             ->sum('actual_saving');
 
-        $companies = Company::select('group')->distinct()->get();
+        // for admin access
+        if (Auth::user()->role == 'subsidiary') {
+            # code...
+            $companies = Company::select('group')->distinct()->where('id', '=', Auth::user()->company_id)->get();
+        }
+        // for all users access
+        else{
+            $companies = Company::select('group')->distinct()->get();
+        }
+        // dd($companies);
 
         //todo graph query for main dashboard    
         $targets = DB::select('select `year`, `month`, sum(target_saving) as target_saving
@@ -107,14 +116,29 @@ class HomeController extends Controller
 
     public function dashboard_cost_saving_summary($month)
     {
-
-        //todo filter cost saving summary by year
-        $saving_summary_sql = 'select  `companies`.`group`, sum(`savings`.`actual_saving`) as actual, sum(`savings`.`target_saving` ) as target
-        from `savings` 
-        inner join `initiatives` on `savings`.`initiative_id` = `initiatives`.`id` 
-        inner join `companies` on `companies`.`id` = `initiatives`.`company_id` 
-        where savings.`month` = '.$month.'
-        group by `companies`.`group`';
+        if (Auth::user()->role == 'admin') {
+            # code...
+            //todo filter cost saving summary by year
+            // for admin access
+            $saving_summary_sql = 'select  `companies`.`group`, sum(`savings`.`actual_saving`) as actual, sum(`savings`.`target_saving` ) as target
+            from `savings` 
+            inner join `initiatives` on `savings`.`initiative_id` = `initiatives`.`id` 
+            inner join `companies` on `companies`.`id` = `initiatives`.`company_id`
+            where savings.`month` = '.$month.'
+            group by `companies`.`group`';
+        }
+        else{
+            //todo filter cost saving summary by year
+            // for all access
+            $saving_summary_sql = 'select  `companies`.`group`, sum(`savings`.`actual_saving`) as actual, sum(`savings`.`target_saving` ) as target
+            from `savings` 
+            inner join `initiatives` on `savings`.`initiative_id` = `initiatives`.`id` 
+            inner join `companies` on `companies`.`id` = `initiatives`.`company_id`
+            inner join `users` on `users`.`company_id` = `companies`.`id`
+            where savings.`month` = '.$month.' and `users`.`company_id` = '.Auth::user()->company_id.'
+            group by `companies`.`group`';
+        }
+        
 
         $saving_summary_results = DB::select($saving_summary_sql);
 
@@ -239,17 +263,34 @@ class HomeController extends Controller
             ])
             ->sum('actual_saving');*/
 
-        $companies = Company::with([
-            'initiatives.savings' => function($query){
-                $query->where('month', Carbon::now()->month);
-                $query->orderBy('month');
-            }
-        ])
-        ->where('group', $url)
-        ->get();
+        if (Auth::user()->role == 'subsidiary') {
+            # code...
+            $companies = Company::with([
+                'initiatives.savings' => function($query){
+                    $query->where('month', Carbon::now()->month);
+                    $query->orderBy('month');
+                }
+            ])
+            ->where('id', Auth::user()->company_id)
+            ->where('group', $url)
+            ->get();
+        }
+        else {
+            $companies = Company::with([
+                'initiatives.savings' => function($query){
+                    $query->where('month', Carbon::now()->month);
+                    $query->orderBy('month');
+                }
+            ])
+            ->where('group', $url)
+            ->get();
+        }
+        
+
+        // dd($companies);
 
         foreach ($companies as $k => $v)
-        {
+        {   
             $result_target_saving = DB::table('savings')
                 ->join('initiatives', 'initiatives.id', '=', 'savings.initiative_id')
                 ->join('companies', 'companies.id', '=', 'initiatives.company_id')
