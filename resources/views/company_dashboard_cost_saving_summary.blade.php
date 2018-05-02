@@ -1,4 +1,4 @@
-<table class="table table-bordered" style="border-collapse: collapse;">
+<table class="table table-bordered table-summary">
     <tr>
         <td><label class="col-md-12 text-center control-label">Area</label></td>
         <td><label class="col-md-12 text-center control-label">Target (RM)</label></td>

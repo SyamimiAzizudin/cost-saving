@@ -12,7 +12,7 @@
         </ol>
         
             <div class="col-md-12 ">
-                <div style="overflow-x:auto;">
+                <div class="list-initiatives">
                     <table class="table table-bordered">
                         <tr>
                             <th class="text-center">Order Id</th>
@@ -60,11 +60,6 @@
             <label for="area" class="col-sm-3 control-label">Company</label>
             <div class="col-sm-9">
                 {{$company->name}}
-                {{-- <select name="company_id" class="form-control">
-                    @foreach($companies as $id => $company_name)
-                        <option value="{{ $id }}">{{ $company_name }}</option>
-                    @endforeach
-                </select> --}}
                 <input type="hidden" name="company_id" value="{{$company->id}}" class="form-control" >
             </div>
         </div>
@@ -80,7 +75,6 @@
             <label for="analyze" class="col-sm-3 control-label">Analyze Factors Or Causes Contributing To Current Performances</label>
             <div class="col-sm-9">
                 {!! Form::textarea('analyze', null, array('placeholder' => 'Analyze Factor','class' => 'form-control')) !!}
-                {{-- <textarea class="form-control" id="analyze"></textarea> --}}
             </div>
         </div>
 

@@ -95,9 +95,7 @@ class InitiativesController extends Controller
      */
     public function edit($id)
     {
-        // $company = Company::all()
         $initiative = Initiative::findOrFail($id);
-        // dd($company);
         return view('initiative.edit', compact('initiative'));
     }
 
@@ -127,7 +125,6 @@ class InitiativesController extends Controller
         $initiative->save();
 
         return redirect()->action('InitiativesController@getCompanyInitiative',['company_id' => $request->company_id])->withMessage('Initiative has been successfully added!');
-
     }
 
     /**
@@ -140,7 +137,11 @@ class InitiativesController extends Controller
     {
         $initiative = Initiative::findOrFail($id);
         $initiative->delete();
+<<<<<<< HEAD
         return back()->withErrors('Initiative has been successfully updated!');
+=======
+        return back()->withError('Initiative has been successfully removed!');
+>>>>>>> 140b2e0dcd3dc4162c9f2ecb1801320328f7ee64
     }
 
     public function getCompanyInitiative($company_id)

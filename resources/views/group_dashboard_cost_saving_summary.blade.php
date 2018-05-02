@@ -1,10 +1,9 @@
-<table class="table table-bordered" style="border-collapse: collapse;">
+<table class="table table-bordered table-summary">
     <tr>
         <td><label for="" class="col-md-12 text-center control-label">Company</label></td>
         <td><label for="" class="col-md-12 text-center control-label">Target (RM)</label></td>
         <td><label for="" class="col-md-12 text-center control-label">Actual (RM)</label></td>
         <td><label for="" class="col-md-12 text-center control-label">%</label></td>
-        {{-- <td></td> --}}
     </tr>
     <?php $i=1 ?>
     @forelse ($companies as $company)

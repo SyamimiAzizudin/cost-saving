@@ -9,7 +9,7 @@
         	<li class="active">Saving - Company List</li>
         </ol>
         <div class="col-md-8">
-        	<div style="overflow-x:auto;">
+        	<div class="list-companies">
         		<table class="table table-bordered">
         			<tr>
         				<th class="text-center">No</th>
