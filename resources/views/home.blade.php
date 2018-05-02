@@ -45,7 +45,7 @@
         <div class="row row1">
             <div class="col-md-8 col-md-offset-2 padding2">
                 <div class="col-md-6 col-sm-4 col-xs-12 pad-left">
-                    <a type="button" href="{{ url('/initiative-company') }}" class="btn btn-lg btn-primary custom1">Initiative Management</a>
+                    <a type="button" href="{{ url('/initiative-company') }}" class="btn btn-lg btn-primary custom1 button-right">Initiative Management</a>
                 </div>
                 <div class="col-md-6 col-sm-4 col-xs-12">
                     <a type="button" href="{{ url('/saving-company') }}" class="btn btn-lg btn-primary custom1">Saving Management</a>

@@ -137,11 +137,8 @@ class InitiativesController extends Controller
     {
         $initiative = Initiative::findOrFail($id);
         $initiative->delete();
-<<<<<<< HEAD
+
         return back()->withErrors('Initiative has been successfully updated!');
-=======
-        return back()->withError('Initiative has been successfully removed!');
->>>>>>> 140b2e0dcd3dc4162c9f2ecb1801320328f7ee64
     }
 
     public function getCompanyInitiative($company_id)

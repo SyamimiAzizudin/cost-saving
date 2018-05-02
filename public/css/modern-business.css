@@ -272,6 +272,31 @@ footer {
     /*border: 2px solid red;*/
     display: inline-block;
 }
+.btn-outline-info {
+    border: 2px solid black;
+    background-color: #2196F3;
+    font-size: 14px;
+    cursor: pointer;
+    border-color: #2196F3 !important;
+    color: white;
+}
+.info:hover {
+    background-color: #2196F3 !important;
+    color: white !important;
+}
+.pad-left {
+    padding-left: 18%;
+}
+.button-right{
+    float: right;
+}
+/* Syamimi Added 9 april */
+#logout-form {display: none;}
+.umw-logo {width:23%;height:auto;}
+.list-companies {overflow-x:auto;}
+.list-initiatives {overflow-x:auto;}
+.saving-scroll {overflow:auto; width: 100%;}
+.table-summary {border-collapse: collapse;}
 @media (min-width: 768px) and (max-width: 1300px){
     .table-container {
         width: 740px;
@@ -443,29 +468,3 @@ footer {
         width: 80%; 
     }
 }
-.btn-outline-info {
-    border: 2px solid black;
-    background-color: #2196F3;
-    font-size: 14px;
-    cursor: pointer;
-    border-color: #2196F3 !important;
-    color: white;
-}
-.info:hover {
-    background-color: #2196F3 !important;
-    color: white !important;
-}
-<<<<<<< HEAD
-.pad-left {
-    padding-left: 18%;
-}
-=======
-
-/* Syamimi Added 9 april */
-#logout-form {display: none;}
-.umw-logo {width:23%;height:auto;}
-.list-companies {overflow-x:auto;}
-.list-initiatives {overflow-x:auto;}
-.saving-scroll {overflow:auto; width: 100%;}
-.table-summary {border-collapse: collapse;}
->>>>>>> 140b2e0dcd3dc4162c9f2ecb1801320328f7ee64

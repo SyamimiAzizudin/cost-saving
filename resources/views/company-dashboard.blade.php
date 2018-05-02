@@ -40,7 +40,6 @@
                 <h3> {{ number_format( ($cummulative_actual), 2, '.', ',' ) }} </h3>
             </div>
         </div>
-        <div class="col-xs-offset-3">
         <div class="col-md-2 col-xs-12 panel panel-default">
             <div class="panel-heading text-center">
                 <h5>Yearly % (Cumm) </h5>
@@ -56,7 +55,6 @@
             <div class="panel-body text-center">
                 <h3> {{ number_format(($cummulative_actual/$cummulative_target) * 100,0) }} % </h3>
             </div>
-        </div>
         </div>
     </div>
 </div>

@@ -42,22 +42,18 @@
                     <!-- Branding Image -->
                     @if (Auth::guest())
                     <a class="navbar-brand pull-left" href="{{ url('/home') }}">
-<<<<<<< HEAD
-                        <img class="image-responsive" src="{{ asset('img/umw-logo.png') }}"  alt="UMW logo" style="width:23%;height:auto;">
-=======
                         <!-- {{ config('app.name', 'UMW Cost Saving Initiative') }} -->
                         <img class="image-responsive umw-logo" src="{{ asset('img/umw-logo.png') }}"  alt="UMW logo">
->>>>>>> 140b2e0dcd3dc4162c9f2ecb1801320328f7ee64
 
                     </a>
                     @elseif (Auth::user()->role == 'admin')
                     <a class="navbar-brand pull-left" href="{{ url('/home') }}">
-                        <img class="image-responsive" src="{{ asset('img/umw-logo.png') }}"  alt="UMW logo" style="width:23%;height:auto;">
+                        <img class="image-responsive umw-logo" src="{{ asset('img/umw-logo.png') }}"  alt="UMW logo">
 
                     </a>
                     @else
                     <a class="navbar-brand pull-left" href="{{ url('/dashboard') }}">
-                        <img class="image-responsive" src="{{ asset('img/umw-logo.png') }}"  alt="UMW logo" style="width:23%;height:auto;">
+                        <img class="image-responsive umw-logo" src="{{ asset('img/umw-logo.png') }}"  alt="UMW logo">
 
                     </a>
                     @endif
