@@ -7,7 +7,9 @@
         <!--name group-->
         <h1 class="page-header">Dashboard - {{ $group }} Group</h1>
         <ol class="breadcrumb">
+            @if(Auth::user()->role == 'admin')
             <li><a href="{{ url('/home') }}">Home</a></li>
+            @endif
             <li><a href="{{ url('/dashboard') }}">Main Dashboard</a>
             </li>
             <li class="active">Dashboard - {{ $group }} Group</li>

@@ -128,6 +128,6 @@ class UsersController extends Controller
         // dd($id);
         $user = User::findOrFail($id);
         $user->delete();
-        return back()->withError('User has been successfully updated!');
+        return back()->withErrors('User has been successfully updated!');
     }
 }

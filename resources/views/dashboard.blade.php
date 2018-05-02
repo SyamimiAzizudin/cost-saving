@@ -18,7 +18,9 @@
         </div>
 
         <ol class="breadcrumb">
+            @if(Auth::user()->role == 'admin')
             <li><a href="{{ url('/home') }}">Home</a></li>
+            @endif
             <li class="active">Main Dashboard</li>
         </ol>
     </div></div></div></div></div>
@@ -92,6 +94,7 @@
 
                 <br>
 
+                @if(Auth::user()->role != 'subsidiary')
                 <div class="col-md-8 col-md-offset-2">
                     <?php $i=0 ?>
                     @forelse ($companies as $company)
@@ -102,6 +105,18 @@
                     @empty
                     @endforelse
                 </div>
+                @else
+                <div class="col-md-4 col-md-offset-4">
+                    <?php $i=0 ?>
+                    @forelse ($companies as $company)
+                    <div class="col-md-12 col-xs-12 col-sm-12">
+                        <a href="{{ url('/group-dashboard') }}/{{$company->group}}" type="button" class="btn btn-lg btn-primary custom1">Dashboard {{$company->group}}</a>
+                    </div>
+                    <?php $i++; ?>
+                    @empty
+                    @endforelse
+                </div>
+                @endif
 
             </center>
         </div>

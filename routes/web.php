@@ -19,6 +19,9 @@ Auth::routes();
 
 Route::group(['middleware' => 'admin'], function() {
 
+    // dashboard
+    Route::get('/home', 'HomeController@index');
+
     /**
      * User Management
      */
@@ -65,7 +68,6 @@ Route::group(['middleware' => 'adminsubsidiary'], function() {
 Route::group(['middleware' => 'board'], function() {
 
     // dashboard
-    Route::get('/home', 'HomeController@index');
     Route::get('/dashboard', 'HomeController@dashboard');
     Route::get('/dashboard_cost_saving_summary/{month}', 'HomeController@dashboard_cost_saving_summary');
     Route::get('/group-dashboard/{group}', 'HomeController@group_dashboard');

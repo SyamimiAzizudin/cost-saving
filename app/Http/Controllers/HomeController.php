@@ -30,7 +30,7 @@ class HomeController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
+    {   
         return view('home');
     }
 
@@ -116,7 +116,7 @@ class HomeController extends Controller
 
     public function dashboard_cost_saving_summary($month)
     {
-        if (Auth::user()->role == 'admin') {
+        if (Auth::user()->role == 'subsidiary') {
             # code...
             //todo filter cost saving summary by year
             // for admin access
@@ -124,7 +124,8 @@ class HomeController extends Controller
             from `savings` 
             inner join `initiatives` on `savings`.`initiative_id` = `initiatives`.`id` 
             inner join `companies` on `companies`.`id` = `initiatives`.`company_id`
-            where savings.`month` = '.$month.'
+            inner join `users` on `users`.`company_id` = `companies`.`id`
+            where savings.`month` = '.$month.' and `users`.`company_id` = '.Auth::user()->company_id.'
             group by `companies`.`group`';
         }
         else{
@@ -134,8 +135,7 @@ class HomeController extends Controller
             from `savings` 
             inner join `initiatives` on `savings`.`initiative_id` = `initiatives`.`id` 
             inner join `companies` on `companies`.`id` = `initiatives`.`company_id`
-            inner join `users` on `users`.`company_id` = `companies`.`id`
-            where savings.`month` = '.$month.' and `users`.`company_id` = '.Auth::user()->company_id.'
+            where savings.`month` = '.$month.'
             group by `companies`.`group`';
         }
         
@@ -417,7 +417,7 @@ class HomeController extends Controller
             array_push($graphs['yearly_target'], (int)$v->yearly_target);
         }
 
-        return view('company-dashboard', compact('last_update', 'id', 'company' ,'yearly_target', 'cummulative_target', 'cummulative_actual', 'graphs'));
+        return view('company-dashboard', compact('last_update', 'id', 'company' , 'yearly_target', 'cummulative_target', 'cummulative_actual', 'graphs'));
     }
 
     public function company_dashboard_cost_saving_summary($id, $month)

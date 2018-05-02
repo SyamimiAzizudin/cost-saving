@@ -40,11 +40,22 @@
                     </button>
 
                     <!-- Branding Image -->
+                    @if (Auth::guest())
                     <a class="navbar-brand pull-left" href="{{ url('/home') }}">
-                        <!-- {{ config('app.name', 'UMW Cost Saving Initiative') }} -->
                         <img class="image-responsive" src="{{ asset('img/umw-logo.png') }}"  alt="UMW logo" style="width:23%;height:auto;">
 
                     </a>
+                    @elseif (Auth::user()->role == 'admin')
+                    <a class="navbar-brand pull-left" href="{{ url('/home') }}">
+                        <img class="image-responsive" src="{{ asset('img/umw-logo.png') }}"  alt="UMW logo" style="width:23%;height:auto;">
+
+                    </a>
+                    @else
+                    <a class="navbar-brand pull-left" href="{{ url('/dashboard') }}">
+                        <img class="image-responsive" src="{{ asset('img/umw-logo.png') }}"  alt="UMW logo" style="width:23%;height:auto;">
+
+                    </a>
+                    @endif
                 </div>
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
@@ -61,7 +72,13 @@
                             {{-- <li><a href="{{ route('register') }}">Register</a></li> --}}
                         @else
                             <li><a href="{{ url('/initiative-company') }}">Initiative Management</a></li>
-                            <li><a href="{{ url('/saving-company') }}">Saving Management</a></li>
+                            <li>
+                                @if(Auth::user()->role == 'subsidiary')
+                                <a href="{{ url('/saving-company') }}/{{ Auth::user()->company_id }}">Saving Management</a>
+                                @else
+                                <a href="{{ url('/saving-company') }}">Saving Management</a>
+                                @endif
+                            </li>
                             <li><a href="{{ url('/company') }}">Company Management</a></li>
                             <li><a href="{{ url('/user') }}">User Management</a></li>
                             <li>  
@@ -91,7 +108,7 @@
                             </button>
                         </div>
                     @endif
-                    @if (isset($errors))
+                    @if($errors->any())
                         @foreach ($errors->all() as $error)
                             <div class="alert alert-danger">
                                 {{ $error }}

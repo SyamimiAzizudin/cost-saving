@@ -24,7 +24,14 @@ class SavingsController extends Controller
     public function companylist()
     {
         $savings = Saving::all();
-        $companies = Company::withTrashed()->get();
+        if (Auth::user()->role == 'subsidiary') {
+            # code...
+            $companies = Company::withTrashed()->where('id', Auth::user()->company_id)->get();
+        }
+        else{
+            $companies = Company::withTrashed()->get();
+        }
+        
         // $companies = Company::pluck('name', 'id');
         return view('saving.company', compact('savings', 'companies'));
     }

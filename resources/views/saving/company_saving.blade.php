@@ -6,8 +6,12 @@
     <div class="col-lg-12">
         <h3 class="page-header">Saving - {{ $company->name }} </h3>
         <ol class="breadcrumb">
-            <li><a href="{{ url('/home') }}">Home</a>
-            <li><a href="{{ url('/saving-company') }}">Saving - Company List</a></li>
+            <li><a href="{{ url('/home') }}">Home</a></li>
+            @if(Auth::user()->role != 'subsidiary')
+            <li>
+            <a href="{{ url('/saving-company') }}">Saving - Company List</a>
+            </li>
+            @endif  
             <li class="active">Saving - {{ $company->name }}</li>
         </ol>
         </div></div></div></div></div>

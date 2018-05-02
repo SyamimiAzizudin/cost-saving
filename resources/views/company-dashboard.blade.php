@@ -6,9 +6,11 @@
     <div class="col-lg-12">
         <h1 class="page-header">Dashboard - {{ $company->name }}</h1>
         <ol class="breadcrumb">
+            @if(Auth::user()->role == 'admin')
             <li><a href="{{ url('/home') }}">Home</a></li>
+            @endif
             <li><a href="{{ url('/dashboard') }}">Main Dashboard</a></li>
-            <li><a href="{{ url('/group-dashboard') }}">Group Dashboard</a></li>
+            <li><a href="{{ url('/group-dashboard') }}/{{ $company->group }}">Group Dashboard</a></li>
             <li class="active">Dashboard - {{ $company->name }}</li>
         </ol>
     </div></div></div></div></div>

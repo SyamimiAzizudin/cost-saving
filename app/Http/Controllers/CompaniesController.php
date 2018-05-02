@@ -111,6 +111,6 @@ class CompaniesController extends Controller
     {
         $company = Company::findOrFail($id);
         $company->delete();
-        return back()->withError('Company has been successfully deleted!');
+        return back()->withErrors('Company has been successfully deleted!');
     }
 }

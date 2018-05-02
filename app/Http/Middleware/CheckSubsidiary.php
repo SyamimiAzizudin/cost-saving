@@ -20,7 +20,8 @@ class CheckSubsidiary
         if( Auth::check() && Auth::user()->role == 'subsidiary' ) {
             return $next($request);
         }
-        return back()->withMessage('You dont have permission !');
+        // return back()->withMessage('You dont have permission !');
+        return redirect()->back()->with('permission', 'You dont have permission !');
     }
 
 

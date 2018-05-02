@@ -19,7 +19,7 @@ class CheckAdminSubsidiary
             return $next($request);
         }
 
-        return back()->withMessage('You dont have permission !');
+        return back()->withErrors('You dont have permission !');
         
     }
 }
