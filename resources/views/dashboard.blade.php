@@ -6,9 +6,9 @@
 <div class="row">
     <div class="col-lg-12">
         <h1 class="page-header">Main Dashboard </h1>
-        <div class="form-group col-md-6 pull-right">
-            <label for="year" class="col-sm-3 control-label">Filter by Year</label>
-            <div class="col-sm-4">
+        <div class="form-group col-md-6 pull-right filter-width">
+            <label for="year" class="col-sm-3 control-label filter-year">Filter by Year</label>
+            <div class="col-sm-4 filter-year">
                 <select name="year" class="form-control" id="filteryear">
                     <option value="2018">2018</option>
                     <option value="2019">2019</option>
@@ -53,8 +53,7 @@
                 <h3>RM {{ number_format( ($cummulative_actual), 2, '.', ',' ) }}</h3>
             </div>
         </div>
-        <div class="col-xs-offset-3">       
-        <div class="col-md-2 col-xs-12 panel panel-default">
+        <div class="col-md-2 col-xs-12 panel panel-default margin-left-table">
             <div class="panel-heading text-center">
                 <h5>Yearly % (Cumm) </h5>
             </div>
@@ -71,7 +70,6 @@
                 <h3>{{ number_format(($cummulative_actual/$cummulative_target) * 100,0) }} %</h3>
             </div>
         </div>
-    </div>
     </div>
 </div>
 
@@ -160,7 +158,7 @@
     <div class="row">
         <div class="col-lg-12">
             <div class="text-right padding2">
-                <a href="{{ url('/print-overall') }}" class="btn btn-outline-success success">Print Overall Page</a>
+                <a href="{{ url('/print-overall') }}" class="btn btn-outline-success success print-ipad">Print Overall Page</a>
             </div>
         </div>
     </div>
