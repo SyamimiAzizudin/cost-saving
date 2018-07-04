@@ -36,7 +36,6 @@ class HomeController extends Controller
 
     public function dashboard()
     {
-
         $current_year = Carbon::now()->year;
         $current_month = Carbon::now()->month;
         $ls = DB::table('savings')
@@ -75,18 +74,18 @@ class HomeController extends Controller
         // dd($companies);
 
         //todo graph query for main dashboard    
-        $targets = DB::select('select `year`, `month`, sum(target_saving) as target_saving
+        $targets = DB::select('select `month`, sum(target_saving) as target_saving
         from savings
-        group by `year`,`month`');
+        group by `month`');
 
-        $actual = DB::select('select `year`, `month`, sum(actual_saving) as actual_saving
+        $actual = DB::select('select `month`, sum(actual_saving) as actual_saving
         from savings
         where (`year` between 2018 and :year) and (`month` between 1 and :month)
-        group by `year`, `month`', ['month' => $current_month, 'year' => $current_year]);
+        group by `month`', ['month' => $current_month, 'year' => $current_year]);
 
-        $yearly_target_results = DB::select('select `year`, `month`, (select sum(target_saving) from savings) as yearly_target
+        $yearly_target_results = DB::select('select `month`, (select sum(target_saving) from savings) as yearly_target
         from savings
-        group by `year`, `month`');
+        group by `month`');
 
         $graphs = [];
         $graphs['targets'] = [];

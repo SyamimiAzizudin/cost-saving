@@ -25,6 +25,12 @@
         </ol>
     </div></div></div></div></div>
 
+    {{-- <div class="col-md-12 padding2"> --}}
+        {{-- <div class="form-group"> --}}
+            <div id="year_saving_summary"></div>
+        {{-- </div> --}}
+    {{-- </div> --}}
+
 <div class="text-center">
     <div class="table-container">
         <div class="col-md-2 col-xs-12 panel panel-default">
@@ -179,11 +185,23 @@
 <script>
     
     // filter saving by year
+    getYear(2018);
     $(function() {
         $("#filteryear").on('change', function(){
             var selected_value = $(this).find(":selected").val();
         });
     });
+
+    function getYear(year)
+    {
+        $.ajax({
+            url: 'dashboard_filteryear_cost_saving_summary/'+year, //this is the submit URL
+            type: 'GET', //or POST
+            success: function(data){
+                $("#year_saving_summary").html(data);
+            }
+        });
+    }
 
     //initial load
     getTable(1);
