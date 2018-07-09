@@ -355,9 +355,15 @@ label.filter-year{margin-top: 7px;}
         width: 180px;
     }
 }
-/**/
 @media (min-width: 1770px) {
     .table-container {
         width: 80%; 
+    }
+}
+/* for filter by year */
+@media (min-width: 768px) {
+    .col-sm-3-custom {
+        width: 65% !important;
+        text-align: right;
     }
 }

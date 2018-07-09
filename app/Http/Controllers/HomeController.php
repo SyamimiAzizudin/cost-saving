@@ -117,7 +117,7 @@ class HomeController extends Controller
     {
         if (Auth::user()->role == 'subsidiary') {
             # code...
-            //todo filter cost saving summary by year
+            //todo filter cost saving summary by month
             // for admin access
             $saving_summary_sql = 'select  `companies`.`group`, sum(`savings`.`actual_saving`) as actual, sum(`savings`.`target_saving` ) as target
             from `savings` 
@@ -128,7 +128,7 @@ class HomeController extends Controller
             group by `companies`.`group`';
         }
         else{
-            //todo filter cost saving summary by year
+            //todo filter cost saving summary by month
             // for all access
             $saving_summary_sql = 'select  `companies`.`group`, sum(`savings`.`actual_saving`) as actual, sum(`savings`.`target_saving` ) as target
             from `savings` 
@@ -244,9 +244,9 @@ class HomeController extends Controller
     {
         //todo filter cost saving summary by year
         $url = htmlspecialchars_decode($group);
-        // dd($url);
+        
         $current_month = Carbon::now()->month;
-/*        $cummulative_target = Saving::where('month', '<=',$current_month)
+/*      $cummulative_target = Saving::where('month', '<=',$current_month)
             ->with([
                 'initiatives.companies' => function($query)use($group){
                     $query->where('group',$group);

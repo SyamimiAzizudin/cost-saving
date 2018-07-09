@@ -5,8 +5,21 @@
 <div class="row">
     <div class="col-lg-12">
         <h3 class="page-header">Saving - {{ $company->name }} </h3>
+
+        {{-- filter by year --}}
+        <div class="form-group col-md-6 pull-right filter-width">
+            <label for="year" class="col-sm-3 col-sm-3-custom control-label filter-year">Filter by Year</label>
+            <div class="col-sm-4 filter-year">
+                <select name="year" class="form-control" id="filteryear">
+                    <option value="2018">2018</option>
+                    <option value="2019">2019</option>
+                    <option value="2020">2020</option>
+                </select>
+            </div>
+        </div>
+
         <ol class="breadcrumb">
-            <li><a href="{{ url('/home') }}">Home</a></li>
+            <li><a href="{{ url('/dashboard') }}">Main Dashboard</a></li>
             @if(Auth::user()->role != 'subsidiary')
             <li>
             <a href="{{ url('/saving-company') }}">Saving - Company List</a>
@@ -23,13 +36,11 @@
 <br>
 <div class="row">
     <div class="text-center">
-        {{-- <a href="#" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span> Edit</a> --}}
         <button type="submit" class="btn btn-primary btn-lg" id="lock_initiative"> Submit</button>
     </div>
 </div>
 
 <!-- Button trigger modal -->
-
 
 <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -79,16 +90,24 @@
                 //alert('successfully submitted')
                 $("#myModal").modal('hide');
 
-                getTable();
+                getTable(2018);
             }
         });
 
     });
 
-    function getTable(){
+    // filter saving by year
+    getTable(2018);
+    $(function() {
+        $("#filteryear").on('change', function(){
+            var selected_value = $(this).find(":selected").val();
+        });
+    });
+
+    function getTable() {
         console.log('get table');
         $.ajax({
-            url: '/saving-company-table/{{$company_id}}', //this is the submit URL
+            url: '/saving-company-table/{{$company_id}}'+year, //this is the submit URL
             type: 'get', //or POST
             success: function(data){
                 $("#SavingTable").html(data);
@@ -119,13 +138,13 @@
 
     $("#lock_initiative").click(function(){
         $.ajax({
-            url: '/lock_initiative/{{$company_id}}', //this is the submit URL
+            url: '/lock_initiative/{{$year}}/{{$company_id}}', //this is the submit URL
             type: 'post', //or POST
             data: {
                 "_token": "{{ csrf_token() }}",
             },
             success: function(data){
-                alert("Succesfully lock !");
+                alert("Succesfully lock!");
                 location.reload();
             }
         });

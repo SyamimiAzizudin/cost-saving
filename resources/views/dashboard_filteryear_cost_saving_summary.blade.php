@@ -54,14 +54,3 @@
                 <p class="text-right">Last Update Savings: {{ Carbon\Carbon::parse($last_update)->format('g:i A, d F Y') }}</p>
             </div>
 
-    <!-- Dashboard Section -->
-    <div class="row">
-        <div class="col-lg-12">
-            <center>
-                
-                <div id="app">
-                    <highcharts :options="options" ref="highcharts"></highcharts>
-                </div>
-
-                <br>
-

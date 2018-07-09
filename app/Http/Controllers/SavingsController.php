@@ -24,8 +24,9 @@ class SavingsController extends Controller
     public function companylist()
     {
         $savings = Saving::all();
+        // $savings = Saving::pluck('year', 'id');
+
         if (Auth::user()->role == 'subsidiary') {
-            # code...
             $companies = Company::withTrashed()->where('id', Auth::user()->company_id)->get();
         }
         else{
@@ -107,9 +108,13 @@ class SavingsController extends Controller
         //
     }
 
-    public function getCompanySaving($company_id)
+    public function getCompanySaving($company_id, Request $year)
     {
         $company = Company::findOrFail($company_id);
+
+        $saving = Saving::orderBy('month', 'asc')->where('year', $year);
+        // $saving = Saving::findOrFail($year);
+        // dd($saving);
 
         $initiatives = Initiative::orderBy('order_id', 'asc')->where('company_id', $company_id)->get();
 
@@ -117,7 +122,8 @@ class SavingsController extends Controller
             'initiatives' => function($query) use ($company_id){
                 $query->where('company_id',$company_id);
             },
-            'initiatives.savings' => function($query){
+            'initiatives.savings' => function($query) use ($year) {
+                $query->where('year', $year);
                 $query->orderBy('month');
             }
         ])
@@ -127,6 +133,7 @@ class SavingsController extends Controller
         $data['company'] = $company;
         $data['company_id'] = $company_id;
         $data['initiatives'] = $initiatives;
+        $data['year'] = $year;
 
         #dump($savings);
         $company_savings= [];
@@ -152,7 +159,6 @@ class SavingsController extends Controller
             }
         }
         
-        #dd($company_savings);
         $data['company_savings'] = $company_savings;
         return view('saving.company_saving', $data);
     }

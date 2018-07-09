@@ -6,6 +6,19 @@
     <div class="col-lg-12">
         <!--name group-->
         <h1 class="page-header">Dashboard - {{ $group }} Group</h1>
+
+        {{-- filter by year --}}
+        <div class="form-group col-md-6 pull-right filter-width">
+            <label for="year" class="col-sm-3 col-sm-3-custom control-label filter-year">Filter by Year</label>
+            <div class="col-sm-4 filter-year">
+                <select name="year" class="form-control" id="filteryear">
+                    <option value="2018">2018</option>
+                    <option value="2019">2019</option>
+                    <option value="2020">2020</option>
+                </select>
+            </div>
+        </div>
+        
         <ol class="breadcrumb">
             @if(Auth::user()->role == 'admin')
             <li><a href="{{ url('/home') }}">Home</a></li>
