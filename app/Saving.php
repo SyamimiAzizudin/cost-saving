@@ -11,7 +11,14 @@ class Saving extends Model
         'initiative_id',
         'actual_saving',
         'target_saving',
-        'month'
+        'month',
+        'year',
+        'display'
+    ];
+
+    protected $hidden = [
+        'created_at',
+        'updated_at'
     ];
 
     protected $dates = ['created_at', 'updated_at'];

@@ -12,8 +12,14 @@ class Company extends Model
     use SoftDeletes;
     
     protected $fillable = [
+        'user_id',
         'name',
-        'group',
+        'group'
+    ];
+
+    protected $hidden = [
+        'created_at',
+        'updated_at'
     ];
 
     protected $dates = ['deleted_at'];

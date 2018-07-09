@@ -17,6 +17,11 @@ class Initiative extends Model
         'analyze',
         'action'
     ];
+
+    protected $hidden = [
+        'created_at',
+        'updated_at'
+    ];
    
     public function user()
     {
