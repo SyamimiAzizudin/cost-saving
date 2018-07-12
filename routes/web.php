@@ -60,7 +60,7 @@ Route::group(['middleware' => 'adminsubsidiary'], function() {
     Route::get('/saving-company', 'SavingsController@companylist');
     Route::get('/saving-company/{company_id}', 'SavingsController@getCompanySaving');
     Route::post('/saving-company/{company_id}', 'SavingsController@saveInitiativeSaving');
-    Route::get('/saving-company-table/{company_id}', 'SavingsController@getInititativeSavingTable');
+    Route::get('/saving-company/{company_id}/{year}', 'SavingsController@getInititativeSavingTable');
     Route::post('/lock_initiative/{company_id}', 'SavingsController@postLockInitiative');
 });
 
@@ -68,7 +68,8 @@ Route::group(['middleware' => 'board'], function() {
 
     // dashboard
     Route::get('/dashboard', 'HomeController@dashboard');
-    Route::get('/dashboard_cost_saving_summary/{month}', 'HomeController@dashboard_cost_saving_summary');
+    Route::get('/dashboard/{year}', 'HomeController@dashboard_year');
+    Route::get('/dashboard_cost_saving_summary/{month}/{year}', 'HomeController@dashboard_cost_saving_summary');
     // Route::get('/dashboard_filteryear_cost_saving_summary/{year}', 'HomeController@dashboard');
     Route::get('/group-dashboard/{group}', 'HomeController@group_dashboard');
     Route::get('/group_dashboard_cost_saving_summary/{group}/{month}', 'HomeController@group_dashboard_cost_saving_summary');

@@ -75,7 +75,7 @@
     jQuery(document).ready(function() {
        jQuery(".main-table").clone(true).appendTo('#table-scroll').addClass('clone');
 
-        getTable();
+        getTable(2018);
 
      });
 
@@ -97,17 +97,19 @@
     });
 
     // filter saving by year
-    getTable(2018);
     $(function() {
         $("#filteryear").on('change', function(){
             var selected_value = $(this).find(":selected").val();
+            getTable(selected_value);
         });
     });
 
-    function getTable() {
-        console.log('get table');
+    getTable(2018);
+
+    function getTable(year) {
+        // console.log('get table');
         $.ajax({
-            url: '/saving-company-table/{{$company_id}}', //this is the submit URL
+            url: window.location.pathname+'/'+year, //this is the submit URL
             type: 'get', //or POST
             success: function(data){
                 // console.log(year);

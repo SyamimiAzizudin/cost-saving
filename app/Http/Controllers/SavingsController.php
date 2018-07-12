@@ -179,14 +179,15 @@ class SavingsController extends Controller
         $i->month = $request->month;
         $i->save();
     }
-    public function getInititativeSavingTable($company_id)
+    public function getInititativeSavingTable($company_id, $year)
     {
         $initiatives = Initiative::orderBy('order_id', 'asc')->where('company_id', $company_id)->get();
         $savings = Company::with([
             'initiatives' => function($query) use ($company_id){
                 $query->where('company_id',$company_id);
             },
-            'initiatives.savings' => function($query){
+            'initiatives.savings' => function($query) use ($year) {
+                $query->where('year', $year);
                 $query->orderBy('month');
             }
         ])
