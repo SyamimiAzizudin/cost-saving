@@ -100,8 +100,12 @@
         {!! Form::close() !!}
     </div>
 </div>
-{{-- <script src="{{ asset('vendor/unisharp/laravel-ckeditor/ckeditor.js') }}"></script>
+@endsection
+@section('scripts')
+<script src="{{ asset('vendor/unisharp/laravel-ckeditor/ckeditor.js') }}"></script>
 <script>
+    CKEDITOR.replace( 'area' );
+    CKEDITOR.replace( 'action' );
     CKEDITOR.replace( 'analyze' );
-</script> --}}
+</script>
 @endsection

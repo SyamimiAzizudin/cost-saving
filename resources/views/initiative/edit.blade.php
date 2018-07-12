@@ -61,3 +61,11 @@
     </div>
 </div>
 @endsection
+@section('scripts')
+<script src="{{ asset('vendor/unisharp/laravel-ckeditor/ckeditor.js') }}"></script>
+<script>
+    CKEDITOR.replace( 'area' );
+    CKEDITOR.replace( 'action' );
+    CKEDITOR.replace( 'analyze' );
+</script>
+@endsection

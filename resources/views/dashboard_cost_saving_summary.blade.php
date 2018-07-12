@@ -13,7 +13,7 @@
             @if($v->actual >= $v->target )
             <td class="text-right"><label for="actual_saving" class="col-md-12 number text-right control-labe good">{{  number_format( ($v->actual), 2, '.', ',' ) }}</label></td>
             @else
-            <td class="text-right"><label for="actual_saving" class="col-md-12 number text-right control-labe fail">{{  number_format( ($v->actual), 2, '.', ',' ) }}</label></td>
+            <td class="text-right"><label for="actual_saving" class="col-md-12 number text-right control-labe fail fresult">{{  number_format( ($v->actual), 2, '.', ',' ) }}</label></td>
             @endif
             <td class="text-right"><label for="Target" class="col-md-12 number text-center control-label">{{ number_format(($v->actual/$v->target) * 100,0) }}</label></td>
         </tr>

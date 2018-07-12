@@ -7,8 +7,15 @@
     <div class="col-lg-12">
         <h1 class="page-header">Main Dashboard</h1>
 
+        <ol class="breadcrumb col-md-7 pull-left">
+            @if(Auth::user()->role == 'admin')
+            <li><a href="{{ url('/home') }}">Home</a></li>
+            @endif
+            <li class="active">Main Dashboard</li>
+        </ol>
+
         {{-- filter by year --}}
-        <div class="form-group col-md-6 pull-right filter-width">
+        <div class="form-group col-md-5 pull-right filter-width">
             <label for="year" class="col-sm-3 col-sm-3-custom control-label filter-year">Filter by Year</label>
             <div class="col-sm-4 filter-year">
                 <select name="year" class="form-control" id="filteryear">
@@ -19,12 +26,6 @@
             </div>
         </div>
 
-        <ol class="breadcrumb">
-            @if(Auth::user()->role == 'admin')
-            <li><a href="{{ url('/home') }}">Home</a></li>
-            @endif
-            <li class="active">Main Dashboard</li>
-        </ol>
     </div></div></div></div></div>
 
     {{-- <div class="col-md-12 padding2"> --}}

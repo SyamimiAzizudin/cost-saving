@@ -93,8 +93,7 @@ footer {margin: 50px 0;}
     .padding2{/*padding-top: 0px !important;*/padding-bottom: 20px !important;}
 }
 .padding2{
-    padding-top: 40px;
-    padding-bottom: 50px;
+    padding: 40px 0 10px 0;
 }
 .custom {
     width: 240px !important;
@@ -223,6 +222,7 @@ footer {margin: 50px 0;}
 .saving-scroll {overflow:auto; width: 100%;}
 .table-summary {border-collapse: collapse;}
 label.filter-year{margin-top: 7px;}
+.col-sm-6 { display: inline-block !important }
 /*portrait phone*/
 @media (min-width: 320px) and (max-width: 480px){
     .table-container {
@@ -310,8 +310,7 @@ label.filter-year{margin-top: 7px;}
     .margin-left-table{margin-left: 16%;}
     .margin-left-savingsbutton{margin-left: 56%;}
     .custom1{width: 200px;}
-    .filter-year{width: 50%;padding-left: 0;padding-right: 0;}
-    .filter-width{width: 30%;}
+    .filter-width{width: 40%;}
     .padding2{padding: 5px;padding-top: 40px;}
     .table>tbody>tr:nth-of-type(1)>td{text-align: center;}
     .print-ipad{margin-right: 25px;}
@@ -361,9 +360,53 @@ label.filter-year{margin-top: 7px;}
     }
 }
 /* for filter by year */
-@media (min-width: 768px) {
+@media (min-width: 800px) {
     .col-sm-3-custom {
         width: 65% !important;
         text-align: right;
+    }
+}
+@media (max-width: 768px) {
+    .filter-width {
+        width: 100%;
+        /*padding: 0 !important;*/
+        float: left !important
+    }
+    .breadcrumb {
+        margin-bottom: 0 !important
+    }
+    .col-sm-3 {
+        text-align: unset !important;
+        display: inline-block !important;
+        padding: 0 !important;
+    }
+    .col-sm-4 { display: inline-block; width: 40% }
+}
+
+/* for blinking/flashing text */
+.fresult {
+    -webkit-animation: 0.75s linear infinite condemned_blink_effect;
+    animation: 0.75s linear infinite condemned_blink_effect;
+}
+@-webkit-keyframes condemned_blink_effect {
+    0% {
+        visibility: hidden;
+    }
+    50% {
+        visibility: hidden;
+    }
+    100% {
+        visibility: visible;
+    }
+}
+@keyframes condemned_blink_effect {
+    0% {
+        visibility: hidden;
+    }
+    50% {
+        visibility: hidden;
+    }
+    100% {
+        visibility: visible;
     }
 }

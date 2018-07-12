@@ -17,7 +17,7 @@
             @if($w->actual_saving >= $w->target_saving)
                 <td><label class="col-md-12 text-right number control-label good">{{ number_format( ($w->actual_saving), 2, '.', ',') }}</label></td>
             @else
-                <td><label class="col-md-12 text-right number control-label fail">{{ number_format( ($w->actual_saving), 2, '.', ',') }}</label></td>
+                <td><label class="col-md-12 text-right number control-label fail fresult">{{ number_format( ($w->actual_saving), 2, '.', ',') }}</label></td>
             @endif
             <td>
                 @if($w->target_saving != null && $w->actual_saving != null)
@@ -39,4 +39,3 @@
         </div>
     </div>
 </div>
-

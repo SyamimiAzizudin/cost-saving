@@ -5,9 +5,19 @@
 <div class="row">
     <div class="col-lg-12">
         <h3 class="page-header">Saving - {{ $company->name }} </h3>
+        
+        <ol class="breadcrumb col-md-7 pull-left">
+            <li><a href="{{ url('/dashboard') }}">Main Dashboard</a></li>
+            @if(Auth::user()->role != 'subsidiary')
+            <li>
+            <a href="{{ url('/saving-company') }}">Saving - Company List</a>
+            </li>
+            @endif  
+            <li class="active">Saving - {{ $company->name }}</li>
+        </ol>
 
         {{-- filter by year --}}
-        <div class="form-group col-md-6 pull-right filter-width">
+        <div class="form-group col-md-5 pull-right filter-width">
             <label for="year" class="col-sm-3 col-sm-3-custom control-label filter-year">Filter by Year</label>
             <div class="col-sm-4 filter-year">
                 <select name="year" class="form-control" id="filteryear">
@@ -18,15 +28,6 @@
             </div>
         </div>
 
-        <ol class="breadcrumb">
-            <li><a href="{{ url('/dashboard') }}">Main Dashboard</a></li>
-            @if(Auth::user()->role != 'subsidiary')
-            <li>
-            <a href="{{ url('/saving-company') }}">Saving - Company List</a>
-            </li>
-            @endif  
-            <li class="active">Saving - {{ $company->name }}</li>
-        </ol>
         </div></div></div></div></div>
         <div class="text-center">
             <div id="SavingTable"></div>
@@ -89,7 +90,6 @@
             success: function(data){
                 //alert('successfully submitted')
                 $("#myModal").modal('hide');
-
                 getTable(2018);
             }
         });
@@ -107,9 +107,11 @@
     function getTable() {
         console.log('get table');
         $.ajax({
-            url: '/saving-company-table/{{$company_id}}'+year, //this is the submit URL
+            url: '/saving-company-table/{{$company_id}}', //this is the submit URL
             type: 'get', //or POST
             success: function(data){
+                // console.log(year);
+                // console.log(data);
                 $("#SavingTable").html(data);
                 $(".modal-body #value").val('');
                 $('.openModal').on('click', openModal);
@@ -138,7 +140,7 @@
 
     $("#lock_initiative").click(function(){
         $.ajax({
-            url: '/lock_initiative/{{$year}}/{{$company_id}}', //this is the submit URL
+            url: '/lock_initiative/{{$company_id}}', //this is the submit URL
             type: 'post', //or POST
             data: {
                 "_token": "{{ csrf_token() }}",

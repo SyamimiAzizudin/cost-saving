@@ -16,6 +16,7 @@
     <link href="{{ asset('css/modern-business.css') }}" rel="stylesheet">
     <link href="{{ asset('font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('fonts/glyphicons-halflings-regular.woff') }}">
+    {{-- <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet"> --}}
 
     <!-- Javascript -->
     <script src="https://unpkg.com/vue/dist/vue.min.js"></script>
@@ -165,12 +166,6 @@
             $('#destroy-form').attr('action', url);
             $('#destroy-modal').modal({ show: true });
         });
-    </script>
-    <script src="{{ asset('vendor/unisharp/laravel-ckeditor/ckeditor.js') }}"></script>
-    <script>
-        CKEDITOR.replace( 'area' );
-        CKEDITOR.replace( 'action' );
-        CKEDITOR.replace( 'analyze' );
     </script>
     @yield('scripts')
 </body>
