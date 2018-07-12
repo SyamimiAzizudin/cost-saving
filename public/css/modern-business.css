@@ -359,13 +359,6 @@ label.filter-year{margin-top: 7px;}
         width: 80%; 
     }
 }
-/* for filter by year */
-@media (min-width: 800px) {
-    .col-sm-3-custom {
-        width: 65% !important;
-        text-align: right;
-    }
-}
 @media (max-width: 768px) {
     .filter-width {
         width: 100%;
@@ -382,7 +375,13 @@ label.filter-year{margin-top: 7px;}
     }
     .col-sm-4 { display: inline-block; width: 40% }
 }
-
+/* for filter by year */
+@media (min-width: 800px) {
+    .col-sm-3-custom {
+        width: 65% !important;
+        text-align: right;
+    }
+}
 /* for blinking/flashing text */
 .fresult {
     -webkit-animation: 0.75s linear infinite condemned_blink_effect;
