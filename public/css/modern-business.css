@@ -409,3 +409,12 @@ label.filter-year{margin-top: 7px;}
         visibility: visible;
     }
 }
+/* for submit button saving page */
+.btn-submit-custom {
+    text-align: right;
+    width: 97% !important;
+    margin: 0 !important;
+}
+@media (min-width: 2000px) {
+    .btn-submit-custom { width: 90% !important }
+}

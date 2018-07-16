@@ -108,22 +108,20 @@ class SavingsController extends Controller
         //
     }
 
-    public function getCompanySaving($company_id, Request $year)
+    public function getCompanySaving($company_id)
     {
-        $company = Company::findOrFail($company_id);
+        // $max_year = Saving::where('year', DB::raw("(select max(`year`) from savings)"))->get();
 
-        $saving = Saving::orderBy('month', 'asc')->where('year', $year);
-        // $saving = Saving::findOrFail($year);
-        // dd($saving);
+        $company = Company::findOrFail($company_id);
 
         $initiatives = Initiative::orderBy('order_id', 'asc')->where('company_id', $company_id)->get();
 
         $savings = Company::with([
-            'initiatives' => function($query) use ($company_id){
-                $query->where('company_id',$company_id);
+            'initiatives' => function ($query) use ($company_id){
+                $query->where('company_id', $company_id);
             },
-            'initiatives.savings' => function($query) use ($year) {
-                $query->where('year', $year);
+            'initiatives.savings' => function ($query) {
+                // $query->where('year', '=', $year);
                 $query->orderBy('month');
             }
         ])
@@ -133,7 +131,6 @@ class SavingsController extends Controller
         $data['company'] = $company;
         $data['company_id'] = $company_id;
         $data['initiatives'] = $initiatives;
-        $data['year'] = $year;
 
         #dump($savings);
         $company_savings= [];
@@ -163,31 +160,39 @@ class SavingsController extends Controller
         return view('saving.company_saving', $data);
     }
 
-    public function saveInitiativeSaving($company_id,Request $request)
+    public function saveInitiativeSaving($company_id, Request $request)
     {
 
-        $i = Saving::where('initiative_id', $request->initiative_id)->where('month',$request->month)->first();
+        $i = Saving::where([
+            ['initiative_id', $request->initiative_id],
+            ['year', $request->year],
+            ['month', $request->month],
+        ])
+        ->first();
 
         if($i == null)
         {
             $i = new Saving;
-
         }
 
         $i->initiative_id = $request->initiative_id;
         $i->{$request->section} = $request->value;
+        $i->year = $request->year;
         $i->month = $request->month;
         $i->save();
+        return $request->all();
+        // dd($i);
     }
+
     public function getInititativeSavingTable($company_id, $year)
     {
         $initiatives = Initiative::orderBy('order_id', 'asc')->where('company_id', $company_id)->get();
         $savings = Company::with([
-            'initiatives' => function($query) use ($company_id){
+            'initiatives' => function($query) use ($company_id) {
                 $query->where('company_id',$company_id);
             },
             'initiatives.savings' => function($query) use ($year) {
-                $query->where('year', $year);
+                $query->where('year', '=', $year);
                 $query->orderBy('month');
             }
         ])
@@ -220,19 +225,15 @@ class SavingsController extends Controller
             }
         }
 
-        #dd($company_savings);
-
         $data['company_savings'] = $company_savings;
         $data['initiatives'] = $initiatives;
         return view('saving.company_saving_table', $data);
     }
 
-    public function postLockInitiative($company_id)
+    public function postLockInitiative($company_id, $year)
     {
         // look for all initiative under this company where the month is older than current month
-
         // set the show flag to 0
-
         //$company_id = 3;
         $savings_ids = [];
         $current_month = Carbon::now()->month;
@@ -243,8 +244,11 @@ class SavingsController extends Controller
                 $query->where('id', $company_id);
             }
         )
-        ->with(['savings' => function($query)use($current_month){
-            $query->where('month','<=', $current_month);
+        ->with(['savings' => function ($query) use ($year, $current_month) {
+            $query->where([
+                ['year','=', $year],
+                ['month','<=', $current_month],
+                ]);
         }])
         ->get();
 

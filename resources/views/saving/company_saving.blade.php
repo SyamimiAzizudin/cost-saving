@@ -18,12 +18,9 @@
 
         {{-- filter by year --}}
         <div class="form-group col-md-5 pull-right filter-width">
-            <label for="year" class="col-sm-3 col-sm-3-custom control-label filter-year">Filter by Year</label>
+            <label for="year" class="col-sm-3 col-sm-3-custom control-label filter-year">Year: </label>
             <div class="col-sm-4 filter-year">
                 <select name="year" class="form-control" id="filteryear">
-                    <option value="2018">2018</option>
-                    <option value="2019">2019</option>
-                    <option value="2020">2020</option>
                 </select>
             </div>
         </div>
@@ -35,14 +32,11 @@
     </div>
 </div>
 <br>
-<div class="row">
-    <div class="text-center">
-        <button type="submit" class="btn btn-primary btn-lg" id="lock_initiative"> Submit</button>
-    </div>
+<div class="row btn-submit-custom">
+    <button type="submit" class="btn btn-primary btn-lg" id="lock_initiative"> Submit</button>
 </div>
 
 <!-- Button trigger modal -->
-
 <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
@@ -55,6 +49,7 @@
             <div class="modal-body">
                 <label for="" class="col-sm-4 control-label">Actual Saving (RM)</label>
                 <input type="text" id="value" name="value" value="">
+                <input type="hidden" value="" id="year" name="year">
                 <input type="hidden" value="" id="month" name="month">
                 <input type="hidden" value="" id="section" name="section">
                 <input type="hidden" value="" id="id" name="id">
@@ -74,15 +69,13 @@
     // requires jquery library
     jQuery(document).ready(function() {
        jQuery(".main-table").clone(true).appendTo('#table-scroll').addClass('clone');
-
-        getTable(2018);
+       getTable(2018);
 
      });
 
     $('#savingForm').on('submit', function(e){
         e.preventDefault();
         var formURL = $(this).attr("action");
-
         $.ajax({
             url: formURL, //this is the submit URL
             type: 'POST', //or POST
@@ -96,6 +89,22 @@
 
     });
 
+    // get year
+    // var max_year;
+    var currentTime = new Date();
+    var year = currentTime.getFullYear();
+
+    // do loop Year
+    var i = 2020 - year;
+
+    while (i>=0) {
+        $('#filteryear').append($('<option>', {
+            value: year + i,
+            text: year + i
+        }));
+        i--;
+    }
+
     // filter saving by year
     $(function() {
         $("#filteryear").on('change', function(){
@@ -107,12 +116,11 @@
     getTable(2018);
 
     function getTable(year) {
-        // console.log('get table');
+        // console.log('getTable');
         $.ajax({
             url: window.location.pathname+'/'+year, //this is the submit URL
             type: 'get', //or POST
             success: function(data){
-                // console.log(year);
                 // console.log(data);
                 $("#SavingTable").html(data);
                 $(".modal-body #value").val('');
@@ -123,9 +131,9 @@
 
     var openModal = function(){
 
-
         var my_id_value = $(this).data('id');
         var value = $(this).data('value');
+        var year = $(this).data('year');
         var month = $(this).data('month');
         var section = $(this).data('section');
         var initiative_id = $(this).data('initiative_id');
@@ -133,16 +141,16 @@
         //console.log(my_id_value)
         $(".modal-body #value").val(value);
         $(".modal-body #id").val(my_id_value);
+        $(".modal-body #year").val(year);
         $(".modal-body #month").val(month);
         $(".modal-body #section").val(section);
         $(".modal-body #initiative_id").val(initiative_id);
         $('#myModal').modal('toggle');
     }
 
-
     $("#lock_initiative").click(function(){
         $.ajax({
-            url: '/lock_initiative/{{$company_id}}', //this is the submit URL
+            url: '/lock_initiative/{{$company_id}}'+year, //this is the submit URL
             type: 'post', //or POST
             data: {
                 "_token": "{{ csrf_token() }}",
