@@ -19,9 +19,6 @@
             <label for="year" class="col-sm-3 col-sm-3-custom control-label filter-year">Filter by Year</label>
             <div class="col-sm-4 filter-year">
                 <select name="year" class="form-control" id="filteryear">
-                    <option value="2018">2018</option>
-                    <option value="2019">2019</option>
-                    <option value="2020">2020</option>
                 </select>
             </div>
         </div>
@@ -43,6 +40,22 @@
 </div> -->
 
 <script>
+
+    // get year
+    // var max_year;
+    var currentTime = new Date();
+    var year = currentTime.getFullYear();
+
+    // do loop Year
+    var i = 2020 - year;
+
+    while (i>=0) {
+        $('#filteryear').append($('<option>', {
+            value: year + i,
+            text: year + i
+        }));
+        i--;
+    }
     
     // filter saving by year
     getYear(2018);

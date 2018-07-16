@@ -93,7 +93,9 @@
             </center>
         </div>
     </div>
-    <div class="container">    
+
+    <div class="container">
+
     <!--Summary-->
     <div class="row">
         <div class="col-md-12 padding2">
@@ -127,8 +129,7 @@
                 </div>
             </div>
         </div>
-    </div>
-        
+    </div>   
 
     <div class="row">
         <div class="col-lg-12">
@@ -142,16 +143,16 @@
 
 <script>
     //initial load
-    getTable(1,2018);
+    getTable(1, 2018);
     $(function() {
         $("#filtermonth").on('change', function(){
             var value = $(this).find(":selected").val();
             var curr_year = $("#filteryear").val();
-            getTable(value,curr_year);
+            getTable(value, curr_year);
         });
     });
 
-    function getTable(month,year)
+    function getTable(month, year)
     {
         $.ajax({
             url: 'dashboard_cost_saving_summary/'+month+'/'+year, //this is the submit URL
