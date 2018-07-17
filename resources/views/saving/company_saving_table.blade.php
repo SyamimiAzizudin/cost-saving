@@ -44,7 +44,7 @@
                             @if($company_savings[$v->id][$i]['target_saving'] != null)
                                 <td>
                                     <p class="text-right">{{ number_format(($company_savings[$v->id][$i]['target_saving']), 2, '.', ',') }}</p>
-                                    {{-- <button type="button" class="btn btn-warning btn-sm openModal" data-toggle="modal" data-value="{{ $company_savings[$v->id][$i]['target_saving'] }}" data-id="0" data-month="{{ $i }}" data-year="{{ $v->year }}" data-section="target_saving" data-initiative_id="{{ $v->id }}" data-saving_id="">Edit
+                                    {{-- <button type="button" class="btn btn-warning btn-sm openModal" data-toggle="modal" data-value="{{ $company_savings[$v->id][$i]['target_saving'] }}" data-id="0" data-month="{{ $i }}" data-year="{{ $year }}" data-section="target_saving" data-initiative_id="{{ $v->id }}" data-saving_id="">Edit
                                     </button> --}}
                                 </td>
                             @else
@@ -53,7 +53,7 @@
                                     <span class="editable">
                                     -
                                     <br>
-                                    <button type="button" class="btn btn-warning btn-sm openModal" data-toggle="modal" data-value="" data-id="0" data-month="{{ $i }}" data-year="{{ $v->year }}" data-section="target_saving" data-initiative_id="{{ $v->id }}" data-saving_id="">Edit
+                                    <button type="button" class="btn btn-warning btn-sm openModal" data-toggle="modal" data-value="" data-id="0" data-month="{{ $i }}" data-year="{{ $year }}" data-section="target_saving" data-initiative_id="{{ $v->id }}" data-saving_id="">Edit
                                     </button>
                                     </span>
                                 </td>
@@ -68,14 +68,14 @@
                                 <td>
                                     <p class="text-right good">{{number_format(($company_savings[$v->id][$i]['actual_saving']), 2, '.', ',')}}</p>
                                     @if($i <= $last_month && $company_savings[$v->id][$i]['display'] == 1)
-                                        <button type="button" class="btn btn-info btn-sm openModal" data-toggle="modal" data-value="{{ $company_savings[$v->id][$i]['actual_saving'] }}" data-id="0" data-month="{{ $i }}" data-year="{{ $v->year }}" data-section="actual_saving" data-initiative_id="{{ $v->id }}">Edit</button>
+                                        <button type="button" class="btn btn-info btn-sm openModal" data-toggle="modal" data-value="{{ $company_savings[$v->id][$i]['actual_saving'] }}" data-id="0" data-month="{{ $i }}" data-year="{{ $year }}" data-section="actual_saving" data-initiative_id="{{ $v->id }}">Edit</button>
                                     @endif
                                 </td>
                                 @else
                                 <td>
                                    <p class="text-right fail">{{number_format(($company_savings[$v->id][$i]['actual_saving']), 2, '.', ',')}}</p>
                                     @if($i <= $last_month && $company_savings[$v->id][$i]['display'] == 1)
-                                        <button type="button" class="btn btn-info btn-sm openModal" data-toggle="modal" data-value="{{ $company_savings[$v->id][$i]['actual_saving'] }}" data-id="0" data-month="{{ $i }}" data-year="{{ $v->year }}" data-section="actual_saving" data-initiative_id="{{ $v->id }}">Edit</button>
+                                        <button type="button" class="btn btn-info btn-sm openModal" data-toggle="modal" data-value="{{ $company_savings[$v->id][$i]['actual_saving'] }}" data-id="0" data-month="{{ $i }}" data-year="{{ $year }}" data-section="actual_saving" data-initiative_id="{{ $v->id }}">Edit</button>
                                     @endif
                                 </td>
                                 @endif
@@ -85,7 +85,7 @@
                                         <span class="editable">
                                         -
                                         <br>
-                                        <button type="button" class="btn btn-info btn-sm openModal" data-toggle="modal" data-value="" data-id="0" data-month="{{ $i }}" data-year="{{ $v->year }}" data-section="actual_saving" data-initiative_id="{{ $v->id }}">Edit
+                                        <button type="button" class="btn btn-info btn-sm openModal" data-toggle="modal" data-value="" data-id="0" data-month="{{ $i }}" data-year="{{ $year }}" data-section="actual_saving" data-initiative_id="{{ $v->id }}">Edit
                                         </button>
                                         </span>
                                     @endif
@@ -99,7 +99,7 @@
                             @if($company_savings[$v->id][$i]['target_saving'] != null)
                                 <td>
                                     <b><p class="text-right">{{ number_format(($company_savings[$v->id][$i]['target_saving']), 2, '.', ',') }}</p></b>
-                                    {{-- <button type="button" class="btn btn-warning btn-sm openModal" data-toggle="modal" data-value="{{ $company_savings[$v->id][$i]['target_saving'] }}" data-id="0" data-month="{{ $i }}" data-year="{{ $v->year }}" data-section="target_saving" data-initiative_id="{{ $v->id }}" data-saving_id="">Edit
+                                    {{-- <button type="button" class="btn btn-warning btn-sm openModal" data-toggle="modal" data-value="{{ $company_savings[$v->id][$i]['target_saving'] }}" data-id="0" data-month="{{ $i }}" data-year="{{ $year }}" data-section="target_saving" data-initiative_id="{{ $v->id }}" data-saving_id="">Edit
                                     </button> --}}
                                 </td>
                             @else
@@ -109,7 +109,7 @@
                                         <span class="editable">
                                         -
                                         <br>
-                                        <button type="button" class="btn btn-warning btn-sm openModal" data-toggle="modal" data-value="" data-id="0" data-month="{{ $i }}" data-year="{{ $v->year }}" data-section="target_saving" data-initiative_id="{{ $v->id }}" data-saving_id="">Edit
+                                        <button type="button" class="btn btn-warning btn-sm openModal" data-toggle="modal" data-value="" data-id="0" data-month="{{ $i }}" data-year="{{ $year }}" data-section="target_saving" data-initiative_id="{{ $v->id }}" data-saving_id="">Edit
                                         </button>
                                         </span>
                                     @endif

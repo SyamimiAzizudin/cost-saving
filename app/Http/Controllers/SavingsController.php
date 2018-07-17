@@ -24,7 +24,6 @@ class SavingsController extends Controller
     public function companylist()
     {
         $savings = Saving::all();
-        // $savings = Saving::pluck('year', 'id');
 
         if (Auth::user()->role == 'subsidiary') {
             $companies = Company::withTrashed()->where('id', Auth::user()->company_id)->get();
@@ -33,7 +32,6 @@ class SavingsController extends Controller
             $companies = Company::withTrashed()->get();
         }
         
-        // $companies = Company::pluck('name', 'id');
         return view('saving.company', compact('savings', 'companies'));
     }
 
@@ -110,8 +108,6 @@ class SavingsController extends Controller
 
     public function getCompanySaving($company_id)
     {
-        // $max_year = Saving::where('year', DB::raw("(select max(`year`) from savings)"))->get();
-
         $company = Company::findOrFail($company_id);
 
         $initiatives = Initiative::orderBy('order_id', 'asc')->where('company_id', $company_id)->get();
@@ -121,7 +117,6 @@ class SavingsController extends Controller
                 $query->where('company_id', $company_id);
             },
             'initiatives.savings' => function ($query) {
-                // $query->where('year', '=', $year);
                 $query->orderBy('month');
             }
         ])
@@ -181,7 +176,6 @@ class SavingsController extends Controller
         $i->month = $request->month;
         $i->save();
         return $request->all();
-        // dd($i);
     }
 
     public function getInititativeSavingTable($company_id, $year)
@@ -225,6 +219,7 @@ class SavingsController extends Controller
             }
         }
 
+        $data['year'] = $year;
         $data['company_savings'] = $company_savings;
         $data['initiatives'] = $initiatives;
         return view('saving.company_saving_table', $data);
@@ -232,7 +227,7 @@ class SavingsController extends Controller
 
     public function postLockInitiative($company_id, $year)
     {
-        // look for all initiative under this company where the month is older than current month
+        // look for all initiative under this company where the month is older than current month and by year
         // set the show flag to 0
         //$company_id = 3;
         $savings_ids = [];
@@ -240,7 +235,7 @@ class SavingsController extends Controller
 
         $initiatives = Initiative
             ::whereHas(
-            'companies' , function ($query) use ($company_id){
+            'companies' , function ($query) use ($company_id) {
                 $query->where('id', $company_id);
             }
         )
@@ -248,14 +243,13 @@ class SavingsController extends Controller
             $query->where([
                 ['year','=', $year],
                 ['month','<=', $current_month],
-                ]);
+            ]);
         }])
         ->get();
 
         foreach ($initiatives as $k => $v)
         {
            #dump($v->savings);
-
             foreach($v->savings as $ksaving => $vsaving)
             {
                 if($vsaving->display == 1)
@@ -266,10 +260,8 @@ class SavingsController extends Controller
         }
 
         #dump($savings_ids);
-
         Saving::whereIn('id', $savings_ids)
             ->update(['display' => 0]);
 
-        #dd($initiatives);
     }
 }

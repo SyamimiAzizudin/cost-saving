@@ -83,7 +83,7 @@
             success: function(data){
                 //alert('successfully submitted')
                 $("#myModal").modal('hide');
-                getTable(2018);
+                getTable(parseInt($('#filteryear option:selected').text()));
             }
         });
 
@@ -98,7 +98,7 @@
     var i = 2020 - year;
 
     while (i>=0) {
-        $('#filteryear').append($('<option>', {
+        $('#filteryear').prepend($('<option>', {
             value: year + i,
             text: year + i
         }));
@@ -150,7 +150,7 @@
 
     $("#lock_initiative").click(function(){
         $.ajax({
-            url: '/lock_initiative/{{$company_id}}'+year, //this is the submit URL
+            url: '/lock_initiative/{{$company_id}}/'+year, //this is the submit URL
             type: 'post', //or POST
             data: {
                 "_token": "{{ csrf_token() }}",
