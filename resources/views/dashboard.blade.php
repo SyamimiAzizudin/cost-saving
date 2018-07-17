@@ -16,51 +16,26 @@
 
         {{-- filter by year --}}
         <div class="form-group col-md-5 pull-right filter-width">
-            <label for="year" class="col-sm-3 col-sm-3-custom control-label filter-year">Filter by Year</label>
+            <label for="year" class="col-sm-3 col-sm-3-custom control-label filter-year">Year: </label>
             <div class="col-sm-4 filter-year">
-                <select name="year" class="form-control" id="filteryear">
+                <select name="year" class="form-control" id="main_filteryear">
+                    <option value="2018">2018</option>
+                    <option value="2019">2019</option>
+                    <option value="2020">2020</option>
                 </select>
             </div>
         </div>
 
     </div></div></div></div></div>
 
-    <div id="year_saving_summary"></div>
-
-<!-- Footer -->
-<!-- <div class="container">
-    <hr>
-    <footer>
-        <div class="row">
-            <div class="col-lg-12">
-                <p>Copyright &copy; UMW Cost Saving Initiative 2018</p>
-            </div>
-        </div>
-    </footer>
-</div> -->
+    <div id="main_saving_summary"></div>
 
 <script>
-
-    // get year
-    // var max_year;
-    var currentTime = new Date();
-    var year = currentTime.getFullYear();
-
-    // do loop Year
-    var i = 2020 - year;
-
-    while (i>=0) {
-        $('#filteryear').append($('<option>', {
-            value: year + i,
-            text: year + i
-        }));
-        i--;
-    }
     
-    // filter saving by year
+    // filter main saving by year
     getYear(2018);
     $(function() {
-        $("#filteryear").on('change', function(){
+        $("#main_filteryear").on('change', function(){
             var selected_value = $(this).find(":selected").val();
             getYear(selected_value);
         });
@@ -72,7 +47,7 @@
             url: 'dashboard/'+year, //this is the submit URL
             type: 'GET', //or POST
             success: function(data){
-                $("#year_saving_summary").html(data);
+                $("#main_saving_summary").html(data);
             }
         });
     }

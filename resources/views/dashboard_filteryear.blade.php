@@ -105,7 +105,7 @@
                 <div class="form-group col-md-6">
                     <label for="month" class="col-sm-3 control-label">Month</label>
                     <div class="col-sm-6">
-                        <select name="month" class="form-control" id="filtermonth">
+                        <select name="month" class="form-control" id="main_filtermonth">
                             <option value="1">January</option>
                             <option value="2">February</option>
                             <option value="3">March</option>
@@ -125,7 +125,7 @@
 
             <div class="col-md-12 padding2">
                 <div class="form-group">
-                    <div id="saving_summary"></div>
+                    <div id="main_saving_summary_month"></div>
                 </div>
             </div>
         </div>
@@ -142,23 +142,24 @@
 </div>
 
 <script>
+
     //initial load
-    getTable(1, 2018);
+    getTable(2018, 1);
     $(function() {
-        $("#filtermonth").on('change', function(){
+        $("#main_filtermonth").on('change', function(){
             var value = $(this).find(":selected").val();
-            var curr_year = $("#filteryear").val();
-            getTable(value, curr_year);
+            var curr_year = $("#main_filteryear option:selected").val();
+            getTable(curr_year, value);
         });
     });
 
-    function getTable(month, year)
+    function getTable(year, month)
     {
         $.ajax({
-            url: 'dashboard_cost_saving_summary/'+month+'/'+year, //this is the submit URL
+            url: 'dashboard_cost_saving_summary/'+year+'/'+month, //this is the submit URL
             type: 'GET', //or POST
             success: function(data){
-                $("#saving_summary").html(data);
+                $("#main_saving_summary_month").html(data);
             }
         });
     }
@@ -166,65 +167,60 @@
     Vue.use(VueHighcharts);
 
     var options = {
-      title: {
-        text: '',
-        x: -20 //center
-      },
-      xAxis: {
         title: {
-            text: 'Month'
+            text: '',
+            x: -20 //center
         },
-        categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-          'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
-        ]
-      },
-      yAxis: {
-        title: {
-          text: 'Saving (RM)',
-          position: "top"
+        xAxis: {
+            title: {
+                text: 'Month'
+            },
+            categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
         },
-        plotLines: [{
-          value: 0,
-          width: 1,
-          color: '#808080'
+        yAxis: {
+            title: {
+                text: 'Saving (RM)',
+                position: "top"
+            },
+            plotLines: [{
+                value: 0,
+                width: 1,
+                color: '#808080'
+            }]
+        },
+        tooltip: {
+            valueSuffix: ''
+        },
+        legend: {
+            position: "bottom"
+        },
+        series: [{
+            name: 'Target Savings (RM)',
+            data: <?php echo json_encode($graphs['targets']); ?>
+        }, {
+            name: 'Actual Savings (RM)',
+            data: <?php echo json_encode($graphs['actual']); ?>
+        }, {
+            name: 'Yearly Target (RM)',
+            data: <?php echo json_encode($graphs['yearly_target']); ?>
         }]
-      },
-      tooltip: {
-        valueSuffix: ''
-      },
-      legend: {
-        // layout: 'vertical',
-        // align: 'right',
-        // verticalAlign: 'middle',
-        // borderWidth: 0
-        position: "bottom"
-      },
-      series: [{
-        name: 'Target Savings (RM)',
-        data: <?php echo json_encode($graphs['targets']); ?>
-      }, {
-        name: 'Actual Savings (RM)',
-        data: <?php echo json_encode($graphs['actual']); ?>
-      }, {
-        name: 'Yearly Target (RM)',
-        data: <?php echo json_encode($graphs['yearly_target']); ?>
-      }]
     };
 
     var vm = new Vue({
-      el: '#app',
-      data: {
+        el: '#app',
+        data: {
         options: options
-      },
-      methods: {
-        updateCredits: function() {
-            var chart = this.$refs.highcharts.chart;
-          chart.credits.update({
-            style: {
-              color: '#' + (Math.random() * 0xffffff | 0).toString(16)
+        },
+        methods: {
+            updateCredits: function() {
+                var chart = this.$refs.highcharts.chart;
+                chart.credits.update({
+                    style: {
+                        color: '#' + (Math.random() * 0xffffff | 0).toString(16)
+                    }
+                });
             }
-          });
         }
-      }
     });
+
 </script>
