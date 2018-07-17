@@ -65,7 +65,7 @@ Route::group(['middleware' => 'board'], function() {
     // Main Dashboard
     Route::get('/dashboard', 'HomeController@dashboard');
     Route::get('/dashboard/{year}', 'HomeController@dashboard_year');
-    Route::get('/dashboard_cost_saving_summary/{month}/{year}', 'HomeController@dashboard_cost_saving_summary');
+    Route::get('/dashboard_cost_saving_summary/{year}/{month}', 'HomeController@dashboard_cost_saving_summary');
 
     // Group Dashboard
     Route::get('/group-dashboard/{group}', 'HomeController@group_dashboard');
@@ -74,6 +74,7 @@ Route::group(['middleware' => 'board'], function() {
 
     // Company Dashboard
     Route::get('/company-dashboard/{id}', 'HomeController@company_dashboard');
-    Route::get('/company_dashboard_cost_saving_summary/{id}/{month}', 'HomeController@company_dashboard_cost_saving_summary');    
+    Route::get('/company-dashboard/{id}/{year}', 'HomeController@company_dashboard_year');
+    Route::get('/company_dashboard_cost_saving_summary/{id}/{year}/{month}', 'HomeController@company_dashboard_cost_saving_summary');    
 });
 

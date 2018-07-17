@@ -370,7 +370,7 @@ class HomeController extends Controller
     
     public function company_dashboard_year($id, $year)
     {
-        $company = Company::findOrFail($id);
+        // $company = Company::findOrFail($id);
 
         // $current_year = Carbon::now()->year;
         $current_month = Carbon::now()->month;
@@ -467,7 +467,7 @@ class HomeController extends Controller
             array_push($graphs['yearly_target'], (int)$v->yearly_target);
         }
 
-        return view('company_dashboard_filteryear', compact('last_update', 'id', 'year', 'company' , 'yearly_target', 'cummulative_target', 'cummulative_actual', 'graphs'));
+        return view('company_dashboard_filteryear', compact('last_update', 'id', 'year', 'yearly_target', 'cummulative_target', 'cummulative_actual', 'graphs'));
     }
 
     public function company_dashboard_cost_saving_summary($id, $year, $month)

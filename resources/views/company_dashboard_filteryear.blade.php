@@ -73,7 +73,7 @@
                 <div class="form-group col-md-6">
                     <label for="month" class="col-sm-3 control-label">Month</label>
                     <div class="col-sm-6">
-                        <select name="month" class="form-control" id="initiative_company">
+                        <select name="month" class="form-control" id="company_filtermonth">
                             <option value="1">January</option>
                             <option value="2">February</option>
                             <option value="3">March</option>
@@ -93,99 +93,104 @@
 
             <div class="col-md-12 padding2">
                 <div class="form-group">
-                    <div id="saving_summary"></div>
+                    <div id="company_saving_summary_month"></div>
                 </div>
             </div>
         </div>
+    {{-- </div>    --}}
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="text-right padding2">
+                <a href="{{ url('/print-overall') }}" class="btn btn-outline-success success print-ipad">Print Overall Page</a>
+            </div>
+        </div>
+    </div>
 
 <script>
 
     //initial load
-    getTable(1);
+    getTable(2018, 1);
     $(function() {
-        $("#initiative_company").on('change', function(){
-            var selected_value = $(this).find(":selected").val();
-            getTable(selected_value);
+        $("#company_filtermonth").on('change', function(){
+            var value = $(this).find(":selected").val();
+            var curr_year = $("#company_filteryear option:selected").val();
+            getTable(curr_year, value);
         });
     });
 
-    function getTable(month)
+    function getTable(year, month)
     {
         $.ajax({
-            url: '/company_dashboard_cost_saving_summary/{{ $id }}/'+month, //this is the submit URL
+            url: '/company_dashboard_cost_saving_summary/{{ $id }}/'+year+'/'+month, //this is the submit URL
             type: 'GET', //or POST
             success: function(data){
-                $("#saving_summary").html(data);
+                $("#company_saving_summary_month").html(data);
             }
         });
     }
-</script>
-    
-<script>
+
     Vue.use(VueHighcharts);
 
     var options = {
-      title: {
-        text: '',
-        x: -20 //center
-      },
-      xAxis: {
         title: {
-            text: 'Month'
+            text: '',
+            x: -20 //center
         },
-        categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-          'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
-        ]
-      },
-      yAxis: {
-        title: {
-          text: 'Savings (RM)'
+        xAxis: {
+            title: {
+                text: 'Month'
+            },
+            categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
         },
-        plotLines: [{
-          value: 0,
-          width: 1,
-          color: '#808080'
+        yAxis: {
+            title: {
+                text: 'Savings (RM)',
+                position: "top"
+            },
+            plotLines: [{
+                value: 0,
+                width: 1,
+                color: '#808080'
+            }]
+        },
+        tooltip: {
+            valueSuffix: ''
+        },
+        legend: {
+            // layout: 'vertical',
+            // align: 'right',
+            // verticalAlign: 'middle',
+            // borderWidth: 0
+            position: "bottom"
+        },
+        series: [{
+            name: 'Target Savings (RM)',
+            data: <?php echo json_encode($graphs['targets']); ?>
+        }, {
+            name: 'Actual Savings (RM)',
+            data: <?php echo json_encode($graphs['actual']); ?>
+        }, {
+            name: 'Yearly Target (RM)',
+            data: <?php echo json_encode($graphs['yearly_target']); ?>
         }]
-      },
-      tooltip: {
-        valueSuffix: ''
-      },
-      legend: {
-        // layout: 'vertical',
-        // align: 'right',
-        // verticalAlign: 'middle',
-        // borderWidth: 0
-        position: "bottom"
-      },
-      series: [{
-        name: 'Target Savings (RM)',
-        data: <?php echo json_encode($graphs['targets']); ?>
-      }, {
-        name: 'Actual Savings (RM)',
-        data: <?php echo json_encode($graphs['actual']); ?>
-      }, {
-        name: 'Yearly Target (RM)',
-        data: <?php echo json_encode($graphs['yearly_target']); ?>
-      }]
     };
 
     var vm = new Vue({
-      el: '#app',
-      data: {
-        options: options
-      },
-      methods: {
-        updateCredits: function() {
-            var chart = this.$refs.highcharts.chart;
-          chart.credits.update({
-            style: {
-              color: '#' + (Math.random() * 0xffffff | 0).toString(16)
+        el: '#app',
+        data: {
+            options: options
+        },
+        methods: {
+            updateCredits: function() {
+                var chart = this.$refs.highcharts.chart;
+                chart.credits.update({
+                    style: {
+                        color: '#' + (Math.random() * 0xffffff | 0).toString(16)
+                    }
+                });
             }
-          });
         }
-      }
     });
 
 </script>
-
-@endsection
