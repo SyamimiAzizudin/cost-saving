@@ -113,7 +113,7 @@ class SavingsController extends Controller
         $initiatives = Initiative::orderBy('order_id', 'asc')->where('company_id', $company_id)->get();
 
         $savings = Company::with([
-            'initiatives' => function ($query) use ($company_id){
+            'initiatives' => function ($query) use ($company_id) {
                 $query->where('company_id', $company_id);
             },
             'initiatives.savings' => function ($query) {

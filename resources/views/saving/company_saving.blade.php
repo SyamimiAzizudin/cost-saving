@@ -119,7 +119,7 @@
         // console.log('getTable');
         $.ajax({
             url: window.location.pathname+'/'+year, //this is the submit URL
-            type: 'get', //or POST
+            type: 'GET', //or POST
             success: function(data){
                 // console.log(data);
                 $("#SavingTable").html(data);
