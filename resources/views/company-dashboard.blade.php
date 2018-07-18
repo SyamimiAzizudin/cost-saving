@@ -36,6 +36,7 @@
 <script>
 
     // filter company saving by year
+    // initial load
     getYear(2018);
     $(function() {
         $("#company_filteryear").on('change', function(){
@@ -47,7 +48,7 @@
     function getYear(year)
     {
         $.ajax({
-            url: 'company-dashboard/{{ $id }}/'+year, //this is the submit URL
+            url: '/company-dashboard/{{ $id }}/'+year, //this is the submit URL
             type: 'GET', //or POST
             success: function(data){
                 $("#company_saving_summary").html(data);

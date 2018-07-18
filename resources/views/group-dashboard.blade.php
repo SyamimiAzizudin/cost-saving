@@ -18,7 +18,7 @@
 
         {{-- filter by year --}}
         <div class="form-group col-md-5 pull-right filter-width">
-            <label for="year" class="col-sm-3 col-sm-3-custom control-label filter-year">Filter by Year</label>
+            <label for="year" class="col-sm-3 col-sm-3-custom control-label filter-year">Year: </label>
             <div class="col-sm-4 filter-year">
                 <select name="year" class="form-control" id="group_filteryear">
                     <option value="2018">2018</option>
@@ -35,7 +35,8 @@
     <div id="group_saving_summary"></div>
 
 <script>
-    
+
+    // filter group saving by year
     //initial load
     getYear(2018);
     $(function() {

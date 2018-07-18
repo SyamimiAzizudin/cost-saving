@@ -33,11 +33,13 @@
 <script>
     
     // filter main saving by year
+    // initial load
     getYear(2018);
     $(function() {
-        $("#main_filteryear").on('change', function(){
-            var selected_value = $(this).find(":selected").val();
+        $('#main_filteryear').on('change', function(){
+            var selected_value = $(this).find(':selected').val();
             getYear(selected_value);
+            console.log(selected_value);
         });
     });
 
@@ -47,7 +49,8 @@
             url: 'dashboard/'+year, //this is the submit URL
             type: 'GET', //or POST
             success: function(data){
-                $("#main_saving_summary").html(data);
+                $('#main_saving_summary').html(data);
+                // getTable(parseInt($('#main_filteryear').find(':selected').val()));
             }
         });
     }

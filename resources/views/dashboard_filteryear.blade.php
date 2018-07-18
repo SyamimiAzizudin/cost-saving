@@ -55,12 +55,13 @@
             </div>
         </div>
     </div>
+    
     <!-- Dashboard Section -->
     <div class="row">
         <div class="col-lg-12">
             <center>
                 
-                <div id="app">
+                <div id="main_app">
                     <highcharts :options="options" ref="highcharts"></highcharts>
                 </div>
 
@@ -148,7 +149,7 @@
     $(function() {
         $("#main_filtermonth").on('change', function(){
             var value = $(this).find(":selected").val();
-            var curr_year = $("#main_filteryear option:selected").val();
+            var curr_year = $("#main_filteryear").find(":selected").val();
             getTable(curr_year, value);
         });
     });
@@ -207,7 +208,7 @@
     };
 
     var vm = new Vue({
-        el: '#app',
+        el: '#main_app',
         data: {
         options: options
         },

@@ -20,7 +20,7 @@
         <div class="form-group col-md-5 pull-right filter-width">
             <label for="year" class="col-sm-3 col-sm-3-custom control-label filter-year">Year: </label>
             <div class="col-sm-4 filter-year">
-                <select name="year" class="form-control" id="filteryear">
+                <select name="year" class="form-control" id="saving_filteryear">
                 </select>
             </div>
         </div>
@@ -66,6 +66,7 @@
 </div>
 
 <script>
+
     // requires jquery library
     jQuery(document).ready(function() {
        jQuery(".main-table").clone(true).appendTo('#table-scroll').addClass('clone');
@@ -78,19 +79,17 @@
         var formURL = $(this).attr("action");
         $.ajax({
             url: formURL, //this is the submit URL
-            type: 'POST', //or POST
+            type: 'POST', //or GET
             data: $('#savingForm').serialize(),
             success: function(data){
                 //alert('successfully submitted')
                 $("#myModal").modal('hide');
-                getTable(parseInt($('#filteryear option:selected').text()));
+                getTable(parseInt($('#saving_filteryear').find(':selected').val()));
             }
         });
-
     });
 
     // get year
-    // var max_year;
     var currentTime = new Date();
     var year = currentTime.getFullYear();
 
@@ -98,7 +97,7 @@
     var i = 2020 - year;
 
     while (i>=0) {
-        $('#filteryear').prepend($('<option>', {
+        $('#saving_filteryear').prepend($('<option>', {
             value: year + i,
             text: year + i
         }));
@@ -107,7 +106,7 @@
 
     // filter saving by year
     $(function() {
-        $("#filteryear").on('change', function(){
+        $("#saving_filteryear").on("change", function(){
             var selected_value = $(this).find(":selected").val();
             getTable(selected_value);
         });
@@ -129,8 +128,8 @@
         });
     }
 
-    var openModal = function(){
-
+    // pass value using data attribute
+    var openModal = function() {
         var my_id_value = $(this).data('id');
         var value = $(this).data('value');
         var year = $(this).data('year');
@@ -148,10 +147,11 @@
         $('#myModal').modal('toggle');
     }
 
+    // lock saving after submit data
     $("#lock_initiative").click(function(){
         $.ajax({
             url: '/lock_initiative/{{$company_id}}/'+year, //this is the submit URL
-            type: 'post', //or POST
+            type: 'POST', //or GET
             data: {
                 "_token": "{{ csrf_token() }}",
             },
@@ -160,8 +160,8 @@
                 location.reload();
             }
         });
-
     });
 
 </script>
+
 @endsection

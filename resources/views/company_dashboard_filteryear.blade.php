@@ -56,7 +56,7 @@
         <div class="col-lg-12">
             <center>
 
-            <div id="app">
+            <div id="company_app">
                 <highcharts :options="options" ref="highcharts"></highcharts>
             </div>
 
@@ -114,7 +114,7 @@
     $(function() {
         $("#company_filtermonth").on('change', function(){
             var value = $(this).find(":selected").val();
-            var curr_year = $("#company_filteryear option:selected").val();
+            var curr_year = $("#company_filteryear").find(":selected").val();
             getTable(curr_year, value);
         });
     });
@@ -177,7 +177,7 @@
     };
 
     var vm = new Vue({
-        el: '#app',
+        el: '#company_app',
         data: {
             options: options
         },

@@ -21,6 +21,7 @@
     <!-- Javascript -->
     <script src="https://unpkg.com/vue/dist/vue.min.js"></script>
     <script src="https://unpkg.com/highcharts/highcharts.js"></script>
+    
     <!-- vue-highcharts should be load after Highcharts -->
     <script src="https://unpkg.com/vue-highcharts/dist/vue-highcharts.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>

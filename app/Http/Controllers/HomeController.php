@@ -73,7 +73,7 @@ class HomeController extends Controller
             $companies = Company::select('group')->distinct()->where('id', '=', Auth::user()->company_id)->get();
         }
         // for all users access
-        else{
+        else {
             $companies = Company::select('group')->distinct()->get();
         }
         // dd($companies);
@@ -199,8 +199,8 @@ class HomeController extends Controller
             ->select('savings.target_saving','month')
             ->where([
                 ['group', $group],
-                ['month', '<=' , $current_month],
-                ['year', '=' , $year]
+                ['year', '=' , $year],
+                ['month', '<=' , $current_month]
             ])
             ->sum('target_saving');
 
@@ -210,8 +210,8 @@ class HomeController extends Controller
             ->select('savings.actual_saving','month')
             ->where([
                 ['group', $group],
-                ['month', '<=' , $current_month],
-                ['year', '=' , $year]
+                ['year', '=' , $year],
+                ['month', '<=' , $current_month]
             ])
             ->sum('actual_saving');
 
@@ -370,7 +370,7 @@ class HomeController extends Controller
     
     public function company_dashboard_year($id, $year)
     {
-        // $company = Company::findOrFail($id);
+        $company = Company::findOrFail($id);
 
         // $current_year = Carbon::now()->year;
         $current_month = Carbon::now()->month;
@@ -467,7 +467,7 @@ class HomeController extends Controller
             array_push($graphs['yearly_target'], (int)$v->yearly_target);
         }
 
-        return view('company_dashboard_filteryear', compact('last_update', 'id', 'year', 'yearly_target', 'cummulative_target', 'cummulative_actual', 'graphs'));
+        return view('company_dashboard_filteryear', compact('last_update', 'id', 'year', 'company', 'yearly_target', 'cummulative_target', 'cummulative_actual', 'graphs'));
     }
 
     public function company_dashboard_cost_saving_summary($id, $year, $month)
@@ -491,7 +491,7 @@ class HomeController extends Controller
             ['month', '<=',$current_month]
         ])
             ->with([
-                'initiatives.companies' => function($query)use($id){
+                'initiatives.companies' => function($query) use ($id) {
                     $query->where('id',$id);
                 }
             ])
@@ -501,7 +501,7 @@ class HomeController extends Controller
         $initiatives = Initiative::with([
             'savings' => function($query){
                 $query->where([
-                    ['year', '=', $year],
+                    // ['year', '=', $year],
                     ['month', Carbon::now()->month]
                 ]);
                 $query->orderBy('month');
