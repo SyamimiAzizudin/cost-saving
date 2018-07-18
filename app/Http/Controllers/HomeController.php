@@ -117,7 +117,7 @@ class HomeController extends Controller
             array_push($graphs['yearly_target'], (int)$v->yearly_target);
         }
 
-        return view('dashboard_filteryear', compact('last_update', 'companies', 'yearly_target', 'cummulative_target', 'cummulative_actual', 'saving_summary_results', 'graphs'));
+        return view('dashboard_filteryear', compact('last_update', 'companies', 'yearly_target', 'cummulative_target', 'cummulative_actual', 'saving_summary_results', 'graphs', 'year'));
     }
 
     public function dashboard_cost_saving_summary($year, $month)

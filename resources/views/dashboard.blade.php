@@ -19,9 +19,6 @@
             <label for="year" class="col-sm-3 col-sm-3-custom control-label filter-year">Year: </label>
             <div class="col-sm-4 filter-year">
                 <select name="year" class="form-control" id="main_filteryear">
-                    <option value="2018">2018</option>
-                    <option value="2019">2019</option>
-                    <option value="2020">2020</option>
                 </select>
             </div>
         </div>
@@ -31,15 +28,32 @@
     <div id="main_saving_summary"></div>
 
 <script>
+
+    //getyear
+    var currentTime = new Date();
+    var year = currentTime.getFullYear();
+
+    // do loop year
+    // nanti tukar balik '2020' ke 'year'
+    var i = 2020 - 2018;
+
+    // kalau nak susun asc guna append
+    //  kalau nak susun desc guna prepend
+    while(i>=0){
+        $('#main_filteryear').prepend($('<option>', {
+            value: year + i,
+            text: year + i
+        }));
+        i--;
+    }
     
     // filter main saving by year
     // initial load
-    getYear(2018);
+    getYear(year);
     $(function() {
         $('#main_filteryear').on('change', function(){
             var selected_value = $(this).find(':selected').val();
             getYear(selected_value);
-            console.log(selected_value);
         });
     });
 

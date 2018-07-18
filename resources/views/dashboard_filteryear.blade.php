@@ -31,7 +31,11 @@
                 <h5>Yearly % (Cumm) </h5>
             </div>
             <div class="panel-body text-center">
-                <h3>{{ number_format(( ($cummulative_actual/$yearly_target) * 100),0) }} %</h3>
+                @if($yearly_target != '0')
+                    <h3>{{ number_format(( ($cummulative_actual/$yearly_target) * 100),0) }} %</h3>
+                @else
+                    <h3>0</h3>
+                @endif
             </div>
         </div>
                 
@@ -40,7 +44,11 @@
                 <h5>Monthly % (Cumm)</h5>
             </div>
             <div class="panel-body text-center">
-                <h3>{{ number_format(($cummulative_actual/$cummulative_target) * 100,0) }} %</h3>
+                @if($cummulative_target != '0')
+                    <h3>{{ number_format(($cummulative_actual/$cummulative_target) * 100,0) }} %</h3>
+                @else
+                    <h3>0</h3>
+                @endif
             </div>
         </div>
     </div>
@@ -144,12 +152,14 @@
 
 <script>
 
+    //pass value to Js
+    var year = <?php echo json_encode($year); ?>;
     //initial load
-    getTable(2018, 1);
+    getTable(year, 1);
     $(function() {
         $("#main_filtermonth").on('change', function(){
             var value = $(this).find(":selected").val();
-            var curr_year = $("#main_filteryear").find(":selected").val();
+            var curr_year = <?php echo json_encode($year); ?>;
             getTable(curr_year, value);
         });
     });
