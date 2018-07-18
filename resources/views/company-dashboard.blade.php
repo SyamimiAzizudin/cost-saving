@@ -2,6 +2,7 @@
 
 @section('content')
 
+<!-- Company Dashboard All Section -->
 <div class="row">
     <div class="col-lg-12">
         <h1 class="page-header">Dashboard - {{ $company->name }}</h1>
@@ -15,14 +16,11 @@
             <li class="active">Dashboard - {{ $company->name }}</li>
         </ol>
 
-        {{-- filter by year --}}
+        {{-- filter company saving by year --}}
         <div class="form-group col-md-5 pull-right filter-width">
             <label for="year" class="col-sm-3 col-sm-3-custom control-label filter-year">Year: </label>
             <div class="col-sm-4 filter-year">
                 <select name="year" class="form-control" id="company_filteryear">
-                    <option value="2018">2018</option>
-                    <option value="2019">2019</option>
-                    <option value="2020">2020</option>
                 </select>
             </div>
         </div>
@@ -35,9 +33,25 @@
 
 <script>
 
+    // get year
+    var currentTime = new Date();
+    var year = currentTime.getFullYear();
+
+    // do loop year
+    var i = 2020 - 2018;
+
+    //  append for asc, prepend for desc
+    while(i>=0){
+        $('#company_filteryear').prepend($('<option>', {
+            value: year + i,
+            text: year + i
+        }));
+        i--;
+    }
+
     // filter company saving by year
     // initial load
-    getYear(2018);
+    getYear(year);
     $(function() {
         $("#company_filteryear").on('change', function(){
             var selected_value = $(this).find(":selected").val();

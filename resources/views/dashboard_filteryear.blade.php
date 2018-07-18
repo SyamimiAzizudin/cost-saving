@@ -57,14 +57,14 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <!-- Update Date-->
+            <!-- Get Main Latest Date-->
             <div class="col-lg-12">
                 <p class="text-right">Last Update Savings: {{ Carbon\Carbon::parse($last_update)->format('g:i A, d F Y') }}</p>
             </div>
         </div>
     </div>
     
-    <!-- Dashboard Section -->
+    <!-- Main Chart Section -->
     <div class="row">
         <div class="col-lg-12">
             <center>
@@ -105,7 +105,7 @@
 
     <div class="container">
 
-    <!--Summary-->
+    <!--Main Summary-->
     <div class="row">
         <div class="col-md-12 padding2">
             <div class="col-md-12">
@@ -152,9 +152,10 @@
 
 <script>
 
-    //pass value to Js
+    // pass value to js
     var year = <?php echo json_encode($year); ?>;
-    //initial load
+    
+    // initial load
     getTable(year, 1);
     $(function() {
         $("#main_filtermonth").on('change', function(){

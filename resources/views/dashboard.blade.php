@@ -2,7 +2,7 @@
 
 @section('content')
 
-<!-- Dashboard All Section -->
+<!-- Main Dashboard All Section -->
 <div class="row">
     <div class="col-lg-12">
         <h1 class="page-header">Main Dashboard</h1>
@@ -14,7 +14,7 @@
             <li class="active">Main Dashboard</li>
         </ol>
 
-        {{-- filter by year --}}
+        {{-- filter main saving by year --}}
         <div class="form-group col-md-5 pull-right filter-width">
             <label for="year" class="col-sm-3 col-sm-3-custom control-label filter-year">Year: </label>
             <div class="col-sm-4 filter-year">
@@ -29,16 +29,14 @@
 
 <script>
 
-    //getyear
+    // get year
     var currentTime = new Date();
     var year = currentTime.getFullYear();
 
     // do loop year
-    // nanti tukar balik '2020' ke 'year'
     var i = 2020 - 2018;
 
-    // kalau nak susun asc guna append
-    //  kalau nak susun desc guna prepend
+    //  append for asc, prepend for desc
     while(i>=0){
         $('#main_filteryear').prepend($('<option>', {
             value: year + i,
@@ -47,7 +45,7 @@
         i--;
     }
     
-    // filter main saving by year
+    // get filter main saving by year
     // initial load
     getYear(year);
     $(function() {
@@ -64,7 +62,6 @@
             type: 'GET', //or POST
             success: function(data){
                 $('#main_saving_summary').html(data);
-                // getTable(parseInt($('#main_filteryear').find(':selected').val()));
             }
         });
     }

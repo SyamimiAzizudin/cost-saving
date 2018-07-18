@@ -29,7 +29,11 @@
                 <h5>Yearly % (Cumm) </h5>
             </div>
             <div class="panel-body text-center">
-                <h3> {{ number_format(( ($cummulative_actual/$yearly_target) * 100),0) }} % </h3>
+                @if($yearly_target != '0')
+                    <h3> {{ number_format(( ($cummulative_actual/$yearly_target) * 100),0) }} % </h3>
+                @else
+                    <h3>0</h3>
+                @endif
             </div>
         </div>
         <div class="col-md-2 col-xs-12 panel panel-default">
@@ -37,7 +41,11 @@
                 <h5>Month % (Cumm) </h5>
             </div>
             <div class="panel-body text-center">
-                <h3> {{ number_format(($cummulative_actual/$cummulative_target) * 100,0) }} % </h3>
+                @if($cummulative_target != '0')
+                    <h3> {{ number_format(($cummulative_actual/$cummulative_target) * 100,0) }} % </h3>
+                @else
+                <h3>0</h3>
+                @endif
             </div>
         </div>
     </div>
@@ -46,12 +54,12 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <!-- Update Date-->
+            <!-- Get Company Latest Date-->
             <div class="col-lg-12">
                 <p class="text-right">Last Update Savings: {{ Carbon\Carbon::parse($last_update)->format('g:i A, d F Y') }}</p>
             </div>
             
-    <!-- Chart Section -->
+    <!-- Company Chart Section -->
     <div class="row">
         <div class="col-lg-12">
             <center>
@@ -64,7 +72,7 @@
         </div>
     </div>
 
-    <!--Summary-->
+    <!-- Company Summary -->
     <div class="row">
         <div class="col-md-12 padding2">
             <div class="col-md-12">
@@ -97,7 +105,6 @@
                 </div>
             </div>
         </div>
-    {{-- </div>    --}}
 
     <div class="row">
         <div class="col-lg-12">
@@ -109,12 +116,16 @@
 
 <script>
 
-    //initial load
-    getTable(2018, 1);
+    // pass value to js
+    var year = <?php echo json_encode($year); ?>;
+
+    // initial load
+    getTable(year, 1);
     $(function() {
         $("#company_filtermonth").on('change', function(){
             var value = $(this).find(":selected").val();
-            var curr_year = $("#company_filteryear").find(":selected").val();
+            var curr_year = <?php echo json_encode($year); ?>;
+            // var curr_year = $("#company_filteryear").find(":selected").val();
             getTable(curr_year, value);
         });
     });
