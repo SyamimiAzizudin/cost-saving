@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
-
+use Barryvdh\DomPDF\PDF;
 
 class HomeController extends Controller
 {
@@ -39,13 +39,20 @@ class HomeController extends Controller
         return view('dashboard');
     }
 
-    public function dashboard_year($year)
+    public function dashboard_year($year, Request $request)
     {
         $current_month = Carbon::now()->month;
         $ls = DB::table('savings')
+            // ->where('year', '=', $year)
             ->orderBy('updated_at', 'desc')
             ->get();
-        $last_update = $ls->first()->updated_at;
+
+        // if($request->has($year)) {
+            $last_update = $ls->first()->updated_at;
+        // }
+        // else {
+        //     return 0;
+        // }
 
         //todo 5 big numbers main saving query for that year
         $yearly_target = DB::table('savings')
@@ -115,7 +122,17 @@ class HomeController extends Controller
             array_push($graphs['yearly_target'], (int)$v->yearly_target);
         }
 
+        if($request->has('download')){
+            $pdf = PDF::loadView('dashboard_filteryear');
+            return $pdf->download('pdfview.pdf');
+        }
+
         return view('dashboard_filteryear', compact('last_update', 'companies', 'yearly_target', 'cummulative_target', 'cummulative_actual', 'saving_summary_results', 'graphs', 'year'));
+
+        // $pdf = app('dompdf.wrapper');
+        // $pdf->loadView('dashboard_filteryear',compact('last_update', 'companies', 'yearly_target', 'cummulative_target', 'cummulative_actual', 'saving_summary_results', 'graphs', 'year'));
+        // return $pdf->stream('MainDashboard.pdf');
+
     }
 
     public function dashboard_cost_saving_summary($year, $month)

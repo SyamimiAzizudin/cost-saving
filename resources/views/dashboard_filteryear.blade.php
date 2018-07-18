@@ -143,7 +143,8 @@
     <div class="row">
         <div class="col-lg-12">
             <div class="text-right padding2">
-                <a href="{{ url('/print-overall') }}" class="btn btn-outline-success success print-ipad">Print Overall Page</a>
+                <a href="{{ route('pdfview',['download'=>'pdf']) }}">Download PDF</a>
+                <!-- <a href="{{ url('/print-overall') }}" class="btn btn-outline-success success print-ipad">Print Overall Page</a> -->
             </div>
         </div>
     </div>

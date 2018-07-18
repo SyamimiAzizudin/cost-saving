@@ -44,7 +44,7 @@
                 @if($cummulative_target != '0')
                     <h3> {{ number_format(($cummulative_actual/$cummulative_target) * 100,0) }} % </h3>
                 @else
-                <h3>0</h3>
+                    <h3>0</h3>
                 @endif
             </div>
         </div>
