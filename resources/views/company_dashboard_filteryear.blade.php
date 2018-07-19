@@ -109,7 +109,7 @@
     <div class="row">
         <div class="col-lg-12">
             <div class="text-right padding2">
-                <a href="{{ url('/print-overall') }}" class="btn btn-outline-success success print-ipad">Print Overall Page</a>
+                <button onclick="myPrint()" class="btn btn-outline-success success print-ipad">Print PDF</button>
             </div>
         </div>
     </div>

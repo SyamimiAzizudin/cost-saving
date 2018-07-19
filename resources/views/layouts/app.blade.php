@@ -4,8 +4,6 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'UMW Cost Saving Initiative') }}</title>
@@ -14,6 +12,7 @@
     <link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/modern-business.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/print.css') }}" rel="stylesheet">
     <link href="{{ asset('font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('fonts/glyphicons-halflings-regular.woff') }}">
     {{-- <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet"> --}}
@@ -22,7 +21,7 @@
     <script src="https://unpkg.com/vue/dist/vue.min.js"></script>
     <script src="https://unpkg.com/highcharts/highcharts.js"></script>
     
-    <!-- vue-highcharts should be load after Highcharts -->
+    <!-- vue-highcharts should be load after highcharts -->
     <script src="https://unpkg.com/vue-highcharts/dist/vue-highcharts.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     
@@ -98,9 +97,10 @@
                     </ul>
                 </div>
             </div>
-        </nav>
+        </nav><!-- Nav -->
 
         <div class="container">
+
             <div class="row">
                 <div class="col-md-12">
                     @if (session()->has('message'))
@@ -122,7 +122,7 @@
                         @endforeach
                     @endif
                 </div>
-            </div>
+            </div><!-- .rov -->
 
             <div class="row">
                 <div class="col-md-12">
@@ -130,8 +130,8 @@
                 </div>
             </div>
             
-        </div> <!-- container -->
-    </div>
+        </div> <!-- .container -->
+    </div><!-- #app -->
 
     <!-- Footer -->
     <div class="container">
@@ -151,13 +151,18 @@
     <script src="{{ asset('js/jquery.min.js') }}"></script>
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
 
-    <!-- Script to Activate the Carousel -->
     <script>
-    $('.carousel').carousel({
-        interval: 5000 //changes the speed
-    })
-    </script>
-    <script>
+
+        // Script to Activate the Carousel
+        $('.carousel').carousel({
+            interval: 5000 //changes the speed
+        })
+
+        function myPrint() {
+            window.print();
+        }
+
+        // Script for delete/destroy modal
         $(document).on("click", "#confirm-modal", function(e) {
             window.console&&console.log('foo');
             var url = $(this).attr("href");
@@ -167,7 +172,10 @@
             $('#destroy-form').attr('action', url);
             $('#destroy-modal').modal({ show: true });
         });
+
     </script>
+
     @yield('scripts')
+
 </body>
 </html>

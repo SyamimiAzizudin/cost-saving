@@ -33,7 +33,8 @@
 </div>
 <br>
 <div class="row btn-submit-custom">
-    <button type="submit" class="btn btn-primary btn-lg" id="lock_initiative"> Submit</button>
+    <button type="submit" class="btn btn-primary" id="lock_initiative"> Submit</button>
+    <button onclick="myPrint()" class="btn btn-outline-success success print-ipad">Print PDF</button>
 </div>
 
 <!-- Button trigger modal -->

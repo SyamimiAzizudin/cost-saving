@@ -1,0 +1,45 @@
+@media print {
+
+	html, body {
+		page-break-after: avoid !important;
+        page-break-before: avoid !important;
+        color: #636b6f !important
+	}
+	footer, footer:last-child {
+		page-break-after: auto !important;
+	}
+
+	/* for menu button */
+    .menu-dashboard .col-md-8.col-md-offset-2, ol.breadcrumb,
+    a.button, a.btn, button.btn {
+        display: none !important;
+    }
+    /* disable href link */
+    a[href]:after {
+    	content: none !important;
+    }
+	
+	a { color: #3097d1 !important; }
+	.page-header { color: #777 !important }
+	label.number.fail, p.text-right.fail { color: #f44336 !important; }
+	label.number.good, p.text-right.good { color: #4CAF50 !important; }
+	.fresult { animation: unset !important }
+
+	/* for table saving */
+	.table-scroll th, .table-scroll td {
+		border: 1px solid #ccc !important
+	}
+	table { page-break-inside: auto !important }
+	tr { 
+		page-break-inside: avoid !important;
+		page-break-after: auto !important
+	}
+	thead { display: table-header-group !important }
+	b, strong { font-weight: bold !important }
+	
+	/* remove url on bottom page */
+	@page {
+	    size: auto;
+	    margin: 0;
+	}
+}

@@ -109,7 +109,7 @@
     <div class="row">
         <div class="col-lg-12">
             <div class="text-right padding2">
-                <button class="btn btn-outline-success success">Print Overall Page</button>
+                <button onclick="myPrint()" class="btn btn-outline-success success print-ipad">Print PDF</button>
             </div>
         </div>
     </div>

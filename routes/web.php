@@ -66,8 +66,9 @@ Route::group(['middleware' => 'board'], function() {
     Route::get('/dashboard', 'HomeController@dashboard');
     Route::get('/dashboard/{year}', 'HomeController@dashboard_year');
     Route::get('/dashboard_cost_saving_summary/{year}/{month}', 'HomeController@dashboard_cost_saving_summary');
-
-    Route::get('pdfview', array('as'=>'pdfview', 'uses'=>'HomeController@dashboard_year'));
+    
+    // Generate PDF file
+    Route::get('/dashboard_pdfview/{year}', ['as'=>'dashboard_pdfview', 'uses'=>'HomeController@dashboard_pdfview']);
 
     // Group Dashboard
     Route::get('/group-dashboard/{group}', 'HomeController@group_dashboard');
