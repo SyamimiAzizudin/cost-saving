@@ -1,7 +1,7 @@
 <div class="table-container">
     <div id="table-scroll" class="table-scroll">
         <div class="saving-scroll">
-            <table class="main-table">
+            <table class="main-table saving">
                 <thead>
                 <tr>
                     <th class="fixed-side"><p class="col"><b>AREA</b></p></th>
@@ -24,167 +24,169 @@
                 </thead>
                 <tbody>
                 @foreach($initiatives as $y => $v)
-                <?php $cum_target_iv = 0; ?>
-                <?php $TCM = 0; ?>
-                <?php $ACM = 0; ?>
-                <?php $achieve = 0; ?>
-                <?php $last_month = \Carbon\Carbon::now()->subMonth(1)->month; ?>
-                    <tr>
-                        <th class="fixed-side" rowspan="7">{!! $v->area !!}</th>
-                        <th class="fixed-side" rowspan="7">{!! $v->analyze !!}</th>
-                        <th class="fixed-side" rowspan="7">{!! $v->action !!}</th>
-                        @for($i = 1; $i <= 12; $i++)
-                        <?php $cum_target_iv += $company_savings[$v->id][$i]['target_saving']; ?>
-                        @endfor            
-                        <th class="fixed-side">
-                            <span class="pull-left"><b>RM</b></span>
-                            <span class="pull-right"><b>{{ number_format($cum_target_iv, 2, '.', ',')}}</b></span>
-                        </th>
-                        @for($i = 1; $i <= 12; $i++)
-                            @if($company_savings[$v->id][$i]['target_saving'] != null)
-                                <td>
-                                    <p class="text-right">{{ number_format(($company_savings[$v->id][$i]['target_saving']), 2, '.', ',') }}</p>
-                                    {{-- <button type="button" class="btn btn-warning btn-sm openModal" data-toggle="modal" data-value="{{ $company_savings[$v->id][$i]['target_saving'] }}" data-id="0" data-month="{{ $i }}" data-year="{{ $year }}" data-section="target_saving" data-initiative_id="{{ $v->id }}" data-saving_id="">Edit
-                                    </button> --}}
-                                </td>
-                            @else
-
-                                <td>
-                                    <span class="editable">
-                                    -
-                                    <br>
-                                    <button type="button" class="btn btn-warning btn-sm openModal" data-toggle="modal" data-value="" data-id="0" data-month="{{ $i }}" data-year="{{ $year }}" data-section="target_saving" data-initiative_id="{{ $v->id }}" data-saving_id="">Edit
-                                    </button>
-                                    </span>
-                                </td>
-                            @endif
-                        @endfor
-                    </tr>
-                    <tr>
-                        <th class="fixed-side"><b>ACTUAL SAVING FOR THE MONTH</b></th>
-                        @for($i = 1; $i <= 12; $i++)
-                            @if($company_savings[$v->id][$i]['actual_saving'] != null)
-                                @if ($company_savings[$v->id][$i]['actual_saving'] >= $company_savings[$v->id][$i]['target_saving'])
-                                <td>
-                                    <p class="text-right good">{{number_format(($company_savings[$v->id][$i]['actual_saving']), 2, '.', ',')}}</p>
-                                    @if($i <= $last_month && $company_savings[$v->id][$i]['display'] == 1)
-                                        <button type="button" class="btn btn-info btn-sm openModal" data-toggle="modal" data-value="{{ $company_savings[$v->id][$i]['actual_saving'] }}" data-id="0" data-month="{{ $i }}" data-year="{{ $year }}" data-section="actual_saving" data-initiative_id="{{ $v->id }}">Edit</button>
-                                    @endif
-                                </td>
+                <tbody class="new">
+                    <?php $cum_target_iv = 0; ?>
+                    <?php $TCM = 0; ?>
+                    <?php $ACM = 0; ?>
+                    <?php $achieve = 0; ?>
+                    <?php $last_month = \Carbon\Carbon::now()->subMonth(1)->month; ?>
+                        <tr>
+                            <th class="fixed-side" rowspan="7">{!! $v->area !!}</th>
+                            <th class="fixed-side" rowspan="7">{!! $v->analyze !!}</th>
+                            <th class="fixed-side" rowspan="7">{!! $v->action !!}</th>
+                            @for($i = 1; $i <= 12; $i++)
+                            <?php $cum_target_iv += $company_savings[$v->id][$i]['target_saving']; ?>
+                            @endfor            
+                            <th class="fixed-side">
+                                <span class="pull-left"><b>RM</b></span>
+                                <span class="pull-right"><b>{{ number_format($cum_target_iv, 2, '.', ',')}}</b></span>
+                            </th>
+                            @for($i = 1; $i <= 12; $i++)
+                                @if($company_savings[$v->id][$i]['target_saving'] != null)
+                                    <td>
+                                        <p class="text-right">{{ number_format(($company_savings[$v->id][$i]['target_saving']), 2, '.', ',') }}</p>
+                                        {{-- <button type="button" class="btn btn-warning btn-sm openModal" data-toggle="modal" data-value="{{ $company_savings[$v->id][$i]['target_saving'] }}" data-id="0" data-month="{{ $i }}" data-year="{{ $year }}" data-section="target_saving" data-initiative_id="{{ $v->id }}" data-saving_id="">Edit
+                                        </button> --}}
+                                    </td>
                                 @else
-                                <td>
-                                   <p class="text-right fail">{{number_format(($company_savings[$v->id][$i]['actual_saving']), 2, '.', ',')}}</p>
-                                    @if($i <= $last_month && $company_savings[$v->id][$i]['display'] == 1)
-                                        <button type="button" class="btn btn-info btn-sm openModal" data-toggle="modal" data-value="{{ $company_savings[$v->id][$i]['actual_saving'] }}" data-id="0" data-month="{{ $i }}" data-year="{{ $year }}" data-section="actual_saving" data-initiative_id="{{ $v->id }}">Edit</button>
-                                    @endif
-                                </td>
-                                @endif
-                            @else
-                                <td>
-                                    @if($i <= $last_month && $company_savings[$v->id][$i]['display'] == 1)
-                                        <span class="editable">
-                                        -
-                                        <br>
-                                        <button type="button" class="btn btn-info btn-sm openModal" data-toggle="modal" data-value="" data-id="0" data-month="{{ $i }}" data-year="{{ $year }}" data-section="actual_saving" data-initiative_id="{{ $v->id }}">Edit
-                                        </button>
-                                        </span>
-                                    @endif
-                                </td>
-                            @endif
-                        @endfor
-                    </tr>
-                    <tr>
-                        <th class="fixed-side"><b>Total Target Saving</b></th>
-                        @for($i = 1; $i <= 12; $i++)
-                            @if($company_savings[$v->id][$i]['target_saving'] != null)
-                                <td>
-                                    <b><p class="text-right">{{ number_format(($company_savings[$v->id][$i]['target_saving']), 2, '.', ',') }}</p></b>
-                                    {{-- <button type="button" class="btn btn-warning btn-sm openModal" data-toggle="modal" data-value="{{ $company_savings[$v->id][$i]['target_saving'] }}" data-id="0" data-month="{{ $i }}" data-year="{{ $year }}" data-section="target_saving" data-initiative_id="{{ $v->id }}" data-saving_id="">Edit
-                                    </button> --}}
-                                </td>
-                            @else
 
-                                <td>
-                                    @if($i <= $last_month && $company_savings[$v->id][$i]['display'] == 1)
+                                    <td>
                                         <span class="editable">
                                         -
                                         <br>
                                         <button type="button" class="btn btn-warning btn-sm openModal" data-toggle="modal" data-value="" data-id="0" data-month="{{ $i }}" data-year="{{ $year }}" data-section="target_saving" data-initiative_id="{{ $v->id }}" data-saving_id="">Edit
                                         </button>
                                         </span>
+                                    </td>
+                                @endif
+                            @endfor
+                        </tr>
+                        <tr>
+                            <th class="fixed-side"><b>ACTUAL SAVING FOR THE MONTH</b></th>
+                            @for($i = 1; $i <= 12; $i++)
+                                @if($company_savings[$v->id][$i]['actual_saving'] != null)
+                                    @if ($company_savings[$v->id][$i]['actual_saving'] >= $company_savings[$v->id][$i]['target_saving'])
+                                    <td>
+                                        <p class="text-right good">{{number_format(($company_savings[$v->id][$i]['actual_saving']), 2, '.', ',')}}</p>
+                                        @if($i <= $last_month && $company_savings[$v->id][$i]['display'] == 1)
+                                            <button type="button" class="btn btn-info btn-sm openModal" data-toggle="modal" data-value="{{ $company_savings[$v->id][$i]['actual_saving'] }}" data-id="0" data-month="{{ $i }}" data-year="{{ $year }}" data-section="actual_saving" data-initiative_id="{{ $v->id }}">Edit</button>
+                                        @endif
+                                    </td>
+                                    @else
+                                    <td>
+                                       <p class="text-right fail">{{number_format(($company_savings[$v->id][$i]['actual_saving']), 2, '.', ',')}}</p>
+                                        @if($i <= $last_month && $company_savings[$v->id][$i]['display'] == 1)
+                                            <button type="button" class="btn btn-info btn-sm openModal" data-toggle="modal" data-value="{{ $company_savings[$v->id][$i]['actual_saving'] }}" data-id="0" data-month="{{ $i }}" data-year="{{ $year }}" data-section="actual_saving" data-initiative_id="{{ $v->id }}">Edit</button>
+                                        @endif
+                                    </td>
                                     @endif
-                                </td>
-                            @endif
-                        @endfor
-                    </tr>
-                    <tr>
-                        <th class="fixed-side"><b>Target Cumulative Saving</b></th>
-                        <!-- <?php $TCM = 0; ?> -->
-                        @for($i = 1; $i <= 12; $i++)
-                        <?php $TCM += $company_savings[$v->id][$i]['target_saving']; ?>
-                            @if($TCM != null)
-                                <td>
-                                    <b><p class="text-right">{{ number_format($TCM, 2 ,'.' ,',')}}</p></b>
-                                </td>
-                            @else
-                                <td> - </td>
-                            @endif
-                        @endfor
-                    </tr>
-                    <tr>
-                        <th class="fixed-side"><b>Actual Saving for the Month</b></th>
-                        @for($i = 1; $i <= 12; $i++)
-                            @if($company_savings[$v->id][$i]['actual_saving'] != null)
-                                @if ($company_savings[$v->id][$i]['actual_saving'] >= $company_savings[$v->id][$i]['target_saving'])
-                                    <td>
-                                        <p class="text-right good">{{ number_format(($company_savings[$v->id][$i]['actual_saving']), 2, '.', ',')}}</p>
-                                    </td>
                                 @else
                                     <td>
-                                        <p class="text-right fail">{{ number_format(($company_savings[$v->id][$i]['actual_saving']), 2, '.', ',')}}</p>
+                                        @if($i <= $last_month && $company_savings[$v->id][$i]['display'] == 1)
+                                            <span class="editable">
+                                            -
+                                            <br>
+                                            <button type="button" class="btn btn-info btn-sm openModal" data-toggle="modal" data-value="" data-id="0" data-month="{{ $i }}" data-year="{{ $year }}" data-section="actual_saving" data-initiative_id="{{ $v->id }}">Edit
+                                            </button>
+                                            </span>
+                                        @endif
                                     </td>
                                 @endif
-                            @else
-                                <td> - </td>
-                            @endif
-                        @endfor
-                    </tr>
-                    <tr>
-                        <th class="fixed-side"><b>Actual Cumulative Saving</b></th>
-                        <!-- <?php $ACM = 0; ?> -->
-                        <!-- <?php $TCM = 0; ?> -->
-                        @for($i = 1; $i <= 12; $i++)
-                        <?php $ACM += $company_savings[$v->id][$i]['actual_saving']; ?>
-                        <?php $TCM += $company_savings[$v->id][$i]['target_saving']; ?>
-                            @if($ACM != null)
-                                @if ($ACM >= $TCM)
-                                <td>
-                                    <b><p class="text-right good">{{ number_format($ACM, 2 ,'.' ,',')}}</p></b>
-                                </td>
+                            @endfor
+                        </tr>
+                        <tr>
+                            <th class="fixed-side"><b>Total Target Saving</b></th>
+                            @for($i = 1; $i <= 12; $i++)
+                                @if($company_savings[$v->id][$i]['target_saving'] != null)
+                                    <td>
+                                        <b><p class="text-right">{{ number_format(($company_savings[$v->id][$i]['target_saving']), 2, '.', ',') }}</p></b>
+                                        {{-- <button type="button" class="btn btn-warning btn-sm openModal" data-toggle="modal" data-value="{{ $company_savings[$v->id][$i]['target_saving'] }}" data-id="0" data-month="{{ $i }}" data-year="{{ $year }}" data-section="target_saving" data-initiative_id="{{ $v->id }}" data-saving_id="">Edit
+                                        </button> --}}
+                                    </td>
                                 @else
-                                <td>
-                                    <b><p class="text-right fail">{{ number_format($ACM, 2 ,'.' ,',')}}</p></b>
-                                </td>
+
+                                    <td>
+                                        @if($i <= $last_month && $company_savings[$v->id][$i]['display'] == 1)
+                                            <span class="editable">
+                                            -
+                                            <br>
+                                            <button type="button" class="btn btn-warning btn-sm openModal" data-toggle="modal" data-value="" data-id="0" data-month="{{ $i }}" data-year="{{ $year }}" data-section="target_saving" data-initiative_id="{{ $v->id }}" data-saving_id="">Edit
+                                            </button>
+                                            </span>
+                                        @endif
+                                    </td>
                                 @endif
-                            @else
-                                <td> - </td>
-                            @endif
-                        @endfor
-                    </tr>
-                    <tr>
-                        <th class="fixed-side"><b>Achievement Percentage</b></th>
-                        <!-- <?php $achieve = 0; ?> -->
-                        @for($i = 1; $i <= 12; $i++)
-                        <?php $achieve += $company_savings[$v->id][$i]['actual_saving']; ?>
-                            @if($achieve != null)
-                                <td>
-                                    <b><p class="text-center">{{ number_format(($achieve / $cum_target_iv)*100, 0) }}%</p></b>
-                                </td>
-                            @else
-                                <td> 0 </td>
-                            @endif
-                        @endfor
-                    </tr>
+                            @endfor
+                        </tr>
+                        <tr>
+                            <th class="fixed-side"><b>Target Cumulative Saving</b></th>
+                            <!-- <?php $TCM = 0; ?> -->
+                            @for($i = 1; $i <= 12; $i++)
+                            <?php $TCM += $company_savings[$v->id][$i]['target_saving']; ?>
+                                @if($TCM != null)
+                                    <td>
+                                        <b><p class="text-right">{{ number_format($TCM, 2 ,'.' ,',')}}</p></b>
+                                    </td>
+                                @else
+                                    <td> - </td>
+                                @endif
+                            @endfor
+                        </tr>
+                        <tr>
+                            <th class="fixed-side"><b>Actual Saving for the Month</b></th>
+                            @for($i = 1; $i <= 12; $i++)
+                                @if($company_savings[$v->id][$i]['actual_saving'] != null)
+                                    @if ($company_savings[$v->id][$i]['actual_saving'] >= $company_savings[$v->id][$i]['target_saving'])
+                                        <td>
+                                            <p class="text-right good">{{ number_format(($company_savings[$v->id][$i]['actual_saving']), 2, '.', ',')}}</p>
+                                        </td>
+                                    @else
+                                        <td>
+                                            <p class="text-right fail">{{ number_format(($company_savings[$v->id][$i]['actual_saving']), 2, '.', ',')}}</p>
+                                        </td>
+                                    @endif
+                                @else
+                                    <td> - </td>
+                                @endif
+                            @endfor
+                        </tr>
+                        <tr>
+                            <th class="fixed-side"><b>Actual Cumulative Saving</b></th>
+                            <!-- <?php $ACM = 0; ?> -->
+                            <!-- <?php $TCM = 0; ?> -->
+                            @for($i = 1; $i <= 12; $i++)
+                            <?php $ACM += $company_savings[$v->id][$i]['actual_saving']; ?>
+                            <?php $TCM += $company_savings[$v->id][$i]['target_saving']; ?>
+                                @if($ACM != null)
+                                    @if ($ACM >= $TCM)
+                                    <td>
+                                        <b><p class="text-right good">{{ number_format($ACM, 2 ,'.' ,',')}}</p></b>
+                                    </td>
+                                    @else
+                                    <td>
+                                        <b><p class="text-right fail">{{ number_format($ACM, 2 ,'.' ,',')}}</p></b>
+                                    </td>
+                                    @endif
+                                @else
+                                    <td> - </td>
+                                @endif
+                            @endfor
+                        </tr>
+                        <tr>
+                            <th class="fixed-side"><b>Achievement Percentage</b></th>
+                            <!-- <?php $achieve = 0; ?> -->
+                            @for($i = 1; $i <= 12; $i++)
+                            <?php $achieve += $company_savings[$v->id][$i]['actual_saving']; ?>
+                                @if($achieve != null)
+                                    <td>
+                                        <b><p class="text-center">{{ number_format(($achieve / $cum_target_iv)*100, 0) }}%</p></b>
+                                    </td>
+                                @else
+                                    <td> 0 </td>
+                                @endif
+                            @endfor
+                        </tr>
+                </tbody>
                 @endforeach
                     <tr>
                         <td class="fixed-side" colspan="3"></td>

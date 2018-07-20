@@ -5,7 +5,7 @@
         page-break-before: avoid !important;
         color: #636b6f !important
 	}
-	footer, footer:last-child {
+	footer, footer:last-child, .container, .container:last-child {
 		page-break-after: auto !important;
 	}
 
@@ -19,27 +19,63 @@
     	content: none !important;
     }
 	
-	a { color: #3097d1 !important; }
-	.page-header { color: #777 !important }
-	label.number.fail, p.text-right.fail { color: #f44336 !important; }
-	label.number.good, p.text-right.good { color: #4CAF50 !important; }
-	.fresult { animation: unset !important }
+	a { 
+		color: #3097d1 !important; 
+	}
+	.page-header { 
+		color: #777 !important 
+	}
+	label.number.fail, p.text-right.fail { 
+		color: #f44336 !important; 
+	}
+	label.number.good, p.text-right.good { 
+		color: #4CAF50 !important; 
+	}
+	.fresult { 
+		animation: unset !important 
+	}
 
 	/* for table saving */
 	.table-scroll th, .table-scroll td {
 		border: 1px solid #ccc !important
 	}
-	table { page-break-inside: auto !important }
-	tr { 
-		page-break-inside: avoid !important;
-		page-break-after: auto !important
+	table {
+		page-break-inside: auto !important
 	}
-	thead { display: table-header-group !important }
-	b, strong { font-weight: bold !important }
+	tr, td { 
+		page-break-inside: avoid !important;
+		page-break-after: always !important
+	}
+	thead { 
+		display: table-header-group !important
+	}
+	tfoot { display: table-row-group }
+	/*table, tr, td, th, tbody, thead, tfoot {
+	    page-break-inside: avoid !important;
+	}*/
+	/*table.saving {
+        overflow: visible !important;
+        clear: both;
+        border-collapse: separate;
+    }*/
+	table.main-table tr td, table.main-table tr th {
+        page-break-inside: avoid !important;
+        page-break-after: always !important;
+        margin-top: 10px !important
+    }
+
+	b, strong { 
+		font-weight: bold !important 
+	}
+	tbody.new { 
+		page-break-inside: avoid;
+		page-break-after: always;
+		-webkit-page-break-inside: avoid;
+	}
 	
 	/* remove url on bottom page */
 	@page {
 	    size: auto;
-	    margin: 0;
+	    margin: 20px 0;
 	}
 }
