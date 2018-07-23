@@ -12,52 +12,52 @@
 	/* for menu button */
     .menu-dashboard .col-md-8.col-md-offset-2, ol.breadcrumb,
     a.button, a.btn, button.btn {
-        display: none !important;
+        display: none !important
     }
     /* disable href link */
-    a[href]:after {
-    	content: none !important;
-    }
+    a[href]:after { content: none !important }
 	
 	a { color: #3097d1 !important; }
 
 	.page-header { color: #777 !important }
 
-	label.number.fail, p.text-right.fail { 
-		color: #f44336 !important; 
-	}
-	label.number.good, p.text-right.good { 
-		color: #4CAF50 !important; 
-	}
+	label.number.fail, p.text-right.fail { color: #f44336 !important }
+
+	label.number.good, p.text-right.good { color: #4CAF50 !important }
+
 	.fresult { animation: unset !important }
 
 	/* for table saving */
-	.table-scroll th, .table-scroll td {
-		border: 1px solid #ccc !important
-	}
-	thead { 
-		display: table-header-group !important
-	}
+	.table-scroll th, .table-scroll td { border: 1px solid #ccc !important }
 
-	tfoot { display: table-row-group }
+	thead { display: table-header-group !important}
+
+	tfoot { display: table-row-group !important }
+	table.main-table { page-break-inside: auto }
 
 	table.main-table tr, table.main-table tr th, table.main-table tr td, tbody.new {
-        page-break-inside: avoid !important;
+        -webkit-column-break-inside: avoid !important;
+        page-break-inside: avoid !important
+;        break-inside: avoid !important;
         page-break-before: always !important;
         page-break-after: auto !important;
         margin-top: 10px !important;
         position: relative !important;
-		overflow: initial !important;
+        overflow: initial !important;
     }
+
+    td, th {
+	  width: 10000px !important;
+	}
 
 	b, strong { font-weight: bold !important }
 
-	/*table.main-table.saving:nth-child(2) { display: none; }*/
+	/*table.main-table.saving:nth-child(2) { display: none }*/
 	
 	/* remove url on bottom page */
 	@page {
 	    size: auto;
-	    margin: 10px 0 0 0;
+	    margin: 0;
 	    padding: 0;
 	}
 }

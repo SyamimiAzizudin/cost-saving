@@ -15,15 +15,14 @@
     <link href="{{ asset('css/print.css') }}" rel="stylesheet">
     <link href="{{ asset('font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('fonts/glyphicons-halflings-regular.woff') }}">
-    {{-- <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet"> --}}
 
     <!-- Javascript -->
-    <script src="https://unpkg.com/vue/dist/vue.min.js"></script>
-    <script src="https://unpkg.com/highcharts/highcharts.js"></script>
+    <script src="{{ asset('js/vue.min.js') }}"></script>
+    <script src="{{ asset('js/highcharts.js') }}"></script>
     
     <!-- vue-highcharts should be load after highcharts -->
-    <script src="https://unpkg.com/vue-highcharts/dist/vue-highcharts.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="{{ asset('js/vue-highcharts.min.js') }}"></script>
+    <script src="{{ asset('js/cdn-jquery.min.js') }}"></script>
     
 </head>
 <body>
