@@ -16,11 +16,12 @@
     <link href="{{ asset('font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('fonts/glyphicons-halflings-regular.woff') }}">
 
-    <!-- Javascript -->
+    <!-- Load glyphicons resources -->
+    {{-- <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet"> --}}
+
+    <!-- vue-highcharts should be load after highcharts -->
     <script src="{{ asset('js/vue.min.js') }}"></script>
     <script src="{{ asset('js/highcharts.js') }}"></script>
-    
-    <!-- vue-highcharts should be load after highcharts -->
     <script src="{{ asset('js/vue-highcharts.min.js') }}"></script>
     <script src="{{ asset('js/cdn-jquery.min.js') }}"></script>
     

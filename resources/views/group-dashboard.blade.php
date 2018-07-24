@@ -38,7 +38,7 @@
     var year = currentTime.getFullYear();
 
     // do loop year
-    var i = year - 2018;
+    var i = 2020 - 2018;
 
     //  append for asc, prepend for desc
     while(i>=0){

@@ -78,19 +78,18 @@ class HomeController extends Controller
         }
 
         //todo graph query for main saving    
-        $targets = DB::select('select `month`, sum(target_saving) as target_saving
-        from savings
+        $targets = DB::select('select `month`, sum(`target_saving`) as target_saving
+        from `savings`
         where `year` = :year
         group by `month`', ['year' => $year]);
 
-        $actual = DB::select('select `month`, sum(actual_saving) as actual_saving
-        from savings
+        $actual = DB::select('select `month`, sum(`actual_saving`) as actual_saving
+        from `savings`
         where (`year` = :year) and (`month` between 1 and :month)
         group by `month`', ['month' => $current_month, 'year' => $year]);
 
-        $yearly_target_results = DB::select('select `month`, (select sum(target_saving) from savings) as yearly_target
-        from savings
-        where `year` = :year
+        $yearly_target_results = DB::select('select `month`, (select sum(`target_saving`) from `savings` where `year` = :year) as yearly_target
+        from `savings`
         group by `month`', ['year' => $year]);
 
         $graphs = [];
@@ -233,10 +232,10 @@ class HomeController extends Controller
         group by `month`', ['group' => $group, 'month' => $current_month, 'year' => $year]);
 
         $yearly_target_results = DB::select('select `month`, 
-            (select sum(target_saving) from savings
-        inner join initiatives on savings.initiative_id = initiatives.id
-        inner join companies on companies.id = initiatives.company_id
-        where companies.group = :group and savings.year = :year) as yearly_target
+            (select sum(`target_saving`) from savings
+        inner join `initiatives` on `savings`.`initiative_id` = `initiatives`.`id`
+        inner join `companies` on `companies`.`id` = `initiatives`.`company_id`
+        where `companies`.`group` = :group and `savings`.`year` = :year) as yearly_target
         from `savings`
         group by `month`', ['group'=> $group, 'year' => $year]);
 
@@ -417,10 +416,10 @@ class HomeController extends Controller
         group by `month`', ['id'=> $id, 'month' => $current_month, 'year' => $year]);
 
         $yearly_target_results = DB::select('select `month`, 
-            (select sum(target_saving) from savings
-            inner join initiatives on savings.initiative_id = initiatives.id
-            inner join companies on companies.id = initiatives.company_id
-            where companies.id = :id and savings.year = :year) as yearly_target
+            (select sum(`target_saving`) from `savings`
+            inner join `initiatives` on `savings`.`initiative_id` = `initiatives`.`id`
+            inner join `companies` on `companies`.`id` = `initiatives`.`company_id`
+            where `companies`.`id` = :id and `savings`.`year` = :year) as yearly_target
         from `savings`  
         group by `month`', ['id'=> $id, 'year' => $year]);
 
